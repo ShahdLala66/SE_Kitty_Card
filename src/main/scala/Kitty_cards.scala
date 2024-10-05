@@ -37,7 +37,7 @@ object KittyCardGame {
       println()
       println() // Blank line after the hand
     }
-
+//setting up corina branch
     // Function to print the cats
     def printCats(): Unit = {
        println("__________________________________________")
