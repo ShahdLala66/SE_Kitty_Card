@@ -48,7 +48,7 @@ object KittyCardGame {
       println("__________________________________________")
       println("| ≽^•⩊•^≼    | ≽^•⩊•^≼   |             |" )
       println("__________________________________________")
-
+//setting up shahed lol
       println()
     }
   }
