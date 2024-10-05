@@ -15,7 +15,8 @@ object KittyCardGame {
     printHand(hand1)
     printCats()
     printHand(hand2)
-
+  //
+    //
     // Function to print a hand of cards
     def printHand(hand: List[String]): Unit = {
       // Print the top border of the cards
