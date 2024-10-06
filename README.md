@@ -1,4 +1,4 @@
-# KITTY CARDS GAME LESSSGOOOOOO 
+#  $${\color{#b2a2c7}KITTY \space CARDS \space GAME}$$ LESSSGOOOOOO 
 ### ZAYNE
 
 ## Rules:
