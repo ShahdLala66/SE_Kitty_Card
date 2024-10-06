@@ -41,19 +41,19 @@ object KittyCardGame {
 //setting up corina branch
     // Function to print the cats
     def printCats(): Unit = {
-      println("__________________________________________")
+      println("________________________________________")
       println("|            |            |            |")
       println("|            |   ≽^•⩊•^≼  |            |")
       println("|            |            |            |")
       println("__________________________________________")
       println("|            |            |            |")
-      println("|  ≽^•⩊•^≼   |  ≽^•⩊•^≼  |  ≽^•⩊•^≼   |" )
+      println("|            |  ≽^•⩊•^≼   |  ≽^•⩊•^≼   |" )
       println("|            |            |            |")
       println("__________________________________________")
       println("|            |            |             |")
       println("|  ≽^•⩊•^≼   |  ≽^•⩊•^≼  |             |" )
       println("|            |            |             |")
-      println("__________________________________________")
+      println("________________________________________")
       //kittys
 //setting up shahed lol
       println()
