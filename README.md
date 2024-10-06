@@ -6,7 +6,7 @@
 >### ***Normal***
 >
 >##### *About Rounds*
->At he start of each game , both players decide the order to play. <font color="#b2a2c7"> The player going first </font> receives 2 cards, while the player going second receives 3 cards.
+>At he start of each game , both players decide the order to play. The player going first receives 2 cards, while the player going second receives 3 cards.
 >Players alternate turns and each round the can choose to *[Play]* a card or *[Draw]* a card.
 >When all 8 cups are filled with kitties, the player with more points wins the game.
 >##### *About Cards*
