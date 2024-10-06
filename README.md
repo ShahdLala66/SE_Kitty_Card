@@ -43,16 +43,16 @@ The advanced mode is divided into two phases:
 During each round, players must first deal with Assist Cards, then proceed to the Number Card Phase.  
 When all 8 cups are filled with kitties, the $${\color{#9370db}player\space with\space more\space points}$$ wins the game.
 
-##### **Assist Card Phase:**
+##### 🂡 **Assist Card Phase:** 🂡
 At the $${\color{#9370db}start\space of\space each\space round}$$, deal with your Assist Cards first.  
 There is no limit to how many Assist Cards you can play in a round. Tap $${\color{#9370db}END}$$ to move to the next phase.  
 If you're out of Assist Cards or can't play any, the Assist Card Phase ends.
 
-##### **Number Card Phase:**
+#####  🃁🂭🂺 **Number Card Phase:** 🃜🃚🃖
 After the Assist Card Phase, the $${\color{#9370db}Number\space Card\space Phase}$$ begins.  
 You can either play a card or draw a card, then the phase ends.
 
 ##### **Hand Limit:**
-You can hold up to $${\color{#9370db}10\space cards}$$ in your hand, including both Assist and Number Cards (same rule applies to normal mode).
+You can hold up to $${\color{#9370db}10\space cards}$$ in your hand, including both Assist and Number Cards (same rule applies to normal mode)
 
 ────୨ৎ────────୨ৎ────────୨ৎ────────୨ৎ────────୨ৎ────
