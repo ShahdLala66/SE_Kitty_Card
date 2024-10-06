@@ -38,18 +38,26 @@ object KittyCardGame {
       println()
       println() // Blank line after the hand
     }
-
+//setting up corina branch
     // Function to print the cats
     def printCats(): Unit = {
-       println("__________________________________________")
-      println("|            |  ≽^•⩊•^≼   |            |")
       println("__________________________________________")
-      println("| ≽^•⩊•^≼    | ≽^•⩊•^≼   | ≽^•⩊•^≼    |" )
+      println("|            |            |            |")
+      println("|            |   ≽^•⩊•^≼  |            |")
+      println("|            |            |            |")
       println("__________________________________________")
-      println("| ≽^•⩊•^≼    | ≽^•⩊•^≼   |             |" )
+      println("|            |            |            |")
+      println("|  ≽^•⩊•^≼   |  ≽^•⩊•^≼  |  ≽^•⩊•^≼   |" )
+      println("|            |            |            |")
       println("__________________________________________")
+      println("|            |            |             |")
+      println("|  ≽^•⩊•^≼   |  ≽^•⩊•^≼  |             |" )
+      println("|            |            |             |")
+      println("__________________________________________")
+      //kittys
 //setting up shahed lol
       println()
+      //setting up shahed branch
     }
   }
 }
