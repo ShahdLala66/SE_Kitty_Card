@@ -55,8 +55,4 @@ You can either play a card or draw a card, then the phase ends.
 ##### **Hand Limit:**
 You can hold up to $${\color{#9370db}10\space cards}$$ in your hand, including both Assist and Number Cards (same rule applies to normal mode).
 
-##### **Additional Rules:**
-- **Meow This!** is a special Assist Card that can be played anytime to deny your opponent's Assist Card.  
-- Number Cards **cannot** be denied.
-
 ────୨ৎ────────୨ৎ────────୨ৎ────────୨ৎ────────୨ৎ────
