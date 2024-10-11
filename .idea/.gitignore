@@ -6,3 +6,8 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+# Gradle files
+.gradle/
+# Mongo Explorer plugin files
+/mongoSettings.xml
+.class
