@@ -5,6 +5,7 @@
 
 >### ***Normal***
 >
+> #FFD700 <span style="color: green">dfsf</span>
 >##### *About Rounds*
 >At he start of each game , both players decide the order to play. The player going first receives 2 cards, while the player going second receives 3 cards.
 >Players alternate turns and each round the can choose to *[Play]* a card or *[Draw]* a card.
