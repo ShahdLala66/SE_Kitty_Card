@@ -1,4 +1,4 @@
-object KittyCardGame {
+object Test {
 
     def main(args: Array[String]): Unit = {
 
