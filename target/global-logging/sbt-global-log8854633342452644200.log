@@ -1,0 +1,7 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(sbt:SE_Kitty_Card_1> clean; coverage; test, Some(2a1e9007-e1a1-46a0-bf04-805a17782934), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(sbt:SE_Kitty_Card_1> clean, None, Some(CommandSource(console0)))[0m
+[0m[[0m[31merror[0m] [0m[0mExpected key[0m
+[0m[[0m[31merror[0m] [0m[0mNot a valid key: SE_Kitty_Card_1[0m
+[0m[[0m[31merror[0m] [0m[0msbt:SE_Kitty_Card_1> clean[0m
+[0m[[0m[31merror[0m] [0m[0m                   ^[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m
