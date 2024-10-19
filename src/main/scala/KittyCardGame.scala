@@ -1,17 +1,10 @@
-object Test {
+import model.Grid
+
+object KittyCardGame {
 
     def main(args: Array[String]): Unit = {
 
         val eol = sys.props("line.separator") // End of line character
-
-        def bar(cellWidth: Int = 15, cellNum: Int = 3): String =
-            ("+" + "-" * cellWidth) * cellNum + "+" + eol
-
-        def cells(cellWidth: Int = 15, cellNum: Int = 3): String =
-            (("|" + " " * cellWidth) * cellNum + "|" + eol) * 4
-
-        def mesh(cellWidth: Int = 15, cellNum: Int = 3): String =
-            (bar(cellWidth, cellNum) + cells(cellWidth, cellNum)) * cellNum + bar(cellWidth, cellNum)
 
         def printHeading(): Unit =
             println(Console.MAGENTA + "Welcome to the Kitty Card Game!" + Console.RESET + eol)
@@ -41,7 +34,10 @@ object Test {
         printHeading()
 
         printHand(hand1)
-        println(mesh())
+
+        val grid = Grid()
+        println(grid.mesh())
+
         printHand(hand2)
 
         println(card(Console.BLUE, 3))
