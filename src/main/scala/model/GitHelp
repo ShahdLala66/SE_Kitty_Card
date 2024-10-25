@@ -1,0 +1,17 @@
+# Step 1: Ensure your current branch is up to date
+git checkout 03-Tests
+git status  # Check for uncommitted changes
+git add .   # Stage changes if there are any
+git commit -m "Commit message for my changes"  # Commit changes if needed
+
+# Step 2: Switch to the main branch
+git checkout main
+
+# Step 3: Overwrite main with 03-Tests changes
+git merge 03-Tests --strategy-option theirs  # Option A
+# OR eigntlich dass immer aber pass auf, du musst hier wirjlich
+ stellen dass du die richitige datein hast sonst ist es shceisse
+ git reset --hard 03-Tests  # Option B
+
+# Step 4: Push changes to remote main branch
+git push origin main --force
