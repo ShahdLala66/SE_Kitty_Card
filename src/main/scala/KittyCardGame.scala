@@ -8,7 +8,7 @@ object KittyCardGame {
 
         def printHeading(): Unit =
             println(Console.MAGENTA + "Welcome to the Kitty Card Game!" + Console.RESET + eol)
-
+//hi again
         def card(color: String, value: Int): String = {
             val brightWhite = "\u001b[97m"
             val cardTop = color + " ∧,,,∧"
