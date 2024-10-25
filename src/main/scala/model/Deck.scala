@@ -5,8 +5,6 @@ import scala.util.Random
 class Deck {
   private var cards: List[Card] = generateDeck()
 
-  def getCards: List[Card] = cards
-  
   // Method to generate a full deck of cards
   private def generateDeck(): List[Card] = {
     for {
