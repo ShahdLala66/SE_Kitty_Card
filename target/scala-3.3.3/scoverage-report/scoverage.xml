@@ -1,5 +1,5 @@
 <scoverage 
-statement-count="149" statements-invoked="62" statement-rate="41.61" branch-rate="45.45" version="1.0" timestamp="1729842554560">
+statement-count="149" statements-invoked="68" statement-rate="45.64" branch-rate="72.73" version="1.0" timestamp="1729845289844">
     <packages>
         <package name="&lt;empty&gt;" statement-count="56" statements-invoked="0" statement-rate="0.00">
             <classes>
@@ -203,7 +203,7 @@ statement-count="149" statements-invoked="62" statement-rate="41.61" branch-rate
 </class>
             </classes>
         </package>
-        <package name="model" statement-count="93" statements-invoked="62" statement-rate="66.67">
+        <package name="model" statement-count="93" statements-invoked="68" statement-rate="73.12">
             <classes>
                 <class 
                 name="model.Suit$" filename="model\Suit.scala" statement-count="6" statements-invoked="6" statement-rate="100.00" branch-rate="100.00">
@@ -546,37 +546,37 @@ statement-count="149" statements-invoked="62" statement-rate="41.61" branch-rate
                     </methods>
 </class>
                 <class 
-                name="model.Value1$" filename="model\Value1.scala" statement-count="17" statements-invoked="11" statement-rate="64.71" branch-rate="25.00">
+                name="model.Value1$" filename="model\Value1.scala" statement-count="17" statements-invoked="17" statement-rate="100.00" branch-rate="100.00">
                     <methods>
                         <method 
-                        name="model/Value1$/toInt" statement-count="9" statements-invoked="3" statement-rate="33.33" branch-rate="25.00">
+                        name="model/Value1$/toInt" statement-count="9" statements-invoked="9" statement-rate="100.00" branch-rate="100.00">
                             <statements>
                                 <statement 
-                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="521" end="525" line="22" branch="true" invocation-count="0" ignored="false">
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="521" end="525" line="22" branch="true" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="395" end="399" line="16" branch="true" invocation-count="0" ignored="false">
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="395" end="399" line="16" branch="true" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="437" end="441" line="18" branch="true" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="500" end="504" line="21" branch="true" invocation-count="0" ignored="false">
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="500" end="504" line="21" branch="true" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="334" end="343" line="15" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="542" end="546" line="23" branch="true" invocation-count="0" ignored="false">
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="542" end="546" line="23" branch="true" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="416" end="420" line="17" branch="true" invocation-count="0" ignored="false">
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="416" end="420" line="17" branch="true" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="479" end="483" line="20" branch="true" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="458" end="462" line="19" branch="true" invocation-count="0" ignored="false">
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="458" end="462" line="19" branch="true" invocation-count="1" ignored="false">
 </statement>
                             </statements>
 </method>

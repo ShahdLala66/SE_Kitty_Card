@@ -6,11 +6,13 @@
 [0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
 [0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	HandSpec.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Value1Spec.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	CardTest.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	DeckSpec.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	PlayerSpec.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	GridSpec.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	HandSpec.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Value1Spec.tasty[0m
 [0m[[0m[0mdebug[0m] [0m[0m	CardTest.tasty[0m
 [0m[[0m[0mdebug[0m] [0m[0m	DeckSpec.tasty[0m
 [0m[[0m[0mdebug[0m] [0m[0m	PlayerSpec.tasty[0m

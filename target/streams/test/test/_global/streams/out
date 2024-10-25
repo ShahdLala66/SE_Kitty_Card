@@ -1,18 +1,24 @@
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(GridSpec, org.scalatest.tools.Framework$$anon$1@2f607209, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(DeckSpec, org.scalatest.tools.Framework$$anon$1@2f607209, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(CardTest, org.scalatest.tools.Framework$$anon$1@2f607209, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(model.PlayerSpec, org.scalatest.tools.Framework$$anon$1@2f607209, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(CardTest, org.scalatest.tools.Framework$$anon$1@69547976, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(GridSpec, org.scalatest.tools.Framework$$anon$1@69547976, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(model.Value1Spec, org.scalatest.tools.Framework$$anon$1@69547976, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(model.PlayerSpec, org.scalatest.tools.Framework$$anon$1@69547976, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(DeckSpec, org.scalatest.tools.Framework$$anon$1@69547976, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mPlayerSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mA Player[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  when new[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  - should have a name[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  - should have a nice String representation[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mGridSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Placing a card in an empty spot should succeed[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Placing a card on a matching colored rectangle should double its value[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Placing a card on a different colored rectangle should give zero points[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Placing a card on a blank (white) rectangle should retain its value[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Cannot place a card in an already occupied spot[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mPlayerSpec:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mA Player[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m  when new[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m  - should have a name[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m  - should have a nice String representation[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mValue1Spec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mValue1 Enumeration[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should have correct integer values[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should contain all defined values[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should convert all values to their integer representation[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mCardTest:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Card should correctly display its suit and value[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Card should hold the correct suit and value[0m[0m
@@ -20,13 +26,14 @@
 [0m[[0m[0minfo[0m] [0m[0m[32m- Deck should draw a card and reduce deck size[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Deck should allow repetitive cards[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Deck should refill when empty[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 498 milliseconds.[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 12[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 4, aborted 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 12, failed 0, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 606 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 15[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 5, aborted 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 15, failed 0, canceled 0, ignored 0, pending 0[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mAll tests passed.[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	DeckSpec[0m
 [0m[[0m[0mdebug[0m] [0m[0m	GridSpec[0m
 [0m[[0m[0mdebug[0m] [0m[0m	model.PlayerSpec[0m
 [0m[[0m[0mdebug[0m] [0m[0m	CardTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	model.Value1Spec[0m
