@@ -1,0 +1,1255 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          model\Grid.scala.html
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/css/theme.default.min.css" type="text/css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/js/jquery.tablesorter.min.js"></script><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css"/><script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {$(".tablesorter").tablesorter();});
+      </script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier, monospace;'>1 <span style=''>package model
+</span>2 <span style=''>
+</span>3 <span style=''>import model.Suit._
+</span>4 <span style=''>import model.Value1._
+</span>5 <span style=''>
+</span>6 <span style=''>case class Grid(size: Int = 3) {
+</span>7 <span style=''>    val eol: String = </span><span style='background: #AEF1AE'>sys.props(&quot;line.separator&quot;)</span><span style=''> // End of line character
+</span>8 <span style=''>
+</span>9 <span style=''>    // Initialize an empty grid with None values, representing empty spots
+</span>10 <span style=''>    private var grid: Array[Array[Option[Card]]] = </span><span style='background: #AEF1AE'>Array.fill(size, size)(None)</span><span style=''>
+</span>11 <span style=''>
+</span>12 <span style=''>    // Helper method to check if a position is within the grid bounds
+</span>13 <span style=''>    </span><span style='background: #AEF1AE'>private def isWithinBounds</span><span style=''>(x: Int, y: Int): Boolean = {
+</span>14 <span style=''>        x &gt;= 0 &amp;&amp; x &lt; size &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; size
+</span>15 <span style=''>    }
+</span>16 <span style=''>
+</span>17 <span style=''>    // Method to place a card on the grid
+</span>18 <span style=''>    </span><span style='background: #AEF1AE'>def placeCard</span><span style=''>(x: Int, y: Int, card: Card, rectangleColor: Suit): Boolean = {
+</span>19 <span style=''>        if (</span><span style='background: #AEF1AE'>isWithinBounds(x, y)</span><span style=''> &amp;&amp; </span><span style='background: #AEF1AE'>grid(x)(y).isEmpty</span><span style=''>) </span><span style='background: #AEF1AE'>{
+</span>20 <span style=''></span><span style='background: #AEF1AE'>            grid(x)(y) = Some(card)
+</span>21 <span style=''></span><span style='background: #AEF1AE'>            true
+</span>22 <span style=''></span><span style='background: #AEF1AE'>        }</span><span style=''> else </span><span style='background: #AEF1AE'>{
+</span>23 <span style=''></span><span style='background: #AEF1AE'>            false  // Return false if the position is out of bounds or already occupied
+</span>24 <span style=''></span><span style='background: #AEF1AE'>        }</span><span style=''>
+</span>25 <span style=''>    }
+</span>26 <span style=''>
+</span>27 <span style=''>    // Method to calculate points for a given position
+</span>28 <span style=''>    </span><span style='background: #AEF1AE'>def calculatePoints</span><span style=''>(x: Int, y: Int, rectangleColor: Suit): Int = {
+</span>29 <span style=''>        </span><span style='background: #AEF1AE'>grid(x)(y)</span><span style=''> match {
+</span>30 <span style=''>            case Some(card) </span><span style='background: #AEF1AE'>=&gt;
+</span>31 <span style=''></span><span style='background: #AEF1AE'>                if (card.suit == rectangleColor) {
+</span>32 <span style=''></span><span style='background: #AEF1AE'>                    Value1.toInt(card.value) * 2  // Double the value if the suit matches
+</span>33 <span style=''></span><span style='background: #AEF1AE'>                } else if (rectangleColor == Suit.White) {
+</span>34 <span style=''></span><span style='background: #AEF1AE'>                    Value1.toInt(card.value)  // Keep the value if placed on a white rectangle
+</span>35 <span style=''></span><span style='background: #AEF1AE'>                } else {
+</span>36 <span style=''></span><span style='background: #AEF1AE'>                    0  // No points if the suit doesn't match
+</span>37 <span style=''></span><span style='background: #AEF1AE'>                }</span><span style=''>
+</span>38 <span style=''>            case None </span><span style='background: #F0ADAD'>=&gt; 0</span><span style=''>  // No card means no points
+</span>39 <span style=''>        }
+</span>40 <span style=''>    }
+</span>41 <span style=''>
+</span>42 <span style=''>    // Method to display the grid
+</span>43 <span style=''>    </span><span style='background: #F0ADAD'>def display</span><span style=''>(): Unit = {
+</span>44 <span style=''>        </span><span style='background: #F0ADAD'>for (row &lt;- grid) {
+</span>45 <span style=''></span><span style='background: #F0ADAD'>            println(row.map {
+</span>46 <span style=''></span><span style='background: #F0ADAD'>                case Some(card) =&gt; s&quot;${card.value} of ${card.suit}&quot;
+</span>47 <span style=''></span><span style='background: #F0ADAD'>                case None       =&gt; &quot;Empty&quot;
+</span>48 <span style=''></span><span style='background: #F0ADAD'>            }.mkString(&quot; | &quot;))
+</span>49 <span style=''></span><span style='background: #F0ADAD'>        }</span><span style=''>
+</span>50 <span style=''>    }
+</span>51 <span style=''>
+</span>52 <span style=''>    // Method to return a string representation of the grid
+</span>53 <span style=''>    </span><span style='background: #F0ADAD'>def mesh</span><span style=''>(): String = {
+</span>54 <span style=''>        </span><span style='background: #F0ADAD'>grid.map { row =&gt;
+</span>55 <span style=''></span><span style='background: #F0ADAD'>            row.map {
+</span>56 <span style=''></span><span style='background: #F0ADAD'>                case Some(card) =&gt; s&quot;${card.value} of ${card.suit}&quot;
+</span>57 <span style=''></span><span style='background: #F0ADAD'>                case None       =&gt; &quot;Empty&quot;
+</span>58 <span style=''></span><span style='background: #F0ADAD'>            }.mkString(&quot; | &quot;)
+</span>59 <span style=''></span><span style='background: #F0ADAD'>        }.mkString(eol)</span><span style=''>
+</span>60 <span style=''>    }
+</span>61 <span style=''>}
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Tests</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          6
+        </td>
+        <td>
+          124
+        </td>
+        <td>
+          91
+          -
+          91
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          $lessinit$greater$default$1
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          
+        </td>
+      </tr><tr>
+        <td>
+          7
+        </td>
+        <td>
+          77
+        </td>
+        <td>
+          119
+          -
+          146
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          sys.props(&quot;line.separator&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          7
+        </td>
+        <td>
+          78
+        </td>
+        <td>
+          119
+          -
+          128
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          props
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          sys.props
+        </td>
+      </tr><tr>
+        <td>
+          10
+        </td>
+        <td>
+          79
+        </td>
+        <td>
+          302
+          -
+          330
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          fill
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Array.fill(size, size)(None)
+        </td>
+      </tr><tr>
+        <td>
+          13
+        </td>
+        <td>
+          80
+        </td>
+        <td>
+          409
+          -
+          435
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          isWithinBounds
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          private def isWithinBounds
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          89
+        </td>
+        <td>
+          572
+          -
+          585
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          placeCard
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def placeCard
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          83
+        </td>
+        <td>
+          686
+          -
+          693
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          grid(x)
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          82
+        </td>
+        <td>
+          686
+          -
+          696
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          grid(x)(y)
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          87
+        </td>
+        <td>
+          706
+          -
+          773
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          {\r\n            grid(x)(y) = Some(card)\r\n            true\r\n        }
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          81
+        </td>
+        <td>
+          662
+          -
+          682
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          isWithinBounds
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          isWithinBounds(x, y)
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          84
+        </td>
+        <td>
+          686
+          -
+          704
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          isEmpty
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          grid(x)(y).isEmpty
+        </td>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          86
+        </td>
+        <td>
+          721
+          -
+          728
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          grid(x)
+        </td>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          85
+        </td>
+        <td>
+          721
+          -
+          744
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          update
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          grid(x)(y) = Some(card)
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          88
+        </td>
+        <td>
+          779
+          -
+          880
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          {\r\n            false  // Return false if the position is out of bounds or already occupied\r\n        }
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          100
+        </td>
+        <td>
+          951
+          -
+          970
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          calculatePoints
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def calculatePoints
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          91
+        </td>
+        <td>
+          1027
+          -
+          1034
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          grid(x)
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          90
+        </td>
+        <td>
+          1027
+          -
+          1037
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          grid(x)(y)
+        </td>
+      </tr><tr>
+        <td>
+          30
+        </td>
+        <td>
+          98
+        </td>
+        <td>
+          1075
+          -
+          1484
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          =&gt;\r\n                if (card.suit == rectangleColor) {\r\n                    Value1.toInt(card.value) * 2  // Double the value if the suit matches\r\n                } else if (rectangleColor == Suit.White) {\r\n                    Value1.toInt(card.value)  // Keep the value if placed on a white rectangle\r\n                } else {\r\n                    0  // No points if the suit doesn't match\r\n                }
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          93
+        </td>
+        <td>
+          1128
+          -
+          1239
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          {\r\n                    Value1.toInt(card.value) * 2  // Double the value if the suit matches\r\n                }
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          92
+        </td>
+        <td>
+          1151
+          -
+          1175
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          toInt
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Value1.toInt(card.value)
+        </td>
+      </tr><tr>
+        <td>
+          33
+        </td>
+        <td>
+          95
+        </td>
+        <td>
+          1279
+          -
+          1395
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          {\r\n                    Value1.toInt(card.value)  // Keep the value if placed on a white rectangle\r\n                }
+        </td>
+      </tr><tr>
+        <td>
+          33
+        </td>
+        <td>
+          97
+        </td>
+        <td>
+          1245
+          -
+          1484
+        </td>
+        <td>
+          If
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          if (rectangleColor == Suit.White) {\r\n                    Value1.toInt(card.value)  // Keep the value if placed on a white rectangle\r\n                } else {\r\n                    0  // No points if the suit doesn't match\r\n                }
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          94
+        </td>
+        <td>
+          1302
+          -
+          1326
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          toInt
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Value1.toInt(card.value)
+        </td>
+      </tr><tr>
+        <td>
+          35
+        </td>
+        <td>
+          96
+        </td>
+        <td>
+          1401
+          -
+          1484
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          {\r\n                    0  // No points if the suit doesn't match\r\n                }
+        </td>
+      </tr><tr>
+        <td>
+          38
+        </td>
+        <td>
+          99
+        </td>
+        <td>
+          1508
+          -
+          1512
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          =&gt; 0
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          111
+        </td>
+        <td>
+          1601
+          -
+          1612
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          display
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          def display
+        </td>
+      </tr><tr>
+        <td>
+          44
+        </td>
+        <td>
+          101
+        </td>
+        <td>
+          1634
+          -
+          1840
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          foreach
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          for (row &lt;- grid) {\r\n            println(row.map {\r\n                case Some(card) =&gt; s&quot;${card.value} of ${card.suit}&quot;\r\n                case None       =&gt; &quot;Empty&quot;\r\n            }.mkString(&quot; | &quot;))\r\n        }
+        </td>
+      </tr><tr>
+        <td>
+          44
+        </td>
+        <td>
+          102
+        </td>
+        <td>
+          1646
+          -
+          1650
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          refArrayOps
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          grid
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          107
+        </td>
+        <td>
+          1675
+          -
+          1678
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          refArrayOps
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          row
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          106
+        </td>
+        <td>
+          1675
+          -
+          1812
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          map
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          row.map {\r\n                case Some(card) =&gt; s&quot;${card.value} of ${card.suit}&quot;\r\n                case None       =&gt; &quot;Empty&quot;\r\n            }
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          103
+        </td>
+        <td>
+          1667
+          -
+          1829
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          println(row.map {\r\n                case Some(card) =&gt; s&quot;${card.value} of ${card.suit}&quot;\r\n                case None       =&gt; &quot;Empty&quot;\r\n            }.mkString(&quot; | &quot;))
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          105
+        </td>
+        <td>
+          1675
+          -
+          1812
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          wrapRefArray
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          row.map {\r\n                case Some(card) =&gt; s&quot;${card.value} of ${card.suit}&quot;\r\n                case None       =&gt; &quot;Empty&quot;\r\n            }
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          109
+        </td>
+        <td>
+          1718
+          -
+          1753
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          =&gt; s&quot;${card.value} of ${card.suit}&quot;
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          108
+        </td>
+        <td>
+          1721
+          -
+          1753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          s
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          s&quot;${card.value} of ${card.suit}&quot;
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          110
+        </td>
+        <td>
+          1787
+          -
+          1797
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          =&gt; &quot;Empty&quot;
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          104
+        </td>
+        <td>
+          1675
+          -
+          1828
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          mkString
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          row.map {\r\n                case Some(card) =&gt; s&quot;${card.value} of ${card.suit}&quot;\r\n                case None       =&gt; &quot;Empty&quot;\r\n            }.mkString(&quot; | &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          53
+        </td>
+        <td>
+          123
+        </td>
+        <td>
+          1916
+          -
+          1924
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          mesh
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          def mesh
+        </td>
+      </tr><tr>
+        <td>
+          54
+        </td>
+        <td>
+          113
+        </td>
+        <td>
+          1948
+          -
+          2143
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          wrapRefArray
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          grid.map { row =&gt;\r\n            row.map {\r\n                case Some(card) =&gt; s&quot;${card.value} of ${card.suit}&quot;\r\n                case None       =&gt; &quot;Empty&quot;\r\n            }.mkString(&quot; | &quot;)\r\n        }
+        </td>
+      </tr><tr>
+        <td>
+          54
+        </td>
+        <td>
+          115
+        </td>
+        <td>
+          1948
+          -
+          1952
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          refArrayOps
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          grid
+        </td>
+      </tr><tr>
+        <td>
+          54
+        </td>
+        <td>
+          114
+        </td>
+        <td>
+          1948
+          -
+          2143
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          map
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          grid.map { row =&gt;\r\n            row.map {\r\n                case Some(card) =&gt; s&quot;${card.value} of ${card.suit}&quot;\r\n                case None       =&gt; &quot;Empty&quot;\r\n            }.mkString(&quot; | &quot;)\r\n        }
+        </td>
+      </tr><tr>
+        <td>
+          55
+        </td>
+        <td>
+          119
+        </td>
+        <td>
+          1979
+          -
+          1982
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          refArrayOps
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          row
+        </td>
+      </tr><tr>
+        <td>
+          55
+        </td>
+        <td>
+          118
+        </td>
+        <td>
+          1979
+          -
+          2116
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          map
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          row.map {\r\n                case Some(card) =&gt; s&quot;${card.value} of ${card.suit}&quot;\r\n                case None       =&gt; &quot;Empty&quot;\r\n            }
+        </td>
+      </tr><tr>
+        <td>
+          55
+        </td>
+        <td>
+          117
+        </td>
+        <td>
+          1979
+          -
+          2116
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          wrapRefArray
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          row.map {\r\n                case Some(card) =&gt; s&quot;${card.value} of ${card.suit}&quot;\r\n                case None       =&gt; &quot;Empty&quot;\r\n            }
+        </td>
+      </tr><tr>
+        <td>
+          56
+        </td>
+        <td>
+          121
+        </td>
+        <td>
+          2022
+          -
+          2057
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          =&gt; s&quot;${card.value} of ${card.suit}&quot;
+        </td>
+      </tr><tr>
+        <td>
+          56
+        </td>
+        <td>
+          120
+        </td>
+        <td>
+          2025
+          -
+          2057
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          s
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          s&quot;${card.value} of ${card.suit}&quot;
+        </td>
+      </tr><tr>
+        <td>
+          57
+        </td>
+        <td>
+          122
+        </td>
+        <td>
+          2091
+          -
+          2101
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          =&gt; &quot;Empty&quot;
+        </td>
+      </tr><tr>
+        <td>
+          58
+        </td>
+        <td>
+          116
+        </td>
+        <td>
+          1979
+          -
+          2132
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          mkString
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          row.map {\r\n                case Some(card) =&gt; s&quot;${card.value} of ${card.suit}&quot;\r\n                case None       =&gt; &quot;Empty&quot;\r\n            }.mkString(&quot; | &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          59
+        </td>
+        <td>
+          112
+        </td>
+        <td>
+          1948
+          -
+          2157
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          mkString
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          grid.map { row =&gt;\r\n            row.map {\r\n                case Some(card) =&gt; s&quot;${card.value} of ${card.suit}&quot;\r\n                case None       =&gt; &quot;Empty&quot;\r\n            }.mkString(&quot; | &quot;)\r\n        }.mkString(eol)
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>
