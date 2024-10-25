@@ -1,0 +1,11 @@
+[0m[[0m[0minfo[0m] [0m[0mWaiting for measurement data to sync...[0m
+[0m[[0m[0minfo[0m] [0m[0mReading scoverage instrumentation [C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\target\scala-3.3.3\scoverage-data\scoverage.coverage][0m
+[0m[[0m[0minfo[0m] [0m[0mReading scoverage measurements...[0m
+[0m[[0m[0minfo[0m] [0m[0mGenerating scoverage reports...[0m
+[0m[[0m[0minfo[0m] [0m[0mWritten Cobertura report [C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\target\scala-3.3.3\coverage-report/cobertura.xml][0m
+[0m[[0m[0minfo[0m] [0m[0mWritten XML coverage report [C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\target\scala-3.3.3\scoverage-report/scoverage.xml][0m
+[0m[[0m[0minfo[0m] [0m[0mWritten HTML coverage report [C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\target\scala-3.3.3\scoverage-report/index.html][0m
+[0m[[0m[0minfo[0m] [0m[0mStatement coverage.: 45.64%[0m
+[0m[[0m[0minfo[0m] [0m[0mBranch coverage....: 72.73%[0m
+[0m[[0m[0minfo[0m] [0m[0mCoverage reports completed[0m
+[0m[[0m[0minfo[0m] [0m[0mAll done. Coverage was stmt=[45.64%] branch=[72.73%][0m

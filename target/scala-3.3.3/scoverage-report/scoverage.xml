@@ -1,0 +1,617 @@
+<scoverage 
+statement-count="149" statements-invoked="68" statement-rate="45.64" branch-rate="72.73" version="1.0" timestamp="1729845289844">
+    <packages>
+        <package name="&lt;empty&gt;" statement-count="56" statements-invoked="0" statement-rate="0.00">
+            <classes>
+                <class 
+                name="&lt;empty&gt;.KittyCardGame$" filename="KittyCardGame.scala" statement-count="56" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                    <methods>
+                        <method 
+                        name="&lt;empty&gt;/KittyCardGame$/printHeading" statement-count="7" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHeading" start="176" end="192" line="9" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHeading" start="216" end="298" line="10" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHeading" start="224" end="275" line="10" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHeading" start="224" end="291" line="10" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHeading" start="278" end="291" line="10" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHeading" start="224" end="297" line="10" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHeading" start="224" end="239" line="10" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="&lt;empty&gt;/KittyCardGame$/printHand" statement-count="14" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="1025" end="1049" line="28" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="1228" end="1278" line="31" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="1234" end="1256" line="31" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="1095" end="1127" line="29" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="1175" end="1214" line="30" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="1025" end="1064" line="28" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="1175" end="1208" line="30" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="1095" end="1142" line="29" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="1234" end="1271" line="31" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="1095" end="1136" line="29" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="952" end="965" line="27" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="1175" end="1199" line="30" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="1234" end="1277" line="31" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="printHand" start="1025" end="1058" line="28" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="&lt;empty&gt;/KittyCardGame$/card" statement-count="9" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="card" start="310" end="318" line="12" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="card" start="476" end="504" line="15" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="card" start="543" end="560" line="16" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="card" start="543" end="576" line="16" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="card" start="664" end="709" line="18" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="card" start="476" end="512" line="15" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="card" start="429" end="445" line="14" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="card" start="476" end="490" line="15" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="card" start="563" end="576" line="16" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="&lt;empty&gt;/KittyCardGame$/main" statement-count="25" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1530" end="1552" line="45" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1390" end="1401" line="39" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1569" end="1592" line="46" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1450" end="1471" line="43" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1327" end="1343" line="36" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1490" end="1511" line="44" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="857" end="871" line="24" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1482" end="1512" line="44" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="51" end="59" line="5" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1382" end="1402" line="39" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1522" end="1553" line="45" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1442" end="1472" line="43" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1563" end="1593" line="46" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1301" end="1315" line="34" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="112" end="121" line="7" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="800" end="804" line="23" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1455" end="1467" line="43" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1574" end="1588" line="46" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="800" end="814" line="23" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1495" end="1506" line="44" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="857" end="861" line="24" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1366" end="1370" line="38" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1414" end="1430" line="41" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="1535" end="1548" line="45" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="main" start="112" end="139" line="7" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="&lt;empty&gt;/KittyCardGame$/$anonfun" statement-count="1" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="KittyCardGame$" class-type="Object" full-class-name="&lt;empty&gt;.KittyCardGame$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\KittyCardGame.scala" method="$anonfun" start="1112" end="1126" line="29" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+            </classes>
+        </package>
+        <package name="model" statement-count="93" statements-invoked="68" statement-rate="73.12">
+            <classes>
+                <class 
+                name="model.Suit$" filename="model\Suit.scala" statement-count="6" statements-invoked="6" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model/Suit$/&lt;init&gt;" statement-count="6" statements-invoked="6" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Suit$" class-type="Object" full-class-name="model.Suit$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Suit.scala" method="&lt;init&gt;" start="160" end="165" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Suit$" class-type="Object" full-class-name="model.Suit$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Suit.scala" method="&lt;init&gt;" start="160" end="165" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Suit$" class-type="Object" full-class-name="model.Suit$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Suit.scala" method="&lt;init&gt;" start="160" end="165" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Suit$" class-type="Object" full-class-name="model.Suit$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Suit.scala" method="&lt;init&gt;" start="160" end="165" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Suit$" class-type="Object" full-class-name="model.Suit$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Suit.scala" method="&lt;init&gt;" start="160" end="165" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Suit$" class-type="Object" full-class-name="model.Suit$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Suit.scala" method="&lt;init&gt;" start="160" end="165" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.Card" filename="model\Card.scala" statement-count="2" statements-invoked="2" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model/Card/toString" statement-count="2" statements-invoked="2" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Card" class-type="Class" full-class-name="model.Card" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Card.scala" method="toString" start="164" end="204" line="7" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Card" class-type="Class" full-class-name="model.Card" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Card.scala" method="toString" start="132" end="153" line="7" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.Deck" filename="model\Deck.scala" statement-count="19" statements-invoked="18" statement-rate="94.74" branch-rate="50.00">
+                    <methods>
+                        <method 
+                        name="model/Deck/drawCard" statement-count="6" statements-invoked="5" statement-rate="83.33" branch-rate="50.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="drawCard" start="471" end="481" line="20" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="drawCard" start="367" end="379" line="17" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="drawCard" start="445" end="455" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="drawCard" start="512" end="532" line="22" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="drawCard" start="425" end="506" line="18" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="drawCard" start="409" end="423" line="18" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Deck/generateDeck" statement-count="4" statements-invoked="4" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="generateDeck" start="207" end="314" line="10" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="generateDeck" start="159" end="183" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="generateDeck" start="228" end="246" line="11" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="generateDeck" start="228" end="239" line="11" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Deck/$anonfun" statement-count="3" statements-invoked="3" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="$anonfun" start="254" end="314" line="12" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="$anonfun" start="263" end="283" line="12" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="$anonfun" start="263" end="276" line="12" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method name="model/Deck/size" statement-count="2" statements-invoked="2" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="size" start="732" end="740" line="34" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="size" start="748" end="758" line="34" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+                        </method>
+                        <method 
+                        name="model/Deck/&lt;init&gt;" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="&lt;init&gt;" start="93" end="107" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Deck/refill" statement-count="3" statements-invoked="3" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="refill" start="575" end="585" line="28" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="refill" start="631" end="652" line="30" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="refill" start="611" end="625" line="29" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.Grid" filename="model\Grid.scala" statement-count="47" statements-invoked="23" statement-rate="48.94" branch-rate="58.33">
+                    <methods>
+                        <method name="model/Grid/mesh" statement-count="5" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="mesh" start="1948" end="2143" line="54" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="mesh" start="1948" end="1952" line="54" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="mesh" start="1948" end="2157" line="59" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="mesh" start="1916" end="1924" line="53" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="mesh" start="1948" end="2143" line="54" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+                        </method>
+                        <method name="model/Grid/display" statement-count="3" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="display" start="1634" end="1840" line="44" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="display" start="1646" end="1650" line="44" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="display" start="1601" end="1612" line="43" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+                        </method>
+                        <method 
+                        name="model/Grid/$anonfun" statement-count="15" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1787" end="1797" line="47" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1979" end="1982" line="55" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1675" end="1828" line="48" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="2091" end="2101" line="57" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1979" end="2132" line="58" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1675" end="1678" line="45" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1675" end="1812" line="45" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1979" end="2116" line="55" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1718" end="1753" line="46" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="2022" end="2057" line="56" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1667" end="1829" line="45" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="2025" end="2057" line="56" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1675" end="1812" line="45" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1721" end="1753" line="46" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1979" end="2116" line="55" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/isWithinBounds" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="isWithinBounds" start="409" end="435" line="13" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/placeCard" statement-count="9" statements-invoked="9" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="686" end="693" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="721" end="728" line="20" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="572" end="585" line="18" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="686" end="696" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="721" end="744" line="20" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="779" end="880" line="22" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="706" end="773" line="19" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="662" end="682" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="686" end="704" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/&lt;init&gt;" statement-count="3" statements-invoked="3" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="&lt;init&gt;" start="119" end="146" line="7" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="&lt;init&gt;" start="302" end="330" line="10" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="&lt;init&gt;" start="119" end="128" line="7" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/calculatePoints" statement-count="11" statements-invoked="10" statement-rate="90.91" branch-rate="83.33">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="1151" end="1175" line="32" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="1279" end="1395" line="33" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="1075" end="1484" line="30" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="951" end="970" line="28" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="1027" end="1034" line="29" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="1302" end="1326" line="34" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="1245" end="1484" line="33" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="1401" end="1484" line="35" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="1508" end="1512" line="38" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="1027" end="1037" line="29" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="1128" end="1239" line="31" branch="true" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.Player" filename="model\Player.scala" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model/Player/toString" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Player" class-type="Class" full-class-name="model.Player" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Player.scala" method="toString" start="56" end="77" line="4" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.Grid$" filename="model\Grid.scala" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model/Grid$/$lessinit$greater$default$1" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid$" class-type="Object" full-class-name="model.Grid$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$lessinit$greater$default$1" start="91" end="91" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.Value1$" filename="model\Value1.scala" statement-count="17" statements-invoked="17" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model/Value1$/toInt" statement-count="9" statements-invoked="9" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="521" end="525" line="22" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="395" end="399" line="16" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="437" end="441" line="18" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="500" end="504" line="21" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="334" end="343" line="15" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="542" end="546" line="23" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="416" end="420" line="17" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="479" end="483" line="20" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="toInt" start="458" end="462" line="19" branch="true" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Value1$/&lt;init&gt;" statement-count="8" statements-invoked="8" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="&lt;init&gt;" start="203" end="211" line="10" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="&lt;init&gt;" start="135" end="143" line="7" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="&lt;init&gt;" start="111" end="119" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="&lt;init&gt;" start="181" end="189" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="&lt;init&gt;" start="251" end="259" line="12" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="&lt;init&gt;" start="227" end="235" line="11" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="&lt;init&gt;" start="89" end="97" line="5" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Value1$" class-type="Object" full-class-name="model.Value1$" source="C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\src\main\scala\model\Value1.scala" method="&lt;init&gt;" start="158" end="166" line="8" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+            </classes>
+        </package>
+    </packages>
+</scoverage>
