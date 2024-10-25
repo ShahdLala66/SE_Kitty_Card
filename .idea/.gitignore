@@ -10,3 +10,7 @@
 # Mongo Explorer plugin files
 /mongoSettings.xml
 .class
+./target/
+./idea/
+./project/
+
