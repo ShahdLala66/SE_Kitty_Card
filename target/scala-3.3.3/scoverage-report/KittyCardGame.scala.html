@@ -1,0 +1,1436 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          KittyCardGame.scala.html
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/css/theme.default.min.css" type="text/css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/js/jquery.tablesorter.min.js"></script><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css"/><script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {$(".tablesorter").tablesorter();});
+      </script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier, monospace;'>1 <span style=''>import model.Grid
+</span>2 <span style=''>
+</span>3 <span style=''>object KittyCardGame {
+</span>4 <span style=''>
+</span>5 <span style=''>    </span><span style='background: #F0ADAD'>def main</span><span style=''>(args: Array[String]): Unit = {
+</span>6 <span style=''>
+</span>7 <span style=''>        val eol = </span><span style='background: #F0ADAD'>sys.props(&quot;line.separator&quot;)</span><span style=''> // End of line character
+</span>8 <span style=''>
+</span>9 <span style=''>        </span><span style='background: #F0ADAD'>def printHeading</span><span style=''>(): Unit =
+</span>10 <span style=''>            </span><span style='background: #F0ADAD'>println(Console.MAGENTA + &quot;Welcome to the Kitty Card Game!&quot; + Console.RESET + eol)</span><span style=''>
+</span>11 <span style=''>
+</span>12 <span style=''>        </span><span style='background: #F0ADAD'>def card</span><span style=''>(color: String, value: Int): String = {
+</span>13 <span style=''>            val brightWhite = &quot;\u001b[97m&quot;
+</span>14 <span style=''>            val cardTop = </span><span style='background: #F0ADAD'>color + &quot; ∧,,,∧&quot;</span><span style=''>
+</span>15 <span style=''>            val cardMiddle = </span><span style='background: #F0ADAD'>s&quot;( ̳• · •̳) &quot; + brightWhite + value</span><span style=''>
+</span>16 <span style=''>            val cardBottom = </span><span style='background: #F0ADAD'>color + &quot;/    づ♡&quot; + Console.RESET</span><span style=''>
+</span>17 <span style=''>            // s string interpolator, multiline string
+</span>18 <span style=''>            val cardContent = </span><span style='background: #F0ADAD'>s&quot;$cardTop$eol$cardMiddle$eol$cardBottom$eol&quot;</span><span style=''>
+</span>19 <span style=''>            cardContent
+</span>20 <span style=''>        }
+</span>21 <span style=''>
+</span>22 <span style=''>        // Cards in two hands
+</span>23 <span style=''>        val hand1 = </span><span style='background: #F0ADAD'>List(&quot;S&quot;, &quot;6&quot;)</span><span style=''> // First hand (left)
+</span>24 <span style=''>        val hand2 = </span><span style='background: #F0ADAD'>List(&quot;I&quot;, &quot;9&quot;)</span><span style=''> // Second hand (right)
+</span>25 <span style=''>
+</span>26 <span style=''>        // Function to print a hand of cards
+</span>27 <span style=''>        </span><span style='background: #F0ADAD'>def printHand</span><span style=''>(hand: List[String]): Unit = {
+</span>28 <span style=''>            val topBorder = </span><span style='background: #F0ADAD'>hand.map(_ =&gt; &quot;  +---+&quot;).mkString + eol</span><span style=''>
+</span>29 <span style=''>            val cardValues = </span><span style='background: #F0ADAD'>hand.map(card =&gt; s&quot;  | $card |&quot;).mkString + eol</span><span style=''>
+</span>30 <span style=''>            val bottomBorder = </span><span style='background: #F0ADAD'>hand.map(_ =&gt; &quot;  +---+&quot;).mkString + eol</span><span style=''>
+</span>31 <span style=''>            </span><span style='background: #F0ADAD'>print(topBorder + cardValues + bottomBorder + eol)</span><span style=''>
+</span>32 <span style=''>        }
+</span>33 <span style=''>
+</span>34 <span style=''>        </span><span style='background: #F0ADAD'>printHeading()</span><span style=''>
+</span>35 <span style=''>
+</span>36 <span style=''>        </span><span style='background: #F0ADAD'>printHand(hand1)</span><span style=''>
+</span>37 <span style=''>
+</span>38 <span style=''>        val grid = </span><span style='background: #F0ADAD'>Grid</span><span style=''>()
+</span>39 <span style=''>        </span><span style='background: #F0ADAD'>println(grid.mesh())</span><span style=''>
+</span>40 <span style=''>
+</span>41 <span style=''>        </span><span style='background: #F0ADAD'>printHand(hand2)</span><span style=''>
+</span>42 <span style=''>
+</span>43 <span style=''>        </span><span style='background: #F0ADAD'>println(card(Console.BLUE, 3))</span><span style=''>
+</span>44 <span style=''>        </span><span style='background: #F0ADAD'>println(card(Console.RED, 10))</span><span style=''>
+</span>45 <span style=''>        </span><span style='background: #F0ADAD'>println(card(Console.GREEN, 8))</span><span style=''>
+</span>46 <span style=''>        </span><span style='background: #F0ADAD'>print(card(Console.YELLOW, 1))</span><span style=''>
+</span>47 <span style=''>
+</span>48 <span style=''>
+</span>49 <span style=''>    }
+</span>50 <span style=''>}
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Tests</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          5
+        </td>
+        <td>
+          55
+        </td>
+        <td>
+          51
+          -
+          59
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          main
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          def main
+        </td>
+      </tr><tr>
+        <td>
+          7
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          112
+          -
+          121
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          props
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          sys.props
+        </td>
+      </tr><tr>
+        <td>
+          7
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          112
+          -
+          139
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          sys.props(&quot;line.separator&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          9
+        </td>
+        <td>
+          8
+        </td>
+        <td>
+          176
+          -
+          192
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          printHeading
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          def printHeading
+        </td>
+      </tr><tr>
+        <td>
+          10
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          216
+          -
+          298
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          println(Console.MAGENTA + &quot;Welcome to the Kitty Card Game!&quot; + Console.RESET + eol)
+        </td>
+      </tr><tr>
+        <td>
+          10
+        </td>
+        <td>
+          5
+        </td>
+        <td>
+          224
+          -
+          275
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Console.MAGENTA + &quot;Welcome to the Kitty Card Game!&quot;
+        </td>
+      </tr><tr>
+        <td>
+          10
+        </td>
+        <td>
+          4
+        </td>
+        <td>
+          224
+          -
+          291
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Console.MAGENTA + &quot;Welcome to the Kitty Card Game!&quot; + Console.RESET
+        </td>
+      </tr><tr>
+        <td>
+          10
+        </td>
+        <td>
+          7
+        </td>
+        <td>
+          278
+          -
+          291
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          RESET
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Console.RESET
+        </td>
+      </tr><tr>
+        <td>
+          10
+        </td>
+        <td>
+          3
+        </td>
+        <td>
+          224
+          -
+          297
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Console.MAGENTA + &quot;Welcome to the Kitty Card Game!&quot; + Console.RESET + eol
+        </td>
+      </tr><tr>
+        <td>
+          10
+        </td>
+        <td>
+          6
+        </td>
+        <td>
+          224
+          -
+          239
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          MAGENTA
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Console.MAGENTA
+        </td>
+      </tr><tr>
+        <td>
+          12
+        </td>
+        <td>
+          17
+        </td>
+        <td>
+          310
+          -
+          318
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          card
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          def card
+        </td>
+      </tr><tr>
+        <td>
+          14
+        </td>
+        <td>
+          9
+        </td>
+        <td>
+          429
+          -
+          445
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          color + &quot; ∧,,,∧&quot;
+        </td>
+      </tr><tr>
+        <td>
+          15
+        </td>
+        <td>
+          11
+        </td>
+        <td>
+          476
+          -
+          504
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          s&quot;( ̳• · •̳) &quot; + brightWhite
+        </td>
+      </tr><tr>
+        <td>
+          15
+        </td>
+        <td>
+          10
+        </td>
+        <td>
+          476
+          -
+          512
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          s&quot;( ̳• · •̳) &quot; + brightWhite + value
+        </td>
+      </tr><tr>
+        <td>
+          15
+        </td>
+        <td>
+          12
+        </td>
+        <td>
+          476
+          -
+          490
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          s
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          s&quot;( ̳• · •̳) &quot;
+        </td>
+      </tr><tr>
+        <td>
+          16
+        </td>
+        <td>
+          14
+        </td>
+        <td>
+          543
+          -
+          560
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          color + &quot;/    づ♡&quot;
+        </td>
+      </tr><tr>
+        <td>
+          16
+        </td>
+        <td>
+          13
+        </td>
+        <td>
+          543
+          -
+          576
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          color + &quot;/    づ♡&quot; + Console.RESET
+        </td>
+      </tr><tr>
+        <td>
+          16
+        </td>
+        <td>
+          15
+        </td>
+        <td>
+          563
+          -
+          576
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          RESET
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Console.RESET
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          16
+        </td>
+        <td>
+          664
+          -
+          709
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          s
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          s&quot;$cardTop$eol$cardMiddle$eol$cardBottom$eol&quot;
+        </td>
+      </tr><tr>
+        <td>
+          23
+        </td>
+        <td>
+          19
+        </td>
+        <td>
+          800
+          -
+          804
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          List
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          List
+        </td>
+      </tr><tr>
+        <td>
+          23
+        </td>
+        <td>
+          18
+        </td>
+        <td>
+          800
+          -
+          814
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          List(&quot;S&quot;, &quot;6&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          20
+        </td>
+        <td>
+          857
+          -
+          871
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          List(&quot;I&quot;, &quot;9&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          21
+        </td>
+        <td>
+          857
+          -
+          861
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          List
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          List
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          36
+        </td>
+        <td>
+          952
+          -
+          965
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          printHand
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          def printHand
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          23
+        </td>
+        <td>
+          1025
+          -
+          1049
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          map
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          hand.map(_ =&gt; &quot;  +---+&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          22
+        </td>
+        <td>
+          1025
+          -
+          1064
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          hand.map(_ =&gt; &quot;  +---+&quot;).mkString + eol
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          24
+        </td>
+        <td>
+          1025
+          -
+          1058
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          mkString
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          hand.map(_ =&gt; &quot;  +---+&quot;).mkString
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          26
+        </td>
+        <td>
+          1095
+          -
+          1127
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          map
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          hand.map(card =&gt; s&quot;  | $card |&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          25
+        </td>
+        <td>
+          1095
+          -
+          1142
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          hand.map(card =&gt; s&quot;  | $card |&quot;).mkString + eol
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          28
+        </td>
+        <td>
+          1095
+          -
+          1136
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          mkString
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          hand.map(card =&gt; s&quot;  | $card |&quot;).mkString
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          27
+        </td>
+        <td>
+          1112
+          -
+          1126
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          s
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          s&quot;  | $card |&quot;
+        </td>
+      </tr><tr>
+        <td>
+          30
+        </td>
+        <td>
+          29
+        </td>
+        <td>
+          1175
+          -
+          1214
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          hand.map(_ =&gt; &quot;  +---+&quot;).mkString + eol
+        </td>
+      </tr><tr>
+        <td>
+          30
+        </td>
+        <td>
+          31
+        </td>
+        <td>
+          1175
+          -
+          1208
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          mkString
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          hand.map(_ =&gt; &quot;  +---+&quot;).mkString
+        </td>
+      </tr><tr>
+        <td>
+          30
+        </td>
+        <td>
+          30
+        </td>
+        <td>
+          1175
+          -
+          1199
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          map
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          hand.map(_ =&gt; &quot;  +---+&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          32
+        </td>
+        <td>
+          1228
+          -
+          1278
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          print
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          print(topBorder + cardValues + bottomBorder + eol)
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          35
+        </td>
+        <td>
+          1234
+          -
+          1256
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          topBorder + cardValues
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          34
+        </td>
+        <td>
+          1234
+          -
+          1271
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          topBorder + cardValues + bottomBorder
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          33
+        </td>
+        <td>
+          1234
+          -
+          1277
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          topBorder + cardValues + bottomBorder + eol
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          37
+        </td>
+        <td>
+          1301
+          -
+          1315
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          printHeading
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          printHeading()
+        </td>
+      </tr><tr>
+        <td>
+          36
+        </td>
+        <td>
+          38
+        </td>
+        <td>
+          1327
+          -
+          1343
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          printHand
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          printHand(hand1)
+        </td>
+      </tr><tr>
+        <td>
+          38
+        </td>
+        <td>
+          39
+        </td>
+        <td>
+          1366
+          -
+          1370
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          $lessinit$greater$default$1
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Grid
+        </td>
+      </tr><tr>
+        <td>
+          39
+        </td>
+        <td>
+          41
+        </td>
+        <td>
+          1390
+          -
+          1401
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          mesh
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          grid.mesh()
+        </td>
+      </tr><tr>
+        <td>
+          39
+        </td>
+        <td>
+          40
+        </td>
+        <td>
+          1382
+          -
+          1402
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          println(grid.mesh())
+        </td>
+      </tr><tr>
+        <td>
+          41
+        </td>
+        <td>
+          42
+        </td>
+        <td>
+          1414
+          -
+          1430
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          printHand
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          printHand(hand2)
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          44
+        </td>
+        <td>
+          1450
+          -
+          1471
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          card
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          card(Console.BLUE, 3)
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          43
+        </td>
+        <td>
+          1442
+          -
+          1472
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          println(card(Console.BLUE, 3))
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          45
+        </td>
+        <td>
+          1455
+          -
+          1467
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          BLUE
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Console.BLUE
+        </td>
+      </tr><tr>
+        <td>
+          44
+        </td>
+        <td>
+          47
+        </td>
+        <td>
+          1490
+          -
+          1511
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          card
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          card(Console.RED, 10)
+        </td>
+      </tr><tr>
+        <td>
+          44
+        </td>
+        <td>
+          46
+        </td>
+        <td>
+          1482
+          -
+          1512
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          println(card(Console.RED, 10))
+        </td>
+      </tr><tr>
+        <td>
+          44
+        </td>
+        <td>
+          48
+        </td>
+        <td>
+          1495
+          -
+          1506
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          RED
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Console.RED
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          50
+        </td>
+        <td>
+          1530
+          -
+          1552
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          card
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          card(Console.GREEN, 8)
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          49
+        </td>
+        <td>
+          1522
+          -
+          1553
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          println(card(Console.GREEN, 8))
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          51
+        </td>
+        <td>
+          1535
+          -
+          1548
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          GREEN
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Console.GREEN
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          53
+        </td>
+        <td>
+          1569
+          -
+          1592
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          card
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          card(Console.YELLOW, 1)
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          52
+        </td>
+        <td>
+          1563
+          -
+          1593
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          print
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          print(card(Console.YELLOW, 1))
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          54
+        </td>
+        <td>
+          1574
+          -
+          1588
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          YELLOW
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Console.YELLOW
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>

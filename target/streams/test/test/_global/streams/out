@@ -1,32 +1,32 @@
-[debug] Running TaskDef(DeckSpec, org.scalatest.tools.Framework$$anon$1@40221cba, false, [SuiteSelector])
-[debug] Running TaskDef(GridSpec, org.scalatest.tools.Framework$$anon$1@40221cba, false, [SuiteSelector])
-[debug] Running TaskDef(model.PlayerSpec, org.scalatest.tools.Framework$$anon$1@40221cba, false, [SuiteSelector])
-[debug] Running TaskDef(CardTest, org.scalatest.tools.Framework$$anon$1@40221cba, false, [SuiteSelector])
-[info] PlayerSpec:
-[info] A Player
-[info]   when new
-[info]   - should have a name
-[info]   - should have a nice String representation
-[info] GridSpec:
-[info] - Placing a card in an empty spot should succeed
-[info] - Placing a card on a matching colored rectangle should double its value
-[info] - Placing a card on a different colored rectangle should give zero points
-[info] - Placing a card on a blank (white) rectangle should retain its value
-[info] - Cannot place a card in an already occupied spot
-[info] CardTest:
-[info] - Card should correctly display its suit and value
-[info] - Card should hold the correct suit and value
-[info] DeckSpec:
-[info] - Deck should draw a card and reduce deck size
-[info] - Deck should allow repetitive cards
-[info] - Deck should refill when empty
-[info] Run completed in 380 milliseconds.
-[info] Total number of tests run: 12
-[info] Suites: completed 4, aborted 0
-[info] Tests: succeeded 12, failed 0, canceled 0, ignored 0, pending 0
-[info] All tests passed.
-[debug] Passed tests:
-[debug] 	DeckSpec
-[debug] 	GridSpec
-[debug] 	model.PlayerSpec
-[debug] 	CardTest
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(GridSpec, org.scalatest.tools.Framework$$anon$1@2f607209, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(DeckSpec, org.scalatest.tools.Framework$$anon$1@2f607209, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(CardTest, org.scalatest.tools.Framework$$anon$1@2f607209, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(model.PlayerSpec, org.scalatest.tools.Framework$$anon$1@2f607209, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mGridSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Placing a card in an empty spot should succeed[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Placing a card on a matching colored rectangle should double its value[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Placing a card on a different colored rectangle should give zero points[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Placing a card on a blank (white) rectangle should retain its value[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Cannot place a card in an already occupied spot[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mPlayerSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mA Player[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  when new[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  - should have a name[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  - should have a nice String representation[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mCardTest:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Card should correctly display its suit and value[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Card should hold the correct suit and value[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mDeckSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Deck should draw a card and reduce deck size[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Deck should allow repetitive cards[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Deck should refill when empty[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 498 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 12[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 4, aborted 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 12, failed 0, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mAll tests passed.[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DeckSpec[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GridSpec[0m
+[0m[[0m[0mdebug[0m] [0m[0m	model.PlayerSpec[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CardTest[0m

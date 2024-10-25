@@ -1,54 +1,38 @@
-[debug] Created transactional ClassFileManager with tempDir = D:\SE_Kitty_Card\target\scala-3.3.3\classes.bak
-[debug] About to delete class files:
-[debug] 	Player$.class
-[debug] 	KittyCardGame.class
-[debug] 	Player.class
-[debug] 	KittyCardGame$.class
-[debug] 	Player$.tasty
-[debug] 	KittyCardGame.tasty
-[debug] 	Player.tasty
-[debug] 	KittyCardGame$.tasty
-[debug] We backup class files:
-[debug] 	Player$.class
-[debug] 	KittyCardGame.class
-[debug] 	Player.class
-[debug] 	KittyCardGame$.class
-[debug] 	Player$.tasty
-[debug] 	KittyCardGame.tasty
-[debug] 	Player.tasty
-[debug] 	KittyCardGame$.tasty
-[debug] Created transactional ClassFileManager with tempDir = D:\SE_Kitty_Card\target\scala-3.3.3\classes.bak
-[debug] About to delete class files:
-[debug] We backup class files:
-[debug] Registering generated classes:
-[debug] 	Card.class
-[debug] 	Hand$.class
-[debug] 	Grid.class
-[debug] 	Player$.class
-[debug] 	Value1.class
-[debug] 	KittyCardGame.class
-[debug] 	Deck.class
-[debug] 	Value1$.class
-[debug] 	Card$.class
-[debug] 	Suit.class
-[debug] 	Grid$.class
-[debug] 	Player.class
-[debug] 	Suit$.class
-[debug] 	Hand.class
-[debug] 	KittyCardGame$.class
-[debug] 	Card.tasty
-[debug] 	Hand$.tasty
-[debug] 	Grid.tasty
-[debug] 	Player$.tasty
-[debug] 	Value1.tasty
-[debug] 	KittyCardGame.tasty
-[debug] 	Deck.tasty
-[debug] 	Value1$.tasty
-[debug] 	Card$.tasty
-[debug] 	Suit.tasty
-[debug] 	Grid$.tasty
-[debug] 	Player.tasty
-[debug] 	Suit$.tasty
-[debug] 	Hand.tasty
-[debug] 	KittyCardGame$.tasty
-[debug] Removing the temporary directory used for backing up class files: D:\SE_Kitty_Card\target\scala-3.3.3\classes.bak
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\target\scala-3.3.3\classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\target\scala-3.3.3\classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Card.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Hand$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Grid.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Player$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Value1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	KittyCardGame.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Deck.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Value1$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Card$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Suit.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Grid$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Player.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Suit$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Hand.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	KittyCardGame$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Card.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Hand$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Grid.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Player$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Value1.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	KittyCardGame.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Deck.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Value1$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Card$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Suit.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Grid$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Player.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Suit$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Hand.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	KittyCardGame$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\target\scala-3.3.3\classes.bak[0m

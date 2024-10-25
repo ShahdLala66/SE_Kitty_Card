@@ -1,18 +1,19 @@
-[debug] [zinc] IncrementalCompile -----------
-[debug] IncrementalCompile.incrementalCompile
-[debug] previous = Stamps for: 0 products, 0 sources, 0 libraries
-[debug] current source = Set(${BASE}/src/main/scala/model/Grid.scala, ${BASE}/src/main/scala/model/Value1.scala, ${BASE}/src/main/scala/model/Hand.scala, ${BASE}/src/main/scala/model/Card.scala, ${BASE}/src/main/scala/model/Player.scala, ${BASE}/src/main/scala/model/Suit.scala, ${BASE}/src/main/scala/KittyCardGame.scala, ${BASE}/src/main/scala/model/Deck.scala)
-[debug] > initialChanges = InitialChanges(Changes(added = Set(${BASE}/src/main/scala/model/Grid.scala, ${BASE}/src/main/scala/model/Value1.scala, ${BASE}/src/main/scala/model/Suit.scala, ${BASE}/src/main/scala/model/Hand.scala, ${BASE}/src/main/scala/KittyCardGame.scala, ${BASE}/src/main/scala/model/Player.scala, ${BASE}/src/main/scala/model/Deck.scala, ${BASE}/src/main/scala/model/Card.scala), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())
-[debug] Full compilation, no sources in previous analysis.
-[debug] all 8 sources are invalidated
-[debug] Initial set of included nodes: 
-[debug] Recompiling all sources: number of invalidated sources > 50.0 percent of all sources
-[debug] compilation cycle 1
-[info] compiling 8 Scala sources to D:\SE_Kitty_Card\target\scala-3.3.3\classes ...
-[debug] Returning already retrieved and compiled bridge: C:\Users\shahd\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-sbt-bridge\3.3.3\scala3-sbt-bridge-3.3.3.jar.
-[debug] [zinc] Running cached compiler 75bcb2e0 for Scala Compiler version 3.3.3
-[debug] [zinc] The Scala compiler is invoked with:
-[debug] 	-classpath
-[debug] 	D:\SE_Kitty_Card\target\scala-3.3.3\classes;C:\Users\shahd\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-library_3\3.3.3\scala3-library_3-3.3.3.jar;C:\Users\shahd\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scalactic\scalactic_3\3.2.18\scalactic_3-3.2.18.jar;C:\Users\shahd\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.12\scala-library-2.13.12.jar
-[debug] Scala compilation took 5.0008157 s
-[info] done compiling
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] IncrementalCompile -----------[0m
+[0m[[0m[0mdebug[0m] [0m[0mIncrementalCompile.incrementalCompile[0m
+[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 0 products, 0 sources, 0 libraries[0m
+[0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/src/main/scala/model/Grid.scala, ${BASE}/src/main/scala/model/Value1.scala, ${BASE}/src/main/scala/model/Hand.scala, ${BASE}/src/main/scala/model/Card.scala, ${BASE}/src/main/scala/model/Player.scala, ${BASE}/src/main/scala/model/Suit.scala, ${BASE}/src/main/scala/KittyCardGame.scala, ${BASE}/src/main/scala/model/Deck.scala)[0m
+[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(${BASE}/src/main/scala/model/Grid.scala, ${BASE}/src/main/scala/model/Value1.scala, ${BASE}/src/main/scala/model/Suit.scala, ${BASE}/src/main/scala/model/Hand.scala, ${BASE}/src/main/scala/KittyCardGame.scala, ${BASE}/src/main/scala/model/Player.scala, ${BASE}/src/main/scala/model/Deck.scala, ${BASE}/src/main/scala/model/Card.scala), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())[0m
+[0m[[0m[0mdebug[0m] [0m[0mFull compilation, no sources in previous analysis.[0m
+[0m[[0m[0mdebug[0m] [0m[0mall 8 sources are invalidated[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: [0m
+[0m[[0m[0mdebug[0m] [0m[0mRecompiling all sources: number of invalidated sources > 50.0 percent of all sources[0m
+[0m[[0m[0mdebug[0m] [0m[0mcompilation cycle 1[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 8 Scala sources to C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\target\scala-3.3.3\classes ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mReturning already retrieved and compiled bridge: C:\Users\coreu\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-sbt-bridge\3.3.3\scala3-sbt-bridge-3.3.3.jar.[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 1cf2cd53 for Scala Compiler version 3.3.3[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] The Scala compiler is invoked with:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-coverage-out:C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\target\scala-3.3.3/scoverage-data[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-classpath[0m
+[0m[[0m[0mdebug[0m] [0m[0m	C:\Users\coreu\Documents\#Studium\Software Engineering\SE_Kitty_Card\target\scala-3.3.3\classes;C:\Users\coreu\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-library_3\3.3.3\scala3-library_3-3.3.3.jar;C:\Users\coreu\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scalactic\scalactic_3\3.2.18\scalactic_3-3.2.18.jar;C:\Users\coreu\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.12\scala-library-2.13.12.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 4.5507706 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mdone compiling[0m

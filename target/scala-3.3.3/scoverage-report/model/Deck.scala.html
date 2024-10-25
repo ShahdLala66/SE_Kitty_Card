@@ -1,0 +1,533 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          model\Deck.scala.html
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/css/theme.default.min.css" type="text/css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/js/jquery.tablesorter.min.js"></script><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css"/><script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {$(".tablesorter").tablesorter();});
+      </script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier, monospace;'>1 <span style=''>package model
+</span>2 <span style=''>
+</span>3 <span style=''>import scala.util.Random
+</span>4 <span style=''>
+</span>5 <span style=''>class Deck {
+</span>6 <span style=''>  private var cards: List[Card] = </span><span style='background: #AEF1AE'>generateDeck()</span><span style=''>
+</span>7 <span style=''>
+</span>8 <span style=''>  // Method to generate a full deck of cards
+</span>9 <span style=''>  </span><span style='background: #AEF1AE'>private def generateDeck</span><span style=''>(): List[Card] = {
+</span>10 <span style=''>    </span><span style='background: #AEF1AE'>for {
+</span>11 <span style=''></span><span style='background: #AEF1AE'>      suit &lt;- Suit.values.toList
+</span>12 <span style=''></span><span style='background: #AEF1AE'>      value &lt;- Value1.values.toList
+</span>13 <span style=''></span><span style='background: #AEF1AE'>    } yield Card(suit, value)</span><span style=''>
+</span>14 <span style=''>  }
+</span>15 <span style=''>
+</span>16 <span style=''>  // Method to draw a card from the deck
+</span>17 <span style=''>  </span><span style='background: #AEF1AE'>def drawCard</span><span style=''>(): Option[Card] = {
+</span>18 <span style=''>    if (</span><span style='background: #AEF1AE'>cards.nonEmpty</span><span style=''>) </span><span style='background: #AEF1AE'>{
+</span>19 <span style=''></span><span style='background: #AEF1AE'>      val card = cards.head
+</span>20 <span style=''></span><span style='background: #AEF1AE'>      cards = cards.tail
+</span>21 <span style=''></span><span style='background: #AEF1AE'>      Some(card)
+</span>22 <span style=''></span><span style='background: #AEF1AE'>    }</span><span style=''> else </span><span style='background: #F0ADAD'>{
+</span>23 <span style=''></span><span style='background: #F0ADAD'>      None
+</span>24 <span style=''></span><span style='background: #F0ADAD'>    }</span><span style=''>
+</span>25 <span style=''>  }
+</span>26 <span style=''>
+</span>27 <span style=''>  // Method to refill the deck
+</span>28 <span style=''>  </span><span style='background: #AEF1AE'>def refill</span><span style=''>(): Unit = {
+</span>29 <span style=''>    cards = </span><span style='background: #AEF1AE'>generateDeck()</span><span style=''>
+</span>30 <span style=''>    </span><span style='background: #AEF1AE'>Random.shuffle(cards)</span><span style=''>
+</span>31 <span style=''>  }
+</span>32 <span style=''>
+</span>33 <span style=''>  // Method to get the size of the deck (number of remaining cards)
+</span>34 <span style=''>  </span><span style='background: #AEF1AE'>def size</span><span style=''>: Int = </span><span style='background: #AEF1AE'>cards.size</span><span style=''>
+</span>35 <span style=''>}
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Tests</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          6
+        </td>
+        <td>
+          58
+        </td>
+        <td>
+          93
+          -
+          107
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          generateDeck
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          generateDeck()
+        </td>
+      </tr><tr>
+        <td>
+          9
+        </td>
+        <td>
+          65
+        </td>
+        <td>
+          159
+          -
+          183
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          generateDeck
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          private def generateDeck
+        </td>
+      </tr><tr>
+        <td>
+          10
+        </td>
+        <td>
+          59
+        </td>
+        <td>
+          207
+          -
+          314
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          flatMap
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          for {\r\n      suit &lt;- Suit.values.toList\r\n      value &lt;- Value1.values.toList\r\n    } yield Card(suit, value)
+        </td>
+      </tr><tr>
+        <td>
+          11
+        </td>
+        <td>
+          61
+        </td>
+        <td>
+          228
+          -
+          246
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          toList
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Suit.values.toList
+        </td>
+      </tr><tr>
+        <td>
+          11
+        </td>
+        <td>
+          60
+        </td>
+        <td>
+          228
+          -
+          239
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          values
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Suit.values
+        </td>
+      </tr><tr>
+        <td>
+          12
+        </td>
+        <td>
+          62
+        </td>
+        <td>
+          254
+          -
+          314
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          map
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          value &lt;- Value1.values.toList\r\n    } yield Card(suit, value)
+        </td>
+      </tr><tr>
+        <td>
+          12
+        </td>
+        <td>
+          64
+        </td>
+        <td>
+          263
+          -
+          283
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          toList
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Value1.values.toList
+        </td>
+      </tr><tr>
+        <td>
+          12
+        </td>
+        <td>
+          63
+        </td>
+        <td>
+          263
+          -
+          276
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          values
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Value1.values
+        </td>
+      </tr><tr>
+        <td>
+          17
+        </td>
+        <td>
+          71
+        </td>
+        <td>
+          367
+          -
+          379
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          drawCard
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def drawCard
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          69
+        </td>
+        <td>
+          425
+          -
+          506
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          {\r\n      val card = cards.head\r\n      cards = cards.tail\r\n      Some(card)\r\n    }
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          66
+        </td>
+        <td>
+          409
+          -
+          423
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          nonEmpty
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          cards.nonEmpty
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          67
+        </td>
+        <td>
+          445
+          -
+          455
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          head
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          cards.head
+        </td>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          68
+        </td>
+        <td>
+          471
+          -
+          481
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          tail
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          cards.tail
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          70
+        </td>
+        <td>
+          512
+          -
+          532
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          {\r\n      None\r\n    }
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          74
+        </td>
+        <td>
+          575
+          -
+          585
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          refill
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def refill
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          72
+        </td>
+        <td>
+          611
+          -
+          625
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          generateDeck
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          generateDeck()
+        </td>
+      </tr><tr>
+        <td>
+          30
+        </td>
+        <td>
+          73
+        </td>
+        <td>
+          631
+          -
+          652
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          shuffle
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Random.shuffle(cards)
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          76
+        </td>
+        <td>
+          732
+          -
+          740
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          size
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def size
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          75
+        </td>
+        <td>
+          748
+          -
+          758
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          size
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          cards.size
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>
