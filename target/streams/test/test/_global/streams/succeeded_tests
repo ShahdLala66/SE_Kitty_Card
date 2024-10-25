@@ -1,3 +1,6 @@
 #Successful Tests
-#Sat Oct 19 17:09:53 CEST 2024
-model.PlayerSpec=1729350593702
+#Thu Oct 24 23:57:22 CEST 2024
+CardTest=1729807042071
+DeckSpec=1729807042137
+GridSpec=1729807042071
+model.PlayerSpec=1729807042071
