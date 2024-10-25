@@ -36,7 +36,7 @@ object KittyCardGame {
         printHand(hand1)
 
         val grid = Grid()
-        println(grid.mesh())
+        println(grid.display())
 
         printHand(hand2)
 

@@ -20,6 +20,16 @@ class DeckSpec extends AnyFunSuite {
     assert(card2 != null)
   }
 
+  test("Deck should return None when drawing a card from an empty deck") {
+    val deck = new Deck()
+    // Draw all cards to empty the deck
+    while (deck.drawCard().isDefined) {}
+
+    // Now the deck should be empty
+    val result = deck.drawCard()
+    assert(result.isEmpty) // Expecting None
+  }
+
   test("Deck should refill when empty") {
     val deck = new Deck()
     while (deck.size > 0) {

@@ -28,15 +28,17 @@ case class Grid(size: Int = 3) {
     def calculatePoints(x: Int, y: Int, rectangleColor: Suit): Int = {
         grid(x)(y) match {
             case Some(card) =>
+                println(s"Card suit: ${card.suit}, Rectangle color: $rectangleColor, Card value: ${Value1.toInt(card.value)}")
                 if (card.suit == rectangleColor) {
-                    Value1.toInt(card.value) * 2  // Double the value if the suit matches
+                    Value1.toInt(card.value) * 2
                 } else if (rectangleColor == Suit.White) {
-                    Value1.toInt(card.value)  // Keep the value if placed on a white rectangle
+                    Value1.toInt(card.value)
                 } else {
-                    0  // No points if the suit doesn't match
+                    Value1.toInt(card.value) * 0
                 }
-            case None => 0  // No card means no points
+            case None => 0
         }
+
     }
 
     // Method to display the grid
@@ -49,13 +51,5 @@ case class Grid(size: Int = 3) {
         }
     }
 
-    // Method to return a string representation of the grid
-    def mesh(): String = {
-        grid.map { row =>
-            row.map {
-                case Some(card) => s"${card.value} of ${card.suit}"
-                case None       => "Empty"
-            }.mkString(" | ")
-        }.mkString(eol)
-    }
+ 
 }
