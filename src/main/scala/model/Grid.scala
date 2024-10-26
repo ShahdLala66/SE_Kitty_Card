@@ -11,6 +11,9 @@ case class Grid(size: Int = 3) {
     private var grid: Array[Array[Option[Card]]] = Array.fill(size, size)(None)
     private var rectangleColors: Array[Array[Suit]] = generateRandomRectangles()
 
+    // Hilfsmethode für Testzwecke, um auf die Farben der Rechtecke zuzugreifen
+    private[model] def getRectangleColors: Array[Array[Suit]] = rectangleColors
+    
     // Generate up to 4 random colored rectangles, others default to White
     private def generateRandomRectangles(): Array[Array[Suit]] = {
         val colors = List(Suit.Blue, Suit.Green, Suit.Purple, Suit.Red)

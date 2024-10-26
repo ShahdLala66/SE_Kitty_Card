@@ -113,6 +113,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="scala-sdk-3.3.3" level="project" />
   </component>
   <component name="SbtModule">
     <option name="buildForURI" value="file:/$MODULE_DIR$/../../../../../%23Studium/Software%20Engineering/SE_Kitty_Card/" />
