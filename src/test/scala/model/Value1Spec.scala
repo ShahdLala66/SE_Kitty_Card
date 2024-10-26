@@ -2,7 +2,6 @@ package model
 
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
-import model.Value1
 
 class Value1Spec extends AnyWordSpec with Matchers {
   "Value1 Enumeration" should {

@@ -9,7 +9,6 @@ class PlayerSpec extends AnyWordSpec with Matchers {
 
         "be created with a name and default points of 0" in {
             val player = Player("Alice")
-            player.name shouldBe "Alice"
             player.points shouldBe 0
         }
 

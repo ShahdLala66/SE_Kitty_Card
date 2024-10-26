@@ -2,7 +2,6 @@ package model
 
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
-import scala.util.Random
 import model.Suit._
 import model.Value1._
 
@@ -11,7 +10,7 @@ class GridSpec extends AnyWordSpec with Matchers {
     "A Grid" should {
 
         "be initialized with the correct size and empty cells" in {
-            val grid = Grid(3)
+            val grid = Grid()
             grid.isFull() shouldBe false
             for {
                 x <- 0 until 3
@@ -22,7 +21,7 @@ class GridSpec extends AnyWordSpec with Matchers {
 
 
         "prevent placing a card out of bounds or in an occupied cell" in {
-            val grid = Grid(3)
+            val grid = Grid()
             val card = Card(Suit.Green, Value1.Eight)
             grid.placeCard(3, 3, card) shouldBe false // Out of bounds
             grid.placeCard(1, 1, card) shouldBe true
@@ -30,7 +29,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         }
 
         "calculate points correctly based on rectangle color" in {
-            val grid = Grid(3)
+            val grid = Grid()
             val cardBlue = Card(Suit.Blue, Value1.Five)
             val cardGreen = Card(Suit.Green, Value1.Three)
 
@@ -46,7 +45,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         }
 
         "return zero points if card suit does not match rectangle color" in {
-            val grid = Grid(3)
+            val grid = Grid()
             val cardRed = Card(Suit.Red, Value1.Two)
 
             grid.getRectangleColors(2)(2) = Suit.Blue // Mismatch
@@ -67,12 +66,12 @@ class GridSpec extends AnyWordSpec with Matchers {
         }
 
         "display the initial colors of the rectangles" in {
-            val grid = Grid(3)
+            val grid = Grid()
             noException shouldBe thrownBy(grid.displayInitialColors()) // Check for correct display call
         }
 
         "display the grid with cards and rectangle colors correctly" in {
-            val grid = Grid(3)
+            val grid = Grid()
             val card = Card(Suit.Green, Value1.Eight)
             grid.placeCard(0, 0, card)
             noException shouldBe thrownBy(grid.display()) // Display without errors

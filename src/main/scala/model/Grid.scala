@@ -8,8 +8,8 @@ case class Grid(size: Int = 3) {
     val eol: String = sys.props("line.separator") // End of line character
 
     // Initialize an empty grid with None values, representing empty spots
-    private var grid: Array[Array[Option[Card]]] = Array.fill(size, size)(None)
-    private var rectangleColors: Array[Array[Suit]] = generateRandomRectangles()
+    private val grid: Array[Array[Option[Card]]] = Array.fill(size, size)(None)
+    private val rectangleColors: Array[Array[Suit]] = generateRandomRectangles()
 
     // Hilfsmethode für Testzwecke, um auf die Farben der Rechtecke zuzugreifen
     private[model] def getRectangleColors: Array[Array[Suit]] = rectangleColors
