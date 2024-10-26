@@ -113,5 +113,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="scala-sdk-3.3.3" level="project" />
   </component>
 </module>

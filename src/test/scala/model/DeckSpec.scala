@@ -1,5 +1,6 @@
+package model
+
 import org.scalatest.funsuite.AnyFunSuite
-import model.{Deck, Card, Suit, Value1}
 
 class DeckSpec extends AnyFunSuite {
 

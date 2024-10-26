@@ -1,7 +1,9 @@
+package model
+
 import org.scalatest.funsuite.AnyFunSuite
 import model.{Card, Suit, Value1}
 
-class CardTest extends AnyFunSuite {
+class CardSpec extends AnyFunSuite {
 
   test("Card should correctly display its suit and value") {
     val card = Card(Suit.Blue, Value1.Five)
