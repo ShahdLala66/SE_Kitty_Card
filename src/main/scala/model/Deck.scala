@@ -5,7 +5,7 @@ import scala.util.Random
 class Deck {
   private var cards: List[Card] = generateAndShuffleDeck()
   private var drawnCardsCount = 0
-  private val maxCards = 69
+  private val maxCards = 69 //should add a special message when this is hit
 
   // Method to generate and shuffle the deck
   private def generateAndShuffleDeck(): List[Card] = {
@@ -36,7 +36,7 @@ class Deck {
   def refill(): Unit = {
     cards = generateAndShuffleDeck()
     drawnCardsCount = 0
-  }
+  } //muss vieleicht weg machen, dieser logic hier ist nicht nötig 
 
   // Method to get the size of the deck (number of remaining cards)
   def size: Int = cards.size
