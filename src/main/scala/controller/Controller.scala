@@ -18,7 +18,7 @@ class GameController {
     // Prompt for player names
     println("Enter the name for Player 1:")
     val player1Name = scala.io.StdIn.readLine()
-    val player1 = Player(player1Name) 
+    val player1 = Player(player1Name)
     println("Enter the name for Player 2:")
     val player2Name = scala.io.StdIn.readLine()
     val player2 = Player(player2Name)
@@ -38,35 +38,47 @@ class GameController {
         case Some(card) =>
           println(s"${currentPlayer.name} drew: ${card.suit}, ${Value1.toInt(card.value)}")
 
-          // Ask the player where to place the card
-          println("Enter the x and y coordinates (e.g., 0 1) to place the card:")
-          val input = scala.io.StdIn.readLine().split(" ").map(_.toInt)
-          val (x, y) = (input(0), input(1))
+          var validInput = false
+          while (!validInput) {
+            try {
+              // Ask the player where to place the card
+              println("Enter the x and y coordinates (e.g., 0 1) to place the card:")
+              val input = scala.io.StdIn.readLine().split(" ").map(_.toInt)
+              val (x, y) = (input(0), input(1))
 
-          // Try placing the card
-          if (grid.placeCard(x, y, card)) {
-            // Fetch the color (suit) of the rectangle at (x, y)
-            val rectangleColor = grid.getRectangleColors(x, y)
+              // Try placing the card
+              if (grid.placeCard(x, y, card)) {
+                validInput = true
 
-            // Display the appropriate cat based on color matching
-            if (rectangleColor == Suit.White) {
-              catPrint.printMeh(card.suit.toString) // Print "meh" cat if on white
-            } else if (rectangleColor == card.suit) {
-              catPrint.printCatInColor(card.suit.toString) // Print matching color cat
-            } else {
-              catPrint.printBadChoice(rectangleColor.toString) // Print "bad choice" cat if mismatch
+                // Fetch the color (suit) of the rectangle at (x, y)
+                val rectangleColor = grid.getRectangleColors(x, y)
+
+                // Display the appropriate cat based on color matching
+                if (rectangleColor == Suit.White) {
+                  catPrint.printMeh(card.suit.toString) // Print "meh" cat if on white
+                } else if (rectangleColor == card.suit) {
+                  catPrint.printCatInColor(card.suit.toString) // Print matching color cat
+                } else {
+                  catPrint.printBadChoice(rectangleColor.toString) // Print "bad choice" cat if mismatch
+                }
+
+                // Calculate points and update the player's score
+                val pointsEarned = grid.calculatePoints(x, y)
+                currentPlayer.addPoints(pointsEarned)
+                println(s"${currentPlayer.name} earned $pointsEarned points.")
+
+                // Display the updated grid
+                println("Updated Grid:")
+                grid.display()
+              } else {
+                println("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
+              }
+            } catch {
+              case _: NumberFormatException =>
+                println("Invalid input. Please enter valid coordinates (e.g., 0 1).")
+              case _: ArrayIndexOutOfBoundsException =>
+                println("Invalid input. Please enter two coordinates (e.g., 0 1).")
             }
-
-            // Calculate points and update the player's score
-            val pointsEarned = grid.calculatePoints(x, y)
-            currentPlayer.addPoints(pointsEarned)
-            println(s"${currentPlayer.name} earned $pointsEarned points.")
-
-            // Display the updated grid
-            println("Updated Grid:")
-            grid.display()
-          } else {
-            println("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
           }
 
         case None =>
