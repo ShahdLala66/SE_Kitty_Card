@@ -44,14 +44,13 @@ class GameController {
         case Some(card) =>
           println(s"${currentPlayer.name} drew: ${card.suit}, ${Value1.toInt(card.value)}")
 
-          var validInput = false
-          while (!validInput) {
-            try {
-              // Ask the player where to place the card
-              println("Enter the x and y coordinates (e.g., 0 1) to place the card:")
-              val input = scala.io.StdIn.readLine().split(" ").map(_.toInt)
-              val (x, y) = (input(0), input(1))
-
+          var validInput = false //AUFPASSEN HIER FALSE
+          while (!validInput) { // Loop until a valid input is received
+            val input = scala.io.StdIn.readLine("Enter the x and y coordinates (e.g., 0 1) to place the card:")
+            try { // Catch exceptions for invalid input
+              val coordinates = input.split(" ").map(_.toInt) // Parse the input
+              val (x, y) = (coordinates(0), coordinates(1))
+//---------------------------------------------------------
               // Try placing the card
               if (grid.placeCard(x, y, card)) {
                 validInput = true
@@ -67,12 +66,12 @@ class GameController {
                 } else {
                   catPrint.printBadChoice(rectangleColor.toString) // Print "bad choice" cat if mismatch
                 }
-
+//-------------------------------------------------------
                 // Calculate points and update the player's score
                 val pointsEarned = grid.calculatePoints(x, y)
                 currentPlayer.addPoints(pointsEarned)
                 println(s"${currentPlayer.name} earned $pointsEarned points.")
-
+//--------------------------------------------------------------
                 // Display the updated grid
                 println("Updated Grid:")
                 grid.display()
@@ -81,16 +80,18 @@ class GameController {
               }
             } catch {
               case _: NumberFormatException =>
-                println(ErrorMessages.getRandomMessage)
+                ErrorMessages.getSpecificMessage(input) match {
+                  case Some(message) => println(message)
+                  case None => println(ErrorMessages.getRandomMessage)
+                }
               case _: ArrayIndexOutOfBoundsException =>
-                println(ErrorMessages.getRandomMessage)
+                ErrorMessages.getSpecificMessage(input) match {
+                  case Some(message) => println(message)
+                  case None => println(ErrorMessages.getRandomMessage)
+                }
             }
           }
-
-        case None =>
-          println("The deck is empty, no more cards can be drawn.")
       }
-
       // Switch turns between players
       currentPlayer = if (currentPlayer == player1) player2 else player1
     }

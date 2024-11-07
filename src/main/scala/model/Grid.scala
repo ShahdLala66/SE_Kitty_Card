@@ -94,4 +94,9 @@ case class Grid(size: Int = 3) {
             println()
         }
     }
+
+    def setRectangleColor(x: Int, y: Int, color: Suit): Unit = {
+        rectangleColors(x)(y) = color
+    }
+
 }
