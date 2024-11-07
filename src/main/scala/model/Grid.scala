@@ -40,17 +40,6 @@ case class Grid(size: Int = 3) {
     def placeCard(x: Int, y: Int, card: Card): Boolean = {
         if (isWithinBounds(x, y) && grid(x)(y).isEmpty) {
             grid(x)(y) = Some(card)
-            /*  Fetch the color (suit) of the rectangle at (x, y)
-            val rectangleColor = rectangleColors(x)(y)
-
-            // Display the appropriate cat based on color matching
-            if (rectangleColor == Suit.White) {
-                catPrint.printMeh(card.suit.toString) // Print "meh" cat if on white
-            } else if (rectangleColor == card.suit) {
-                catPrint.printCatInColor(card.suit.toString) // Print matching color cat
-            } else {
-                catPrint.printBadChoice(card.suit.toString) // Print "bad choice" cat if mismatch
-            } */
             true
         } else {
             false // Return false if the position is out of bounds or already occupied

@@ -6,8 +6,6 @@ import view.CatPrint
 class GameController {
   private val deck = new Deck()
   private val grid = new Grid(3)
-  private val player1 = Player("You 1")
-  private val player2 = Player("Zayne, your dom")
   private val catPrint = new CatPrint() // Create CatPrint instance
 
   def startGame(): Unit = {
@@ -16,6 +14,14 @@ class GameController {
     println("Players take turns drawing and placing cards on the grid.")
     println("Earn points by placing cards on matching colors or white squares.")
     println()
+
+    // Prompt for player names
+    println("Enter the name for Player 1:")
+    val player1Name = scala.io.StdIn.readLine()
+    val player1 = Player(player1Name) 
+    println("Enter the name for Player 2:")
+    val player2Name = scala.io.StdIn.readLine()
+    val player2 = Player(player2Name)
 
     // Display the initial grid with random rectangle colors
     grid.displayInitialColors()
@@ -48,7 +54,7 @@ class GameController {
             } else if (rectangleColor == card.suit) {
               catPrint.printCatInColor(card.suit.toString) // Print matching color cat
             } else {
-              catPrint.printBadChoice(card.suit.toString) // Print "bad choice" cat if mismatch
+              catPrint.printBadChoice(rectangleColor.toString) // Print "bad choice" cat if mismatch
             }
 
             // Calculate points and update the player's score

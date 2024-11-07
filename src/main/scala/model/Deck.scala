@@ -4,7 +4,7 @@ import scala.util.Random
 
 class Deck {
   private val cards: List[Card] = for {
-    suit <- Suit.values.toList
+    suit <- Suit.values.toList if suit != Suit.White // Exclude White suit
     value <- Value1.values.toList
   } yield Card(suit, value)
 
