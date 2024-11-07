@@ -3,17 +3,19 @@ package model
 import scala.util.Random
 import model.Suit._
 import model.Value1._
+import view.CatPrint
 
 case class Grid(size: Int = 3) {
     val eol: String = sys.props("line.separator") // End of line character
 
     // Initialize an empty grid with None values, representing empty spots
     private val grid: Array[Array[Option[Card]]] = Array.fill(size, size)(None)
-    private val rectangleColors: Array[Array[Suit]] = generateRandomRectangles()
+    private val rectangleColors: Array[Array[Suit]] = generateRandomRectangles() //hier is das porblem mit der katzen anzeige glaube ich
+    private val catPrint = new CatPrint()
 
     // Hilfsmethode für Testzwecke, um auf die Farben der Rechtecke zuzugreifen
     private[model] def getRectangleColors: Array[Array[Suit]] = rectangleColors
-    
+
     // Generate up to 4 random colored rectangles, others default to White
     private def generateRandomRectangles(): Array[Array[Suit]] = {
         val colors = List(Suit.Blue, Suit.Green, Suit.Purple, Suit.Red)
@@ -39,11 +41,27 @@ case class Grid(size: Int = 3) {
     def placeCard(x: Int, y: Int, card: Card): Boolean = {
         if (isWithinBounds(x, y) && grid(x)(y).isEmpty) {
             grid(x)(y) = Some(card)
+
+            // Fetch the color (suit) of the rectangle at (x, y)
+            val rectangleColor = rectangleColors(x)(y)
+
+            // Debug output to confirm values
+            println(s"DEBUG: rectangleColor = $rectangleColor, card.suit = ${card.suit}")
+
+            // Display the appropriate cat based on color matching
+            if (rectangleColor == Suit.White) {
+                catPrint.printMeh(card.suit.toString) // Print "meh" cat if on white
+            } else if (rectangleColor == card.suit) {
+                catPrint.printCatInColor(card.suit.toString) // Print matching color cat
+            } else {
+                catPrint.printBadChoice(card.suit.toString) // Print "bad choice" cat if mismatch
+            }
             true
         } else {
-            false  // Return false if the position is out of bounds or already occupied
+            false // Return false if the position is out of bounds or already occupied
         }
     }
+
 
     // Method to calculate points for a given position
     def calculatePoints(x: Int, y: Int): Int = {
