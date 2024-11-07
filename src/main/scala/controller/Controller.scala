@@ -2,6 +2,7 @@ package controller
 
 import model._
 import view.CatPrint
+import util.ErrorMessages
 
 class GameController {
   private val deck = new Deck()
@@ -14,6 +15,11 @@ class GameController {
     println("Players take turns drawing and placing cards on the grid.")
     println("Earn points by placing cards on matching colors or white squares.")
     println()
+
+    // Prompt for family-friendly version
+    println("Do you want the family-friendly version? (y/n):")
+    val familyFriendly = scala.io.StdIn.readLine().trim.toLowerCase == "y"
+    ErrorMessages.loadMessages(familyFriendly)
 
     // Prompt for player names
     println("Enter the name for Player 1:")
@@ -75,9 +81,9 @@ class GameController {
               }
             } catch {
               case _: NumberFormatException =>
-                println("Invalid input. Please enter valid coordinates (e.g., 0 1).")
+                println(ErrorMessages.getRandomMessage)
               case _: ArrayIndexOutOfBoundsException =>
-                println("Invalid input. Please enter two coordinates (e.g., 0 1).")
+                println(ErrorMessages.getRandomMessage)
             }
           }
 
