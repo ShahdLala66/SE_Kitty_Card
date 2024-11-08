@@ -2,6 +2,7 @@ package util
 
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.BeforeAndAfter
+import org.scalatest.matchers.should.Matchers._
 
 class ErrorMessagesSpec extends AnyWordSpec with BeforeAndAfter {
 
@@ -11,24 +12,24 @@ class ErrorMessagesSpec extends AnyWordSpec with BeforeAndAfter {
 
     "ErrorMessages" should {
         "load messages correctly" in {
-            assert(ErrorMessages.getRandomMessage.nonEmpty)
+            ErrorMessages.getRandomMessage should not be empty
         }
 
         "return a random message" in {
             val message = ErrorMessages.getRandomMessage
-            assert(message.nonEmpty)
+            message should not be empty
         }
 
         "return a specific message for a known input" in {
             val input = "dick"
             val specificMessage = ErrorMessages.getSpecificMessage(input)
-            assert(specificMessage.contains("Bro what?"))
+            specificMessage should contain ("Bro what?")
         }
 
         "return None for an unknown input" in {
             val input = "unknown"
             val specificMessage = ErrorMessages.getSpecificMessage(input)
-            assert(specificMessage.isEmpty)
+            specificMessage should be (empty)
         }
     }
 }
