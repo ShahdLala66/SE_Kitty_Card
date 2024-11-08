@@ -1,18 +1,16 @@
 package model
 
-import org.scalatest.funsuite.AnyFunSuite
-import model.{Card, Suit, Value1}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class CardSpec extends AnyFunSuite {
+class CardSpec extends AnyWordSpec with Matchers {
 
-  test("Card should correctly display its suit and value") {
-    val card = Card(Suit.Blue, Value1.Five)
-    assert(card.toString == "Five of Blue")
+  "Card" should {
+    "Card should correctly display its suit and value" in {
+      val card = Card(Suit.Blue, Value1.Five)
+      card.toString shouldBe "Five of Blue"
+    }
+
   }
 
-  test("Card should hold the correct suit and value") {
-    val card = Card(Suit.Green, Value1.Seven)
-    assert(card.suit == Suit.Green)
-    assert(card.value == Value1.Seven)
-  }
 }

@@ -10,10 +10,11 @@ case class Grid(size: Int = 3) {
     // Initialize an empty grid with None values, representing empty spots
     private val grid: Array[Array[Option[Card]]] = Array.fill(size, size)(None)
     private val rectangleColors: Array[Array[Suit]] = generateRandomRectangles()
+    private val catPrint = new view.CatPrint() // Create CatPrint instance
 
     // Hilfsmethode für Testzwecke, um auf die Farben der Rechtecke zuzugreifen
-    private[model] def getRectangleColors: Array[Array[Suit]] = rectangleColors
-    
+    def getRectangleColors(x: Int, y: Int): Suit = rectangleColors(x)(y)
+
     // Generate up to 4 random colored rectangles, others default to White
     private def generateRandomRectangles(): Array[Array[Suit]] = {
         val colors = List(Suit.Blue, Suit.Green, Suit.Purple, Suit.Red)
@@ -41,7 +42,7 @@ case class Grid(size: Int = 3) {
             grid(x)(y) = Some(card)
             true
         } else {
-            false  // Return false if the position is out of bounds or already occupied
+            false // Return false if the position is out of bounds or already occupied
         }
     }
 
@@ -93,4 +94,9 @@ case class Grid(size: Int = 3) {
             println()
         }
     }
+
+    def setRectangleColor(x: Int, y: Int, color: Suit): Unit = {
+        rectangleColors(x)(y) = color
+    }
+
 }

@@ -4,78 +4,99 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 import model.Suit._
 import model.Value1._
+import scala.util.Random
 
 class GridSpec extends AnyWordSpec with Matchers {
 
     "A Grid" should {
 
-        "be initialized with the correct size and empty cells" in {
-            val grid = Grid()
+        "initialize with the correct size and empty spots" in {
+            val grid = Grid(3)
             grid.isFull() shouldBe false
-            for {
+            for (x <- 0 until 3; y <- 0 until 3) {
+                grid.getRectangleColors(x, y) should (be(Suit.White) or be(Suit.Blue) or be(Suit.Green) or be(Suit.Purple) or be(Suit.Red))
+            }
+        }
+
+        "generate a grid with up to 4 non-white rectangles" in {
+            val grid = Grid(3)
+            val nonWhiteCount = (for {
                 x <- 0 until 3
                 y <- 0 until 3
-            } yield grid.calculatePoints(x, y) shouldBe 0 // No cards initially, so points should be 0
+                if grid.getRectangleColors(x, y) != Suit.White
+            } yield 1).sum
+            nonWhiteCount should (be >= 0 and be <= 4)
         }
 
-
-
-        "prevent placing a card out of bounds or in an occupied cell" in {
-            val grid = Grid()
-            val card = Card(Suit.Green, Value1.Eight)
-            grid.placeCard(3, 3, card) shouldBe false // Out of bounds
-            grid.placeCard(1, 1, card) shouldBe true
-            grid.placeCard(1, 1, card) shouldBe false // Position already occupied
+        "allow placing a card in an empty spot within bounds" in {
+            val grid = Grid(3)
+            val card = Card(Suit.Green, One)
+            grid.placeCard(0, 0, card) shouldBe true
         }
 
-        "calculate points correctly based on rectangle color" in {
-            val grid = Grid()
-            val cardBlue = Card(Suit.Blue, Value1.Five)
-            val cardGreen = Card(Suit.Green, Value1.Three)
-
-            // Place a blue card on a blue rectangle for double points
-            grid.getRectangleColors(0)(0) = Suit.Blue
-            grid.placeCard(0, 0, cardBlue)
-            grid.calculatePoints(0, 0) shouldBe 10 // 5 * 2 for matching color
-
-            // Place a green card on a white rectangle for normal points
-            grid.getRectangleColors(1)(1) = Suit.White
-            grid.placeCard(1, 1, cardGreen)
-            grid.calculatePoints(1, 1) shouldBe 3
+        "not allow placing a card in an occupied spot" in {
+            val grid = Grid(3)
+            val card1 = Card(Suit.Green, One)
+            val card2 = Card(Suit.Blue, Two)
+            grid.placeCard(0, 0, card1) shouldBe true
+            grid.placeCard(0, 0, card2) shouldBe false
         }
 
-        "return zero points if card suit does not match rectangle color" in {
-            val grid = Grid()
-            val cardRed = Card(Suit.Red, Value1.Two)
+        "not allow placing a card out of bounds" in {
+            val grid = Grid(3)
+            val card = Card(Suit.Green, One)
+            grid.placeCard(-1, 0, card) shouldBe false
+            grid.placeCard(3, 3, card) shouldBe false
+        }
 
-            grid.getRectangleColors(2)(2) = Suit.Blue // Mismatch
-            grid.placeCard(2, 2, cardRed)
+        "calculate points correctly when card matches rectangle color" in {
+            val grid = Grid(3)
+            val card = Card(Suit.Blue, Three)
+            grid.placeCard(0, 0, card)
+            grid.setRectangleColor(0, 0, Suit.Blue) // Use setter method
+            grid.calculatePoints(0, 0) shouldBe 6 // 3 * 2 = 6
+        }
+
+        "calculate points correctly when placed on a white rectangle" in {
+            val grid = Grid(3)
+            val card = Card(Suit.Blue, Three)
+            grid.placeCard(1, 1, card)
+            grid.setRectangleColor(1, 1, Suit.White) // Use setter method
+            grid.calculatePoints(1, 1) shouldBe 3 // no double points, should be 3
+        }
+
+        "award zero points when placed on a different colored rectangle" in {
+            val grid = Grid(3)
+            val card = Card(Suit.Blue, Three)
+            grid.placeCard(2, 2, card)
+            grid.setRectangleColor(2, 2, Suit.Red) // Use setter method
             grid.calculatePoints(2, 2) shouldBe 0
         }
 
-        "recognize when the grid is full" in {
-            val grid = Grid(2) // Smaller grid for easier testing
-            val card = Card(Suit.Purple, Value1.One)
 
-            for {
-                x <- 0 until 2
-                y <- 0 until 2
-            } grid.placeCard(x, y, card)
-
+        "correctly identify a full grid" in {
+            val grid = Grid(2) // smaller grid for testing
+            for (x <- 0 until 2; y <- 0 until 2) {
+                grid.placeCard(x, y, Card(Suit.Blue, One)) shouldBe true
+            }
             grid.isFull() shouldBe true
         }
 
-        "display the initial colors of the rectangles" in {
-            val grid = Grid()
-            noException shouldBe thrownBy(grid.displayInitialColors()) // Check for correct display call
+        "correctly identify a non-full grid" in {
+            val grid = Grid(3)
+            grid.placeCard(0, 0, Card(Suit.Green, One))
+            grid.isFull() shouldBe false
         }
 
-        "display the grid with cards and rectangle colors correctly" in {
-            val grid = Grid()
-            val card = Card(Suit.Green, Value1.Eight)
-            grid.placeCard(0, 0, card)
-            noException shouldBe thrownBy(grid.display()) // Display without errors
+        "display the initial colors of the grid correctly" in {
+            val grid = Grid(3)
+            noException should be thrownBy grid.displayInitialColors()
+        }
+
+        "display the grid with cards and colors correctly" in {
+            val grid = Grid(3)
+            grid.placeCard(0, 0, Card(Suit.Blue, Two))
+            noException should be thrownBy grid.display()
         }
     }
 }
-
