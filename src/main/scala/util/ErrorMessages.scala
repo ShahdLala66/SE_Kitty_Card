@@ -23,13 +23,17 @@ object ErrorMessages {
     )
   }
 
+  private def getRandomMessageFromList(messages: List[String]): String = {
+    val message = messages(Random.nextInt(messages.length))
+    usedMessages += message
+    message
+  }
+
   @tailrec
   def getRandomMessage: String = {
     val availableMessages = messages.diff(usedMessages.toList)
     if (availableMessages.nonEmpty) {
-      val message = availableMessages(Random.nextInt(availableMessages.length))
-      usedMessages += message
-      message
+      getRandomMessageFromList(availableMessages)
     } else {
       usedMessages = Set()
       getRandomMessage

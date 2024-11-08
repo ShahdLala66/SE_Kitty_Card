@@ -1,8 +1,6 @@
 package model.cards
 
-import Suit.Suit
 import Value.Value
-import model.cards.Cards
 
 import scala.util.Random
 

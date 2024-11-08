@@ -2,7 +2,6 @@ package util
 
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.BeforeAndAfter
-import scala.io.Source
 
 class ErrorMessagesSpec extends AnyWordSpec with BeforeAndAfter {
 

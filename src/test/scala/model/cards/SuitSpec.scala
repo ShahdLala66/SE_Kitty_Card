@@ -1,6 +1,5 @@
 package model.cards
 
-import model.cards.Suit
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

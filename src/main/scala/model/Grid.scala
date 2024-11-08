@@ -65,7 +65,7 @@ case class Grid(size: Int = 3) {
     }
 
     // Check if the grid is full (all cells contain cards)
-    def isFull(): Boolean = {
+    def isFull: Boolean = {
         grid.flatten.forall(_.isDefined)
     }
 

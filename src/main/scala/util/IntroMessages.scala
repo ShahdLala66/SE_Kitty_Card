@@ -1,7 +1,5 @@
 package util
 
-import util.ErrorMessages.{messages, usedMessages}
-
 import scala.annotation.tailrec
 import scala.io.Source
 import scala.util.Random
