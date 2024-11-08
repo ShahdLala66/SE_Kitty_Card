@@ -1,4 +1,4 @@
-package model
+package model.cards
 
 // Enumeration for the colors (suits)
 object Suit extends Enumeration {
