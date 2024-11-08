@@ -1,6 +1,6 @@
-package model
+package model.cards
 
-object Value1 extends Enumeration {
+object Value extends Enumeration {
   type Value1 = Value
   val One = Value(1)
   val Two = Value(2)

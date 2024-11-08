@@ -1,5 +1,6 @@
 package util
 
+import scala.annotation.tailrec
 import scala.io.Source
 import scala.util.Random
 
@@ -22,6 +23,7 @@ object ErrorMessages {
     )
   }
 
+  @tailrec
   def getRandomMessage: String = {
     val availableMessages = messages.diff(usedMessages.toList)
     if (availableMessages.nonEmpty) {

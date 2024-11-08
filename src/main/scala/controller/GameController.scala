@@ -1,6 +1,7 @@
 package controller
 
-import model._
+import model.*
+import model.cards.{Suit, Value}
 import view.CatPrint
 import util.ErrorMessages
 
@@ -42,7 +43,7 @@ class GameController {
       val drawnCard = deck.drawCard()
       drawnCard match {
         case Some(card) =>
-          println(s"${currentPlayer.name} drew: ${card.suit}, ${Value1.toInt(card.value)}")
+          println(s"${currentPlayer.name} drew: ${card.suit}, ${Value.toInt(card.value)}")
 
           var validInput = false //AUFPASSEN HIER FALSE
           while (!validInput) { // Loop until a valid input is received

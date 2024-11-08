@@ -1,14 +1,15 @@
 package model
 
 import scala.util.Random
-import model.Suit._
-import model.Value1._
+import model.cards.Suit.*
+import model.cards.Value.*
+import model.cards.{NumberCards, Suit, Value}
 
 case class Grid(size: Int = 3) {
     val eol: String = sys.props("line.separator") // End of line character
 
     // Initialize an empty grid with None values, representing empty spots
-    private val grid: Array[Array[Option[Card]]] = Array.fill(size, size)(None)
+    private val grid: Array[Array[Option[NumberCards]]] = Array.fill(size, size)(None)
     private val rectangleColors: Array[Array[Suit]] = generateRandomRectangles()
     private val catPrint = new view.CatPrint() // Create CatPrint instance
 
@@ -37,7 +38,7 @@ case class Grid(size: Int = 3) {
     }
 
     // Method to place a card on the grid
-    def placeCard(x: Int, y: Int, card: Card): Boolean = {
+    def placeCard(x: Int, y: Int, card: NumberCards): Boolean = {
         if (isWithinBounds(x, y) && grid(x)(y).isEmpty) {
             grid(x)(y) = Some(card)
             true
@@ -53,9 +54,9 @@ case class Grid(size: Int = 3) {
             case Some(card) =>
                 println(s"Card: ${card.suit}, ${card.value}; Rectangle color: $rectangleColor")
                 if (card.suit == rectangleColor) {
-                    Value1.toInt(card.value) * 2  // Double points if suits match
+                    Value.toInt(card.value) * 2  // Double points if suits match
                 } else if (rectangleColor == Suit.White) {
-                    Value1.toInt(card.value)  // Regular points if placed on a white rectangle
+                    Value.toInt(card.value)  // Regular points if placed on a white rectangle
                 } else {
                     0  // No points if placed on a different colored rectangle
                 }

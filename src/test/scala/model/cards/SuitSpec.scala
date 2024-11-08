@@ -1,7 +1,8 @@
-package model
+package model.cards
 
-import org.scalatest.wordspec.AnyWordSpec
+import model.cards.Suit
 import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
 
 class SuitSpec extends AnyWordSpec with Matchers {
