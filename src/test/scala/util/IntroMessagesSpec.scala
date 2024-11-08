@@ -1,6 +1,7 @@
 package util
 
 import org.scalatest.BeforeAndAfter
+import org.scalatest.matchers.should.Matchers._
 import org.scalatest.wordspec.AnyWordSpec
 
 class IntroMessagesSpec extends AnyWordSpec with BeforeAndAfter {
@@ -11,18 +12,18 @@ class IntroMessagesSpec extends AnyWordSpec with BeforeAndAfter {
 
     "IntroMessages" should {
         "load messages correctly" in {
-            assert(IntroMessages.getRandomMessage.nonEmpty)
+            IntroMessages.getRandomMessage should not be empty
         }
 
         "return a random message" in {
             val message = IntroMessages.getRandomMessage
-            assert(message.nonEmpty)
+            message should not be empty
         }
 
         "return None for an unknown input" in {
             val input = "unknown"
             val specificMessage = ErrorMessages.getSpecificMessage(input)
-            assert(specificMessage.isEmpty)
+            specificMessage should be (empty)
         }
     }
 }
