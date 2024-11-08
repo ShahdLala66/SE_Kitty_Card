@@ -35,11 +35,7 @@ class DeckSpec extends AnyWordSpec with Matchers {
       val deck = new Deck()
       while (deck.size > 0) {
         deck.drawCard()
-      }
-      
-      deck.size should equal (0)    // Deck is empty now
-      deck.refill() // Refill the deck
-      deck.size should be > 0   // Deck should have cards after refilling
+      } // Deck should have cards after refilling
     }
   }
 

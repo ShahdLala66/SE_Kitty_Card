@@ -39,7 +39,7 @@ class CatPrint {
 
   // Method to print a bad choice message
   def printBadChoice(color: String): Unit = {
-    val colorCode = colors.getOrElse(color, "\u001b[0m")
+    val colorCode = colors.getOrElse(color, "\u001b[0m") //
     println(s"$colorCode ∧,,,∧")
     println(s"$colorCode ( ̳- · -̳)")
     println(s"$colorCode/ づbad choiceづ")
