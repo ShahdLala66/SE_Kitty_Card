@@ -41,7 +41,7 @@
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
-
+.idea/modules
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
@@ -120,3 +120,8 @@ hs_err_pid*
 /.idea/scala_compiler.xml
 /.idea/scala_settings.xml
 /.idea/vcs.xml
+/.idea/sbt.xml
+/.idea/misc.xml
+/.idea/git_toolbox_blame.xml
+/.idea/.name
+/.idea/git_toolbox_prj.xml
