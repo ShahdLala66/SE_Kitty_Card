@@ -42,7 +42,7 @@ class GridSpec extends AnyWordSpec with Matchers {
             for (i <- 0 until grid.size; j <- 0 until grid.size) {
                 grid.placeCard(i, j, NumberCards(Suit.Red, Value.Two))
             }
-            grid.isFull() shouldBe true
+            grid.isFull shouldBe true
         }
 
 
@@ -112,13 +112,13 @@ class GridSpec extends AnyWordSpec with Matchers {
             for (x <- 0 until 2; y <- 0 until 2) {
                 grid.placeCard(x, y, cards.NumberCards(Suit.Blue, One))
             }
-            grid.isFull() shouldBe true
+            grid.isFull shouldBe true
         }
 
         "correctly identify a non-full grid" in {
             val grid = Grid()
             grid.placeCard(0, 0, cards.NumberCards(Suit.Green, One))
-            grid.isFull() shouldBe false
+            grid.isFull shouldBe false
         }
 
         "display the initial colors of the grid correctly" in {

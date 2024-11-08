@@ -2,4 +2,4 @@ sbt clean coverage test
 sbt coverageReport
 
 
-target > scala 3.3.3 > overwiev.html
+target > scala 3.3.3 > scoverage-report > overview.html
