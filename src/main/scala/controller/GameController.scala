@@ -1,7 +1,7 @@
 package controller
 
 import model.*
-import model.cards.{Suit, Value}
+import model.cards.{NumberCards, Suit, Value}
 import util.ErrorMessages
 import view.CatPrint
 
@@ -36,6 +36,12 @@ class GameController {
         val player2Name = scala.io.StdIn.readLine()
         val player2 = Player(player2Name)
 
+        // Distribute three cards to each player at the start
+        for (_ <- 1 to 3) {
+            player1.drawCard(deck)
+            player2.drawCard(deck)
+        }
+
         // Display the initial grid with random rectangle colors
         grid.displayInitialColors()
 
@@ -44,6 +50,7 @@ class GameController {
         // Game loop: Continue until the deck has drawn the maximum number of cards or the grid is full.
         while (deck.size > 0 && !grid.isFull) {
             println(s"${currentPlayer.name}'s turn.")
+            currentPlayer.getHand.displayCards()
 
             // Draw a card for the current player
             val drawnCard = deck.drawCard()
@@ -51,43 +58,55 @@ class GameController {
                 case Some(card) =>
                     println(s"${currentPlayer.name} drew: ${card.suit}, ${Value.toInt(card.value)}")
 
-                    var validInput = false //AUFPASSEN HIER FALSE
-                    while (!validInput) { // Loop until a valid input is received
-                        val input = scala.io.StdIn.readLine("Enter the x and y coordinates (e.g., 0 1) to place the card:")
-                        try { // Catch exceptions for invalid input
-                            val coordinates = input.split(" ").map(_.toInt) // Parse the input
-                            val (x, y) = (coordinates(0), coordinates(1))
-                            //---------------------------------------------------------
-                            // Try placing the card
-                            if (grid.placeCard(x, y, card)) {
-                                validInput = true
+                    var validInput = false
+                    while (!validInput) {
+                        val input = scala.io.StdIn.readLine("Enter the card index, x and y coordinates (e.g., 0 1 2) to place the card or type 'draw' to draw another card and end your turn:")
+                        if (input.trim.toLowerCase == "draw") {
+                            currentPlayer.drawCard(deck)
+                            println(s"${currentPlayer.name} drew another card and ended their turn.")
+                            currentPlayer.getHand.displayCards()
+                            validInput = true
+                        } else {
+                            try {
+                                val parts = input.split(" ")
+                                val cardIndex = parts(0).toInt
+                                val x = parts(1).toInt
+                                val y = parts(2).toInt
 
-                                // Fetch the color (suit) of the rectangle at (x, y)
-                                val rectangleColor = grid.getRectangleColors(x, y)
+                                currentPlayer.getHand.getCard(cardIndex) match {
+                                    case Some(card: NumberCards) =>
+                                        if (grid.placeCard(x, y, card)) {
+                                            validInput = true
 
-                                // Display the appropriate cat based on color matching
-                                if (rectangleColor == Suit.White) {
-                                    catPrint.printMeh(card.suit.toString) // Print "meh" cat if on white
-                                } else if (rectangleColor == card.suit) {
-                                    catPrint.printCatInColor(card.suit.toString) // Print matching color cat
-                                } else {
-                                    catPrint.printBadChoice(rectangleColor.toString) // Print "bad choice" cat if mismatch
+                                            // Fetch the color (suit) of the rectangle at (x, y)
+                                            val rectangleColor = grid.getRectangleColors(x, y)
+
+                                            // Display the appropriate cat based on color matching
+                                            if (rectangleColor == Suit.White) {
+                                                catPrint.printMeh(card.suit.toString)
+                                            } else if (rectangleColor == card.suit) {
+                                                catPrint.printCatInColor(card.suit.toString)
+                                            } else {
+                                                catPrint.printBadChoice(rectangleColor.toString)
+                                            }
+
+                                            // Calculate points and update the player's score
+                                            val pointsEarned = grid.calculatePoints(x, y)
+                                            currentPlayer.addPoints(pointsEarned)
+                                            println(s"${currentPlayer.name} earned $pointsEarned points.")
+
+                                            // Display the updated grid
+                                            println("Updated Grid:")
+                                            grid.display()
+                                        } else {
+                                            println("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
+                                        }
+                                    case _ => println("Invalid card index")
                                 }
-                                //-------------------------------------------------------
-                                // Calculate points and update the player's score
-                                val pointsEarned = grid.calculatePoints(x, y)
-                                currentPlayer.addPoints(pointsEarned)
-                                println(s"${currentPlayer.name} earned $pointsEarned points.")
-                                //--------------------------------------------------------------
-                                // Display the updated grid
-                                println("Updated Grid:")
-                                grid.display()
-                            } else {
-                                println("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
+                            } catch {
+                                case _: NumberFormatException => printErrorMessage(input)
+                                case _: ArrayIndexOutOfBoundsException => printErrorMessage(input)
                             }
-                        } catch {
-                            case _: NumberFormatException => printErrorMessage(input)
-                            case _: ArrayIndexOutOfBoundsException => printErrorMessage(input)
                         }
                     }
                 case None =>

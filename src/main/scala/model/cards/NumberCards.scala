@@ -4,7 +4,7 @@ import Value.Value
 
 import scala.util.Random
 
-case class NumberCards(suit: Suit.Value, value: Value.Value) extends Cards {
+case class NumberCards(suit: Suit.Value, value: Value.Value) extends Card {
 
   private val colors = List("Green", "Brown", "Purple", "Blue", "Red")
   val color: String = colors(Random.nextInt(colors.length))
