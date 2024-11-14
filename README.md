@@ -52,7 +52,7 @@ If you're out of Assist Cards or can't play any, the Assist Card Phase ends.
 After the Assist Card Phase, the $${\color{#9370db}Number\space Card\space Phase}$$ begins.  
 You can either play a card or draw a card, then the phase ends.
 
-##### **Hand Limit:**
+##### **model.cards.Hand Limit:**
 You can hold up to $${\color{#9370db}10\space cards}$$ in your hand, including both Assist and Number Cards (same rule applies to normal mode)
 
 ────୨ৎ────────୨ৎ────────୨ৎ────────୨ৎ────────୨ৎ────

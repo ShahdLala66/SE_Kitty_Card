@@ -1,6 +1,6 @@
 package view
 
-class CatPrint {
+class Tui {
 
   // Mapping your desired colors to ANSI color codes
   private val colors = Map(
