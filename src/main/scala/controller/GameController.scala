@@ -4,17 +4,17 @@ package controller
 import model._
 import model.Deck
 import util.ErrorMessages
-import view.CatPrint
+import view.Tui
 
 class GameController {
     private val deck = new Deck()
-    private val grid = new Grid()
-    private val catPrint = new CatPrint() // Create CatPrint instance
+    private val grid = Grid()
+    private val catPrint = new Tui() // Create CatPrint instance
 
     def startGame(): Unit = {
         catPrint.printCatLoop()
-        println("Do you want the family-friendly version? (y/n):")
-        val familyFriendly = scala.io.StdIn.readLine().trim.toLowerCase == "y"
+        println("Press Enter to start the game.")
+        val familyFriendly = scala.io.StdIn.readLine().trim.toLowerCase == " "
         ErrorMessages.loadMessages(familyFriendly)
 
         // Prompt for player names
@@ -25,7 +25,19 @@ class GameController {
         val player2Name = scala.io.StdIn.readLine()
         val player2 = Player(player2Name)
 
-        val game = new Game(player1, player2, deck, grid, catPrint)
-        game.start()
+        val game = new Game(player1, player2, deck, grid)
+        game.start(this)
+    }
+
+    def displayCatInColor(color: String): Unit = {
+        catPrint.printCatInColor(color)
+    }
+
+    def displayBadChoice(color: String): Unit = {
+        catPrint.printBadChoice(color)
+    }
+
+    def displayMeh(color: String): Unit = {
+        catPrint.printMeh(color)
     }
 }

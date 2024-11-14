@@ -1,7 +1,5 @@
 package model.cards
 
-import model.cards.{Card, NumberCards}
-
 class Hand {
   private var cards: List[Card] = List()
 

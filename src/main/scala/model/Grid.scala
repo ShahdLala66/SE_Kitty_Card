@@ -11,7 +11,7 @@ case class Grid(size: Int = 3) {
     // Initialize an empty grid with None values, representing empty spots
     private val grid: Array[Array[Option[NumberCards]]] = Array.fill(size, size)(None)
     private val rectangleColors: Array[Array[Suit]] = generateRandomRectangles()
-    private val catPrint = new view.CatPrint() // Create CatPrint instance
+    private val catPrint = new view.Tui() // Create CatPrint instance
 
     // Hilfsmethode für Testzwecke, um auf die Farben der Rechtecke zuzugreifen
     def getRectangleColors(x: Int, y: Int): Suit = rectangleColors(x)(y)

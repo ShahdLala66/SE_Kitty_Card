@@ -11,6 +11,11 @@ class NumberCardsSpec extends AnyWordSpec with Matchers {
       card.toString shouldBe "Five of Blue"
     }
 
+    "return a valid color" in {
+      val card = NumberCards(Suit.Blue, Value.Five)
+      val colors = List("Green", "Brown", "Purple", "Blue", "Red")
+      colors should contain(card.getColor)
+    }
   }
 
 }

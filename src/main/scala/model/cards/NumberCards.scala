@@ -1,7 +1,6 @@
 package model.cards
 
 import Value.Value
-
 import scala.util.Random
 
 case class NumberCards(suit: Suit.Value, value: Value.Value) extends Card {

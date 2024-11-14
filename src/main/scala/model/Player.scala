@@ -1,10 +1,10 @@
 // src/main/scala/model/Player.scala
 package model
 
-import model.cards.{Card, NumberCards, Hand}
+import model.cards.{Card, Hand}
 
 case class Player(name: String, var points: Int = 0) {
-    private var hand: Hand = new Hand()
+    private val hand: Hand = new Hand()
 
     def addPoints(newPoints: Int): Unit = {
         points += newPoints
