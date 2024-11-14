@@ -2,9 +2,9 @@ name: Scala CI with Codacy Coverage
 
 on:
   push:
-    branches: [05-MVC_testing_hand]
+    branches: [05-MVC_testing_hand]  # Updated to your branch name
   pull_request:
-    branches: [5-MVC_testing_hand]
+    branches: [05-MVC_testing_hand]  # Updated to your branch name
 
 jobs:
   build-and-send-coverage:
@@ -14,13 +14,17 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v2
 
-      - name: Set up JDK
+      - name: Set up JDK 21
         uses: actions/setup-java@v1
         with:
-          java-version: '21'  # Use the Java version your project requires
+          java-version: '21'  # Using Java 21 as requested
 
       - name: Install SBT
-        run: sudo apt-get install sbt
+        run: |
+          echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+          curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xD24D7D1814E3B4DB" | gpg --dearmor | sudo tee /usr/share/keyrings/sbt-archive-keyring.gpg > /dev/null
+          sudo apt-get update
+          sudo apt-get install sbt
 
       - name: Run tests with Scoverage
         run: sbt clean coverage test coverageReport
