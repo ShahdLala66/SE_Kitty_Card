@@ -32,13 +32,13 @@ jobs:
           sbt clean coverage test coverageReport
           ls -lh target/scala-*/scoverage-report/  # Lists files to confirm the report exists
           cat target/scala-*/scoverage-report/scoverage.xml  # Shows the content of scoverage.xml
-      
-      
-      
+
+      - name: Run PHPUnit with Clover Coverage
+        run: |
+          phpunit --coverage-clover coverage-clover.xml  # Generates the coverage report in Clover format
 
       - name: Upload coverage to Codacy
         uses: codacy/codacy-coverage-reporter-action@v1.3.0
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: target/scala-*/scoverage-report/scoverage.xml
-          final: true  # Ensures this is treated as a final report
+          coverage-reports: coverage-clover.xml  # Path to the Clover format report
