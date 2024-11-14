@@ -2,9 +2,9 @@ name: Scala CI with Codacy Coverage
 
 on:
   push:
-    branches: [05-MVC_testing_hand]  # Updated to your branch name
+    branches: [05-MVC_testing_hand]  # Specify the branch you want to track
   pull_request:
-    branches: [05-MVC_testing_hand]  # Updated to your branch name
+    branches: [05-MVC_testing_hand]  # Specify the branch you want to track
 
 jobs:
   build-and-send-coverage:
@@ -23,7 +23,6 @@ jobs:
         run: |
           echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list
           curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x99E82A75642AC823" | gpg --dearmor | sudo tee /usr/share/keyrings/sbt-archive-keyring.gpg > /dev/null
-          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 99E82A75642AC823
           sudo apt-get update
           sudo apt-get install sbt
 
@@ -31,8 +30,7 @@ jobs:
         run: sbt clean coverage test coverageReport
 
       - name: Upload coverage to Codacy
-        env:
-          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
-        run: |
-          wget https://github.com/codacy/codacy-coverage-reporter/releases/download/7.2.0/codacy-coverage-reporter-assembly-7.2.0.jar -O codacy-coverage-reporter.jar
-          java --add-exports java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED -jar codacy-coverage-reporter.jar report -l Scala -r target/scala-*/target/scala-3.3.3/scoverage-report/scoverage.xml
+        uses: codacy/codacy-coverage-reporter-action@v1.3.0
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: target/scala-*/scoverage-report/scoverage.xml
