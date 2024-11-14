@@ -4,7 +4,7 @@ on:
   push:
     branches: [05-MVC_testing_hand]  # Specify the branch you want to track
   pull_request:
-    branches: [05-MVC_testing_hand]  # Specify the branch you want to track
+    branches: [05-MVC_testing_hand]  # Specify the branch you want to track hu
 
 jobs:
   build-and-send-coverage:
