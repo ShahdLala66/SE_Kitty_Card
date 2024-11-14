@@ -23,6 +23,7 @@ jobs:
         run: |
           echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list
           curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x99E82A75642AC823" | gpg --dearmor | sudo tee /usr/share/keyrings/sbt-archive-keyring.gpg > /dev/null
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 99E82A75642AC823
           sudo apt-get update
           sudo apt-get install sbt
 
