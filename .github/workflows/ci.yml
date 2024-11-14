@@ -2,9 +2,9 @@ name: Scala CI with Codacy Coverage
 
 on:
   push:
-    branches: [05-MVC_testing_hand]  # Updated to your branch name
+    branches: [05-MVC_testing_hand]
   pull_request:
-    branches: [05-MVC_testing_hand]  # Updated to your branch name
+    branches: [05-MVC_testing_hand]
 
 jobs:
   build-and-send-coverage:
@@ -17,22 +17,23 @@ jobs:
       - name: Set up JDK 21
         uses: actions/setup-java@v1
         with:
-          java-version: '21'  # Using Java 21 as requested
+          java-version: '21'
 
-      - name: Setup SBT
+      - name: Install SBT
         run: |
-          echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list
-          curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x99E82A75642AC823" | gpg --dearmor | sudo tee /usr/share/keyrings/sbt-archive-keyring.gpg > /dev/null
-          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 99E82A75642AC823
-          sudo apt-get update
-          sudo apt-get install sbt
+          curl -sL https://raw.githubusercontent.com/sbt/sbt/master/sbt-launcher-package/src/main/resources/org/sbt/launcher/Install.scala -o sbt-install.scala
+          scala sbt-install.scala
 
       - name: Run tests with Scoverage
         run: sbt clean coverage test coverageReport
 
+      - name: Display coverage report
+        run: cat target/scala-3.3.3/scoverage-report/scoverage.xml
+
       - name: Upload coverage to Codacy
         env:
           CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          DEBUG: "true"  # Enable debug mode
         run: |
           wget https://github.com/codacy/codacy-coverage-reporter/releases/download/7.2.0/codacy-coverage-reporter-assembly-7.2.0.jar -O codacy-coverage-reporter.jar
-          java -jar codacy-coverage-reporter.jar report -l Scala -r D:/SE_Kitty_Card/target/scala-3.3.3/scoverage-report/scoverage.xml
+          java --add-exports java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED -jar codacy-coverage-reporter.jar report -l Scala -r target/scala-3.3.3/scoverage-report/scoverage.xml --force-language=Scala --force-coverage-parser=scoverage
