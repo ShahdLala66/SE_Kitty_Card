@@ -1,0 +1,33 @@
+name: Scala CI with Codacy Coverage
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-send-coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '21'  # Use the Java version your project requires
+
+      - name: Install SBT
+        run: sudo apt-get install sbt
+
+      - name: Run tests with Scoverage
+        run: sbt clean coverage test coverageReport
+
+      - name: Upload coverage to Codacy
+        env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        run: |
+          wget https://github.com/codacy/codacy-coverage-reporter/releases/download/7.2.0/codacy-coverage-reporter-assembly-7.2.0.jar -O codacy-coverage-reporter.jar
+          java -jar codacy-coverage-reporter.jar report -l Scala -r target/scala-*/scoverage-report/scoverage.xml
