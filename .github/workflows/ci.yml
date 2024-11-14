@@ -31,7 +31,8 @@ jobs:
         run: |
           sbt clean coverage test coverageReport
           ls -lh target/scala-*/scoverage-report/  # Lists files to confirm the report exists
-          cat target/scala-*/scoverage-report/scoverage.xml  # Displays file contents
+          cat target/scala-*/scoverage-report/scoverage.xml  # Shows the content of scoverage.xml
+      
       
       
 
