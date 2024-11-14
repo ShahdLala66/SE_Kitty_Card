@@ -1,5 +1,5 @@
 # $${\color{#9370db}KITTY \space CARDS \space GAME}$$  ≽^•⩊•^≼
-
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8067b3954490468f9db6ae49c9254232)](https://app.codacy.com/gh/ShahdLala66/SE_Kitty_Card/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 ### *ZAYNE*  
 
 ## **Rules:**                                                  
