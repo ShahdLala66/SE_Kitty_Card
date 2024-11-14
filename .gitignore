@@ -125,3 +125,4 @@ hs_err_pid*
 /.idea/git_toolbox_blame.xml
 /.idea/.name
 /.idea/git_toolbox_prj.xml
+/target/scala-3.3.3/
