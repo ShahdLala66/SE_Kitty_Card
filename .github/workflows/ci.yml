@@ -21,10 +21,8 @@ jobs:
 
       - name: Install SBT
         run: |
-          echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
-          curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xD24D7D1814E3B4DB" | gpg --dearmor | sudo tee /usr/share/keyrings/sbt-archive-keyring.gpg > /dev/null
-          sudo apt-get update
-          sudo apt-get install sbt
+          curl -sL https://raw.githubusercontent.com/sbt/sbt/master/sbt-launcher-package/src/main/resources/org/sbt/launcher/Install.scala -o sbt-install.scala
+          scala sbt-install.scala
 
       - name: Run tests with Scoverage
         run: sbt clean coverage test coverageReport
