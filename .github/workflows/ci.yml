@@ -2,9 +2,9 @@ name: Scala CI with Codacy Coverage
 
 on:
   push:
-    branches: [main]
+    branches: [05-MVC_testing_hand]
   pull_request:
-    branches: [main]
+    branches: [5-MVC_testing_hand]
 
 jobs:
   build-and-send-coverage:
