@@ -1,3 +1,4 @@
+// src/main/scala/model/Player.scala
 package model
 
 import model.cards.{Card, NumberCards, Hand}
@@ -9,8 +10,10 @@ case class Player(name: String, var points: Int = 0) {
         points += newPoints
     }
 
-    def drawCard(deck: Deck): Unit = {
-        deck.drawCard().foreach(card => hand.addCard(card))
+    def drawCard(deck: Deck): Option[Card] = {
+        val drawnCard = deck.drawCard()
+        drawnCard.foreach(card => hand.addCard(card))
+        drawnCard
     }
 
     def getHand: Hand = hand
