@@ -4,7 +4,7 @@ on:
   push:
     branches: [05-MVC_testing_hand]  # Specify the branch you want to track
   pull_request:
-    branches: [05-MVC_testing_hand]  # Specify the branch you want to track
+    branches: [05-MVC_testing_hand]  # Specify the branch you want to track hu
 
 jobs:
   build-and-send-coverage:
@@ -15,10 +15,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up JDK 21
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v1
         with:
           java-version: '21'  # Using Java 21 as requested
-          distribution: ''
 
       - name: Setup SBT
         run: |
@@ -29,13 +28,11 @@ jobs:
           sudo apt-get install sbt
 
       - name: Run tests with Scoverage
-        run: |
-          sbt clean coverage test coverageReport
-          ls -lh target/scala-*/scoverage-report/  # Lists files to confirm the report exists
-          cat target/scala-*/scoverage-report/scoverage.xml  # Shows the content of scoverage.xml
+        run: sbt clean coverage test coverageReport
+
 
       - name: Upload coverage to Codacy
-        uses: codacy/codacy-coverage-reporter-action@v1.4.0  # Use latest version
+        uses: codacy/codacy-coverage-reporter-action@v1.3.0
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: target/scala-*/scoverage-report/scoverage.xml  # Correct path to scoverage.xml
+          coverage-reports: target/scala-*/scoverage-report/scoverage.xml
