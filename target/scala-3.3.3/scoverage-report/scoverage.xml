@@ -1,0 +1,1829 @@
+<scoverage 
+statement-count="446" statements-invoked="369" statement-rate="82.74" branch-rate="74.14" version="1.0" timestamp="1731609926073">
+    <packages>
+        <package name="&lt;empty&gt;" statement-count="3" statements-invoked="0" statement-rate="0.00">
+            <classes>
+                <class 
+                name="&lt;empty&gt;.App$" filename="App.scala" statement-count="3" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                    <methods>
+                        <method 
+                        name="&lt;empty&gt;/App$/main" statement-count="3" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="App$" class-type="Object" full-class-name="&lt;empty&gt;.App$" source="D:\SE_Kitty_Card\src\main\scala\App.scala" method="main" start="52" end="60" line="4" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="App$" class-type="Object" full-class-name="&lt;empty&gt;.App$" source="D:\SE_Kitty_Card\src\main\scala\App.scala" method="main" start="144" end="170" line="6" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="App$" class-type="Object" full-class-name="&lt;empty&gt;.App$" source="D:\SE_Kitty_Card\src\main\scala\App.scala" method="main" start="118" end="138" line="5" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+            </classes>
+        </package>
+        <package name="controller" statement-count="24" statements-invoked="5" statement-rate="20.83">
+            <classes>
+                <class 
+                name="controller.GameController" filename="controller\GameController.scala" statement-count="24" statements-invoked="5" statement-rate="20.83" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="controller/GameController/displayCatInColor" statement-count="2" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="displayCatInColor" start="987" end="1008" line="32" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="displayCatInColor" start="1043" end="1074" line="33" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="controller/GameController/&lt;init&gt;" statement-count="3" statements-invoked="3" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="&lt;init&gt;" start="271" end="280" line="12" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="&lt;init&gt;" start="236" end="240" line="11" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="&lt;init&gt;" start="201" end="211" line="10" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="controller/GameController/displayMeh" statement-count="2" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="displayMeh" start="1189" end="1203" line="40" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="displayMeh" start="1238" end="1262" line="41" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="controller/GameController/displayBadChoice" statement-count="2" statements-invoked="2" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="displayBadChoice" start="1144" end="1174" line="37" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="displayBadChoice" start="1089" end="1109" line="36" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="controller/GameController/startGame" statement-count="15" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="456" end="498" line="17" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="866" end="872" line="26" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="515" end="557" line="18" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="316" end="329" line="14" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="721" end="727" line="23" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="672" end="697" line="22" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="817" end="842" line="25" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="384" end="425" line="16" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="456" end="481" line="17" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="956" end="972" line="29" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="456" end="486" line="17" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="908" end="946" line="28" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="605" end="644" line="21" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="750" end="789" line="24" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="controller" class="GameController" class-type="Class" full-class-name="controller.GameController" source="D:\SE_Kitty_Card\src\main\scala\controller\GameController.scala" method="startGame" start="351" end="374" line="15" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+            </classes>
+        </package>
+        <package name="model" statement-count="240" statements-invoked="185" statement-rate="77.08">
+            <classes>
+                <class 
+                name="model.Player$" filename="model\Player.scala" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model/Player$/$lessinit$greater$default$2" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Player$" class-type="Object" full-class-name="model.Player$" source="D:\SE_Kitty_Card\src\main\scala\model\Player.scala" method="$lessinit$greater$default$2" start="140" end="140" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.Game" filename="model\Game.scala" statement-count="119" statements-invoked="64" statement-rate="53.78" branch-rate="42.31">
+                    <methods>
+                        <method 
+                        name="model/Game/switchTurns" statement-count="3" statements-invoked="3" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="switchTurns" start="3987" end="3994" line="120" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="switchTurns" start="3908" end="3923" line="119" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="switchTurns" start="4000" end="4007" line="120" branch="true" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Game/handlePlayerTurn" statement-count="14" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1145" end="1173" line="42" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1535" end="1574" line="50" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1289" end="1625" line="45" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1358" end="1450" line="47" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1464" end="1500" line="48" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1643" end="1682" line="53" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1418" end="1447" line="47" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1358" end="1500" line="47" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1595" end="1625" line="52" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1217" end="1245" line="43" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1519" end="1574" line="49" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1366" end="1449" line="47" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1655" end="1682" line="54" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handlePlayerTurn" start="1464" end="1485" line="48" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Game/displayFinalScores" statement-count="15" statements-invoked="10" statement-rate="66.67" branch-rate="50.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4273" end="4297" line="129" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4058" end="4079" line="124" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4365" end="4389" line="131" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4093" end="4144" line="125" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4412" end="4434" line="133" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4265" end="4298" line="129" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4018" end="4040" line="123" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4357" end="4390" line="131" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4256" end="4305" line="128" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4348" end="4397" line="130" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4085" end="4145" line="125" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4159" end="4210" line="126" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4311" end="4441" line="130" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4403" end="4441" line="132" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="displayFinalScores" start="4151" end="4211" line="126" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Game/distributeInitialCards" statement-count="4" statements-invoked="4" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="distributeInitialCards" start="787" end="788" line="27" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="distributeInitialCards" start="787" end="793" line="27" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="distributeInitialCards" start="733" end="759" line="26" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="distributeInitialCards" start="777" end="863" line="27" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method name="model/Game/gameLoop" statement-count="9" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="gameLoop" start="1114" end="1127" line="38" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="gameLoop" start="963" end="974" line="34" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="gameLoop" start="1034" end="1070" line="36" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="gameLoop" start="993" end="1025" line="35" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="gameLoop" start="1078" end="1106" line="37" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="gameLoop" start="945" end="954" line="34" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="gameLoop" start="874" end="894" line="33" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="gameLoop" start="985" end="1026" line="35" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="gameLoop" start="1034" end="1055" line="36" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+                        </method>
+                        <method name="model/Game/start" statement-count="6" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="start" start="353" end="377" line="13" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="start" start="442" end="462" line="16" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="start" start="416" end="436" line="15" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="start" start="331" end="347" line="12" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="start" start="383" end="410" line="14" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="start" start="278" end="287" line="11" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+                        </method>
+                        <method 
+                        name="model/Game/handleCardPlacementSuccess" statement-count="15" statements-invoked="11" statement-rate="73.33" branch-rate="50.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3617" end="3685" line="109" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3742" end="3779" line="113" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3382" end="3411" line="104" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3853" end="3877" line="115" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3556" end="3604" line="108" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3451" end="3508" line="105" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3793" end="3846" line="114" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3626" end="3678" line="110" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3244" end="3282" line="103" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3710" end="3736" line="112" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3514" end="3685" line="107" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3785" end="3847" line="114" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3460" end="3501" line="106" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3547" end="3611" line="107" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacementSuccess" start="3883" end="3897" line="116" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Game/printErrorMessage" statement-count="7" statements-invoked="0" statement-rate="0.00" branch-rate="0.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="printErrorMessage" start="4512" end="4551" line="138" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="printErrorMessage" start="4626" end="4665" line="140" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="printErrorMessage" start="4623" end="4665" line="140" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="printErrorMessage" start="4586" end="4605" line="139" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="printErrorMessage" start="4589" end="4605" line="139" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="printErrorMessage" start="4634" end="4664" line="140" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="printErrorMessage" start="4452" end="4481" line="137" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Game/processPlayerInput" statement-count="12" statements-invoked="10" statement-rate="83.33" branch-rate="50.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="processPlayerInput" start="2036" end="2240" line="62" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="processPlayerInput" start="1700" end="1722" line="58" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="processPlayerInput" start="2002" end="2012" line="62" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="processPlayerInput" start="2093" end="2157" line="64" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="processPlayerInput" start="2168" end="2189" line="65" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="processPlayerInput" start="2002" end="2024" line="62" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="processPlayerInput" start="2246" end="2317" line="67" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="processPlayerInput" start="2085" end="2158" line="64" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="processPlayerInput" start="2047" end="2075" line="63" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="processPlayerInput" start="2168" end="2204" line="65" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="processPlayerInput" start="1835" end="1990" line="61" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="processPlayerInput" start="2270" end="2308" line="68" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Game/handleCardPlacement" statement-count="26" statements-invoked="18" statement-rate="69.23" branch-rate="42.86">
+                            <statements>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2515" end="2523" line="77" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2702" end="2798" line="82" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="3187" end="3211" line="98" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2545" end="2553" line="78" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2656" end="2938" line="81" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2424" end="3031" line="74" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2485" end="2493" line="76" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2569" end="2590" line="80" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2569" end="2609" line="80" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2969" end="3015" line="90" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="3089" end="3128" line="95" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2515" end="2523" line="77" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2717" end="2767" line="83" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2335" end="2358" line="73" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2545" end="2553" line="78" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2804" end="2938" line="85" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2485" end="2493" line="76" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="3187" end="3226" line="98" branch="true" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2445" end="2461" line="75" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2545" end="2559" line="78" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2969" end="2998" line="90" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2485" end="2499" line="76" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2674" end="2700" line="82" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="3089" end="3113" line="95" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2515" end="2529" line="77" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="handleCardPlacement" start="2819" end="2906" line="86" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Game/$anonfun" statement-count="3" statements-invoked="3" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="$anonfun" start="795" end="863" line="27" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="$anonfun" start="834" end="856" line="29" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="$anonfun" start="804" end="826" line="28" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Game/welcomeMessage" statement-count="5" statements-invoked="5" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="welcomeMessage" start="557" end="625" line="21" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="welcomeMessage" start="473" end="491" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="welcomeMessage" start="509" end="551" line="20" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="welcomeMessage" start="713" end="722" line="23" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Game" class-type="Class" full-class-name="model.Game" source="D:\SE_Kitty_Card\src\main\scala\model\Game.scala" method="welcomeMessage" start="631" end="707" line="22" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.Deck" filename="model\Deck.scala" statement-count="16" statements-invoked="16" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model/Deck/$anonfun" statement-count="3" statements-invoked="3" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="$anonfun" start="243" end="255" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="$anonfun" start="234" end="310" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="$anonfun" start="243" end="262" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method name="model/Deck/size" statement-count="2" statements-invoked="2" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="size" start="616" end="633" line="24" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="size" start="600" end="608" line="24" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+                        </method>
+                        <method 
+                        name="model/Deck/drawCard" statement-count="6" statements-invoked="6" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="drawCard" start="438" end="459" line="15" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="drawCard" start="461" end="563" line="15" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="drawCard" start="389" end="401" line="14" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="drawCard" start="521" end="538" line="17" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="drawCard" start="481" end="498" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="drawCard" start="569" end="589" line="19" branch="true" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Deck/&lt;init&gt;" statement-count="5" statements-invoked="5" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="&lt;init&gt;" start="166" end="177" line="8" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="&lt;init&gt;" start="362" end="383" line="12" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="&lt;init&gt;" start="158" end="206" line="8" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="&lt;init&gt;" start="147" end="310" line="7" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Deck" class-type="Class" full-class-name="model.Deck" source="D:\SE_Kitty_Card\src\main\scala\model\Deck.scala" method="&lt;init&gt;" start="166" end="184" line="8" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.Grid" filename="model\Grid.scala" statement-count="94" statements-invoked="94" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model/Grid/generateRandomRectangles" statement-count="12" statements-invoked="12" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="generateRandomRectangles" start="976" end="1083" line="22" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="generateRandomRectangles" start="1188" end="1225" line="28" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="generateRandomRectangles" start="1015" end="1016" line="23" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="generateRandomRectangles" start="1015" end="1027" line="23" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="generateRandomRectangles" start="815" end="851" line="20" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="generateRandomRectangles" start="1188" end="1307" line="28" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="generateRandomRectangles" start="976" end="1091" line="25" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="generateRandomRectangles" start="1119" end="1153" line="27" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="generateRandomRectangles" start="991" end="1082" line="22" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="generateRandomRectangles" start="1202" end="1224" line="28" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="generateRandomRectangles" start="900" end="904" line="21" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="generateRandomRectangles" start="900" end="950" line="21" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/setRectangleColor" statement-count="3" statements-invoked="3" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="setRectangleColor" start="3900" end="3918" line="100" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="setRectangleColor" start="3900" end="3929" line="100" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="setRectangleColor" start="3830" end="3851" line="99" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/isFull" statement-count="5" statements-invoked="5" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="isFull" start="2749" end="2759" line="68" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="isFull" start="2782" end="2794" line="69" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="isFull" start="2782" end="2786" line="69" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="isFull" start="2782" end="2814" line="69" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="isFull" start="2782" end="2794" line="69" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/display" statement-count="5" statements-invoked="5" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="display" start="2987" end="3428" line="75" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="display" start="2892" end="2903" line="73" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="display" start="2925" end="2977" line="74" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="display" start="2997" end="3009" line="75" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="display" start="2997" end="3001" line="75" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/$anonfun" statement-count="31" statements-invoked="31" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3090" end="3100" line="77" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3677" end="3695" line="92" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3336" end="3378" line="82" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1273" end="1285" line="29" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3677" end="3695" line="92" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3036" end="3051" line="76" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3330" end="3379" line="82" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1273" end="1296" line="29" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3724" end="3766" line="93" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3149" end="3179" line="78" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3026" end="3394" line="76" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3734" end="3752" line="93" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3283" end="3312" line="81" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1046" end="1058" line="24" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="2802" end="2813" line="69" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3734" end="3755" line="93" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3036" end="3043" line="76" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3288" end="3306" line="81" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3667" end="3781" line="92" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3090" end="3097" line="77" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3408" end="3417" line="84" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3677" end="3703" line="92" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1257" end="1296" line="28" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1041" end="1082" line="24" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3217" end="3227" line="79" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3146" end="3179" line="78" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3730" end="3765" line="93" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="1046" end="1047" line="24" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3795" end="3804" line="95" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3036" end="3043" line="76" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$anonfun" start="3288" end="3309" line="81" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/isWithinBounds" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="isWithinBounds" start="1414" end="1440" line="36" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/placeCard" statement-count="9" statements-invoked="9" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="1676" end="1683" line="42" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="1711" end="1718" line="43" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="1711" end="1734" line="43" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="1769" end="1869" line="45" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="1676" end="1686" line="42" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="1652" end="1672" line="42" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="1676" end="1694" line="42" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="1696" end="1763" line="42" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="placeCard" start="1577" end="1590" line="41" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/getRectangleColors" statement-count="3" statements-invoked="3" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="getRectangleColors" start="710" end="731" line="17" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="getRectangleColors" start="663" end="685" line="17" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="getRectangleColors" start="710" end="728" line="17" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/&lt;init&gt;" statement-count="5" statements-invoked="5" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="&lt;init&gt;" start="393" end="421" line="12" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="&lt;init&gt;" start="532" end="546" line="14" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="&lt;init&gt;" start="203" end="212" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="&lt;init&gt;" start="477" end="503" line="13" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="&lt;init&gt;" start="203" end="230" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/displayInitialColors" statement-count="5" statements-invoked="5" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="displayInitialColors" start="3627" end="3642" line="91" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="displayInitialColors" start="3617" end="3815" line="91" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="displayInitialColors" start="3508" end="3532" line="89" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="displayInitialColors" start="3554" end="3607" line="90" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="displayInitialColors" start="3627" end="3650" line="91" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Grid/calculatePoints" statement-count="15" statements-invoked="15" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2046" end="2056" line="53" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2352" end="2607" line="58" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2631" end="2635" line="63" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2114" end="2193" line="55" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2244" end="2346" line="56" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2015" end="2033" line="52" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2507" end="2607" line="60" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2386" end="2501" line="58" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2015" end="2036" line="52" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2114" end="2607" line="55" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2046" end="2053" line="53" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2267" end="2290" line="57" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2122" end="2192" line="55" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="1940" end="1959" line="51" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Grid" class-type="Class" full-class-name="model.Grid" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="calculatePoints" start="2409" end="2432" line="59" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.Player" filename="model\Player.scala" statement-count="9" statements-invoked="9" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model/Player/drawCard" statement-count="3" statements-invoked="3" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Player" class-type="Class" full-class-name="model.Player" source="D:\SE_Kitty_Card\src\main\scala\model\Player.scala" method="drawCard" start="276" end="288" line="13" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Player" class-type="Class" full-class-name="model.Player" source="D:\SE_Kitty_Card\src\main\scala\model\Player.scala" method="drawCard" start="344" end="359" line="14" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Player" class-type="Class" full-class-name="model.Player" source="D:\SE_Kitty_Card\src\main\scala\model\Player.scala" method="drawCard" start="369" end="414" line="15" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Player/addPoints" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Player" class-type="Class" full-class-name="model.Player" source="D:\SE_Kitty_Card\src\main\scala\model\Player.scala" method="addPoints" start="193" end="206" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Player/&lt;init&gt;" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Player" class-type="Class" full-class-name="model.Player" source="D:\SE_Kitty_Card\src\main\scala\model\Player.scala" method="&lt;init&gt;" start="175" end="185" line="7" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Player/getHand" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Player" class-type="Class" full-class-name="model.Player" source="D:\SE_Kitty_Card\src\main\scala\model\Player.scala" method="getHand" start="448" end="459" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Player/toString" statement-count="2" statements-invoked="2" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Player" class-type="Class" full-class-name="model.Player" source="D:\SE_Kitty_Card\src\main\scala\model\Player.scala" method="toString" start="480" end="501" line="21" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model" class="Player" class-type="Class" full-class-name="model.Player" source="D:\SE_Kitty_Card\src\main\scala\model\Player.scala" method="toString" start="512" end="538" line="21" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model/Player/$anonfun" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Player" class-type="Class" full-class-name="model.Player" source="D:\SE_Kitty_Card\src\main\scala\model\Player.scala" method="$anonfun" start="395" end="413" line="15" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.Grid$" filename="model\Grid.scala" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model/Grid$/$lessinit$greater$default$1" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model" class="Grid$" class-type="Object" full-class-name="model.Grid$" source="D:\SE_Kitty_Card\src\main\scala\model\Grid.scala" method="$lessinit$greater$default$1" start="175" end="175" line="8" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+            </classes>
+        </package>
+        <package name="model.cards" statement-count="67" statements-invoked="67" statement-rate="100.00">
+            <classes>
+                <class 
+                name="model.cards.AssistCard" filename="model\cards\AssistCards.scala" statement-count="2" statements-invoked="2" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model.cards/AssistCard/toString" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="AssistCard" class-type="Class" full-class-name="model.cards.AssistCard" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="toString" start="366" end="387" line="13" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model.cards/AssistCard/getColor" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="AssistCard" class-type="Class" full-class-name="model.cards.AssistCard" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="getColor" start="317" end="338" line="11" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.cards.AssistCardType$" filename="model\cards\AssistCards.scala" statement-count="12" statements-invoked="12" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model.cards/AssistCardType$/&lt;init&gt;" statement-count="12" statements-invoked="12" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="AssistCardType$" class-type="Object" full-class-name="model.cards.AssistCardType$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="&lt;init&gt;" start="229" end="234" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="AssistCardType$" class-type="Object" full-class-name="model.cards.AssistCardType$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="&lt;init&gt;" start="229" end="234" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="AssistCardType$" class-type="Object" full-class-name="model.cards.AssistCardType$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="&lt;init&gt;" start="229" end="234" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="AssistCardType$" class-type="Object" full-class-name="model.cards.AssistCardType$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="&lt;init&gt;" start="229" end="234" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="AssistCardType$" class-type="Object" full-class-name="model.cards.AssistCardType$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="&lt;init&gt;" start="229" end="234" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="AssistCardType$" class-type="Object" full-class-name="model.cards.AssistCardType$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="&lt;init&gt;" start="229" end="234" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="AssistCardType$" class-type="Object" full-class-name="model.cards.AssistCardType$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="&lt;init&gt;" start="229" end="234" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="AssistCardType$" class-type="Object" full-class-name="model.cards.AssistCardType$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="&lt;init&gt;" start="229" end="234" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="AssistCardType$" class-type="Object" full-class-name="model.cards.AssistCardType$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="&lt;init&gt;" start="229" end="234" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="AssistCardType$" class-type="Object" full-class-name="model.cards.AssistCardType$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="&lt;init&gt;" start="229" end="234" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="AssistCardType$" class-type="Object" full-class-name="model.cards.AssistCardType$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="&lt;init&gt;" start="229" end="234" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="AssistCardType$" class-type="Object" full-class-name="model.cards.AssistCardType$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\AssistCards.scala" method="&lt;init&gt;" start="229" end="234" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.cards.Suit$" filename="model\cards\Suit.scala" statement-count="6" statements-invoked="6" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model.cards/Suit$/&lt;init&gt;" statement-count="6" statements-invoked="6" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="Suit$" class-type="Object" full-class-name="model.cards.Suit$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Suit.scala" method="&lt;init&gt;" start="165" end="170" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Suit$" class-type="Object" full-class-name="model.cards.Suit$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Suit.scala" method="&lt;init&gt;" start="165" end="170" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Suit$" class-type="Object" full-class-name="model.cards.Suit$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Suit.scala" method="&lt;init&gt;" start="165" end="170" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Suit$" class-type="Object" full-class-name="model.cards.Suit$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Suit.scala" method="&lt;init&gt;" start="165" end="170" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Suit$" class-type="Object" full-class-name="model.cards.Suit$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Suit.scala" method="&lt;init&gt;" start="165" end="170" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Suit$" class-type="Object" full-class-name="model.cards.Suit$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Suit.scala" method="&lt;init&gt;" start="165" end="170" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.cards.NumberCards" filename="model\cards\NumberCards.scala" statement-count="8" statements-invoked="8" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model.cards/NumberCards/&lt;init&gt;" statement-count="5" statements-invoked="5" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="NumberCards" class-type="Class" full-class-name="model.cards.NumberCards" source="D:\SE_Kitty_Card\src\main\scala\model\cards\NumberCards.scala" method="&lt;init&gt;" start="173" end="177" line="8" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="NumberCards" class-type="Class" full-class-name="model.cards.NumberCards" source="D:\SE_Kitty_Card\src\main\scala\model\cards\NumberCards.scala" method="&lt;init&gt;" start="266" end="279" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="NumberCards" class-type="Class" full-class-name="model.cards.NumberCards" source="D:\SE_Kitty_Card\src\main\scala\model\cards\NumberCards.scala" method="&lt;init&gt;" start="173" end="220" line="8" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="NumberCards" class-type="Class" full-class-name="model.cards.NumberCards" source="D:\SE_Kitty_Card\src\main\scala\model\cards\NumberCards.scala" method="&lt;init&gt;" start="251" end="280" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="NumberCards" class-type="Class" full-class-name="model.cards.NumberCards" source="D:\SE_Kitty_Card\src\main\scala\model\cards\NumberCards.scala" method="&lt;init&gt;" start="244" end="281" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model.cards/NumberCards/getColor" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="NumberCards" class-type="Class" full-class-name="model.cards.NumberCards" source="D:\SE_Kitty_Card\src\main\scala\model\cards\NumberCards.scala" method="getColor" start="365" end="386" line="13" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model.cards/NumberCards/toString" statement-count="2" statements-invoked="2" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="NumberCards" class-type="Class" full-class-name="model.cards.NumberCards" source="D:\SE_Kitty_Card\src\main\scala\model\cards\NumberCards.scala" method="toString" start="287" end="308" line="11" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="NumberCards" class-type="Class" full-class-name="model.cards.NumberCards" source="D:\SE_Kitty_Card\src\main\scala\model\cards\NumberCards.scala" method="toString" start="319" end="359" line="11" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.cards.Hand" filename="model\cards\Hand.scala" statement-count="22" statements-invoked="22" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model.cards/Hand/displayCards" statement-count="4" statements-invoked="4" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="displayCards" start="226" end="247" line="13" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="displayCards" start="192" end="208" line="12" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="displayCards" start="253" end="271" line="14" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="displayCards" start="253" end="463" line="14" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model.cards/Hand/$anonfun" statement-count="6" statements-invoked="6" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="$anonfun" start="330" end="389" line="15" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="$anonfun" start="419" end="456" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="$anonfun" start="416" end="456" line="16" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="$anonfun" start="327" end="389" line="15" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="$anonfun" start="338" end="388" line="15" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="$anonfun" start="427" end="455" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model.cards/Hand/getCards" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="getCards" start="154" end="166" line="10" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model.cards/Hand/getCard" statement-count="5" statements-invoked="5" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="getCard" start="561" end="579" line="21" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="getCard" start="474" end="485" line="20" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="getCard" start="566" end="578" line="21" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="getCard" start="590" end="594" line="22" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="getCard" start="547" end="559" line="21" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model.cards/Hand/toString" statement-count="2" statements-invoked="2" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="toString" start="637" end="657" line="25" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="toString" start="605" end="626" line="25" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model.cards/Hand/&lt;init&gt;" statement-count="2" statements-invoked="2" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="&lt;init&gt;" start="71" end="75" line="4" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="&lt;init&gt;" start="71" end="77" line="4" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model.cards/Hand/addCard" statement-count="2" statements-invoked="2" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="addCard" start="130" end="143" line="7" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Hand" class-type="Class" full-class-name="model.cards.Hand" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Hand.scala" method="addCard" start="83" end="94" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="model.cards.Value$" filename="model\cards\Value.scala" statement-count="17" statements-invoked="17" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="model.cards/Value$/toInt" statement-count="9" statements-invoked="9" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="toInt" start="582" end="586" line="22" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="toInt" start="456" end="460" line="16" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="toInt" start="519" end="523" line="19" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="toInt" start="498" end="502" line="18" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="toInt" start="561" end="565" line="21" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="toInt" start="395" end="404" line="15" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="toInt" start="603" end="607" line="23" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="toInt" start="477" end="481" line="17" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="toInt" start="540" end="544" line="20" branch="true" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="model.cards/Value$/&lt;init&gt;" statement-count="8" statements-invoked="8" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="&lt;init&gt;" start="250" end="258" line="10" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="&lt;init&gt;" start="161" end="169" line="7" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="&lt;init&gt;" start="130" end="138" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="&lt;init&gt;" start="221" end="229" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="&lt;init&gt;" start="312" end="320" line="12" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="&lt;init&gt;" start="281" end="289" line="11" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="&lt;init&gt;" start="101" end="109" line="5" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="model.cards" class="Value$" class-type="Object" full-class-name="model.cards.Value$" source="D:\SE_Kitty_Card\src\main\scala\model\cards\Value.scala" method="&lt;init&gt;" start="191" end="199" line="8" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+            </classes>
+        </package>
+        <package name="util" statement-count="64" statements-invoked="64" statement-rate="100.00">
+            <classes>
+                <class 
+                name="util.IntroMessages$" filename="util\IntroMessages.scala" statement-count="23" statements-invoked="23" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="util/IntroMessages$/getRandomMessage" statement-count="13" statements-invoked="13" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getRandomMessage" start="717" end="740" line="24" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getRandomMessage" start="808" end="811" line="27" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getRandomMessage" start="539" end="573" line="21" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getRandomMessage" start="644" end="703" line="23" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getRandomMessage" start="459" end="493" line="20" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getRandomMessage" start="587" end="613" line="22" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getRandomMessage" start="778" end="854" line="26" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getRandomMessage" start="677" end="701" line="23" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getRandomMessage" start="808" end="813" line="27" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getRandomMessage" start="615" end="772" line="22" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getRandomMessage" start="553" end="572" line="21" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getRandomMessage" start="827" end="843" line="28" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getRandomMessage" start="662" end="702" line="23" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="util/IntroMessages$/loadMessages" statement-count="5" statements-invoked="5" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="loadMessages" start="396" end="420" line="15" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="loadMessages" start="396" end="413" line="15" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="loadMessages" start="283" end="299" line="13" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="loadMessages" start="430" end="444" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="loadMessages" start="334" end="375" line="14" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="util/IntroMessages$/&lt;init&gt;" statement-count="4" statements-invoked="4" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="&lt;init&gt;" start="166" end="170" line="8" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="&lt;init&gt;" start="218" end="221" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="&lt;init&gt;" start="166" end="172" line="8" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="&lt;init&gt;" start="218" end="223" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="util/IntroMessages$/getMessages" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="util" class="IntroMessages$" class-type="Object" full-class-name="util.IntroMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\IntroMessages.scala" method="getMessages" start="235" end="250" line="11" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="util.ErrorMessages$" filename="util\ErrorMessages.scala" statement-count="41" statements-invoked="41" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="util/ErrorMessages$/getRandomMessage" statement-count="10" statements-invoked="10" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessage" start="1395" end="1398" line="41" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessage" start="1134" end="1168" line="36" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessage" start="1214" end="1248" line="37" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessage" start="1305" end="1348" line="39" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessage" start="1262" end="1288" line="38" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessage" start="1395" end="1400" line="41" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessage" start="1365" end="1441" line="40" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessage" start="1228" end="1247" line="37" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessage" start="1290" end="1359" line="38" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessage" start="1414" end="1430" line="42" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="util/ErrorMessages$/$anonfun" statement-count="3" statements-invoked="3" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="$anonfun" start="1649" end="1653" line="49" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="$anonfun" start="1619" end="1642" line="49" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="$anonfun" start="1622" end="1642" line="49" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="util/ErrorMessages$/getSpecificMessage" statement-count="3" statements-invoked="3" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getSpecificMessage" start="1580" end="1644" line="49" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getSpecificMessage" start="1580" end="1654" line="49" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getSpecificMessage" start="1513" end="1535" line="48" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="util/ErrorMessages$/loadMessages" statement-count="12" statements-invoked="12" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="loadMessages" start="632" end="863" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="loadMessages" start="686" end="758" line="21" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="loadMessages" start="390" end="419" line="13" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="loadMessages" start="518" end="535" line="15" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="loadMessages" start="552" end="566" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="loadMessages" start="650" end="671" line="20" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="loadMessages" start="468" end="497" line="14" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="loadMessages" start="294" end="310" line="12" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="loadMessages" start="425" end="445" line="13" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="loadMessages" start="773" end="852" line="22" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="loadMessages" start="518" end="542" line="15" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="loadMessages" start="632" end="635" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="util/ErrorMessages$/&lt;init&gt;" statement-count="6" statements-invoked="6" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="&lt;init&gt;" start="166" end="172" line="8" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="&lt;init&gt;" start="218" end="221" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="&lt;init&gt;" start="218" end="223" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="&lt;init&gt;" start="281" end="284" line="10" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="&lt;init&gt;" start="166" end="170" line="8" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="&lt;init&gt;" start="281" end="286" line="10" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="util/ErrorMessages$/getUsedMessages" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getUsedMessages" start="1458" end="1477" line="46" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="util/ErrorMessages$/getRandomMessageFromList" statement-count="5" statements-invoked="5" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessageFromList" start="1025" end="1048" line="28" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessageFromList" start="974" end="1015" line="27" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessageFromList" start="998" end="1013" line="27" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessageFromList" start="983" end="1014" line="27" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getRandomMessageFromList" start="878" end="914" line="26" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="util/ErrorMessages$/getMessages" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="util" class="ErrorMessages$" class-type="Object" full-class-name="util.ErrorMessages$" source="D:\SE_Kitty_Card\src\main\scala\util\ErrorMessages.scala" method="getMessages" start="1082" end="1097" line="33" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+            </classes>
+        </package>
+        <package name="view" statement-count="48" statements-invoked="48" statement-rate="100.00">
+            <classes>
+                <class 
+                name="view.Tui" filename="view\Tui.scala" statement-count="48" statements-invoked="48" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="view/Tui/$anonfun" statement-count="2" statements-invoked="2" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="$anonfun" start="720" end="737" line="27" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="$anonfun" start="690" end="712" line="26" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="view/Tui/printBadChoice" statement-count="9" statements-invoked="9" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printBadChoice" start="1372" end="1408" line="45" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printBadChoice" start="1189" end="1207" line="41" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printBadChoice" start="1307" end="1326" line="43" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printBadChoice" start="1299" end="1327" line="43" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printBadChoice" start="1341" end="1365" line="44" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printBadChoice" start="1414" end="1434" line="46" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printBadChoice" start="1254" end="1290" line="42" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printBadChoice" start="1333" end="1366" line="44" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printBadChoice" start="1380" end="1407" line="45" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="view/Tui/&lt;init&gt;" statement-count="8" statements-invoked="8" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="&lt;init&gt;" start="118" end="141" line="7" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="&lt;init&gt;" start="209" end="231" line="10" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="&lt;init&gt;" start="266" end="289" line="12" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="&lt;init&gt;" start="108" end="111" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="&lt;init&gt;" start="178" end="202" line="9" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="&lt;init&gt;" start="148" end="171" line="8" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="&lt;init&gt;" start="238" end="259" line="11" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="&lt;init&gt;" start="108" end="294" line="6" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="view/Tui/printColoredCat" statement-count="8" statements-invoked="8" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printColoredCat" start="408" end="432" line="17" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printColoredCat" start="446" end="465" line="18" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printColoredCat" start="503" end="523" line="20" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printColoredCat" start="438" end="466" line="18" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printColoredCat" start="480" end="496" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printColoredCat" start="472" end="497" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printColoredCat" start="350" end="377" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printColoredCat" start="416" end="431" line="17" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="view/Tui/printCatLoop" statement-count="3" statements-invoked="3" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printCatLoop" start="666" end="679" line="25" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printCatLoop" start="618" end="634" line="24" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printCatLoop" start="652" end="781" line="25" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="view/Tui/printCatInColor" statement-count="9" statements-invoked="9" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printCatInColor" start="1050" end="1079" line="36" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printCatInColor" start="870" end="889" line="32" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printCatInColor" start="986" end="1005" line="34" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printCatInColor" start="978" end="1006" line="34" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printCatInColor" start="1020" end="1043" line="35" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printCatInColor" start="1085" end="1105" line="37" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printCatInColor" start="936" end="972" line="33" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printCatInColor" start="1012" end="1044" line="35" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printCatInColor" start="1058" end="1078" line="36" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="view/Tui/printMeh" statement-count="9" statements-invoked="9" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printMeh" start="1685" end="1714" line="54" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printMeh" start="1511" end="1523" line="50" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printMeh" start="1620" end="1639" line="52" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printMeh" start="1612" end="1640" line="52" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printMeh" start="1654" end="1678" line="53" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printMeh" start="1720" end="1740" line="55" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printMeh" start="1693" end="1713" line="54" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printMeh" start="1570" end="1606" line="51" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="view" class="Tui" class-type="Class" full-class-name="view.Tui" source="D:\SE_Kitty_Card\src\main\scala\view\Tui.scala" method="printMeh" start="1646" end="1679" line="53" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+            </classes>
+        </package>
+    </packages>
+</scoverage>
