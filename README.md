@@ -1,5 +1,7 @@
 # $${\color{#9370db}KITTY \space CARDS \space GAME}$$  ≽^•⩊•^≼
 [![codecov](https://codecov.io/gh/YOUR_ACCOUNT/YOUR_REPO/branch/YOUR_BRANCH/graph/badge.svg)](https://codecov.io/gh/YOUR_ACCOUNT/YOUR_REPO)
+![image](https://github.com/user-attachments/assets/4d5912bf-e5e6-462e-aa2c-3c9316b64a4c)
+
 ### *ZAYNE*  
 
 ## **Rules:**                                                  
