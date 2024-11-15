@@ -29,5 +29,20 @@ class PlayerSpec extends AnyWordSpec with Matchers {
             val player = Player("Dana", 20)
             player.toString shouldBe "Dana (Points: 20)"
         }
+
+        "return the player's hand" in {
+            val player = Player("Frank")
+            val hand = player.getHand
+            hand should not be null
+
+        }
+
+        "draw a card from the deck and add it to the player's hand" in {
+            val player = Player("Eve")
+            val deck = new Deck
+            val card = player.drawCard(deck)
+            card should not be None
+            player.getHand.getCards.length shouldBe 1
+        }
     }
 }

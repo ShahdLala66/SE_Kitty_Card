@@ -6,7 +6,7 @@ object AssistCardType extends Enumeration {
     Meowster, Purrator, KittyPow, MagicPaw, Byebye, PawCombo = Value
 }
 
-case class AssistCard(cardType: AssistCardType.Value) extends Cards {
+case class AssistCard(cardType: AssistCardType.Value) extends Card {
 
     override def getColor: String = "Special"
 

@@ -1,8 +1,8 @@
 package view
 
-class CatPrint {
+class Tui {
 
-  // Mapping your desired colors to ANSI color codes
+  // Mapping our desired colors to ANSI color codes
   private val colors = Map(
     "Green" -> "\u001b[32m",
     "Brown" -> "\u001b[33m",
@@ -54,4 +54,13 @@ class CatPrint {
     println(s"$colorCode/ づmehづ")
     println("\u001b[0m") // Reset color after printing
   }
+
+  def welcomeMessage(): Unit = {
+    println(Console.MAGENTA + "\nWelcome to the Kitty Card Game!")
+    println("Players take turns drawing and placing cards on the grid.")
+    println("Earn points by placing cards on matching colors or white squares." + Console.RESET)
+    println()
+  }
+  
+  
 }

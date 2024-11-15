@@ -1,7 +1,6 @@
 package model
 
 import model.cards.{NumberCards, Suit, Value}
-
 import scala.util.Random
 
 class Deck {

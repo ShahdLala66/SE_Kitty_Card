@@ -6,7 +6,7 @@ class CardsSpec extends AnyWordSpec {
 
     "A Card" should {
         "return the correct color" in {
-            val card = new Cards {
+            val card = new Card {
                 override def getColor: String = "Red"
                 override def toString: String = "Card"
             }
@@ -14,7 +14,7 @@ class CardsSpec extends AnyWordSpec {
         }
 
         "return the correct string representation" in {
-            val card = new Cards {
+            val card = new Card {
                 override def getColor: String = "Red"
                 override def toString: String = "Card"
             }
