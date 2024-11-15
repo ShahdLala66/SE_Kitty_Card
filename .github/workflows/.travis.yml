@@ -1,7 +1,7 @@
 language: scala
 
 scala:
-  - 3.3.0    # Adjust based on your Scala version
+  - 3.3.3    # Adjust based on your Scala version
 
 jdk:
   - openjdk21  # Match this to your project's Java version
