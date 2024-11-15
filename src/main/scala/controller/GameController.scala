@@ -29,22 +29,18 @@ class GameController extends Observable with GameCallbacks with Observer {
 
         val game = new Game(player1, player2, deck, grid)
         game.start(this)
-        notifyObservers
     }
 
     def displayCatInColor(color: String): Unit = {
         catPrint.printCatInColor(color)
-        notifyObservers
     }
 
     def displayBadChoice(color: String): Unit = {
         catPrint.printBadChoice(color)
-        notifyObservers
     }
 
     def displayMeh(color: String): Unit = {
         catPrint.printMeh(color)
-        notifyObservers
     }
 
     override def update: Unit = { }

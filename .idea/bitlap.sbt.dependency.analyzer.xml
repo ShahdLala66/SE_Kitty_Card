@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SbtDependencyAnalyzer.Settings">
+    <option name="organization" value="se_kitty_card_1" />
+    <option name="sbtModules">
+      <map>
+        <entry key="__SINGLE_MODULE__" value="se_kitty_card_1" />
+      </map>
+    </option>
+  </component>
+</project>
