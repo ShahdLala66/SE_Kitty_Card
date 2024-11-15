@@ -5,7 +5,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/ShahdLala66/SE_Kitty_Card/badge.svg?branch=main)](https://coveralls.io/github/ShahdLala66/SE_Kitty_Card?branch=main)
 
 
-
 ### *ZAYNE*  z
 
 ## **Rules:**                                                  
