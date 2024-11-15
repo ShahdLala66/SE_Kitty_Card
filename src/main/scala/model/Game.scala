@@ -3,6 +3,8 @@ package model
 import model.cards.{NumberCards, Suit, Value}
 import util.{ErrorMessages, GameCallbacks, Observable}
 
+import scala.util.{Failure, Success, Try}
+
 
 class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Observable {
   var currentPlayer: Player = player1
@@ -66,7 +68,7 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
   }
 
   def handleCardPlacement(input: String): Boolean = {
-    try {
+    Try {
       val parts = input.split(" ")
       val cardIndex = parts(0).toInt
       val x = parts(1).toInt
@@ -85,11 +87,9 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
           println("Invalid card index")
           false
       }
-    } catch {
-      case _: NumberFormatException =>
-        printErrorMessage(input)
-        false
-      case _: ArrayIndexOutOfBoundsException =>
+    } match {
+      case Success(result) => result
+      case Failure(_) =>
         printErrorMessage(input)
         false
     }
