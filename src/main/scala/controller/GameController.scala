@@ -3,10 +3,11 @@ package controller
 
 import model._
 import model.Deck
-import util.ErrorMessages
+import util.{ErrorMessages, GameCallbacks, Observer}
 import view.Tui
+import util.Observable
 
-class GameController {
+class GameController extends Observable with GameCallbacks with Observer {
     private val deck = new Deck()
     private val grid = Grid()
     private val catPrint = new Tui() // Create CatPrint instance
@@ -27,17 +28,23 @@ class GameController {
 
         val game = new Game(player1, player2, deck, grid)
         game.start(this)
+        notifyObservers
     }
 
     def displayCatInColor(color: String): Unit = {
         catPrint.printCatInColor(color)
+        notifyObservers
     }
 
     def displayBadChoice(color: String): Unit = {
         catPrint.printBadChoice(color)
+        notifyObservers
     }
 
     def displayMeh(color: String): Unit = {
         catPrint.printMeh(color)
+        notifyObservers
     }
+
+    override def update: Unit = { }
 }

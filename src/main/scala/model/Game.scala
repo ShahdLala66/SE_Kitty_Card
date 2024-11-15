@@ -1,26 +1,19 @@
-// src/main/scala/model/Game.scala
 package model
 
 import model.cards.{NumberCards, Suit, Value}
-import util.ErrorMessages
-import controller.GameController
+import util.{ErrorMessages, GameCallbacks, Observable}
 
-class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) {
+
+class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Observable {
   var currentPlayer: Player = player1
 
-  def start(controller: GameController): Unit = {
+  def start(callbacks: GameCallbacks): Unit = {
+    add(callbacks)
     welcomeMessage()
     distributeInitialCards()
     grid.displayInitialColors()
-    gameLoop(controller)
+    gameLoop()
     displayFinalScores()
-  }
-
-  def welcomeMessage(): Unit = {
-    println("Welcome to the Kitty Card Game!")
-    println("Players take turns drawing and placing cards on the grid.")
-    println("Earn points by placing cards on matching colors or white squares.")
-    println()
   }
 
   def distributeInitialCards(): Unit = {
@@ -30,47 +23,55 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) {
     }
   }
 
-  private def gameLoop(controller: GameController): Unit = {
+  private def gameLoop(): Unit = {
     while (deck.size > 0 && !grid.isFull) {
-      println(s"${currentPlayer.name}'s turn.")
+      println(Console.BLUE + s"\n${currentPlayer.name}'s turn.\n" + Console.RESET)
       currentPlayer.getHand.displayCards()
-      handlePlayerTurn(controller)
+      handlePlayerTurn()
       switchTurns()
     }
   }
 
-  private def handlePlayerTurn(controller: GameController): Unit = {
+  def welcomeMessage(): Unit = {
+    println(Console.MAGENTA + "\nWelcome to the Kitty Card Game!")
+    println("Players take turns drawing and placing cards on the grid.")
+    println("Earn points by placing cards on matching colors or white squares." + Console.RESET)
+    println()
+  }
+
+  private def handlePlayerTurn(): Unit = {
     currentPlayer.drawCard(deck) match {
       case Some(card) =>
         card match {
           case numberCard: NumberCards =>
-            println(s"${currentPlayer.name} drew: ${numberCard.suit}, ${Value.toInt(numberCard.value)}")
+            println(Console.BLUE + s"\n${currentPlayer.name} drew: ${numberCard.suit}, ${Value.toInt(numberCard.value)}\n" + Console.RESET)
             currentPlayer.getHand.displayCards()
           case _ =>
             println("Drew an unknown type of card")
         }
-        processPlayerInput(controller)
+        processPlayerInput()
       case None =>
         println("Deck is empty :c")
     }
   }
 
-  def processPlayerInput(controller: GameController): Unit = {
+  def processPlayerInput(): Unit = {
     var validInput = false
     while (!validInput) {
-      val input = scala.io.StdIn.readLine("Enter the card index, x and y coordinates (e.g., 0 1 2) to place the card or type 'draw' to draw another card and end your turn:")
+      val input = scala.io.StdIn.readLine(Console.YELLOW + "Enter the card index, x and y coordinates (e.g., 0 1 2)" +
+          " to place the card or type 'draw' to draw another card and end your turn:\n" + Console.RESET)
       if (input.trim.toLowerCase == "draw") {
         currentPlayer.drawCard(deck)
         println(s"${currentPlayer.name} drew another card and ended their turn.")
         currentPlayer.getHand.displayCards()
         validInput = true
       } else {
-        validInput = handleCardPlacement(input, controller)
+        validInput = handleCardPlacement(input)
       }
     }
   }
 
-  def handleCardPlacement(input: String, controller: GameController): Boolean = {
+  def handleCardPlacement(input: String): Boolean = {
     try {
       val parts = input.split(" ")
       val cardIndex = parts(0).toInt
@@ -80,7 +81,7 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) {
       currentPlayer.getHand.getCard(cardIndex) match {
         case Some(card: NumberCards) =>
           if (grid.placeCard(x, y, card)) {
-            handleCardPlacementSuccess(x, y, card, controller)
+            handleCardPlacementSuccess(x, y, card)
             true
           } else {
             println("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
@@ -100,19 +101,19 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) {
     }
   }
 
-  private def handleCardPlacementSuccess(x: Int, y: Int, card: NumberCards, controller: GameController): Unit = {
+  private def handleCardPlacementSuccess(x: Int, y: Int, card: NumberCards): Unit = {
     val rectangleColor = grid.getRectangleColors(x, y)
     if (rectangleColor == Suit.White) {
-      controller.displayMeh(card.suit.toString)
+      notifyObservers(_.displayMeh(card.suit.toString))
     } else if (rectangleColor == card.suit) {
-      controller.displayCatInColor(card.suit.toString)
+      notifyObservers(_.displayCatInColor(card.suit.toString))
     } else {
-      controller.displayBadChoice(rectangleColor.toString)
+      notifyObservers(_.displayBadChoice(rectangleColor.toString))
     }
     val pointsEarned = grid.calculatePoints(x, y)
     currentPlayer.addPoints(pointsEarned)
-    println(s"${currentPlayer.name} earned $pointsEarned points.")
-    println("Updated Grid:")
+    println(Console.YELLOW + s"${currentPlayer.name} earned $pointsEarned points." + Console.RESET)
+    println("\nUpdated Grid:")
     grid.display()
   }
 
@@ -138,6 +139,13 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) {
     ErrorMessages.getSpecificMessage(input) match {
       case Some(message) => println(message)
       case None => println(ErrorMessages.getRandomMessage)
+    }
+  }
+
+  private def notifyObservers(action: GameCallbacks => Unit): Unit = {
+    subscribers.foreach {
+      case callback: GameCallbacks => action(callback)
+      case _ =>
     }
   }
 }

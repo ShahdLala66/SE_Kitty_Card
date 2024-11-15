@@ -2,7 +2,7 @@ package view
 
 class Tui {
 
-  // Mapping your desired colors to ANSI color codes
+  // Mapping our desired colors to ANSI color codes
   private val colors = Map(
     "Green" -> "\u001b[32m",
     "Brown" -> "\u001b[33m",
