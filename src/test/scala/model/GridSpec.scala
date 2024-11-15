@@ -1,8 +1,8 @@
 package model
 
-import model.cards.Suit.*
-import model.cards.Value.*
-import model.cards.{NumberCards, Suit, Value}
+import cards.Suit.*
+import cards.Value.*
+import cards.{NumberCards, Suit, Value}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
