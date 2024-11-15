@@ -1,7 +1,7 @@
 // src/main/scala/model/Game.scala
 package model
 
-import cards.{NumberCards, Suit, Value}
+import model.cards.{NumberCards, Card}
 import util.{GameEvent, Observable, PlayerTurn, CardDrawn, InvalidPlacement, CardPlacementSuccess, GameOver}
 import scala.util.{Failure, Success, Try}
 
@@ -25,17 +25,22 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
   private def gameLoop(): Unit = {
     while (deck.size > 0 && !grid.isFull) {
       notifyObservers(PlayerTurn(currentPlayer.name))
-      currentPlayer.getHand.displayCards()
+      currentPlayer.getHand.getCards.foreach(println) // Display cards in hand
       handlePlayerTurn()
       switchTurns()
     }
   }
 
   private def handlePlayerTurn(): Unit = {
+    drawCardForCurrentPlayer()
+    processPlayerInput()
+  }
+
+  def drawCardForCurrentPlayer(): Unit = {
     currentPlayer.drawCard(deck) match {
       case Some(card) =>
         notifyObservers(CardDrawn(currentPlayer.name, card.toString))
-        processPlayerInput()
+        currentPlayer.getHand.getCards.foreach(println) // Display updated hand
       case None =>
         notifyObservers(InvalidPlacement())
     }
@@ -46,9 +51,8 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
     while (!validInput) {
       val input = scala.io.StdIn.readLine()
       if (input.trim.toLowerCase == "draw") {
-        currentPlayer.drawCard(deck)
+        drawCardForCurrentPlayer()
         validInput = true
-        notifyObservers(CardDrawn(currentPlayer.name, "another card"))
       } else {
         validInput = handleCardPlacement(input)
       }
@@ -62,12 +66,13 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
       val x = parts(1).toInt
       val y = parts(2).toInt
 
-      currentPlayer.getHand.getCard(cardIndex) match {
+      currentPlayer.getHand.getCards.lift(cardIndex) match {
         case Some(card: NumberCards) =>
           if (grid.placeCard(x, y, card)) {
             val pointsEarned = grid.calculatePoints(x, y)
             currentPlayer.addPoints(pointsEarned)
             notifyObservers(CardPlacementSuccess(x, y, card.toString, pointsEarned))
+            grid.display() // Display updated grid
             true
           } else {
             notifyObservers(InvalidPlacement())
@@ -88,6 +93,7 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
   def switchTurns(): Unit = {
     currentPlayer = if (currentPlayer == player1) player2 else player1
     notifyObservers(PlayerTurn(currentPlayer.name))
+    grid.display() // Display updated grid after switching turns
   }
 
   def displayFinalScores(): Unit = {

@@ -14,20 +14,21 @@ class Tui extends Observer {
     "White" -> "\u001b[37m"
   )
 
+  private def printColoredCat(color: String): Unit = {
+    println(s"$color ∧,,,∧")
+    println(s"$color( ̳• · •̳)")
+    println(s"$color/    づ♡")
+    println("\u001b[0m") // Reset color after printing
+  }
+
+  // Method to print the cat in all colors in a loop
   def printCatLoop(): Unit = {
     for (color <- colors.values) {
-      printCatInColor(color)
-      Thread.sleep(500)
+      printColoredCat(color)
+      Thread.sleep(500) // Optional: Delay for visual effect
     }
   }
 
-  def printCatInColor(color: String): Unit = {
-    val colorCode = colors.getOrElse(color, "\u001b[0m")
-    println(s"$colorCode ∧,,,∧")
-    println(s"$colorCode( ̳• · •̳)")
-    println(s"$colorCode/    づ♡")
-    println("\u001b[0m")
-  }
 
   def printBadChoice(color: String): Unit = {
     val colorCode = colors.getOrElse(color, "\u001b[0m")

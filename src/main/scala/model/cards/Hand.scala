@@ -1,3 +1,4 @@
+// src/main/scala/model/cards/Hand.scala
 package model.cards
 
 class Hand {
@@ -8,19 +9,6 @@ class Hand {
   }
 
   def getCards: List[Card] = cards
-
-  def displayCards(): Unit = {
-    println("Your hand:")
-    cards.zipWithIndex.foreach {
-      case (numberCard: NumberCards, index) => println(s"$index: ${numberCard.suit}, ${numberCard.value}")
-      case (card, index) => println(s"$index: Unknown card type")
-    }
-  }
-
-  def getCard(index: Int): Option[Card] = {
-    if (index >= 0 && index < cards.length) Some(cards(index))
-    else None
-  }
 
   override def toString: String = cards.mkString(", ")
 }
