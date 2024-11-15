@@ -58,6 +58,7 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
         println(s"${currentPlayer.name} drew another card and ended their turn.")
         currentPlayer.getHand.displayCards()
         validInput = true
+        notifyObservers(_.update)
       } else {
         validInput = handleCardPlacement(input)
       }
@@ -108,10 +109,12 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
     println(Console.YELLOW + s"${currentPlayer.name} earned $pointsEarned points." + Console.RESET)
     println("\nUpdated Grid:")
     grid.display()
+    notifyObservers(_.update) 
   }
 
   def switchTurns(): Unit = {
     currentPlayer = if (currentPlayer == player1) player2 else player1
+    notifyObservers(_.update)
   }
 
   def displayFinalScores(): Unit = {
@@ -126,6 +129,7 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
     } else {
       println("It's a tie!")
     }
+    notifyObservers(_.update)
   }
 
   private def printErrorMessage(input: String): Unit = {
