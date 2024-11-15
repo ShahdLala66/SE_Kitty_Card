@@ -1,8 +1,7 @@
 package model
 
-import model.cards.{NumberCards, Suit, Value}
+import cards.{NumberCards, Suit, Value}
 import util.{ErrorMessages, GameCallbacks, Observable}
-
 import scala.util.{Failure, Success, Try}
 
 

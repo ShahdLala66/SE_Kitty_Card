@@ -1,8 +1,9 @@
 package view
 
-class Tui {
+import util.Observer
 
-  // Mapping our desired colors to ANSI color codes
+class Tui extends Observer {
+
   private val colors = Map(
     "Green" -> "\u001b[32m",
     "Brown" -> "\u001b[33m",
@@ -18,6 +19,7 @@ class Tui {
     println(s"$color( ̳• · •̳)")
     println(s"$color/    づ♡")
     println("\u001b[0m") // Reset color after printing
+    update
   }
 
   // Method to print the cat in all colors in a loop
@@ -35,6 +37,7 @@ class Tui {
     println(s"$colorCode( ̳• · •̳)")
     println(s"$colorCode/    づ♡")
     println("\u001b[0m") // Reset color after printing
+    update 
   }
 
   // Method to print a bad choice message
@@ -44,6 +47,7 @@ class Tui {
     println(s"$colorCode ( ̳- · -̳)")
     println(s"$colorCode/ づbad choiceづ")
     println("\u001b[0m") // Reset color after printing
+    update
   }
 
   // Method to print a meh message
@@ -53,6 +57,7 @@ class Tui {
     println(s"$colorCode ( ̳- · -̳)")
     println(s"$colorCode/ づmehづ")
     println("\u001b[0m") // Reset color after printing
+    update
   }
 
   def welcomeMessage(): Unit = {
@@ -60,7 +65,8 @@ class Tui {
     println("Players take turns drawing and placing cards on the grid.")
     println("Earn points by placing cards on matching colors or white squares." + Console.RESET)
     println()
+    update
   }
-  
-  
+
+  override def update: Unit = { }
 }
