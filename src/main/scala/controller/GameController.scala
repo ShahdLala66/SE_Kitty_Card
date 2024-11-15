@@ -3,16 +3,18 @@ package controller
 
 import model._
 import model.Deck
-import util.ErrorMessages
+import util.{ErrorMessages, GameCallbacks, Observer}
 import view.Tui
+import util.Observable
 
-class GameController {
+class GameController extends Observable with GameCallbacks with Observer {
     private val deck = new Deck()
     private val grid = Grid()
     private val catPrint = new Tui() // Create CatPrint instance
 
     def startGame(): Unit = {
         catPrint.printCatLoop()
+        catPrint.welcomeMessage()
         println("Press Enter to start the game.")
         val familyFriendly = scala.io.StdIn.readLine().trim.toLowerCase == " "
         ErrorMessages.loadMessages(familyFriendly)
@@ -40,4 +42,6 @@ class GameController {
     def displayMeh(color: String): Unit = {
         catPrint.printMeh(color)
     }
+
+    override def update: Unit = { }
 }
