@@ -28,7 +28,8 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}  # Uses the secret stored in GitHub Actions
 
       - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v2.3.4
+        uses: coverallsapp/github-action@cfd0633edbd2411b532b808ba7a8b5e04f76d2c8
+
 
 
 
