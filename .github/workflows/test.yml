@@ -27,4 +27,8 @@ jobs:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}  # Uses the secret stored in GitHub Actions
 
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v2.3.4
+
+
 
