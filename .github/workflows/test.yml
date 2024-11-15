@@ -1,0 +1,35 @@
+name: Test workflow
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Test Scala
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'   # You can use 'adopt' or another Java distribution of your choice
+          java-version: '21'      # Adjust according to your project’s requirements
+
+      - name: Run tests
+        run: sbt coverage test coverageReport
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}  # Uses the secret stored in GitHub Actions
+      # .codecov.yml
+      - coverage:
+            # Exclude a specific class or file from the coverage report
+          ignore:
+              - "src/main/scala/com/controller/*"  # Ignore all files in the 'controllers' directory
+
+
