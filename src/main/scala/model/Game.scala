@@ -9,7 +9,6 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
 
   def start(callbacks: GameCallbacks): Unit = {
     add(callbacks)
-    welcomeMessage()
     distributeInitialCards()
     grid.displayInitialColors()
     gameLoop()
@@ -32,19 +31,13 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
     }
   }
 
-  def welcomeMessage(): Unit = {
-    println(Console.MAGENTA + "\nWelcome to the Kitty Card Game!")
-    println("Players take turns drawing and placing cards on the grid.")
-    println("Earn points by placing cards on matching colors or white squares." + Console.RESET)
-    println()
-  }
-
   private def handlePlayerTurn(): Unit = {
     currentPlayer.drawCard(deck) match {
       case Some(card) =>
         card match {
           case numberCard: NumberCards =>
-            println(Console.BLUE + s"\n${currentPlayer.name} drew: ${numberCard.suit}, ${Value.toInt(numberCard.value)}\n" + Console.RESET)
+            println(Console.BLUE + s"\n${currentPlayer.name} drew: ${numberCard.suit}," +
+                s" ${Value.toInt(numberCard.value)}\n" + Console.RESET)
             currentPlayer.getHand.displayCards()
           case _ =>
             println("Drew an unknown type of card")

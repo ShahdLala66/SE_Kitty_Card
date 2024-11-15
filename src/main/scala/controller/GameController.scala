@@ -14,6 +14,7 @@ class GameController extends Observable with GameCallbacks with Observer {
 
     def startGame(): Unit = {
         catPrint.printCatLoop()
+        catPrint.welcomeMessage()
         println("Press Enter to start the game.")
         val familyFriendly = scala.io.StdIn.readLine().trim.toLowerCase == " "
         ErrorMessages.loadMessages(familyFriendly)

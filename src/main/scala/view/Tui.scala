@@ -54,4 +54,13 @@ class Tui {
     println(s"$colorCode/ づmehづ")
     println("\u001b[0m") // Reset color after printing
   }
+
+  def welcomeMessage(): Unit = {
+    println(Console.MAGENTA + "\nWelcome to the Kitty Card Game!")
+    println("Players take turns drawing and placing cards on the grid.")
+    println("Earn points by placing cards on matching colors or white squares." + Console.RESET)
+    println()
+  }
+  
+  
 }
