@@ -1,5 +1,5 @@
 # $${\color{#9370db}KITTY \space CARDS \space GAME}$$  ≽^•⩊•^≼
-![Top language](https://img.shields.io/github/languages/top/<ShahdLala66>/<SE_Kitty_Card>)
+![Top language](https://img.shields.io/github/languages/top/ShahdLala66/SE_Kitty_Card)
 [![codecov](https://codecov.io/gh/Shahdlala66/SE_Kitty_Card/branch/main/graph/badge.svg)](https://codecov.io/gh/YOUR_ACCOUNT/YOUR_REPO)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8067b3954490468f9db6ae49c9254232)](https://app.codacy.com/gh/ShahdLala66/SE_Kitty_Card/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Build Status](https://app.travis-ci.com/ShahdLala66/SE_Kitty_Card.svg?token=HH1pij9kc7Ve4oqguSMe&branch=developer)](https://app.travis-ci.com/ShahdLala66/SE_Kitty_Card)
