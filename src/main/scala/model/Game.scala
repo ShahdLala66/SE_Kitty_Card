@@ -23,7 +23,7 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
     }
   }
 
-  private def gameLoop(): Unit = {
+  def gameLoop(): Unit = {
     while (deck.size > 0 && !grid.isFull) {
       notifyObservers(PlayerTurn(currentPlayer.name))
       currentPlayer.getHand.getCards.foreach(println) // Display cards in hand
@@ -32,7 +32,7 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
     }
   }
 
-  private def handlePlayerTurn(): Unit = {
+  def handlePlayerTurn(): Unit = {
     drawCardForCurrentPlayer()
     processPlayerInput()
   }
