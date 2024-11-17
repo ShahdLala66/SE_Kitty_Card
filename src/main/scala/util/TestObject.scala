@@ -2,5 +2,7 @@
 package util
 
 class TestObject extends Observer {
-  def update(event: GameEvent): Unit = println("Ping")
+    var lastNotification: Option[GameEvent] = None
+
+    override def update(event: GameEvent): Unit = lastNotification = Some(event)
 }

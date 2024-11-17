@@ -1,8 +1,9 @@
 // src/main/scala/model/Game.scala
 package model
 
-import model.cards.{NumberCards, Card}
-import util.{GameEvent, Observable, PlayerTurn, CardDrawn, InvalidPlacement, CardPlacementSuccess, GameOver}
+import model.cards.{Card, NumberCards}
+import util.*
+
 import scala.util.{Failure, Success, Try}
 
 class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Observable {

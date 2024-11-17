@@ -5,7 +5,7 @@ import util.{GameEvent, Observer, PlayerTurn, CardDrawn, InvalidPlacement, CardP
 
 class Tui extends Observer {
 
-  private val colors = Map(
+  private[view] val colors = Map(
     "Green" -> "\u001b[32m",
     "Brown" -> "\u001b[33m",
     "Purple" -> "\u001b[35m",
