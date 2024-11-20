@@ -18,16 +18,17 @@ class GameController extends GameCallbacks with Observer {
         val familyFriendly = scala.io.StdIn.readLine().trim.toLowerCase == " "
         ErrorMessages.loadMessages(familyFriendly)
 
-        println("Enter the name for Player 1:")
-        val player1Name = scala.io.StdIn.readLine()
-        val player1 = Player(player1Name)
-        println("Enter the name for Player 2:")
-        val player2Name = scala.io.StdIn.readLine()
-        val player2 = Player(player2Name)
+        val player1Name = promptForPlayerName("Player 1")
+        val player2Name = promptForPlayerName("Player 2")
 
-        val game = new Game(player1, player2, deck, grid)
+        val game = new Game(deck, grid)
         observer.foreach(game.add)
-        game.start()
+        game.start(player1Name, player2Name)
+    }
+
+    private def promptForPlayerName(playerLabel: String): String = {
+        println(s"Enter the name for $playerLabel:")
+        scala.io.StdIn.readLine()
     }
 
     override def update(event: GameEvent): Unit = {

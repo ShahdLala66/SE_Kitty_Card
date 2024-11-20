@@ -2,14 +2,20 @@
 package model
 
 import model.cards.{Card, NumberCards}
-import util.*
+import util._
 
 import scala.util.{Failure, Success, Try}
 
-class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Observable {
-  var currentPlayer: Player = player1
+class Game(deck: Deck, grid: Grid) extends Observable {
+  var currentPlayer: Player = _
+  var player1: Player = _
+  var player2: Player = _
 
-  def start(): Unit = {
+  def start(player1Name: String, player2Name: String): Unit = {
+    val (p1, p2) = addPlayers(player1Name, player2Name)
+    player1 = p1
+    player2 = p2
+    currentPlayer = player1
     distributeInitialCards()
     grid.displayInitialColors()
     gameLoop()
@@ -99,5 +105,11 @@ class Game(player1: Player, player2: Player, deck: Deck, grid: Grid) extends Obs
 
   def displayFinalScores(): Unit = {
     notifyObservers(GameOver(player1.name, player1.points, player2.name, player2.points))
+  }
+
+  def addPlayers(player1Name: String, player2Name: String): (Player, Player) = {
+    val player1 = Player(player1Name)
+    val player2 = Player(player2Name)
+    (player1, player2)
   }
 }
