@@ -44,7 +44,6 @@ jobs:
             -Dsonar.projectKey=ShahdLala66_SE_Kitty_Card
             -Dsonar.organization=shahdlala66
             -Dsonar.scala.scoverage.reportPath=target/scala-3.3.3/scoverage-report/scoverage.xml
-            -Dsonar.coverageReportPaths=target/scala-3.3.3/scoverage-report/scoverage.xml
           projectBaseDir: .
 
 
