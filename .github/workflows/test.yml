@@ -18,7 +18,7 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'adopt'   # You can use 'adopt' or another Java distribution of your choice
+          distribution: 'adopt'   # You cajn use 'adopt' or another Java distribution of your choice
           java-version: '21'      # Adjust according to your project’s requirements
 
       - name: Run tests
