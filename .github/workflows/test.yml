@@ -3,13 +3,10 @@ name: Test workflow
 on:
   push:
     branches:
-      - main
-      - 07-fixing_MVC_S
 
   pull_request:
     branches:
-      - main
-      - 07-fixing_MVC_S
+
 jobs:
   build:
     runs-on: ubuntu-latest
