@@ -30,20 +30,20 @@ class Tui extends Observer {
   }
 
 
-  def printBadChoice(color: String): Unit = {
+  private def printColoredCatWithMessage(color: String, message: String): Unit = {
     val colorCode = colors.getOrElse(color, "\u001b[0m")
     println(s"$colorCode ∧,,,∧")
     println(s"$colorCode ( ̳- · -̳)")
-    println(s"$colorCode/ づbad choiceづ")
+    println(s"$colorCode/ づ$message づ")
     println("\u001b[0m")
   }
 
+  def printBadChoice(color: String): Unit = {
+    printColoredCatWithMessage(color, "bad choice")
+  }
+
   def printMeh(color: String): Unit = {
-    val colorCode = colors.getOrElse(color, "\u001b[0m")
-    println(s"$colorCode ∧,,,∧")
-    println(s"$colorCode ( ̳- · -̳)")
-    println(s"$colorCode/ づmehづ")
-    println("\u001b[0m")
+    printColoredCatWithMessage(color, "meh")
   }
 
   def welcomeMessage(): Unit = {
@@ -73,6 +73,9 @@ class Tui extends Observer {
         } else {
           println("It's a tie!")
         }
+      case util.PrintMeh(_) => print("meh")
+      case util.PrintBadChoice(_) => print("bad choice")
+      case util.ShowColoredCat(_) => printColoredCat("Green")
     }
   }
 }
