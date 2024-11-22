@@ -43,7 +43,11 @@ jobs:
           args: >
             -Dsonar.projectKey=ShahdLala66_SE_Kitty_Card
             -Dsonar.organization=shahdlala66
-            -Dsonar.scala.scoverage.reportPath=target/scala-3.3.3/scoverage-report/scoverage.xml
+            -Dsonar.scala.scoverage.reportPath=target/scala-*/scoverage-report/scoverage.xml
+            -Dsonar.sources=src/main
+            -Dsonar.tests=src/test
+            -Dsonar.sourceEncoding=UTF-8
+
           projectBaseDir: .
 
 
