@@ -14,10 +14,6 @@ class GameController extends GameCallbacks with Observer {
     }
 
     def startGame(): Unit = {
-        println("Press Enter to start the game.")
-        val familyFriendly = scala.io.StdIn.readLine().trim.toLowerCase == " "
-        ErrorMessages.loadMessages(familyFriendly)
-
         val player1Name = promptForPlayerName("Player 1")
         val player2Name = promptForPlayerName("Player 2")
 
