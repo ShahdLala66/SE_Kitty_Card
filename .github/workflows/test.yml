@@ -36,12 +36,15 @@ jobs:
       # Step 6: Analyze with SonarCloud
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
+
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
             -Dsonar.projectKey=ShahdLala66_SE_Kitty_Card
             -Dsonar.organization=shahdlala66
+            -Dsonar.scala.scoverage.reportPath=target/scala-2.13/scoverage-report/scoverage.xml
+            -Dsonar.coverageReportPaths=target/scala-2.13/scoverage-report/scoverage.xml
           projectBaseDir: .
 
 
