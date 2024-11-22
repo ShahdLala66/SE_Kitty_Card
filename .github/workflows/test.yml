@@ -10,7 +10,6 @@ on:
     branches:
       - main
       - 07-fixing_MVC_S
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -44,8 +43,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=your_project_key_here
-            -Dsonar.organization=your_organization_here
+            -Dsonar.projectKey=SE_Kitty_Card
+            -Dsonar.organization=shahdlala66
           projectBaseDir: .
 
 
