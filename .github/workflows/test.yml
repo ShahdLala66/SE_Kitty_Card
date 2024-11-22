@@ -9,27 +9,39 @@ jobs:
     runs-on: ubuntu-latest
     name: Test Scala
     steps:
+      # Step 1: Check out code
       - name: Check out code
         uses: actions/checkout@v4
 
+      # Step 2: Set up Java
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'adopt'   # You can use 'adopt' or another Java distribution of your choice
-          java-version: '21'      # Adjust according to your project’s requirements
+          distribution: 'adopt'  # Java distribution
+          java-version: '21'    # Update this if needed for compatibility
 
+      # Step 3: Run Scala tests
       - name: Run tests
         run: sbt coverage test coverageReport
 
+      # Step 4: Upload coverage to Codecov
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
           fail_ci_if_error: true
-          token: ${{ secrets.CODECOV_TOKEN }}  # Uses the secret stored in GitHub Actions
+          token: ${{ secrets.CODECOV_TOKEN }}
 
+      # Step 5: Report coverage to Coveralls
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@cfd0633edbd2411b532b808ba7a8b5e04f76d2c8
 
-
-
-
+      # Step 6: Analyze with SonarCloud
+      - name: Analyze with SonarCloud
+        uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}ö
+        with:
+          args: >
+            -Dsonar.projectKey=your_project_key_here
+            -Dsonar.organization=your_organization_here
+          projectBaseDir: .
