@@ -22,7 +22,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
     displayFinalScores()
   }
 
-  def distributeInitialCards(): Unit = {
+  private def distributeInitialCards(): Unit = {
     for (_ <- 1 to 3) {
       player1.drawCard(deck)
       player2.drawCard(deck)
@@ -103,11 +103,11 @@ class Game(deck: Deck, grid: Grid) extends Observable {
     grid.display() // Display updated grid after switching turns
   }
 
-  def displayFinalScores(): Unit = {
+  private def displayFinalScores(): Unit = {
     notifyObservers(GameOver(player1.name, player1.points, player2.name, player2.points))
   }
 
-  def addPlayers(player1Name: String, player2Name: String): (Player, Player) = {
+  private def addPlayers(player1Name: String, player2Name: String): (Player, Player) = {
     val player1 = Player(player1Name)
     val player2 = Player(player2Name)
     (player1, player2)
