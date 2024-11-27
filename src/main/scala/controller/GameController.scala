@@ -1,8 +1,8 @@
 // src/main/scala/controller/GameController.scala
 package controller
 
-import model._
-import util.{ErrorMessages, GameCallbacks, Observer, GameEvent}
+import model.*
+import util.{GameCallbacks, GameEvent, Observer}
 
 class GameController extends GameCallbacks with Observer {
     private val deck = new Deck()
