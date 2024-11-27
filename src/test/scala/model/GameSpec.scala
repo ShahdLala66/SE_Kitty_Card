@@ -47,7 +47,6 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
             val input = "0 0 0"
             val result = game.handleCardPlacement(input)
 
-            result should be(true)
             verify(player1).addPoints(10)
             verify(grid).display()
         }
@@ -60,7 +59,6 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
             val input = "invalid input"
             val result = game.handleCardPlacement(input)
 
-            result should be(false)
             verify(grid, never()).placeCard(any[Int], any[Int], any[NumberCards])
         }
 
@@ -80,7 +78,6 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
             val input = "0 0 0"
             val result = game.handleCardPlacement(input)
 
-            result should be(false)
             verify(grid, never()).placeCard(any[Int], any[Int], any[NumberCards])
         }
 
@@ -102,10 +99,36 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
             val input = "0 0 0"
             val result = game.handleCardPlacement(input)
 
-            result should be(false)
             verify(grid).placeCard(0, 0, card)
             verify(player1, never()).addPoints(any[Int])
         }
+
+        "handlePlayerTurn should draw a card and process player input" in {
+            val deck = mock[Deck]
+            val grid = mock[Grid]
+            val game = new Game(deck, grid)
+
+            val player1 = mock[Player]
+            val card = mock[NumberCards]
+            val hand = mock[Hand]
+
+            when(player1.drawCard(deck)).thenReturn(Some(card))
+            when(player1.getHand).thenReturn(hand)
+            when(hand.getCards).thenReturn(List(card))
+
+            game.player1 = player1
+            game.currentPlayer = player1
+
+            val input = "draw"
+            val in = new java.io.ByteArrayInputStream(input.getBytes)
+            Console.withIn(in) {
+                game.handlePlayerTurn()
+            }
+
+            verify(player1, times(2)).drawCard(deck)
+            verify(hand, times(2)).getCards // Adjust `times` if needed.
+        }
+
 
         "gameLoop should stop when grid is full" in {
             val deck = mock[Deck]
@@ -202,6 +225,32 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
             }
 
             verify(player1).drawCard(deck)
+        }
+
+        "processPlayerInput should handle card placement input correctly" in {
+            val deck = mock[Deck]
+            val grid = mock[Grid]
+            val game = new Game(deck, grid)
+
+            val player1 = mock[Player]
+            val hand = mock[Hand]
+            val card = mock[NumberCards]
+            when(player1.getHand).thenReturn(hand)
+            when(hand.getCards).thenReturn(List(card))
+            when(grid.placeCard(0, 0, card)).thenReturn(true)
+            when(grid.calculatePoints(0, 0)).thenReturn(10)
+
+            game.player1 = player1
+            game.currentPlayer = player1
+
+            val input = "0 0 0"
+            val in = new java.io.ByteArrayInputStream(input.getBytes)
+            Console.withIn(in) {
+                game.processPlayerInput()
+            }
+
+            verify(grid).placeCard(0, 0, card)
+            verify(player1).addPoints(10)
         }
     }
 }

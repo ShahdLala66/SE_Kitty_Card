@@ -144,6 +144,39 @@ class TuiSpec extends AnyWordSpec with Matchers {
             }
         }
 
+        "print correct meh not implemented message" in {
+            val tui = new Tui
+            val outStream = new ByteArrayOutputStream()
+            Console.withOut(new PrintStream(outStream)) {
+                tui.update(PrintMeh("White"))
+            }
+
+            val output = outStream.toString
+            output should include("meh not implemented yet")
+        }
+
+        "print correct bad choice not implemented message" in {
+            val tui = new Tui
+            val outStream = new ByteArrayOutputStream()
+            Console.withOut(new PrintStream(outStream)) {
+                tui.update(PrintBadChoice("Red"))
+            }
+
+            val output = outStream.toString
+            output should include("bad not implemented yet")
+        }
+
+        "print correct show cat not implemented message" in {
+            val tui = new Tui
+            val outStream = new ByteArrayOutputStream()
+            Console.withOut(new PrintStream(outStream)) {
+                tui.update(ShowColoredCat("Green"))
+            }
+
+            val output = outStream.toString
+            output should include("show cat not implemented yet")
+        }
+
 
     }
 }

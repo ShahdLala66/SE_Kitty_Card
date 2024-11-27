@@ -22,9 +22,10 @@ class GameController extends GameCallbacks with Observer {
         game.start(player1Name, player2Name)
     }
 
-    private def promptForPlayerName(playerLabel: String): String = {
-        println(s"Enter the name for $playerLabel:")
-        scala.io.StdIn.readLine()
+    def promptForPlayerName(player: String): String = {
+        println(s"Enter the name for $player:")
+        val name = scala.io.StdIn.readLine()
+        if (name == null) "Anonym" else name
     }
 
     override def update(event: GameEvent): Unit = {
