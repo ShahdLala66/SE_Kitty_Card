@@ -1,15 +1,22 @@
+// src/main/scala/util/Observable.scala
 package util
 
 trait Observer {
-    def update: Unit
+    def update(event: GameEvent): Unit
 }
 
-class Observable {
-    var subscribers: Vector[Observer] = Vector()
+trait Observable {
+    private var observers: List[Observer] = List()
 
-    def add(s: Observer): Unit = subscribers = subscribers :+ s
+    def add(observer: Observer): Unit = {
+        observers = observer :: observers
+    }
 
-    def remove(s: Observer): Unit = subscribers = subscribers.filterNot(o => o == s)
+    def remove(observer: Observer): Unit = {
+        observers = observers.filterNot(_ == observer)
+    }
 
-    def notifyObservers: Unit = subscribers.foreach(o => o.update)
+    def notifyObservers(event: GameEvent): Unit = {
+        observers.foreach(_.update(event))
+    }
 }
