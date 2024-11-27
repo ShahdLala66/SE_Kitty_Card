@@ -3,31 +3,53 @@ package controller
 
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
-import model.{Deck, Grid, Player}
-import util.GameCallbacks
+import org.scalatestplus.mockito.MockitoSugar
+import org.mockito.Mockito._
+import org.mockito.ArgumentMatchers.any
+import model._
+import util.{Observer, GameEvent}
 
-class GameControllerSpec extends AnyWordSpec with Matchers {
+class GameControllerSpec extends AnyWordSpec with Matchers with MockitoSugar {
 
-    "A GameController" should {
+    "GameController" should {
 
-        "initialize correctly" in {
+        "set the observer correctly when setObserver is called" in {
             val controller = new GameController()
-            controller should not be null
+            val observer = mock[Observer]
+            controller.setObserver(observer)
+            controller.update(mock[GameEvent]) // Trigger an update to verify observer is set
+            verify(observer, times(1)).update(any[GameEvent])
         }
 
-        "display cat in color" in {
+
+        "print the correct message for displayBadChoice" in {
             val controller = new GameController()
-            noException should be thrownBy controller.displayCatInColor("Blue")
+            val color = "red"
+            val output = new java.io.ByteArrayOutputStream()
+            Console.withOut(output) {
+                controller.displayBadChoice(color)
+            }
+            output.toString should include(s"Bad choice: $color")
         }
 
-        "display bad choice" in {
+        "print the correct message for displayCatInColor" in {
             val controller = new GameController()
-            noException should be thrownBy controller.displayBadChoice("Red")
+            val color = "blue"
+            val output = new java.io.ByteArrayOutputStream()
+            Console.withOut(output) {
+                controller.displayCatInColor(color)
+            }
+            output.toString should include(s"Cat in color: $color")
         }
 
-        "display meh" in {
+        "print the correct message for displayMeh" in {
             val controller = new GameController()
-            noException should be thrownBy controller.displayMeh("Green")
+            val color = "green"
+            val output = new java.io.ByteArrayOutputStream()
+            Console.withOut(output) {
+                controller.displayMeh(color)
+            }
+            output.toString should include(s"Meh: $color")
         }
     }
 }
