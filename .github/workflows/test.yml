@@ -33,21 +33,6 @@ jobs:
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@cfd0633edbd2411b532b808ba7a8b5e04f76d2c8
 
-      # Step 6: Analyze with SonarCloud
-      - name: Analyze with SonarCloud
-        uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
 
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.projectKey=ShahdLala66_SE_Kitty_Card
-            -Dsonar.organization=shahdlala66
-            -Dsonar.scala.scoverage.reportPath=target/scala-*/scoverage-report/scoverage.xml
-            -Dsonar.sources=src/main
-            -Dsonar.tests=src/test/scala
-            -Dsonar.sourceEncoding=UTF-8
-
-          projectBaseDir: .
 
 
