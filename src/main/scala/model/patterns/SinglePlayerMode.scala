@@ -1,7 +1,7 @@
 // src/main/scala/model/patterns/SinglePlayerMode.scala
 package model.patterns
 
-import model.{Game, Player, PlayerData, PlayerRepository}
+import model.*
 
 class SinglePlayerMode(game: Game) extends GameMode {
   override def startGame(): Unit = {

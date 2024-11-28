@@ -1,5 +1,5 @@
 // src/main/scala/model/PlayerRepository.scala
-package model
+package model.patterns
 
 import play.api.libs.json._
 import java.io.{File, PrintWriter}
