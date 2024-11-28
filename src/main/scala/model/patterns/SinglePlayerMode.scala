@@ -18,7 +18,7 @@ class SinglePlayerMode(game: Game) extends GameMode {
     // Add logic to end single player game
   }
 
-  override def isGameOver(): Boolean = {
+  override def isGameOver: Boolean = {
     // Define the condition to end the single-player game
     false
   }

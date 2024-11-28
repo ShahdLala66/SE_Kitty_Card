@@ -1,7 +1,7 @@
 // src/main/scala/model/patterns/MultiPlayerMode.scala
 package model.patterns
 
-import model.{Game, Grid}
+import model.Game
 
 class MultiPlayerMode(game: Game, strategy: Strategy) extends GameMode {
   override def startGame(): Unit = {
@@ -17,7 +17,7 @@ class MultiPlayerMode(game: Game, strategy: Strategy) extends GameMode {
     // Add logic to end multiplayer game
   }
 
-  override def isGameOver(): Boolean = {
+  override def isGameOver: Boolean = {
     game.getGrid.isFull
   }
 }

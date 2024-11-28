@@ -4,7 +4,7 @@ package model.patterns
 trait GameMode {
   def playGame(): Unit = {
     startGame()
-    while (!isGameOver()) {
+    while (!isGameOver) {
       playTurn()
     }
     endGame()
@@ -13,5 +13,5 @@ trait GameMode {
   def startGame(): Unit
   def playTurn(): Unit
   def endGame(): Unit
-  def isGameOver(): Boolean
+  def isGameOver: Boolean
 }

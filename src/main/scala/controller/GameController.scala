@@ -48,7 +48,7 @@ class GameController extends GameCallbacks with Observer {
     if (name == null || name.trim.isEmpty) "Anonym" else name
   }
 
-  private def promptForGameMode(): String = {
+  def promptForGameMode(): String = {
     println("Enter the game mode (singleplayer/multiplayer):")
     scala.io.StdIn.readLine()
   }

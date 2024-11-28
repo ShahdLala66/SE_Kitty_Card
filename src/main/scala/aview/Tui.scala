@@ -1,5 +1,5 @@
 // src/main/scala/view/Tui.scala
-package view
+package aview
 
 import util.Observer
 import util.GameEvent
@@ -12,7 +12,7 @@ import scala.io.StdIn.readLine
 
 class Tui extends Observer {
 
-  private[view] val colors = Map(
+  private[aview] val colors = Map(
     "Green" -> "\u001b[32m",
     "Brown" -> "\u001b[33m",
     "Purple" -> "\u001b[35m",
@@ -43,7 +43,7 @@ class Tui extends Observer {
     // Logic to start the actual game would go here
   }
 
-  private def selectGameMode(): String = {
+  def selectGameMode(): String = {
     println("Select game mode:")
     println("1. Single Player")
     println("2. Multiplayer")
@@ -58,7 +58,7 @@ class Tui extends Observer {
     }
   }
 
-  private def selectSinglePlayerOption(): String = {
+  def selectSinglePlayerOption(): String = {
     println("\nChoose an option for Single Player mode:")
     println("1. Feed the kitties")
     println("2. Play with the Kitty Card Boss")

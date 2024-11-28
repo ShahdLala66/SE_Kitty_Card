@@ -1,4 +1,4 @@
-package view
+package aview
 
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
@@ -177,7 +177,91 @@ class TuiSpec extends AnyWordSpec with Matchers {
             output should include("show cat not implemented yet")
         }
 
+        "run method" should {
+            "start single player mode with 'Feed the kitties' option" in {
+                val tui = new Tui
+                val inStream = new java.io.ByteArrayInputStream("1\n1\nAlice\n".getBytes)
+                Console.withIn(inStream) {
+                    val outStream = new ByteArrayOutputStream()
+                    Console.withOut(new PrintStream(outStream)) {
+                        tui.run()
+                    }
+                    val output = outStream.toString
+                    output should include("Starting Feed the kitties mode for Alice...")
+                }
+            }
 
+            "start multiplayer mode" in {
+                val tui = new Tui
+                val inStream = new java.io.ByteArrayInputStream("2\nAlice\nBob\n".getBytes)
+                Console.withIn(inStream) {
+                    val outStream = new ByteArrayOutputStream()
+                    Console.withOut(new PrintStream(outStream)) {
+                        tui.run()
+                    }
+                    val output = outStream.toString
+                    output should include("Starting multiplayer game between Alice and Bob...")
+                }
+            }
+        }
+
+        "selectGameMode method" should {
+            "return 'Single' for input 1" in {
+                val tui = new Tui
+                val inStream = new java.io.ByteArrayInputStream("1\n".getBytes)
+                Console.withIn(inStream) {
+                    val result = tui.selectGameMode()
+                    result should be("Single")
+                }
+            }
+
+            "return 'Multiplayer' for input 2" in {
+                val tui = new Tui
+                val inStream = new java.io.ByteArrayInputStream("2\n".getBytes)
+                Console.withIn(inStream) {
+                    val result = tui.selectGameMode()
+                    result should be("Multiplayer")
+                }
+            }
+
+            "default to 'Single' for invalid input" in {
+                val tui = new Tui
+                val inStream = new java.io.ByteArrayInputStream("invalid\n".getBytes)
+                Console.withIn(inStream) {
+                    val result = tui.selectGameMode()
+                    result should be("Single")
+                }
+            }
+        }
+
+        "selectSinglePlayerOption method" should {
+            "return 'Feed the kitties' for input 1" in {
+                val tui = new Tui
+                val inStream = new java.io.ByteArrayInputStream("1\n".getBytes)
+                Console.withIn(inStream) {
+                    val result = tui.selectSinglePlayerOption()
+                    result should be("Feed the kitties")
+                }
+            }
+
+            "return 'Play with the Kitty Card Boss' for input 2" in {
+                val tui = new Tui
+                val inStream = new java.io.ByteArrayInputStream("2\n".getBytes)
+                Console.withIn(inStream) {
+                    val result = tui.selectSinglePlayerOption()
+                    result should be("Play with the Kitty Card Boss")
+                }
+            }
+
+            "default to 'Feed the kitties' for invalid input" in {
+                val tui = new Tui
+                val inStream = new java.io.ByteArrayInputStream("invalid\n".getBytes)
+                Console.withIn(inStream) {
+                    val result = tui.selectSinglePlayerOption()
+                    result should be("Feed the kitties")
+                }
+            }
+        }
     }
 }
 
