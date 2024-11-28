@@ -12,6 +12,7 @@ lazy val root = (project in file("."))
   )
 
 libraryDependencies ++= Seq(
+  "com.google.inject" % "guice" % "7.0.0",
   "org.scalactic" %% "scalactic" % "3.2.18",
   "org.scalatest" %% "scalatest" % "3.2.18" % "test",
   "org.scalatestplus" %% "mockito-4-5" % "3.2.12.0" % "test"
