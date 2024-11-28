@@ -23,11 +23,8 @@ class GameController extends GameCallbacks with Observer {
 
     mode.toLowerCase match {
       case "singleplayer" =>
-        val singlePlayerOption = promptForSinglePlayerOption()
-        val playerName = promptForPlayerName("Player")
         observer.foreach(game.add)
-        println(s"Starting $singlePlayerOption mode for $playerName...")
-        game.start(playerName, "AI")
+        gameMode.playGame()
 
       case "multiplayer" =>
         val player1Name = promptForPlayerName("Player 1")
@@ -38,8 +35,6 @@ class GameController extends GameCallbacks with Observer {
       case _ =>
         println("Invalid game mode selected.")
     }
-
-    gameMode.playGame() // Call the template method to play the game
   }
 
   private def promptForPlayerName(player: String): String = {
