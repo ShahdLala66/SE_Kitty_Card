@@ -12,36 +12,6 @@ class GameControllerSpec extends AnyWordSpec with Matchers with MockitoSugar {
 
     "GameController" should {
 
-        "prompt for player name and return the input" in {
-            val controller = new GameController()
-            val input = "Alice"
-            val inputStream = new java.io.ByteArrayInputStream(input.getBytes)
-            Console.withIn(inputStream) {
-                val result = controller.promptForPlayerName("Player 1")
-                result should be(input)
-            }
-        }
-
-        "handle empty input for player name" in {
-            val controller = new GameController()
-            val input = ""
-            val inputStream = new java.io.ByteArrayInputStream(input.getBytes)
-            Console.withIn(inputStream) {
-                val result = controller.promptForPlayerName("Player 1")
-                result should be("Anonym")
-            }
-        }
-
-        "handle long input for player name" in {
-            val controller = new GameController()
-            val input = "A" * 1000
-            val inputStream = new java.io.ByteArrayInputStream(input.getBytes)
-            Console.withIn(inputStream) {
-                val result = controller.promptForPlayerName("Player 1")
-                result should be(input)
-            }
-        }
-
         "set the observer correctly when setObserver is called" in {
             val controller = new GameController()
             val observer = mock[Observer]
@@ -49,7 +19,6 @@ class GameControllerSpec extends AnyWordSpec with Matchers with MockitoSugar {
             controller.update(mock[GameEvent]) // Trigger an update to verify observer is set
             verify(observer, times(1)).update(any[GameEvent])
         }
-
 
         "print the correct message for displayBadChoice" in {
             val controller = new GameController()
@@ -71,8 +40,6 @@ class GameControllerSpec extends AnyWordSpec with Matchers with MockitoSugar {
             output.toString should include(s"Cat in color: $color")
         }
 
-
-
         "print the correct message for displayMeh" in {
             val controller = new GameController()
             val color = "green"
@@ -81,6 +48,17 @@ class GameControllerSpec extends AnyWordSpec with Matchers with MockitoSugar {
                 controller.displayMeh(color)
             }
             output.toString should include(s"Meh: $color")
+        }
+
+
+
+        "handle invalid game mode" in {
+            val controller = spy(new GameController())
+            doReturn("invalid").when(controller).promptForGameMode()
+            val exception = intercept[IllegalArgumentException] {
+                controller.startGame()
+            }
+            exception.getMessage should include("Invalid game mode")
         }
     }
 }

@@ -2,14 +2,25 @@
 package model
 
 import model.cards.{Card, NumberCards}
-import util._
+import model.patterns.GameMode
+import util.*
 
 import scala.util.{Failure, Success, Try}
 
-class Game(deck: Deck, grid: Grid) extends Observable {
+class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
   var currentPlayer: Player = _
   var player1: Player = _
   var player2: Player = _
+
+  def isGridFull: Boolean = grid.isFull
+
+  def getGrid: Grid = grid
+
+  def initialize(): Unit = {
+    // Display the initial grid colors
+    grid.displayInitialColors()
+    // Any other initialization logic
+  }
 
   def start(player1Name: String, player2Name: String): Unit = {
     val (p1, p2) = addPlayers(player1Name, player2Name)
@@ -18,7 +29,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
     currentPlayer = player1
     distributeInitialCards()
     grid.displayInitialColors()
-    gameLoop()
+    gameMode.startGame()
     displayFinalScores()
   }
 
@@ -29,13 +40,8 @@ class Game(deck: Deck, grid: Grid) extends Observable {
     }
   }
 
-  def gameLoop(): Unit = {
-    while (deck.size > 0 && !grid.isFull) {
-      notifyObservers(PlayerTurn(currentPlayer.name))
-      currentPlayer.getHand.getCards.foreach(println) // Display cards in hand
-      handlePlayerTurn()
-      switchTurns()
-    }
+  def playTurn(): Unit = {
+    gameMode.playTurn()
   }
 
   def handlePlayerTurn(): Unit = {
