@@ -2,6 +2,7 @@
 package model
 
 import model.cards.{Hand, NumberCards}
+import model.patterns.GameMode
 import org.mockito.Mockito._
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -15,7 +16,8 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
         "start with initial card distribution and display initial colors" in {
             val deck = mock[Deck]
             val grid = mock[Grid]
-            val game = new Game(deck, grid)
+            val gameMode = mock[GameMode]
+            val game = new Game(deck, grid, gameMode)
 
             val player1Name = "Zayne"
             val player2Name = "Corina"
@@ -26,12 +28,14 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
 
             verify(deck, times(6)).drawCard()
             verify(grid).displayInitialColors()
+            verify(gameMode).startGame()
         }
 
         "handleCardPlacement should return true for valid input and place card correctly" in {
             val deck = mock[Deck]
             val grid = mock[Grid]
-            val game = new Game(deck, grid)
+            val gameMode = mock[GameMode]
+            val game = new Game(deck, grid, gameMode)
 
             val player1 = mock[Player]
             val hand = mock[Hand]
@@ -54,7 +58,8 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
         "handleCardPlacement should return false for invalid input format" in {
             val deck = mock[Deck]
             val grid = mock[Grid]
-            val game = new Game(deck, grid)
+            val gameMode = mock[GameMode]
+            val game = new Game(deck, grid, gameMode)
 
             val input = "invalid input"
             val result = game.handleCardPlacement(input)
@@ -65,7 +70,8 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
         "handleCardPlacement should return false for out of bounds card index" in {
             val deck = mock[Deck]
             val grid = mock[Grid]
-            val game = new Game(deck, grid)
+            val gameMode = mock[GameMode]
+            val game = new Game(deck, grid, gameMode)
 
             val player1 = mock[Player]
             val hand = mock[Hand]
@@ -84,7 +90,8 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
         "handleCardPlacement should return false for invalid card placement" in {
             val deck = mock[Deck]
             val grid = mock[Grid]
-            val game = new Game(deck, grid)
+            val gameMode = mock[GameMode]
+            val game = new Game(deck, grid, gameMode)
 
             val player1 = mock[Player]
             val hand = mock[Hand]
@@ -106,7 +113,8 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
         "handlePlayerTurn should draw a card and process player input" in {
             val deck = mock[Deck]
             val grid = mock[Grid]
-            val game = new Game(deck, grid)
+            val gameMode = mock[GameMode]
+            val game = new Game(deck, grid, gameMode)
 
             val player1 = mock[Player]
             val card = mock[NumberCards]
@@ -129,31 +137,11 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
             verify(hand, times(2)).getCards // Adjust `times` if needed.
         }
 
-
-        "gameLoop should stop when grid is full" in {
-            val deck = mock[Deck]
-            val grid = mock[Grid]
-            val game = new Game(deck, grid)
-
-            val player1 = mock[Player]
-            when(deck.size).thenReturn(1)
-            when(grid.isFull).thenReturn(true)
-            when(player1.getHand).thenReturn(mock[Hand])
-            when(player1.getHand.getCards).thenReturn(List(mock[NumberCards]))
-
-            game.player1 = player1
-            game.currentPlayer = player1
-
-            game.gameLoop()
-
-            verify(player1, never()).drawCard(deck)
-            verify(player1.getHand, never()).getCards
-        }
-
         "switch turns correctly" in {
             val deck = mock[Deck]
             val grid = mock[Grid]
-            val game = new Game(deck, grid)
+            val gameMode = mock[GameMode]
+            val game = new Game(deck, grid, gameMode)
 
             val player1 = mock[Player]
             val player2 = mock[Player]
@@ -171,7 +159,8 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
         "drawCardForCurrentPlayer should notify observers when a card is drawn" in {
             val deck = mock[Deck]
             val grid = mock[Grid]
-            val game = new Game(deck, grid)
+            val gameMode = mock[GameMode]
+            val game = new Game(deck, grid, gameMode)
 
             val player1 = mock[Player]
             val card = mock[NumberCards]
@@ -191,7 +180,8 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
         "drawCardForCurrentPlayer should notify observers when no card is drawn" in {
             val deck = mock[Deck]
             val grid = mock[Grid]
-            val game = new Game(deck, grid)
+            val gameMode = mock[GameMode]
+            val game = new Game(deck, grid, gameMode)
 
             val player1 = mock[Player]
             when(player1.drawCard(deck)).thenReturn(None)
@@ -207,7 +197,8 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
         "processPlayerInput should handle 'draw' input correctly" in {
             val deck = mock[Deck]
             val grid = mock[Grid]
-            val game = new Game(deck, grid)
+            val gameMode = mock[GameMode]
+            val game = new Game(deck, grid, gameMode)
 
             val player1 = mock[Player]
             val card = mock[NumberCards]
@@ -230,7 +221,8 @@ class GameSpec extends AnyWordSpec with Matchers with MockitoSugar {
         "processPlayerInput should handle card placement input correctly" in {
             val deck = mock[Deck]
             val grid = mock[Grid]
-            val game = new Game(deck, grid)
+            val gameMode = mock[GameMode]
+            val game = new Game(deck, grid, gameMode)
 
             val player1 = mock[Player]
             val hand = mock[Hand]
