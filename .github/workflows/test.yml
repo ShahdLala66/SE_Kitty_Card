@@ -39,6 +39,8 @@ jobs:
 
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          ScoverageReportPath: target/scala-3.3.3/scoverage-report/scoverage-report # Set the correct path to your scoverage report
+
         with:
           args: >
             -Dsonar.projectKey=ShahdLala66_SE_Kitty_Card

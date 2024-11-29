@@ -14,7 +14,6 @@ class MultiPlayerMode(game: Game, strategy: Strategy) extends GameMode {
 
   override def endGame(): Unit = {
     println("Ending multiplayer game...")
-    // Add logic to end multiplayer game
   }
 
   override def isGameOver(): Boolean = {
