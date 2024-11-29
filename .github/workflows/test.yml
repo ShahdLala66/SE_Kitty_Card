@@ -31,9 +31,17 @@ jobs:
 
       - name: Debug Scoverage Report
         run: cat target/scala-3.3.3/scoverage-report/scoverage.xml
+      - name: SonarCloud Scoverage Fix
+        uses: pervasive-cats/sonarcloud-scoverage-fix@v1.0.1
+        with:
+          scoverageReport: target/scala-3.2.1/scoverage-report/scoverage.xml
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
+
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
