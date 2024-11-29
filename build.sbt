@@ -7,8 +7,10 @@ ThisBuild / scalaVersion := "3.3.3"
 lazy val root = (project in file("."))
   .settings(
     name := "SE_Kitty_Card_1",
-    coverageEnabled := true,
-    coverageOutputXML := true
+      coverageOutputCobertura := true,
+      coverageEnabled := true,
+      coverageOutputXML := true
+
   )
 
 libraryDependencies ++= Seq(
