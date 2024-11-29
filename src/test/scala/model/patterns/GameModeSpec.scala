@@ -15,7 +15,7 @@ class GameModeSpec extends AnyWordSpec with Matchers {
                 def startGame(): Unit = {}
                 def playTurn(): Unit = { turns += 1 }
                 def endGame(): Unit = {}
-                def isGameOver: Boolean = turns >= 3
+                def isGameOver(): Boolean = turns >= 3
             }
 
             gameMode.playGame()
@@ -26,7 +26,7 @@ class GameModeSpec extends AnyWordSpec with Matchers {
                 def startGame(): Unit = {}
                 def playTurn(): Unit = {}
                 def endGame(): Unit = {}
-                def isGameOver: Boolean = true
+                def isGameOver(): Boolean = true
             }
 
             gameMode.playGame()
@@ -40,7 +40,7 @@ class GameModeSpec extends AnyWordSpec with Matchers {
                 def startGame(): Unit = {}
                 def playTurn(): Unit = { turns += 1 }
                 def endGame(): Unit = {}
-                def isGameOver: Boolean = turns >= 0
+                def isGameOver(): Boolean = turns >= 0
             }
 
             gameMode.playGame()

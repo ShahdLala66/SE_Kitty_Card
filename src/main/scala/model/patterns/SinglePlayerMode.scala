@@ -6,7 +6,6 @@ import model.{Game, Player}
 class SinglePlayerMode(game: Game) extends GameMode {
   override def startGame(): Unit = {
     val player = selectOrCreatePlayer()
-    sys.exit() // Exit the program after starting the game
   }
 
   override def playTurn(): Unit = {

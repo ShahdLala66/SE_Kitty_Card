@@ -5,7 +5,7 @@ import model.*
 import model.cards.{Card, Hand}
 
 abstract class PlayerDecorator(decoratedPlayer: Player) extends Player(decoratedPlayer.name) {
-  var level: Int = 1
+  var level: Int = 1 //train umwandeln
   var money: Int = 0
 
   override def drawCard(deck: Deck): Option[Card] = decoratedPlayer.drawCard(deck)
