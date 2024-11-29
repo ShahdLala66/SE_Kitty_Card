@@ -2,4 +2,6 @@ sbt clean coverage test
 sbt coverageReport
 
 
+ bash <(curl -Ls https://coverage.codacy.com/get.sh)
+
 target > scala 3.3.3 > scoverage-report > overview.html
