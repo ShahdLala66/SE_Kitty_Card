@@ -33,12 +33,3 @@ jobs:
         with:
           args: >
             scoverageReport: target/scala-3.3.3./scoverage-report/scoverage.xml
-            -Dsonar.projectBaseDir=/github/workspace
-            -Dsonar.projectKey=ShahdLala66_SE_Kitty_Card
-            -Dsonar.organization=shahdlala66
-            -Dsonar.sources=src/main
-            -Dsonar.tests=src/test
-            -Dsonar.sourceEncoding=UTF-8
-            -Dsonar.scala.scoverage.reportPaths= D:/SE_Kitty_Card/target/scala-3.3.3/scoverage-report/scoverage.xml
-            -Dsonar.log.level=DEBUG
-            -Dsonar.verbose=true
