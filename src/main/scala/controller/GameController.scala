@@ -14,11 +14,12 @@ class GameController extends GameCallbacks with Observer {
     this.observer = Some(observer)
   }
 
+
   def startGame(): Unit = {
     val mode = promptForGameMode()
     val game = new Game(deck, grid, null)
-    val strategy = if (mode.toLowerCase == "multiplayer") promptForStrategy() else None
-    val gameMode = GameModeFactory.createGameMode(mode, game, strategy)
+    val strategy = if (mode.toLowerCase == "multiplayer") promptForStrategy().getOrElse(new RandomStrategy()) else new RandomStrategy()
+    val gameMode = GameModeFactory.createGameMode(mode, game, Some(strategy))
     game.gameMode = gameMode
 
     mode.toLowerCase match {
@@ -31,6 +32,7 @@ class GameController extends GameCallbacks with Observer {
         val player2Name = promptForPlayerName("Player 2")
         observer.foreach(game.add)
         game.start(player1Name, player2Name)
+        gameMode.playGame()
 
       case _ =>
         println("Invalid game mode selected.")

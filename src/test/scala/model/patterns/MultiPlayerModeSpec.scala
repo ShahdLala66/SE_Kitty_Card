@@ -50,10 +50,10 @@ class MultiPlayerModeSpec extends AnyWordSpec with MockitoSugar {
       val multiPlayerMode = new MultiPlayerMode(mockGame, mockStrategy)
 
       when(mockGrid.isFull).thenReturn(true)
-      assert(multiPlayerMode.isGameOver)
+      assert(multiPlayerMode.isGameOver())
 
       when(mockGrid.isFull).thenReturn(false)
-      assert(!multiPlayerMode.isGameOver)
+      assert(!multiPlayerMode.isGameOver())
     }
 
     // Mock `playGame` related components if available, if not, the test might be omitted or defined based on the available logic.

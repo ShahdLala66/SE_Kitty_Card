@@ -5,7 +5,7 @@ import model.Game
 
 class RandomStrategy extends Strategy {
   override def playTurn(game: Game): Unit = {
-    game.handlePlayerTurn()
-    game.switchTurns()
-  }
+      game.handlePlayerTurn()
+      game.switchTurns()
+    }
 }

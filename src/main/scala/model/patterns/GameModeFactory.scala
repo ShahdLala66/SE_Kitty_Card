@@ -8,7 +8,7 @@ object GameModeFactory {
   def getGameMode(mode: String, game: Game, strategy: Option[Strategy] = None): GameMode = {
     createGameMode(mode, game, strategy)
   }
-  
+
   def createGameMode(mode: String, game: Game, strategy: Option[Strategy] = None): GameMode = {
     mode.toLowerCase match {
       case "singleplayer" => new SinglePlayerMode(game)

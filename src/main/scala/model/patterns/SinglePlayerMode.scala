@@ -1,13 +1,12 @@
 // src/main/scala/model/patterns/SinglePlayerMode.scala
 package model.patterns
 
-import model.*
+import model.{Game, Player}
 
 class SinglePlayerMode(game: Game) extends GameMode {
   override def startGame(): Unit = {
-    game.initialize()
     val player = selectOrCreatePlayer()
-    game.start(player.name, "AI")
+    sys.exit() // Exit the program after starting the game
   }
 
   override def playTurn(): Unit = {
