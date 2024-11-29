@@ -25,9 +25,6 @@ jobs:
       - name: Run tests
         run: sbt coverage test coverageReport
 
-      - name: Fix Scoverage Report Paths
-        run: sed -i 's|filename="Main.scala"|filename="src/main/scala/Main.scala"|g' target/scala-3.3.3/scoverage-report/scoverage.xml
-
 
       - name: SonarCloud Scoverage Fix
         uses: pervasive-cats/sonarcloud-scoverage-fix@v1.0.1
