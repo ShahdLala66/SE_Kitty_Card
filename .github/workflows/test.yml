@@ -47,4 +47,4 @@ jobs:
             -Dsonar.sources=src/main
             -Dsonar.tests=src/test/scala
             -Dsonar.sourceEncoding=UTF-8
-        projectBaseDir: .
+          projectBaseDir: .
