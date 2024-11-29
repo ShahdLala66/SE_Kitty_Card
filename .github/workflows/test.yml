@@ -31,16 +31,11 @@ jobs:
 
       - name: SonarCloud Scoverage Fix
         uses: pervasive-cats/sonarcloud-scoverage-fix@v1.0.1
-        with:
-          scoverageReport: target/scala-3.3.3./scoverage-report/scoverage.xml
-
-      - name: Analyze with SonarCloud
-        uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
-
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
+            scoverageReport: target/scala-3.3.3./scoverage-report/scoverage.xml
             -Dsonar.projectBaseDir=/github/workspace
             -Dsonar.projectKey=ShahdLala66_SE_Kitty_Card
             -Dsonar.organization=shahdlala66
