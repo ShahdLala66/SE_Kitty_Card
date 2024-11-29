@@ -51,6 +51,6 @@ jobs:
             -Dsonar.sources=src/main
             -Dsonar.tests=src/test
             -Dsonar.sourceEncoding=UTF-8
-            -Dsonar.scala.scoverage.reportPaths=target/scala-3.3.3/scoverage-report/scoverage.xml
+            -Dsonar.scala.scoverage.reportPaths= D:/SE_Kitty_Card/target/scala-3.3.3/scoverage-report/scoverage.xml
             -Dsonar.log.level=DEBUG
             -Dsonar.verbose=true
