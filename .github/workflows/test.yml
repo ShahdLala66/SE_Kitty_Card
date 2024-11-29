@@ -3,6 +3,7 @@ name: Test workflow
 on:
   push:
     branches:
+
   pull_request:
     branches:
 
@@ -13,23 +14,22 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Fetch full history for Git data
 
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'adopt'
-          java-version: '21'
+          distribution: 'adopt'   # You cajn use 'adopt' or another Java distribution of your choice
+          java-version: '21'      # Adjust according to your project’s requirements
 
       - name: Run tests
         run: sbt coverage test coverageReport
 
-
-      - name: SonarCloud Scoverage Fix
-        uses: pervasive-cats/sonarcloud-scoverage-fix@v1.0.1
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
         with:
-          args: >
-            scoverageReport: target/scala-3.3.3./scoverage-report/scoverage.xml
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}  # Uses the secret stored in GitHub Actions
+
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@cfd0633edbd2411b532b808ba7a8b5e04f76d2c8
+
