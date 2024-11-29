@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history for Git data
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -26,21 +28,18 @@ jobs:
       - name: Debug Scoverage Report
         run: cat target/scala-3.3.3/scoverage-report/scoverage.xml
 
-      - name: Adjust Coverage Paths
-        run: sed -i "s|/home/runner/work/SE_Kitty_Card/SE_Kitty_Card/||g" target/scala-3.3.3/scoverage-report/scoverage.xml
-
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
+            -Dsonar.projectBaseDir=/github/workspace
             -Dsonar.projectKey=ShahdLala66_SE_Kitty_Card
             -Dsonar.organization=shahdlala66
-            -Dsonar.scala.coverage.reportPaths=target/scala-3.3.3/scoverage-report/scoverage.xml
-            -Dsonar.sources=src/main/
-            -Dsonar.tests=src/test/
+            -Dsonar.sources=src/main
+            -Dsonar.tests=src/test
             -Dsonar.sourceEncoding=UTF-8
+            -Dsonar.scala.scoverage.reportPaths=target/scala-3.3.3/scoverage-report/scoverage.xml
             -Dsonar.log.level=DEBUG
             -Dsonar.verbose=true
-            -Dsonar.projectBaseDir=$GITHUB_WORKSPACE
