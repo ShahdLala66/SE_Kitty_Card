@@ -44,7 +44,7 @@ jobs:
             -Dsonar.organization=shahdlala66
             -Dsonar.scala.coverage.reportPaths=${{ env.ScoverageReportPath }}
             -Dsonar.coverage.jacoco.xmlReportPaths= # Disable JaCoCo by setting an empty path
-            -Dsonar.sources=src/main
-            -Dsonar.tests=src/test
+            -Dsonar.sources=src/main/
+            -Dsonar.tests=src/test/
             -Dsonar.sourceEncoding=UTF-8
           projectBaseDir: .
