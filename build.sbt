@@ -13,8 +13,6 @@ lazy val root = (project in file("."))
 
   )
 
-coverageReport := target.value / "scoverage-report" / "scoverage.xml"
-
 
 libraryDependencies ++= Seq(
   "com.google.inject" % "guice" % "7.0.0",
