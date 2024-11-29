@@ -1,9 +1,10 @@
+// src/main/scala/model/patterns/GameMode.scala
 package model.patterns
 
 trait GameMode {
   def playGame(): Unit = {
     startGame()
-    while (!isGameOver()) { //this is the template method
+    while (!isGameOver) {
       playTurn()
     }
     endGame()
@@ -12,5 +13,5 @@ trait GameMode {
   def startGame(): Unit
   def playTurn(): Unit
   def endGame(): Unit
-  def isGameOver(): Boolean
+  def isGameOver: Boolean
 }

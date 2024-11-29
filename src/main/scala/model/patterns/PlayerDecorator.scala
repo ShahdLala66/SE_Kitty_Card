@@ -2,7 +2,7 @@
 package model.patterns
 
 import model.*
-import model.cards.{Card, Hand, NumberCards}
+import model.cards.{Card, Hand}
 
 abstract class PlayerDecorator(decoratedPlayer: Player) extends Player(decoratedPlayer.name) {
   var level: Int = 1

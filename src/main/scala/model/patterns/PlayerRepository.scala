@@ -24,7 +24,7 @@ object PlayerRepository {
     }
   }
 
-  def savePlayers(players: List[PlayerData]): Unit = {
+  private def savePlayers(players: List[PlayerData]): Unit = {
     val json = Json.toJson(players).toString()
     val writer = new PrintWriter(new File(filePath))
     try writer.write(json) finally writer.close()
