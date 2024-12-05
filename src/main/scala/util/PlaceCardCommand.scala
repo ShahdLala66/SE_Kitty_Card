@@ -9,7 +9,7 @@ class PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: In
   private val previousColor = grid.getColor(position._1, position._2)
 
   override def execute(): Unit = {
-    previousState = new GameState(grid.copy(), List(player.copy()), 0, player.points) // Save the previous state
+    previousState = new GameState(grid, List(player.copy()), 0, player.points) // Save the previous state
     grid.placeCard(position._1, position._2, card)
     player.addPoints(points)
   }
@@ -20,7 +20,8 @@ class PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: In
     player.addPoints(-points)
     // Restore the previous state
     grid.updateGrid(previousState.getGrid)
-    player.updatePoints(previousState.getPoints)
+    previousState.getPlayers.foreach(p => p.updateHand(previousState.getPlayers.head.getHand))
+    previousState.getPlayers.foreach(p => p.updatePoints(previousState.getPoints))
   }
 
   override def redo(): Unit = {

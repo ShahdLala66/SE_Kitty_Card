@@ -2,7 +2,7 @@
 package model.patterns
 
 import model.*
-import model.cards.{Card, Hand}
+import model.cards.Card
 
 abstract class PlayerDecorator(decoratedPlayer: Player) extends Player(decoratedPlayer.name) {
   var level: Int = 1 //train umwandeln
@@ -15,7 +15,7 @@ abstract class PlayerDecorator(decoratedPlayer: Player) extends Player(decorated
     updateLevel()
   }
 
-  override def getHand: Hand = decoratedPlayer.getHand
+  override def getHand: List[Card] = decoratedPlayer.getHand
 
   private def updateLevel(): Unit = {
     level = decoratedPlayer.points / 100 // Example: 1 level for every 100 points

@@ -10,5 +10,9 @@ class Hand {
 
   def getCards: List[Card] = cards
 
+  def updateHand(newCards: List[Card]): Unit = {
+    cards = newCards
+  }
+
   override def toString: String = cards.mkString(", ")
 }

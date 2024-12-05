@@ -5,17 +5,13 @@ import model.{Grid, Player}
 
 class GameState(private val grid: Grid, private val players: List[Player], private val currentPlayerIndex: Int, private val points: Int) {
 
-  def getCurrentPlayer: Player = {
-    players(currentPlayerIndex)
-  }
+  def getGrid: Grid = grid
 
-  def getGrid: Grid = {
-    grid
-  }
+  def getPlayers: List[Player] = players
 
-  def getPoints: Int = {
-    points
-  }
+  def getCurrentPlayer: Player = players(currentPlayerIndex)
+
+  def getPoints: Int = points
 
   def updateGrid(newGrid: Grid): GameState = {
     new GameState(newGrid, players, currentPlayerIndex, points)

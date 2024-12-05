@@ -53,7 +53,7 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
     currentPlayer.drawCard(deck) match {
       case Some(card) =>
         notifyObservers(CardDrawn(currentPlayer.name, card.toString))
-        currentPlayer.getHand.getCards.foreach(println)
+        currentPlayer.getHand.foreach(println)
       case None =>
         notifyObservers(InvalidPlacement())
     }
@@ -63,15 +63,27 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
     var validInput = false
     while (!validInput) {
       val input = scala.io.StdIn.readLine()
-      if (input.trim.toLowerCase == "draw") {
-        drawCardForCurrentPlayer()
-        validInput = true
-      } else {
-        validInput = handleCardPlacement(input)
+      input.trim.toLowerCase match {
+        case "undo" =>
+          commandManager.undo().foreach { state =>
+            currentState = state
+            notifyObservers(UndoEvent(currentState))
+          }
+          validInput = true
+        case "redo" =>
+          commandManager.redo().foreach { state =>
+            currentState = state
+            notifyObservers(RedoEvent(currentState))
+          }
+          validInput = true
+        case "draw" =>
+          drawCardForCurrentPlayer()
+          validInput = true
+        case _ =>
+          validInput = handleCardPlacement(input)
       }
     }
   }
-
 
   def handleCardPlacement(input: String): Boolean = {
     input.trim.toLowerCase match {
@@ -94,11 +106,14 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
           val x = parts(1).toInt
           val y = parts(2).toInt
 
-          currentPlayer.getHand.getCards.lift(cardIndex) match {
+          currentPlayer.getHand.lift(cardIndex) match {
             case Some(card: NumberCards) =>
-              val command = new PlaceCardCommand(grid, card, currentPlayer, grid.calculatePoints(x, y), (x, y))
+              val points = grid.calculatePoints(x, y)
+              val command = new PlaceCardCommand(grid, card, currentPlayer, points, (x, y))
               currentState = commandManager.executeCommand(command, currentState)
-              notifyObservers(CardPlacementSuccess(x, y, card.toString, grid.calculatePoints(x, y)))
+              currentPlayer.addPoints(points)
+              notifyObservers(CardPlacementSuccess(x, y, card.toString, points))
+              println(s"${currentPlayer.name}'s total points: ${currentPlayer.points}")
               true
             case _ =>
               notifyObservers(InvalidPlacement())
@@ -112,8 +127,7 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
         }
     }
   }
-  
-  
+
   def switchTurns(): Unit = {
     grid.display()
     currentPlayer = if (currentPlayer == player1) player2 else player1
