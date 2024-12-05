@@ -3,7 +3,7 @@ package model
 
 import model.cards.{Card, NumberCards}
 import model.patterns.GameMode
-import util.*
+import util._
 
 import scala.util.{Failure, Success, Try}
 
@@ -11,15 +11,15 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
   var currentPlayer: Player = _
   var player1: Player = _
   var player2: Player = _
+  private val commandManager = new CommandManager()
+  private var currentState: GameState = new GameState(grid, List(), 0)
 
   def isGridFull: Boolean = grid.isFull
 
   def getGrid: Grid = grid
 
   def initialize(): Unit = {
-    // Display the initial grid colors
     grid.displayInitialColors()
-    // Any other initialization logic
   }
 
   def start(player1Name: String, player2Name: String): Unit = {
@@ -53,7 +53,7 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
     currentPlayer.drawCard(deck) match {
       case Some(card) =>
         notifyObservers(CardDrawn(currentPlayer.name, card.toString))
-        currentPlayer.getHand.getCards.foreach(println) // Display updated hand
+        currentPlayer.getHand.getCards.foreach(println)
       case None =>
         notifyObservers(InvalidPlacement())
     }
@@ -72,41 +72,55 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
     }
   }
 
-  def handleCardPlacement(input: String): Boolean = {
-    Try {
-      val parts = input.split(" ")
-      val cardIndex = parts(0).toInt
-      val x = parts(1).toInt
-      val y = parts(2).toInt
 
-      currentPlayer.getHand.getCards.lift(cardIndex) match {
-        case Some(card: NumberCards) =>
-          if (grid.placeCard(x, y, card)) {
-            val pointsEarned = grid.calculatePoints(x, y)
-            currentPlayer.addPoints(pointsEarned)
-            notifyObservers(CardPlacementSuccess(x, y, card.toString, pointsEarned))
-            grid.display() // Display updated grid
-            true
-          } else {
+  def handleCardPlacement(input: String): Boolean = {
+    input.trim.toLowerCase match {
+      case "undo" =>
+        commandManager.undo().foreach { state =>
+          currentState = state
+          grid.display() // Display the grid after undo
+          notifyObservers(UndoEvent(currentState))
+        }
+        true
+      case "redo" =>
+        commandManager.redo().foreach { state =>
+          currentState = state
+          grid.display() // Display the grid after redo
+          notifyObservers(RedoEvent(currentState))
+        }
+        true
+      case _ =>
+        Try {
+          val parts = input.split(" ")
+          val cardIndex = parts(0).toInt
+          val x = parts(1).toInt
+          val y = parts(2).toInt
+
+          currentPlayer.getHand.getCards.lift(cardIndex) match {
+            case Some(card: NumberCards) =>
+              val command = new PlaceCardCommand(grid, card, currentPlayer, grid.calculatePoints(x, y), (x, y), 0)
+              currentState = commandManager.executeCommand(command, currentState)
+              notifyObservers(CardPlacementSuccess(x, y, card.toString, grid.calculatePoints(x, y)))
+              grid.display() // Display updated grid
+              true
+            case _ =>
+              notifyObservers(InvalidPlacement())
+              false
+          }
+        } match {
+          case Success(result) => result
+          case Failure(_) =>
             notifyObservers(InvalidPlacement())
             false
-          }
-        case _ =>
-          notifyObservers(InvalidPlacement())
-          false
-      }
-    } match {
-      case Success(result) => result
-      case Failure(_) =>
-        notifyObservers(InvalidPlacement())
-        false
+        }
     }
   }
-
+  
+  
   def switchTurns(): Unit = {
     currentPlayer = if (currentPlayer == player1) player2 else player1
     notifyObservers(PlayerTurn(currentPlayer.name))
-    grid.display() // Display updated grid after switching turns
+    grid.display()
   }
 
   private def displayFinalScores(): Unit = {

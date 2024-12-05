@@ -19,4 +19,5 @@ trait Observable {
     def notifyObservers(event: GameEvent): Unit = {
         observers.foreach(_.update(event))
     }
+    
 }

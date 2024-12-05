@@ -1,19 +1,20 @@
 // src/main/scala/controller/GameController.scala
 package controller
 
-import model.*
+import model._
 import model.patterns.{GameModeFactory, PreSeenDeckStrategy, RandomStrategy, Strategy}
-import util.{GameCallbacks, GameEvent, Observer}
+import util._
 
 class GameController extends GameCallbacks with Observer {
   private val deck = new Deck()
-  private val grid = Grid(3)
+  private val grid = Grid.getInstance(3)
   private var observer: Option[Observer] = None
+  private val commandManager = new CommandManager()
+  private var currentState: GameState = new GameState(grid, List(), 0)
 
   def setObserver(observer: Observer): Unit = {
     this.observer = Some(observer)
   }
-
 
   def startGame(): Unit = {
     val mode = promptForGameMode()
@@ -38,6 +39,25 @@ class GameController extends GameCallbacks with Observer {
         println("Invalid game mode selected.")
     }
   }
+
+  def executeCommand(command: Command): Unit = {
+    currentState = commandManager.executeCommand(command, currentState)
+  }
+
+  def undo(): Unit = {
+    commandManager.undo().foreach { state =>
+      currentState = state
+      observer.foreach(_.update(UndoEvent(currentState)))
+    }
+  }
+
+  def redo(): Unit = {
+    commandManager.redo().foreach { state =>
+      currentState = state
+      observer.foreach(_.update(RedoEvent(currentState)))
+    }
+  }
+
 
   private def promptForPlayerName(player: String): String = {
     println(s"Enter the name for $player:")

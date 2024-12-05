@@ -9,6 +9,10 @@ case class Player(name: String, var points: Int = 0) {
     def addPoints(newPoints: Int): Unit = {
         points += newPoints
     }
+    
+    def setPoints(newPoints: Int): Unit = {
+        points = newPoints
+    }
 
     def drawCard(deck: Deck): Option[Card] = {
         val drawnCard = deck.drawCard()

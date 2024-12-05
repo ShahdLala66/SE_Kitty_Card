@@ -1,13 +1,8 @@
-// src/main/scala/view/Tui.scala
+// src/main/scala/aview/Tui.scala
 package aview
 
-import util.Observer
-import util.GameEvent
-import util.PlayerTurn
-import util.CardDrawn
-import util.InvalidPlacement
-import util.CardPlacementSuccess
-import util.GameOver
+import util.*
+
 import scala.io.StdIn.readLine
 
 class Tui extends Observer {
@@ -20,6 +15,17 @@ class Tui extends Observer {
     "Red" -> "\u001b[31m",
     "White" -> "\u001b[37m"
   )
+
+  private var undoCallback: () => Unit = () => {}
+  private var redoCallback: () => Unit = () => {}
+
+  def setUndoCallback(callback: () => Unit): Unit = {
+    undoCallback = callback
+  }
+
+  def setRedoCallback(callback: () => Unit): Unit = {
+    redoCallback = callback
+  }
 
   def run(): Unit = {
     welcomeMessage()
@@ -35,12 +41,11 @@ class Tui extends Observer {
         val player1Name = promptPlayerName("Enter name for Player 1: ")
         val player2Name = promptPlayerName("Enter name for Player 2: ")
         println(s"Starting multiplayer game between $player1Name and $player2Name...")
+        displayMultiplayerMenu()
 
       case _ =>
         println("An unexpected mode was selected.")
     }
-
-    // Logic to start the actual game would go here
   }
 
   def selectGameMode(): String = {
@@ -114,6 +119,36 @@ class Tui extends Observer {
     println("Earn points by placing cards on matching colors or white squares." + Console.RESET)
   }
 
+  def displayMultiplayerMenu(): Unit = {
+    var continue = true
+    while (continue) {
+      println("Multiplayer Menu:")
+      println("1. Place Card")
+      println("2. Remove Card")
+      println("3. Undo")
+      println("4. Redo")
+      println("5. Exit")
+      print("Enter your choice: ")
+
+      readLine().trim match {
+        case "1" => placeCard()
+        case "2" => removeCard()
+        case "3" => undoCallback()
+        case "4" => redoCallback()
+        case "5" => continue = false
+        case _ => println("Invalid choice. Please try again.")
+      }
+    }
+  }
+
+  def placeCard(): Unit = {
+    // Implement the logic to place a card
+  }
+
+  def removeCard(): Unit = {
+    // Implement the logic to remove a card
+  }
+
   override def update(event: GameEvent): Unit = {
     event match {
       case PlayerTurn(playerName) =>
@@ -135,6 +170,8 @@ class Tui extends Observer {
         } else {
           println("It's a tie!")
         }
+      case UndoEvent(_) => println("Undo performed.")
+      case RedoEvent(_) => println("Redo performed.")
       case util.PrintMeh(_) => print("meh not implemented yet")
       case util.PrintBadChoice(_) => print("bad not implemented yet")
       case util.ShowColoredCat(_) => print("show cat not implemented yet")
