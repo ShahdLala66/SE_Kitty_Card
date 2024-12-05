@@ -14,6 +14,7 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
   private val commandManager = new CommandManager()
   private var currentState: GameState = new GameState(grid, List(), 0, 0) // Added points argument
 
+  
   def isGridFull: Boolean = grid.isFull
 
   def getGrid: Grid = grid
@@ -113,7 +114,7 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
               currentState = commandManager.executeCommand(command, currentState)
               currentPlayer.addPoints(points)
               notifyObservers(CardPlacementSuccess(x, y, card.toString, points))
-              println(s"${currentPlayer.name}'s total points: ${currentPlayer.points}")
+              notifyObservers(TotalPoints(player1.points, player2.points))
               true
             case _ =>
               notifyObservers(InvalidPlacement())

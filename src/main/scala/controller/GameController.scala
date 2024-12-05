@@ -6,7 +6,7 @@ import model.cards.Card
 import model.patterns.{GameModeFactory, PreSeenDeckStrategy, RandomStrategy, Strategy}
 import util.*
 
-class GameController extends GameCallbacks with Observer {
+class GameController extends Observer {
     private val deck = new Deck()
     private val grid = Grid.getInstance(3)
     private var observer: Option[Observer] = None

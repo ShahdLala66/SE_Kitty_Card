@@ -13,3 +13,5 @@ case class CardPlacementSuccess(x: Int, y: Int, card: String, points: Int) exten
 case class GameOver(player1Name: String, player1Points: Int, player2Name: String, player2Points: Int) extends GameEvent
 case class UndoEvent(state: GameState) extends GameEvent
 case class RedoEvent(state: GameState) extends GameEvent
+case class TotalPoints(player1Points: Int, player2Points: Int) extends GameEvent
+case class StrategySelection() extends GameEvent // Neues Event für die Strategieauswahl

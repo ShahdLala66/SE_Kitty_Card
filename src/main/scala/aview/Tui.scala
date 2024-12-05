@@ -1,6 +1,7 @@
 // src/main/scala/aview/Tui.scala
 package aview
 
+import model.patterns.{PreSeenDeckStrategy, RandomStrategy}
 import util.*
 
 import scala.io.StdIn.readLine
@@ -141,6 +142,23 @@ class Tui extends Observer {
     }
   }
 
+  def selectStrategy(): Unit = {
+    println("Choose a strategy for Multiplayer mode:")
+    println("1. Random Strategy")
+    println("2. Pre-Seen Deck Strategy")
+    print("Enter the number corresponding to your choice: ")
+
+    val strategy = readLine().trim match {
+      case "1" => new RandomStrategy()
+      case "2" => new PreSeenDeckStrategy()
+      case _ =>
+        println("Invalid choice, defaulting to Random Strategy.")
+        new RandomStrategy()
+    }
+
+    // Hier können Sie die Strategie an den GameController zurückgeben oder weiterverarbeiten
+  }
+
   def placeCard(): Unit = {
     // Implement the logic to place a card
   }
@@ -170,11 +188,14 @@ class Tui extends Observer {
         } else {
           println("It's a tie!")
         }
+      case TotalPoints(player1Points, player2Points) =>
+        println(s"Total points: Player 1: $player1Points, Player 2: $player2Points")
       case UndoEvent(_) => println("Undo performed.")
       case RedoEvent(_) => println("Redo performed.")
       case util.PrintMeh(_) => print("meh not implemented yet")
       case util.PrintBadChoice(_) => print("bad not implemented yet")
       case util.ShowColoredCat(_) => print("show cat not implemented yet")
+      
     }
   }
 }
