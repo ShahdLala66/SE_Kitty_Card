@@ -10,7 +10,7 @@ class GameController extends GameCallbacks with Observer {
   private val grid = Grid.getInstance(3)
   private var observer: Option[Observer] = None
   private val commandManager = new CommandManager()
-  private var currentState: GameState = new GameState(grid, List(), 0)
+  private var currentState: GameState = new GameState(grid, List(), 0, 0) // Added points argument
 
   def setObserver(observer: Observer): Unit = {
     this.observer = Some(observer)

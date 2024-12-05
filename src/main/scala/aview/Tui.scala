@@ -152,9 +152,9 @@ class Tui extends Observer {
   override def update(event: GameEvent): Unit = {
     event match {
       case PlayerTurn(playerName) =>
-        println(Console.BLUE + s"\n$playerName's turn.\n" + Console.RESET)
+        println(Console.BLUE + s"\n$playerName's turn." + Console.RESET)
       case CardDrawn(playerName, card) =>
-        println(Console.BLUE + s"\n$playerName drew: $card\n" + Console.RESET)
+        println(Console.BLUE + s"$playerName drew: $card\n" + Console.RESET)
       case InvalidPlacement() =>
         println("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
       case CardPlacementSuccess(x, y, card, points) =>

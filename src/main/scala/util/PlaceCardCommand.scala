@@ -1,22 +1,26 @@
+// src/main/scala/util/PlaceCardCommand.scala
 package util
 
 import model.{Grid, Player}
 import model.cards.NumberCards
 
-class PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: Int, position: (Int, Int), currentPlayerIndex: Int) extends Command {
-  private var previousState: Option[GameState] = None
+class PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: Int, position: (Int, Int)) extends Command {
+  private val previousCard = grid.getCard(position._1, position._2)
+  private val previousColor = grid.getColor(position._1, position._2)
 
   override def execute(): Unit = {
-    previousState = Some(new GameState(grid.copy(), List(player), currentPlayerIndex)) // Save the current state
-    grid.placeCard(position._1, position._2, card) // Place the card on the grid
-    player.addPoints(points) // Update the player's points
+    previousState = new GameState(grid.copy(), List(player.copy()), 0, player.points) // Save the previous state
+    grid.placeCard(position._1, position._2, card)
+    player.addPoints(points)
   }
 
   override def undo(): Unit = {
-    previousState.foreach { state =>
-      state.getGrid.display() // Use the observer to update the grid
-      player.setPoints(state.getCurrentPlayer.points) // Restore the player's points
-    }
+    grid.removeCard(position._1, position._2)
+    grid.setColor(position._1, position._2, previousColor)
+    player.addPoints(-points)
+    // Restore the previous state
+    grid.updateGrid(previousState.getGrid)
+    player.updatePoints(previousState.getPoints)
   }
 
   override def redo(): Unit = {

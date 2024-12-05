@@ -20,6 +20,10 @@ case class Player(name: String, var points: Int = 0) {
         drawnCard
     }
 
+    def updatePoints(newPoints: Int): Unit = {
+        this.points = newPoints
+    }
+
     def getHand: Hand = hand
 
     override def toString: String = s"$name (Points: $points)"

@@ -1,4 +1,3 @@
-// src/main/scala/model/Grid.scala
 package model
 
 import model.cards.Suit.*
@@ -15,9 +14,24 @@ case class Grid(size: Int) {
   private val rectangleColors: Array[Array[Suit]] = generateRandomRectangles()
   private val catPrint = new aview.Tui() // Create CatPrint instance
 
+  // List to store the history of grid states for undo functionality
+  private var history: List[Array[Array[Option[NumberCards]]]] = List(grid.map(_.clone))
+
   // Hilfsmethode für Testzwecke, um auf die Farben der Rechtecke zuzugreifen
   def getRectangleColors(x: Int, y: Int): Suit = rectangleColors(x)(y)
 
+  def getCard(x: Int, y: Int): Option[NumberCards] = grid(x)(y)
+  
+  def getColor(x: Int, y: Int): Suit = rectangleColors(x)(y)
+  
+  def setColor(x: Int, y: Int, color: Suit): Unit = {
+    rectangleColors(x)(y) = color
+  }
+  
+  def removeCard (x: Int, y: Int): Unit = {
+    grid(x)(y) = None
+  }
+  
   // Generate up to 4 random colored rectangles, others default to White
   private def generateRandomRectangles(): Array[Array[Suit]] = {
     val colors = List(Suit.Blue, Suit.Green, Suit.Purple, Suit.Red)
@@ -42,6 +56,7 @@ case class Grid(size: Int) {
   // Method to place a card on the grid
   def placeCard(x: Int, y: Int, card: NumberCards): Boolean = {
     if (isWithinBounds(x, y) && grid(x)(y).isEmpty) {
+      saveState() // Save the current state before making a change
       grid(x)(y) = Some(card)
       true
     } else {
@@ -71,6 +86,13 @@ case class Grid(size: Int) {
     grid.flatten.forall(_.isDefined)
   }
 
+  def updateGrid(newGrid: Grid): Unit = {
+    for (i <- grid.indices; j <- grid(i).indices) {
+      grid(i)(j) = newGrid.grid(i)(j)
+      rectangleColors(i)(j) = newGrid.rectangleColors(i)(j)
+    }
+  }
+
   // Method to display the grid along with rectangle colors
   def display(): Unit = {
     println("Grid layout (cards and rectangle colors):")
@@ -89,10 +111,10 @@ case class Grid(size: Int) {
 
   // Show only rectangle colors (before any cards are placed)
   def displayInitialColors(): Unit = {
-    println("Grid layout with initial rectangle colors:")
+    println("Initial grid layout with rectangle colors:")
     for (i <- rectangleColors.indices) {
       for (j <- rectangleColors(i).indices) {
-        print(f"${rectangleColors(i)(j)}%-10s | ")
+        print(s"Empty        [${rectangleColors(i)(j)}] | ")
       }
       println()
     }
@@ -100,6 +122,25 @@ case class Grid(size: Int) {
 
   def setRectangleColor(x: Int, y: Int, color: Suit): Unit = {
     rectangleColors(x)(y) = color
+  }
+
+  // Save the current state of the grid to the history
+  private def saveState(): Unit = {
+    val gridCopy = grid.map(_.map(_.map(card => card.copy())))
+    history = gridCopy :: history
+  }
+
+  // Undo the last action by restoring the previous state
+  def undo(): Boolean = {
+    history match {
+      case _ :: previousState :: rest =>
+        for (i <- grid.indices; j <- grid(i).indices) {
+          grid(i)(j) = previousState(i)(j)
+        }
+        history = rest
+        true
+      case _ => false // No previous state to undo to
+    }
   }
 }
 

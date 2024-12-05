@@ -12,14 +12,14 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
   var player1: Player = _
   var player2: Player = _
   private val commandManager = new CommandManager()
-  private var currentState: GameState = new GameState(grid, List(), 0)
+  private var currentState: GameState = new GameState(grid, List(), 0, 0) // Added points argument
 
   def isGridFull: Boolean = grid.isFull
 
   def getGrid: Grid = grid
 
   def initialize(): Unit = {
-    grid.displayInitialColors()
+    //grid.displayInitialColors()
   }
 
   def start(player1Name: String, player2Name: String): Unit = {
@@ -30,7 +30,7 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
     distributeInitialCards()
     grid.displayInitialColors()
     gameMode.startGame()
-    displayFinalScores()
+    //displayFinalScores()
   }
 
   private def distributeInitialCards(): Unit = {
@@ -78,14 +78,12 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
       case "undo" =>
         commandManager.undo().foreach { state =>
           currentState = state
-          grid.display() // Display the grid after undo
           notifyObservers(UndoEvent(currentState))
         }
         true
       case "redo" =>
         commandManager.redo().foreach { state =>
           currentState = state
-          grid.display() // Display the grid after redo
           notifyObservers(RedoEvent(currentState))
         }
         true
@@ -98,10 +96,9 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
 
           currentPlayer.getHand.getCards.lift(cardIndex) match {
             case Some(card: NumberCards) =>
-              val command = new PlaceCardCommand(grid, card, currentPlayer, grid.calculatePoints(x, y), (x, y), 0)
+              val command = new PlaceCardCommand(grid, card, currentPlayer, grid.calculatePoints(x, y), (x, y))
               currentState = commandManager.executeCommand(command, currentState)
               notifyObservers(CardPlacementSuccess(x, y, card.toString, grid.calculatePoints(x, y)))
-              grid.display() // Display updated grid
               true
             case _ =>
               notifyObservers(InvalidPlacement())
@@ -118,9 +115,9 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
   
   
   def switchTurns(): Unit = {
+    grid.display()
     currentPlayer = if (currentPlayer == player1) player2 else player1
     notifyObservers(PlayerTurn(currentPlayer.name))
-    grid.display()
   }
 
   private def displayFinalScores(): Unit = {
