@@ -1,7 +1,9 @@
 // src/main/scala/util/Command.scala
-package util
+package util.command
 
-trait Command {
+import util.GameState
+
+trait CommandTrait {
   var previousState: GameState = _
   def execute(): Unit
   def undo(): Unit

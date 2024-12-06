@@ -1,10 +1,11 @@
 // src/main/scala/util/PlaceCardCommand.scala
-package util
+package util.command
 
-import model.{Grid, Player}
 import model.cards.NumberCards
+import model.{Grid, Player}
+import util.GameState
 
-class PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: Int, position: (Int, Int)) extends Command {
+class PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: Int, position: (Int, Int)) extends CommandTrait {
   private val previousCard = grid.getCard(position._1, position._2)
   private val previousColor = grid.getColor(position._1, position._2)
   private var earnedPoints = 0

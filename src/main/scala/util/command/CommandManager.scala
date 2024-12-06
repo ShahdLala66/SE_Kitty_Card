@@ -1,13 +1,16 @@
 // src/main/scala/util/CommandManager.scala
-package util
+package util.command
 
+import util.GameState
+
+import scala.collection.mutable
 import scala.collection.mutable.Stack
 
 class CommandManager {
-    private val undoStack: Stack[Command] = Stack()
-    private val redoStack: Stack[Command] = Stack()
+    private val undoStack: mutable.Stack[CommandTrait] = mutable.Stack()
+    private val redoStack: mutable.Stack[CommandTrait] = mutable.Stack()
 
-    def executeCommand(command: Command, currentState: GameState): GameState = {
+    def executeCommand(command: CommandTrait, currentState: GameState): GameState = {
         command.execute()
         undoStack.push(command)
         redoStack.clear()

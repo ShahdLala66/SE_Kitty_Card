@@ -3,7 +3,8 @@ package model
 
 import model.cards.{Card, NumberCards}
 import model.patterns.GameMode
-import util._
+import util.*
+import util.command.{CommandManager, PlaceCardCommand}
 
 import scala.util.{Failure, Success, Try}
 
@@ -86,20 +87,20 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
     }
   }
 
+  private def executeUndoRedo(action: () => Option[GameState], event: GameEvent): Boolean = {
+    action().foreach { state =>
+      currentState = state
+      notifyObservers(event)
+    }
+    true
+  }
+
   def handleCardPlacement(input: String): Boolean = {
     input.trim.toLowerCase match {
       case "undo" =>
-        commandManager.undo().foreach { state =>
-          currentState = state
-          notifyObservers(UndoEvent(currentState))
-        }
-        true
+        executeUndoRedo(commandManager.undo, UndoEvent(currentState))
       case "redo" =>
-        commandManager.redo().foreach { state =>
-          currentState = state
-          notifyObservers(RedoEvent(currentState))
-        }
-        true
+        executeUndoRedo(commandManager.redo, RedoEvent(currentState))
       case _ =>
         Try {
           val parts = input.split(" ")
@@ -128,6 +129,7 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
         }
     }
   }
+  
 
   def switchTurns(): Unit = {
     grid.display()

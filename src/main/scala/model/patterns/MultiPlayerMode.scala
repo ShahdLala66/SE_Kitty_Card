@@ -16,7 +16,7 @@ class MultiPlayerMode(game: Game, strategy: Strategy) extends GameMode {
     println("Ending multiplayer game...")
   }
 
-  override def isGameOver(): Boolean = {
+  override def isGameOver: Boolean = {
     game.getGrid.isFull
   }
 }
