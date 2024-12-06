@@ -23,7 +23,7 @@ case class Player(name: String, var points: Int = 0) {
     }
 
     def updatePoints(newPoints: Int): Unit = {
-        this.points = newPoints
+       points = newPoints
     }
 
     def getHand: List[Card] = hand

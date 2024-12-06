@@ -20,6 +20,19 @@ class SinglePlayerModeSpec extends AnyWordSpec with Matchers with MockFactory {
     }
 
     "SinglePlayerMode" should {
+        "select an existing player when a valid choice is made" in {
+            val mockGame = mock[Game]
+            val mockPlayerRepository = mock[PlayerRepository]
+            val players = List(Player("Player1", 100), Player("Player2", 200))
+            (mockPlayerRepository.loadPlayers _).expects().returning(toPlayerData(players)).once() // Expect the loadPlayers method to be called once
+
+            val mode = new SinglePlayerMode(mockGame, mockPlayerRepository)
+            simulateInput("1\n") { // Simulate user input for selecting the first player
+                val selectedPlayer = mode.selectExistingPlayer()
+                selectedPlayer.name shouldBe "Player1"
+                selectedPlayer.points shouldBe 100
+            }
+        }
         "initialize the game and print a message when startGame is called" in {
             val mockGame = mock[Game]
             val mockPlayerRepository = mock[PlayerRepository]
@@ -49,19 +62,6 @@ class SinglePlayerModeSpec extends AnyWordSpec with Matchers with MockFactory {
             val mockPlayerRepository = mock[PlayerRepository]
             val mode = new SinglePlayerMode(mockGame, mockPlayerRepository)
             mode.isGameOver shouldBe false
-        }
-
-        "select an existing player when a valid choice is made" in {
-            val mockGame = mock[Game]
-            val mockPlayerRepository = mock[PlayerRepository]
-            val players = List(Player("Player1", 100), Player("Player2", 200))
-            (mockPlayerRepository.loadPlayers _).expects().returning(toPlayerData(players)).once() // Expect the loadPlayers method to be called once
-
-            val mode = new SinglePlayerMode(mockGame, mockPlayerRepository)
-            simulateInput("1\n") { // Simulate user input for selecting the first player
-                val selectedPlayer = mode.selectExistingPlayer()
-                selectedPlayer.points should be >= 0
-            }
         }
 
         "create a new player when no existing players are found" in {

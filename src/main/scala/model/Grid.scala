@@ -131,7 +131,6 @@ case class Grid(size: Int) {
         history = gridCopy :: history
     }
 
-    // Undo the last action by restoring the previous state
     def undo(): Boolean = {
         history match {
             case _ :: previousState :: rest =>
@@ -140,7 +139,7 @@ case class Grid(size: Int) {
                 }
                 history = rest
                 true
-            case _ => false // No previous state to undo to
+            case _ => false
         }
     }
 }

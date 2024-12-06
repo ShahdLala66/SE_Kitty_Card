@@ -5,7 +5,8 @@ import model.cards.NumberCards
 import model.{Grid, Player}
 import util.GameState
 
-class PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: Int, position: (Int, Int)) extends CommandTrait {
+class
+PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: Int, position: (Int, Int)) extends CommandTrait {
   private val previousCard = grid.getCard(position._1, position._2)
   private val previousColor = grid.getColor(position._1, position._2)
   private var earnedPoints = 0
@@ -23,11 +24,12 @@ class PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: In
     player.addPoints(-earnedPoints)
     // Restore the previous state
     grid.updateGrid(previousState.getGrid)
+    player.updatePoints(previousState.getPoints)
     previousState.getPlayers.foreach(p => p.updateHand(previousState.getPlayers.head.getHand))
     previousState.getPlayers.foreach(p => p.updatePoints(previousState.getPoints))
   }
 
   override def redo(): Unit = {
-    execute() // Reapply the execute method
+    execute()
   }
 }
