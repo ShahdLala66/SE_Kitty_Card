@@ -11,7 +11,7 @@ object GameModeFactory {
 
   def createGameMode(mode: String, game: Game, strategy: Option[Strategy] = None): GameMode = {
     mode.toLowerCase match {
-      case "singleplayer" | "s" => new SinglePlayerMode(game)
+      case "singleplayer" | "s" => new SinglePlayerMode(game, PlayerRepositoryImpl)
       case "multiplayer" | "m" =>
         val selectedStrategy = strategy.getOrElse(new RandomStrategy())
         new MultiPlayerMode(game, selectedStrategy)

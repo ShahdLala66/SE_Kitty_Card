@@ -16,8 +16,8 @@ class Tui extends Observer {
         "White" -> "\u001b[37m"
     )
 
-    private var undoCallback: () => Unit = () => {}
-    private var redoCallback: () => Unit = () => {}
+    var undoCallback: () => Unit = () => {}
+    var redoCallback: () => Unit = () => {}
 
     def setUndoCallback(callback: () => Unit): Unit = {
         undoCallback = callback
@@ -77,12 +77,12 @@ class Tui extends Observer {
         }
     }
 
-    private def promptPlayerName(prompt: String): String = {
+    def promptPlayerName(prompt: String): String = {
         print(prompt)
         readLine().trim
     }
 
-    private def printColoredCat(color: String): Unit = {
+    def printColoredCat(color: String): Unit = {
         println(s"$color ∧,,,∧")
         println(s"$color( ̳• · •̳)")
         println(s"$color/    づ♡")
@@ -96,7 +96,7 @@ class Tui extends Observer {
         }
     }
 
-    private def printColoredMessage(color: String, message: String): Unit = {
+    def printColoredMessage(color: String, message: String): Unit = {
         val colorCode = colors.getOrElse(color, "\u001b[0m")
         println(s"$colorCode ∧,,,∧")
         println(s"$colorCode ( ̳- · -̳)")
@@ -119,7 +119,7 @@ class Tui extends Observer {
     }
 
 
-    private def selectStrategy(): Unit = {
+    def selectStrategy(): Unit = {
         println("Choose a strategy for Multiplayer mode:")
         println("1. Random Strategy")
         println("2. Pre-Seen Deck Strategy")

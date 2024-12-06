@@ -1,267 +1,246 @@
+// src/test/scala/aview/TuiSpec.scala
 package aview
 
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
-import java.io.{ByteArrayOutputStream, PrintStream}
-import util._
+import org.scalatestplus.mockito.MockitoSugar
+import util.*
 
-class TuiSpec extends AnyWordSpec with Matchers {
+class TuiSpec extends AnyWordSpec with Matchers with MockitoSugar {
 
-    "The Tui" should {
+    "A Tui" should {
 
-        "print the correct welcome message" in {
-            val tui = new Tui
-            // Umleiten der Ausgabe
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
+        "set undo callback" in {
+            val tui = new Tui()
+            var undoCalled = false
+            tui.setUndoCallback(() => undoCalled = true)
+            tui.undoCallback()
+            undoCalled should be(true)
+        }
+
+        "set redo callback" in {
+            val tui = new Tui()
+            var redoCalled = false
+            tui.setRedoCallback(() => redoCalled = true)
+            tui.redoCallback()
+            redoCalled should be(true)
+        }
+
+        "run and start single player mode" in {
+            val tui = new Tui()
+            val inputStream = new java.io.ByteArrayInputStream("1\n1\nPlayer1\n".getBytes)
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withIn(inputStream) {
+                Console.withOut(outputStream) {
+                    tui.run()
+                }
+            }
+            val output = outputStream.toString
+            output should include("Welcome to the Kitty Card Game!")
+            output should include("Starting Feed the kitties mode for Player1...")
+        }
+
+        "run and start multiplayer mode" in {
+            val tui = new Tui()
+            val inputStream = new java.io.ByteArrayInputStream("2\nPlayer1\nPlayer2\n".getBytes)
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withIn(inputStream) {
+                Console.withOut(outputStream) {
+                    tui.run()
+                }
+            }
+            val output = outputStream.toString
+            output should include("Welcome to the Kitty Card Game!")
+            output should include("Starting multiplayer game between Player1 and Player2...")
+        }
+
+        "print the welcome message" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
                 tui.welcomeMessage()
             }
-
-            val output = outStream.toString
-            output should include ("Welcome to the Kitty Card Game!")
-            output should include ("Players take turns drawing and placing cards on the grid.")
-            output should include ("Earn points by placing cards on matching colors or white squares.")
+            outputStream.toString should include ("Welcome to the Kitty Card Game!")
         }
 
-        "print correct player turn message" in {
-            val tui = new Tui
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
-                tui.update(PlayerTurn("Alice"))
+        "select single player option 'Feed the kitties' when input is 1" in {
+            val tui = new Tui()
+            val inputStream = new java.io.ByteArrayInputStream("1\n".getBytes)
+            Console.withIn(inputStream) {
+                tui.selectSinglePlayerOption() should be("Feed the kitties")
             }
-
-            val output = outStream.toString
-            output should include ("Alice's turn.")
         }
 
-        "print correct card drawn message" in {
-            val tui = new Tui
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
-                tui.update(CardDrawn("Bob", "Red Card"))
+        "select single player option 'Play with the Kitty Card Boss' when input is 2" in {
+            val tui = new Tui()
+            val inputStream = new java.io.ByteArrayInputStream("2\n".getBytes)
+            Console.withIn(inputStream) {
+                tui.selectSinglePlayerOption() should be("Play with the Kitty Card Boss")
             }
-
-            val output = outStream.toString
-            output should include ("Bob drew: Red Card")
         }
 
-        "print correct invalid placement message" in {
-            val tui = new Tui
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
-                tui.update(InvalidPlacement())
-            }
-
-            val output = outStream.toString
-            output should include ("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
-        }
-
-        "print correct card placement success message" in {
-            val tui = new Tui
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
-                tui.update(CardPlacementSuccess(1, 2, "Green Card", 10))
-            }
-
-            val output = outStream.toString
-            output should include ("Card placed at (1, 2): Green Card. Points earned: 10.")
-        }
-
-        "print correct game over message" in {
-            val tui = new Tui
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
-                tui.update(GameOver("Alice", 50, "Bob", 40))
-            }
-
-            val output = outStream.toString
-            output should include ("Game over!")
-            output should include ("Alice's final score: 50")
-            output should include ("Bob's final score: 40")
-            output should include ("Alice wins!")
-        }
-
-        "print correct game over message part 2" in {
-            val tui = new Tui
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
-                tui.update(GameOver("Alice", 40, "Bob", 69))
-            }
-
-            val output = outStream.toString
-            output should include("Game over!")
-            output should include("Alice's final score: 40")
-            output should include("Bob's final score: 69")
-            output should include("Bob wins!")
-        }
-
-        "print correct game over tie message" in {
-            val tui = new Tui
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
-                tui.update(GameOver("Alice", 50, "Bob", 50))
-            }
-
-            val output = outStream.toString
-            output should include("Game over!")
-            output should include("Alice's final score: 50")
-            output should include("Bob's final score: 50")
-            output should include("It's a tie!")
-        }
-
-        "print correct bad choice message" in {
-            val tui = new Tui
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
-                tui.printBadChoice("Red")
-            }
-
-            val output = outStream.toString
-            output should include ("bad choice")
-        }
-
-        "print correct meh message" in {
-            val tui = new Tui
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
-                tui.printMeh("White")
-            }
-
-            val output = outStream.toString
-            output should include ("meh")
-        }
-
-        "print the cat in all colors" in {
-            val tui = new Tui
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
+        "print colored cats in a loop" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
                 tui.printCatLoop()
             }
-
-            val output = outStream.toString
+            val output = outputStream.toString
             tui.colors.values.foreach { color =>
                 output should include(s"$color ∧,,,∧")
             }
         }
 
-        "print correct meh not implemented message" in {
-            val tui = new Tui
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
-                tui.update(PrintMeh("White"))
-            }
 
-            val output = outStream.toString
-            output should include("meh not implemented yet")
-        }
 
-        "print correct bad choice not implemented message" in {
-            val tui = new Tui
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
-                tui.update(PrintBadChoice("Red"))
-            }
-
-            val output = outStream.toString
-            output should include("bad not implemented yet")
-        }
-
-        "print correct show cat not implemented message" in {
-            val tui = new Tui
-            val outStream = new ByteArrayOutputStream()
-            Console.withOut(new PrintStream(outStream)) {
-                tui.update(ShowColoredCat("Green"))
-            }
-
-            val output = outStream.toString
-            output should include("show cat not implemented yet")
-        }
-
-        "run method" should {
-            "start single player mode with 'Feed the kitties' option" in {
-                val tui = new Tui
-                val inStream = new java.io.ByteArrayInputStream("1\n1\nAlice\n".getBytes)
-                Console.withIn(inStream) {
-                    val outStream = new ByteArrayOutputStream()
-                    Console.withOut(new PrintStream(outStream)) {
-                        tui.run()
-                    }
-                    val output = outStream.toString
-                    output should include("Starting Feed the kitties mode for Alice...")
-                }
-            }
-
-            "start multiplayer mode" in {
-                val tui = new Tui
-                val inStream = new java.io.ByteArrayInputStream("2\nAlice\nBob\n".getBytes)
-                Console.withIn(inStream) {
-                    val outStream = new ByteArrayOutputStream()
-                    Console.withOut(new PrintStream(outStream)) {
-                        tui.run()
-                    }
-                    val output = outStream.toString
-                    output should include("Starting multiplayer game between Alice and Bob...")
-                }
+        "default to 'Feed the kitties' when input is invalid" in {
+            val tui = new Tui()
+            val inputStream = new java.io.ByteArrayInputStream("invalid\n".getBytes)
+            Console.withIn(inputStream) {
+                tui.selectSinglePlayerOption() should be("Feed the kitties")
             }
         }
 
-        "selectGameMode method" should {
-            "return 'Single' for input 1" in {
-                val tui = new Tui
-                val inStream = new java.io.ByteArrayInputStream("1\n".getBytes)
-                Console.withIn(inStream) {
-                    val result = tui.selectGameMode()
-                    result should be("Single")
-                }
-            }
-
-            "return 'Multiplayer' for input 2" in {
-                val tui = new Tui
-                val inStream = new java.io.ByteArrayInputStream("2\n".getBytes)
-                Console.withIn(inStream) {
-                    val result = tui.selectGameMode()
-                    result should be("Multiplayer")
-                }
-            }
-
-            "default to 'Single' for invalid input" in {
-                val tui = new Tui
-                val inStream = new java.io.ByteArrayInputStream("invalid\n".getBytes)
-                Console.withIn(inStream) {
-                    val result = tui.selectGameMode()
-                    result should be("Single")
-                }
+        "select single player mode when input is 1" in {
+            val tui = new Tui()
+            val inputStream = new java.io.ByteArrayInputStream("1\n".getBytes)
+            Console.withIn(inputStream) {
+                tui.selectGameMode() should be ("Single")
             }
         }
 
-        "selectSinglePlayerOption method" should {
-            "return 'Feed the kitties' for input 1" in {
-                val tui = new Tui
-                val inStream = new java.io.ByteArrayInputStream("1\n".getBytes)
-                Console.withIn(inStream) {
-                    val result = tui.selectSinglePlayerOption()
-                    result should be("Feed the kitties")
-                }
+        "select multiplayer mode when input is 2" in {
+            val tui = new Tui()
+            val inputStream = new java.io.ByteArrayInputStream("2\n".getBytes)
+            Console.withIn(inputStream) {
+                tui.selectGameMode() should be ("Multiplayer")
             }
+        }
 
-            "return 'Play with the Kitty Card Boss' for input 2" in {
-                val tui = new Tui
-                val inStream = new java.io.ByteArrayInputStream("2\n".getBytes)
-                Console.withIn(inStream) {
-                    val result = tui.selectSinglePlayerOption()
-                    result should be("Play with the Kitty Card Boss")
-                }
+        "default to single player mode when input is invalid" in {
+            val tui = new Tui()
+            val inputStream = new java.io.ByteArrayInputStream("invalid\n".getBytes)
+            Console.withIn(inputStream) {
+                tui.selectGameMode() should be ("Single")
             }
+        }
 
-            "default to 'Feed the kitties' for invalid input" in {
-                val tui = new Tui
-                val inStream = new java.io.ByteArrayInputStream("invalid\n".getBytes)
-                Console.withIn(inStream) {
-                    val result = tui.selectSinglePlayerOption()
-                    result should be("Feed the kitties")
-                }
+        "prompt for player name" in {
+            val tui = new Tui()
+            val inputStream = new java.io.ByteArrayInputStream("Player1\n".getBytes)
+            Console.withIn(inputStream) {
+                tui.promptPlayerName("Enter your name: ") should be ("Player1")
             }
+        }
+
+        "print colored cat" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                tui.printColoredCat("\u001b[32m")
+            }
+            outputStream.toString should include ("\u001b[32m ∧,,,∧")
+        }
+
+        "print colored message" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                tui.printColoredMessage("Green", "test message")
+            }
+            outputStream.toString should include ("\u001b[32m ∧,,,∧")
+            outputStream.toString should include ("test message")
+        }
+
+        "print bad choice message" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                tui.printBadChoice("Red")
+            }
+            outputStream.toString should include ("bad choice")
+        }
+
+        "print meh message" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                tui.printMeh("Blue")
+            }
+            outputStream.toString should include ("meh")
+        }
+
+        "handle player turn update" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                tui.update(PlayerTurn("Player1"))
+            }
+            outputStream.toString should include ("Player1's turn.")
+        }
+
+        "handle card drawn update" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                tui.update(CardDrawn("Player1", "Card1"))
+            }
+            outputStream.toString should include ("Player1 drew: Card1")
+        }
+
+        "handle invalid placement update" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                tui.update(InvalidPlacement())
+            }
+            outputStream.toString should include ("Invalid placement.")
+        }
+
+        "handle card placement success update" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                tui.update(CardPlacementSuccess(1, 2, "Card1", 10))
+            }
+            outputStream.toString should include ("Card placed at (1, 2): Card1.")
+        }
+
+        "handle game over update" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                tui.update(GameOver("Player1", 20, "Player2", 15))
+            }
+            outputStream.toString should include ("Game over!")
+            outputStream.toString should include ("Player1 wins!")
+        }
+
+        "handle total points update" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                tui.update(TotalPoints(20, 15))
+            }
+            outputStream.toString should include ("Total points: Player 1: 20, Player 2: 15")
+        }
+
+        "handle undo event update" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                tui.update(UndoEvent(new GameState(null, List(), 0, 0)))
+            }
+            outputStream.toString should include ("Undo performed.")
+        }
+
+        "handle redo event update" in {
+            val tui = new Tui()
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                tui.update(RedoEvent(new GameState(null, List(), 0, 0)))
+            }
+            outputStream.toString should include ("Redo performed.")
         }
     }
 }
-

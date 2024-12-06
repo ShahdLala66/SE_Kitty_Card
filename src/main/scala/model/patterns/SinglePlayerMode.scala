@@ -3,7 +3,7 @@ package model.patterns
 
 import model.{Game, Player}
 
-class SinglePlayerMode(game: Game) extends GameMode {
+class SinglePlayerMode(game: Game, playerRepository: PlayerRepository) extends GameMode {
   override def startGame(): Unit = {
     val player = selectOrCreatePlayer()
   }
@@ -20,7 +20,7 @@ class SinglePlayerMode(game: Game) extends GameMode {
     false
   }
 
-  private def selectOrCreatePlayer(): Player = {
+  def selectOrCreatePlayer(): Player = {
     println("Do you want to (1) select an existing player or (2) create a new player?")
     scala.io.StdIn.readLine().trim match {
       case "1" => selectExistingPlayer()
@@ -31,8 +31,8 @@ class SinglePlayerMode(game: Game) extends GameMode {
     }
   }
 
-  private def selectExistingPlayer(): Player = {
-    val players = PlayerRepository.loadPlayers()
+  def selectExistingPlayer(): Player = {
+    val players = playerRepository.loadPlayers()
     if (players.isEmpty) {
       println("No existing players found. Creating a new player.")
       createNewPlayer()
@@ -52,11 +52,11 @@ class SinglePlayerMode(game: Game) extends GameMode {
     }
   }
 
-  private def createNewPlayer(): Player = {
+  def createNewPlayer(): Player = {
     println("Enter the name for the new player:")
-    val name = scala.io.StdIn.readLine().trim
+    val name = Option(scala.io.StdIn.readLine()).getOrElse("").trim
     val newPlayer = PlayerData(name, 0, 1, 0)
-    PlayerRepository.addPlayer(newPlayer)
+    playerRepository.addPlayer(newPlayer)
     Player(newPlayer.name, newPlayer.points)
   }
 }
