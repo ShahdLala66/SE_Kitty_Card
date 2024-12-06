@@ -2,7 +2,7 @@
 package aview
 
 import util.*
-import util.Observer.{CardDrawn, CardPlacementSuccess, GameEvent, GameOver, Invalid, InvalidPlacement, Observer, PlayerTurn, PromptForGameMode, PromptForPlayerName, RedoEvent, SelectSinglePlayerOption, StrategySelection, TotalPoints, UndoEvent}
+import util.observer.{CardDrawn, CardPlacementSuccess, GameEvent, GameOver, Invalid, InvalidPlacement, Observer, PlayerTurn, PromptForGameMode, PromptForPlayerName, RedoEvent, RemoveCardFromHand, SelectSinglePlayerOption, StrategySelection, TotalPoints, UndoEvent}
 
 import scala.io.StdIn.readLine
 
@@ -174,6 +174,7 @@ class Tui extends Observer {
             case SelectSinglePlayerOption() => selectSinglePlayerOption()
             case Invalid() => invalid()
             case PromptForGameMode() => promptForGameMode()
+            case RemoveCardFromHand(player, card) => println(s"$player removed card: $card")
         }
     }
 }

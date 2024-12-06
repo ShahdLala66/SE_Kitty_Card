@@ -1,11 +1,11 @@
 // src/main/scala/model/Game.scala
-package model.Logik
+package model.logik
 
-import model.Objects.{Deck, Grid, Player}
-import model.cards.{Card, NumberCards}
+import model.objects.{Deck, Grid, Player}
+import model.objects.cards.{Card, Hand, NumberCards}
 import model.patterns.GameMode
 import util.*
-import util.Observer.*
+import util.observer.*
 import util.command.{CommandManager, GameState, PlaceCardCommand}
 
 import scala.util.{Failure, Success, Try}
@@ -16,6 +16,7 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
   var player2: Player = _
   private val commandManager = new CommandManager()
   private var currentState: GameState = new GameState(grid, List(), 0, 0) // Added points argument
+  private var hand : Hand = new Hand()
 
   
   def isGridFull: Boolean = grid.isFull
@@ -116,6 +117,9 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
               val command = new PlaceCardCommand(grid, card, currentPlayer, points, (x, y))
               currentState = commandManager.executeCommand(command, currentState)
               currentPlayer.addPoints(points)
+              //remove the card from hand after placing
+              currentPlayer.removeCard(card)
+              notifyObservers(RemoveCardFromHand(currentPlayer.name, card.toString))
               notifyObservers(CardPlacementSuccess(x, y, card.toString, points))
               notifyObservers(TotalPoints(player1.points, player2.points))
               true

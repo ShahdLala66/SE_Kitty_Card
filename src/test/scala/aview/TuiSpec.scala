@@ -5,7 +5,7 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.mockito.MockitoSugar
 import util.*
-import util.Observer.{CardDrawn, CardPlacementSuccess, GameOver, InvalidPlacement, PlayerTurn, RedoEvent, TotalPoints, UndoEvent}
+import util.observer.{CardDrawn, CardPlacementSuccess, GameOver, InvalidPlacement, PlayerTurn, RedoEvent, TotalPoints, UndoEvent}
 import util.command.GameState
 
 class TuiSpec extends AnyWordSpec with Matchers with MockitoSugar {

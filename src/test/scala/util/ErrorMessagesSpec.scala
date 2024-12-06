@@ -2,7 +2,7 @@ package util
 
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
-import util.Dialoges.ErrorMessages
+import util.dialoges.ErrorMessages
 
 class ErrorMessagesSpec extends AnyWordSpec with Matchers {
 

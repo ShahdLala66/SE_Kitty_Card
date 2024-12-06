@@ -2,8 +2,8 @@
 package model.patterns
 
 import model.*
-import model.Objects.{Deck, Player}
-import model.cards.Card
+import model.objects.cards.Card
+import model.objects.{Deck, Player}
 
 abstract class PlayerDecorator(decoratedPlayer: Player) extends Player(decoratedPlayer.name) {
   var level: Int = 1 //train umwandeln

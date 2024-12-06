@@ -1,13 +1,10 @@
 // src/main/scala/model/Player.scala
-package model.Objects
+package model.objects
 
-import model.*
-import model.Objects.Deck
-import model.cards.Card
+import model.objects.cards.{Card, NumberCards}
 
 case class Player(name: String, var points: Int = 0) {
     var hand: List[Card] = List()
-
 
     def addPoints(newPoints: Int): Unit = {
         points += newPoints
@@ -24,13 +21,17 @@ case class Player(name: String, var points: Int = 0) {
     }
 
     def updatePoints(newPoints: Int): Unit = {
-       points = newPoints
+        points = newPoints
     }
 
     def getHand: List[Card] = hand
 
     def updateHand(newHand: List[Card]): Unit = {
         hand = newHand
+    }
+
+    def removeCard(card: Card): Unit = {
+        hand = hand.filterNot(_ == card)
     }
 
     override def toString: String = s"$name (Points: $points)"

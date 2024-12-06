@@ -1,4 +1,4 @@
-package util.Dialoges
+package util.dialoges
 
 import scala.annotation.tailrec
 import scala.io.Source

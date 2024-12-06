@@ -1,7 +1,7 @@
 // src/main/scala/util/ObserverPattern.scala
-package util.Observer
+package util.observer
 
-import util.Observer.ConcreteObservable
+import util.observer.ConcreteObservable
 
 object ObserverPattern {
     val observable = new ConcreteObservable

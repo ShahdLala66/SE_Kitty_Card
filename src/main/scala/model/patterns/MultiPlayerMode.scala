@@ -1,7 +1,7 @@
 // src/main/scala/model/patterns/MultiPlayerMode.scala
 package model.patterns
 
-import model.Logik.Game
+import model.logik.Game
 
 class MultiPlayerMode(game: Game, strategy: Strategy) extends GameMode {
   override def startGame(): Unit = {

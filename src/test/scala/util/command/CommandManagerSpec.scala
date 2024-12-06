@@ -1,8 +1,8 @@
 // src/test/scala/util/command/CommandManagerSpec.scala
 package util.command
 
-import model.Objects.{Grid, Player}
-import model.cards.{NumberCards, Suit, Value}
+import model.objects.{Grid, Player}
+import model.objects.cards.{NumberCards, Suit, Value}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.mockito.MockitoSugar

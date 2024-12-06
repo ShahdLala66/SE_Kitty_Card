@@ -1,7 +1,7 @@
 // src/test/scala/util/GameStateSpec.scala
 package util
 
-import model.Objects.{Grid, Player}
+import model.objects.{Grid, Player}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.mockito.MockitoSugar

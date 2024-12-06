@@ -2,7 +2,7 @@
 package model.patterns
 
 import model.*
-import model.Logik.Game
+import model.logik.Game
 
 object GameModeFactory {
 

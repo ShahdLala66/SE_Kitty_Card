@@ -2,12 +2,12 @@
 package controller
 
 import model.*
-import model.Logik.Game
-import model.Objects.{Deck, Grid, Player}
-import model.cards.Card
+import model.logik.Game
+import model.objects.cards.Card
+import model.objects.{Deck, Grid, Player}
 import model.patterns.*
 import util.*
-import util.Observer.{GameEvent, Invalid, Observer, PromptForGameMode, PromptForPlayerName, RedoEvent, SelectSinglePlayerOption, StrategySelection, UndoEvent}
+import util.observer.{GameEvent, Invalid, Observer, PromptForGameMode, PromptForPlayerName, RedoEvent, SelectSinglePlayerOption, StrategySelection, UndoEvent}
 import util.command.{CommandManager, CommandTrait, GameState}
 
 import scala.io.StdIn.readLine

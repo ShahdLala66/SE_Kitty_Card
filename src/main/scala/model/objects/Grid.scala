@@ -1,8 +1,8 @@
-package model.Objects
+package model.objects
 
-import model.cards.Suit.*
-import model.cards.Value.*
-import model.cards.{NumberCards, Suit, Value}
+import model.objects.cards.Suit.*
+import model.objects.cards.Value.*
+import model.objects.cards.{NumberCards, Suit, Value}
 
 import scala.util.Random
 

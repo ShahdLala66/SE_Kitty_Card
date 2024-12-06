@@ -1,8 +1,8 @@
 // src/main/scala/model/LoggingPlayerDecorator.scala
 package model.patterns
 
-import model.Objects.{Deck, Player}
-import model.cards.Card
+import model.objects.cards.Card
+import model.objects.{Deck, Player}
 
 class PlayerDecoratorMethods(decoratedPlayer: Player) extends PlayerDecorator(decoratedPlayer) {
   override def drawCard(deck: Deck): Option[Card] = {

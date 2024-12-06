@@ -1,6 +1,6 @@
 package model
 
-import model.Objects.Deck
+import model.objects.Deck
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

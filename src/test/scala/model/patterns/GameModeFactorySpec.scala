@@ -3,8 +3,8 @@ package model.patterns
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import model.*
-import model.Logik.Game
-import model.Objects.{Deck, Grid}
+import model.logik.Game
+import model.objects.{Deck, Grid}
 import model.patterns.*
 
 class GameModeFactorySpec extends AnyWordSpec with Matchers {

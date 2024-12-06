@@ -1,6 +1,6 @@
 // src/main/scala/util/ConcreteObservable.scala
-package util.Observer
+package util.observer
 
-import util.Observer.Observable
+import util.observer.Observable
 
 class ConcreteObservable extends Observable

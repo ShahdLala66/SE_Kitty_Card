@@ -1,5 +1,5 @@
 // src/main/scala/util/GameEvents.scala
-package util.Observer
+package util.observer
 
 import util.command.GameState
 
@@ -19,3 +19,4 @@ case class PromptForPlayerName(player: String) extends GameEvent
 case class SelectSinglePlayerOption() extends GameEvent
 case class Invalid() extends GameEvent
 case class PromptForGameMode() extends GameEvent
+case class RemoveCardFromHand(playerName: String, card: String) extends GameEvent

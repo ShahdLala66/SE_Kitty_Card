@@ -1,8 +1,8 @@
 // src/main/scala/util/PlaceCardCommand.scala
 package util.command
 
-import model.Objects.{Grid, Player}
-import model.cards.NumberCards
+import model.objects.cards.NumberCards
+import model.objects.{Grid, Player}
 
 class
 PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: Int, position: (Int, Int)) extends CommandTrait {
