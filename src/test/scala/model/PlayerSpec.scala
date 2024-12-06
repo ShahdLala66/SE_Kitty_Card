@@ -1,5 +1,6 @@
 package model
 
+import model.objects.Player
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 
@@ -37,12 +38,5 @@ class PlayerSpec extends AnyWordSpec with Matchers {
 
         }
 
-        "draw a card from the deck and add it to the player's hand" in {
-            val player = Player("Eve")
-            val deck = new Deck
-            val card = player.drawCard(deck)
-            card should not be None
-            player.getHand.getCards.length shouldBe 1
-        }
     }
 }

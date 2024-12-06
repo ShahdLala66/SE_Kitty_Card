@@ -1,12 +1,13 @@
 package model
 
+import model.objects.Deck
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 
 class DeckSpec extends AnyWordSpec with Matchers {
 
-  "Dick" should {
+  "Deck" should {
     "should draw a card and reduce deck size" in {
       val deck = new Deck()
       val initialDeckSize = deck.size

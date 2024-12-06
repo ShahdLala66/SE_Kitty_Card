@@ -1,7 +1,8 @@
 package model.cards
 
+import model.objects.cards.{Card, Hand}
 import org.scalatest.wordspec.AnyWordSpec
-import org.scalatest.matchers.should.Matchers._
+import org.scalatest.matchers.should.Matchers.*
 
 class HandSpec extends AnyWordSpec {
 

@@ -1,5 +1,6 @@
 package model.cards
 
+import model.objects.cards.Card
 import org.scalatest.wordspec.AnyWordSpec
 
 class CardsSpec extends AnyWordSpec {
