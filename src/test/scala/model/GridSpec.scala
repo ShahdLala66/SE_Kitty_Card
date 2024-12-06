@@ -1,7 +1,8 @@
 // src/test/scala/model/GridSpec.scala
 package model
 
-import model.cards.{NumberCards, Suit, Value}
+import model.objects.Grid
+import model.objects.cards.{NumberCards, Suit, Value}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -10,8 +11,8 @@ class GridSpec extends AnyWordSpec with Matchers {
     "A Grid" should {
 
         "initialize with the correct size" in {
-            val grid = Grid.getInstance(4)
-            grid.size shouldBe 4
+            val grid = Grid.getInstance(3)
+            grid.size shouldBe 3
         }
 
         "place a card correctly" in {

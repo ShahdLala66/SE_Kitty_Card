@@ -1,13 +1,14 @@
-package model
+package model.objects
 
-import model.cards.{NumberCards, Suit, Value}
+import model.objects.cards.{NumberCards, Suit, Value}
+
 import scala.util.Random
 
 class Deck {
   private val cards: List[NumberCards] = for {
     suit <- Suit.values.toList if suit != Suit.White // Exclude White suit
     value <- Value.values.toList
-  } yield model.cards.NumberCards(suit, value)
+  } yield NumberCards(suit, value)
 
   private var shuffledDeck: List[NumberCards] = Random.shuffle(cards)
 

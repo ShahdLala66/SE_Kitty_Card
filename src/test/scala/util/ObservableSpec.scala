@@ -1,8 +1,9 @@
 package util
 
-import model.Player
+import model.objects.Player
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
+import util.observer.{GameEvent, Observable, Observer, PlayerTurn}
 
 class ObservableSpec extends AnyWordSpec with Matchers {
 

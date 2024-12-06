@@ -7,7 +7,7 @@ object Main extends App {
   val tui = new Tui()
 
   controller.setObserver(tui)
-  tui.printCatLoop()
-  tui.welcomeMessage()
+ // tui.printCatLoop()
+  //tui.welcomeMessage()
   controller.startGame()
 }

@@ -1,11 +1,11 @@
 // src/test/scala/model/patterns/PreSeenDeckStrategySpec.scala
 package model.patterns
 
+import model.logik.Game
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.mockito.MockitoSugar
 import org.mockito.Mockito._
-import model.Game
 
 class PreSeenDeckStrategySpec extends AnyWordSpec with Matchers with MockitoSugar {
 

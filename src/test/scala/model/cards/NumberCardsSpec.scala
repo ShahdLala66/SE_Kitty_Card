@@ -1,5 +1,6 @@
 package model.cards
 
+import model.objects.cards.{NumberCards, Suit, Value}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

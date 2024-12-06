@@ -1,4 +1,4 @@
-package model.cards
+package model.objects.cards
 
 object AssistCardType extends Enumeration {
     type AssistCardType = Value

@@ -1,5 +1,7 @@
 // src/main/scala/util/Observable.scala
-package util
+package util.observer
+
+import util.observer
 
 trait Observer {
     def update(event: GameEvent): Unit
@@ -19,4 +21,5 @@ trait Observable {
     def notifyObservers(event: GameEvent): Unit = {
         observers.foreach(_.update(event))
     }
+    
 }
