@@ -1,6 +1,7 @@
 package model.patterns
 
-import model.{Game, Grid}
+import model.Logik.Game
+import model.Objects.Grid
 import org.mockito.Mockito.*
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.mockito.MockitoSugar

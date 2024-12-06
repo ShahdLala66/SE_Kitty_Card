@@ -1,5 +1,7 @@
 // src/main/scala/util/TestObject.scala
-package util
+package util.Observer
+
+import util.Observer.Observer
 
 class TestObject extends Observer {
     private var lastNotification: Option[GameEvent] = None

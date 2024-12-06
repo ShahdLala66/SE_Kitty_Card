@@ -1,7 +1,7 @@
 // src/main/scala/util/GameState.scala
-package util
+package util.command
 
-import model.{Grid, Player}
+import model.Objects.{Grid, Player}
 
 class GameState(private val grid: Grid, private val players: List[Player], private val currentPlayerIndex: Int, private val points: Int) {
 

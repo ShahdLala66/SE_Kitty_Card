@@ -1,4 +1,4 @@
-package model
+package model.Objects
 
 import model.cards.Suit.*
 import model.cards.Value.*

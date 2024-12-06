@@ -1,8 +1,9 @@
 // src/main/scala/model/Player.scala
-package model
+package model.Objects
 
-import model.cards.Card
 import model.*
+import model.Objects.Deck
+import model.cards.Card
 
 case class Player(name: String, var points: Int = 0) {
     var hand: List[Card] = List()

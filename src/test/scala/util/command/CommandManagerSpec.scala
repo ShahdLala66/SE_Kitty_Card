@@ -1,13 +1,12 @@
 // src/test/scala/util/command/CommandManagerSpec.scala
 package util.command
 
+import model.Objects.{Grid, Player}
 import model.cards.{NumberCards, Suit, Value}
-import model.{Grid, Player}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.mockito.MockitoSugar
 import org.mockito.Mockito._
-import util.GameState
 
 class CommandManagerSpec extends AnyWordSpec with Matchers with MockitoSugar {
 

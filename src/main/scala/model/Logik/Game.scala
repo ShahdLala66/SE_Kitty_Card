@@ -1,10 +1,12 @@
 // src/main/scala/model/Game.scala
-package model
+package model.Logik
 
+import model.Objects.{Deck, Grid, Player}
 import model.cards.{Card, NumberCards}
 import model.patterns.GameMode
 import util.*
-import util.command.{CommandManager, PlaceCardCommand}
+import util.Observer.*
+import util.command.{CommandManager, GameState, PlaceCardCommand}
 
 import scala.util.{Failure, Success, Try}
 

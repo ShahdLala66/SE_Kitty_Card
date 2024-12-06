@@ -2,6 +2,7 @@ package util
 
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
+import util.Dialoges.IntroMessages
 
 class IntroMessagesSpec extends AnyWordSpec with Matchers {
 

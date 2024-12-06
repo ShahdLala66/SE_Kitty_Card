@@ -2,6 +2,7 @@
 package model.patterns
 
 import model.*
+import model.Logik.Game
 
 object GameModeFactory {
 

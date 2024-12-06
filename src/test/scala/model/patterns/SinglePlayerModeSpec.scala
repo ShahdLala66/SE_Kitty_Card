@@ -1,6 +1,8 @@
 package model.patterns
 
-import model.{Game, Player}
+
+import model.Logik.Game
+import model.Objects.Player
 import org.scalamock.scalatest.MockFactory
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec

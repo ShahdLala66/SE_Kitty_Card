@@ -1,5 +1,7 @@
 // src/main/scala/util/Observable.scala
-package util
+package util.Observer
+
+import util.Observer
 
 trait Observer {
     def update(event: GameEvent): Unit

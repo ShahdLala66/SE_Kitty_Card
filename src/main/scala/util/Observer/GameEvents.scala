@@ -1,5 +1,7 @@
 // src/main/scala/util/GameEvents.scala
-package util
+package util.Observer
+
+import util.command.GameState
 
 sealed trait GameEvent
 

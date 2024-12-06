@@ -1,5 +1,7 @@
 package model
 
+import model.Logik.Game
+import model.Objects.{Deck, Grid}
 import model.cards.NumberCards
 import model.patterns.GameMode
 import org.mockito.Mockito.*

@@ -1,11 +1,12 @@
 // src/test/scala/util/GameStateSpec.scala
 package util
 
-import model.{Grid, Player}
+import model.Objects.{Grid, Player}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.mockito.MockitoSugar
-import org.mockito.Mockito._
+import org.mockito.Mockito.*
+import util.command.GameState
 
 class GameStateSpec extends AnyWordSpec with Matchers with MockitoSugar {
 

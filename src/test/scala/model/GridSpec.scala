@@ -1,6 +1,7 @@
 // src/test/scala/model/GridSpec.scala
 package model
 
+import model.Objects.Grid
 import model.cards.{NumberCards, Suit, Value}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec

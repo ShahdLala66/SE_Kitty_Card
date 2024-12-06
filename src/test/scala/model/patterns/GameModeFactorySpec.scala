@@ -2,8 +2,10 @@ package model.patterns
 
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import model._
-import model.patterns._
+import model.*
+import model.Logik.Game
+import model.Objects.{Deck, Grid}
+import model.patterns.*
 
 class GameModeFactorySpec extends AnyWordSpec with Matchers {
 
