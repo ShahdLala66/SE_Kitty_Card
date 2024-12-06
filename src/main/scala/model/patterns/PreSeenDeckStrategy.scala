@@ -1,7 +1,7 @@
 // src/main/scala/model/PreSeenDeckStrategy.scala
 package model.patterns
 
-import model.Game
+import model.logik.Game
 
 class PreSeenDeckStrategy extends Strategy {
   override def playTurn(game: Game): Unit = {

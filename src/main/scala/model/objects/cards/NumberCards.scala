@@ -1,4 +1,4 @@
-package model.cards
+package model.objects.cards
 
 import Value.Value
 import scala.util.Random

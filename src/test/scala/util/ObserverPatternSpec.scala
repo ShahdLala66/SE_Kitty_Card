@@ -3,6 +3,7 @@ package util
 
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
+import util.observer.{ConcreteObservable, ObserverPattern, PlayerTurn, TestObject}
 
 class ObserverPatternSpec extends AnyWordSpec with Matchers {
 

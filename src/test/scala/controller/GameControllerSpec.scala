@@ -1,64 +1,72 @@
 // src/test/scala/controller/GameControllerSpec.scala
 package controller
 
-import org.mockito.ArgumentMatchers.any
-import org.mockito.Mockito.*
+import aview.Tui
+import util.*
+import util.command.*
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import org.scalatestplus.mockito.MockitoSugar
-import util.{GameEvent, Observer}
 
-class GameControllerSpec extends AnyWordSpec with Matchers with MockitoSugar {
+class GameControllerSpec extends AnyWordSpec with Matchers {
 
-    "GameController" should {
+    "A GameController" should {
 
-        "set the observer correctly when setObserver is called" in {
+        "execute a command" in {
             val controller = new GameController()
-            val observer = mock[Observer]
+            val observer = new Tui()
             controller.setObserver(observer)
-            controller.update(mock[GameEvent]) // Trigger an update to verify observer is set
-            verify(observer, times(1)).update(any[GameEvent])
+
+            val command = new MockCommand()
+            controller.executeCommand(command)
+
+            // Verify that the command was executed
+            command.executed shouldBe true
         }
 
-        "print the correct message for displayBadChoice" in {
+        "undo a command" in {
             val controller = new GameController()
-            val color = "red"
-            val output = new java.io.ByteArrayOutputStream()
-            Console.withOut(output) {
-                controller.displayBadChoice(color)
-            }
-            output.toString should include(s"Bad choice: $color")
+            val observer = new Tui()
+            controller.setObserver(observer)
+
+            val command = new MockCommand()
+            controller.executeCommand(command)
+            controller.undo()
+
+            // Verify that the command was undone
+            command.undone shouldBe true
         }
 
-        "print the correct message for displayCatInColor" in {
+        "redo a command" in {
             val controller = new GameController()
-            val color = "blue"
-            val output = new java.io.ByteArrayOutputStream()
-            Console.withOut(output) {
-                controller.displayCatInColor(color)
-            }
-            output.toString should include(s"Cat in color: $color")
+            val observer = new Tui()
+            controller.setObserver(observer)
+
+            val command = new MockCommand()
+            controller.executeCommand(command)
+            controller.undo()
+            controller.redo()
+
+            // Verify that the command was redone
+            command.redone shouldBe true
         }
+    }
+}
 
-        "print the correct message for displayMeh" in {
-            val controller = new GameController()
-            val color = "green"
-            val output = new java.io.ByteArrayOutputStream()
-            Console.withOut(output) {
-                controller.displayMeh(color)
-            }
-            output.toString should include(s"Meh: $color")
-        }
+// MockCommand class for testing purposes
+class MockCommand extends CommandTrait {
+    var executed = false
+    var undone = false
+    var redone = false
 
+    override def execute(): Unit = {
+        executed = true
+    }
 
+    override def undo(): Unit = {
+        undone = true
+    }
 
-        "handle invalid game mode" in {
-            val controller = spy(new GameController())
-            doReturn("invalid").when(controller).promptForGameMode()
-            val exception = intercept[IllegalArgumentException] {
-                controller.startGame()
-            }
-            exception.getMessage should include("Invalid game mode")
-        }
+    override def redo(): Unit = {
+        redone = true
     }
 }

@@ -1,4 +1,4 @@
-package model.cards
+package model.objects.cards
 
 abstract class Card {
   def getColor: String

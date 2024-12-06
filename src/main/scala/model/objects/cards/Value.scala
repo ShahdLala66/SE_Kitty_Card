@@ -1,4 +1,4 @@
-package model.cards
+package model.objects.cards
 
 object Value extends Enumeration {
   type Value1 = Value
