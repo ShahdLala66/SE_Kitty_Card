@@ -26,6 +26,9 @@ PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: Int, pos
     player.updatePoints(previousState.getPoints)
     previousState.getPlayers.foreach(p => p.updateHand(previousState.getPlayers.head.getHand))
     previousState.getPlayers.foreach(p => p.updatePoints(previousState.getPoints))
+    player.addCard(card)
+    player.getHand.foreach(println)
+
   }
 
   override def redo(): Unit = {

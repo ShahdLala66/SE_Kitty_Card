@@ -142,8 +142,6 @@ class Tui extends Observer {
         println("Enter the game mode (singleplayer (s)/multiplayer (m)):")
     }
 
-
-
     override def update(event: GameEvent): Unit = {
         event match {
             case PlayerTurn(playerName) =>
@@ -167,8 +165,8 @@ class Tui extends Observer {
                 }
             case TotalPoints(player1Points, player2Points) =>
                 println(Console.YELLOW + s"Total points: Player 1: $player1Points, Player 2: $player2Points\n" + Console.RESET)
-            case UndoEvent(_) => println("Undo performed.")
-            case RedoEvent(_) => println("Redo performed.")
+            case UndoEvent(_) => println(Console.RED +"\nUndo performed.\n" + Console.RESET)
+            case RedoEvent(_) => println(Console.RED +"\nRedo performed.\n" + Console.RESET)
             case PromptForPlayerName(player) => promptForPlayerName(player)
             case StrategySelection() => selectStrategy()
             case SelectSinglePlayerOption() => selectSinglePlayerOption()

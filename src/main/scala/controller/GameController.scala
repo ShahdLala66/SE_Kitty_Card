@@ -61,6 +61,7 @@ class GameController extends Observer {
         if (previousHands.nonEmpty) {
             players(currentPlayerIndex).hand = previousHands.head
             previousHands = previousHands.tail
+            
         }
         commandManager.undo().foreach { state =>
             currentState = state

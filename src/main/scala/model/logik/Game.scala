@@ -18,7 +18,9 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
   private var currentState: GameState = new GameState(grid, List(), 0, 0) // Added points argument
   private var hand : Hand = new Hand()
 
-  
+  var undo = false
+
+
   def isGridFull: Boolean = grid.isFull
 
   def getGrid: Grid = grid
@@ -55,14 +57,17 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
   }
 
   def drawCardForCurrentPlayer(): Unit = {
-    currentPlayer.drawCard(deck) match {
-      case Some(card) =>
-        notifyObservers(CardDrawn(currentPlayer.name, card.toString))
-        currentPlayer.getHand.foreach(println)
-      case None =>
-        notifyObservers(InvalidPlacement())
-    }
+   if (undo == false) {
+     currentPlayer.drawCard(deck) match {
+       case Some(card) =>
+         notifyObservers(CardDrawn(currentPlayer.name, card.toString))
+         currentPlayer.getHand.foreach(println)
+       case None =>
+         notifyObservers(InvalidPlacement())
+     }
+   }
   }
+
 
   def processPlayerInput(): Unit = {
     var validInput = false
@@ -73,6 +78,7 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
           commandManager.undo().foreach { state =>
             currentState = state
             notifyObservers(UndoEvent(currentState))
+            undo = true
           }
           validInput = true
         case "redo" =>
@@ -86,6 +92,7 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
           validInput = true
         case _ =>
           validInput = handleCardPlacement(input)
+          undo = false
       }
     }
   }
@@ -102,6 +109,7 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
     input.trim.toLowerCase match {
       case "undo" =>
         executeUndoRedo(commandManager.undo, UndoEvent(currentState))
+        
       case "redo" =>
         executeUndoRedo(commandManager.redo, RedoEvent(currentState))
       case _ =>

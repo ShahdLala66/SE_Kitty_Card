@@ -34,5 +34,9 @@ case class Player(name: String, var points: Int = 0) {
         hand = hand.filterNot(_ == card)
     }
 
+    def addCard(card: Card): Unit = {
+        hand = card :: hand
+    }
+
     override def toString: String = s"$name (Points: $points)"
 }
