@@ -1,22 +1,20 @@
 package model.objects.cards
 
-object AssistCardType extends Enumeration {
-    type AssistCardType = Value
-    val Skip, Freeze, MeowThis, CatChing, KittyPlot, Purrceive,
-    Meowster, Purrator, KittyPow, MagicPaw, Byebye, PawCombo = Value
+import model.objects.{Grid, Player}
+import model.objects.cards.AssistCardHandler
+
+trait AssistCards extends Card {
+    def name: String
+
+    /**
+     * Applies the effect of this card by delegating to the AssistCardHandler.
+     * @param currentPlayer The player playing the card.
+     * @param opponentPlayer The opponent player.
+     * @param grid The current grid of the game.
+     */
+    def applyEffect(currentPlayer: Player, opponentPlayer: Player, grid: Grid): Unit = {
+        AssistCardHandler.handleAssistCard(name, currentPlayer, opponentPlayer, grid)
+    }
+
+    override def toString: String = s"AssistCard($name)"
 }
-
-case class AssistCard(cardType: AssistCardType.Value) extends Card {
-
-    override def getColor: String = "Special"
-
-    override def toString: String = cardType.toString
-}
-
-//vielleicht einstelle was 
-// die warscheinlichkeit ist karten zu ziehen
-
-
-//in 5. semster können wir gacha zufügen kurz, karten ziehen und wenn man gute karte hat dann 
-//kann man stärker sein und mehr privligen hat, iwi die battle und kitty cards machen  , aber gacha logic wäre witzig 
-

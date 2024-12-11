@@ -19,7 +19,7 @@ class GameModeFactorySpec extends AnyWordSpec with Matchers {
 
         "create a MultiPlayerMode when mode is 'multiplayer' and strategy is provided" in {
             val game = new Game(new Deck(), new Grid(3), null)
-            val strategy = new RandomStrategy()
+            val strategy = new NumbersOnlyStrategy()
             val gameMode = GameModeFactory.getGameMode("multiplayer", game, Some(strategy))
             gameMode shouldBe a [MultiPlayerMode]
         }

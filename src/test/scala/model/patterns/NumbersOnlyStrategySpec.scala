@@ -7,12 +7,12 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.mockito.MockitoSugar
 import org.mockito.Mockito._
 
-class RandomStrategySpec extends AnyWordSpec with Matchers with MockitoSugar {
+class NumbersOnlyStrategySpec extends AnyWordSpec with Matchers with MockitoSugar {
 
     "A RandomStrategy" should {
         "execute playTurn correctly" in {
             val mockGame = mock[Game]
-            val strategy = new RandomStrategy
+            val strategy = new NumbersOnlyStrategy
 
             strategy.playTurn(mockGame)
 

@@ -1,163 +1,59 @@
-// src/main/scala/model/Game.scala
-package model.logik
-
+import logik.GameModeL
+import model.logik.{AdvancedGameMode, NormalGameMode}
 import model.objects.{Deck, Grid, Player}
-import model.objects.cards.{Card, Hand, NumberCards}
-import model.patterns.GameMode
-import util.*
-import util.observer.*
-import util.command.{CommandManager, GameState, PlaceCardCommand}
 
-import scala.util.{Failure, Success, Try}
+import java.util.Observable
 
-class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
-  var currentPlayer: Player = _
-  var player1: Player = _
-  var player2: Player = _
-  private val commandManager = new CommandManager()
-  private var currentState: GameState = new GameState(grid, List(), 0, 0) // Added points argument
-  private var hand : Hand = new Hand()
+class Game(deck: Deck, grid: Grid, var gameMode: GameModeL) extends Observable {
+  private var currentPlayer: Player = _
+  private var player1: Player = _
+  private var player2: Player = _
 
-  var undo = false
-
-
-  def isGridFull: Boolean = grid.isFull
-
-  def getGrid: Grid = grid
-
-  def initialize(): Unit = {
-    //grid.displayInitialColors()
-  }
-
-  def start(player1Name: String, player2Name: String): Unit = {
-    val (p1, p2) = addPlayers(player1Name, player2Name)
-    player1 = p1
-    player2 = p2
+  /**
+   * Starts the game based on the provided mode and player names.
+   * The mode (Normal or Advanced) is determined by the `isAdvanced` flag.
+   */
+  def start(player1Name: String, player2Name: String, isAdvanced: Boolean): Unit = {
+    player1 = new Player(player1Name)
+    player2 = new Player(player2Name)
     currentPlayer = player1
+
+    // Using GameModeFactory to determine the game mode
+    gameMode = if (isAdvanced)
+      new AdvancedGameMode(grid, deck)
+    else
+      new NormalGameMode(grid, deck)
+
+    // Distribute initial cards to players
     distributeInitialCards()
-    grid.displayInitialColors()
-    gameMode.startGame()
-    //displayFinalScores()
+
+    // Notify observers of game start
+    notifyObserversOnChange()
+
+    // Start main game loop
+    gameMode.startGameLoop(currentPlayer, opponentPlayer)
   }
 
-  def distributeInitialCards(): Unit = {
+  /**
+   * Distributes initial cards to both players.
+   */
+  private def distributeInitialCards(): Unit = {
     for (_ <- 1 to 3) {
       player1.drawCard(deck)
       player2.drawCard(deck)
     }
   }
 
-  def playTurn(): Unit = {
-    gameMode.playTurn()
-  }
+  /**
+   * Gets the non-current player (opponent).
+   */
+  private def opponentPlayer: Player = if (currentPlayer == player1) player2 else player1
 
-  def handlePlayerTurn(): Unit = {
-    drawCardForCurrentPlayer()
-    processPlayerInput()
-  }
-
-  def drawCardForCurrentPlayer(): Unit = {
-   if (undo == false) {
-     currentPlayer.drawCard(deck) match {
-       case Some(card) =>
-         notifyObservers(CardDrawn(currentPlayer.name, card.toString))
-         currentPlayer.getHand.foreach(println)
-       case None =>
-         notifyObservers(InvalidPlacement())
-     }
-   }
-  }
-
-
-  def processPlayerInput(): Unit = {
-    var validInput = false
-    while (!validInput) {
-      val input = scala.io.StdIn.readLine()
-      input.trim.toLowerCase match {
-        case "undo" =>
-          commandManager.undo().foreach { state =>
-            currentState = state
-            notifyObservers(UndoEvent(currentState))
-            undo = true
-          }
-          validInput = true
-        case "redo" =>
-          commandManager.redo().foreach { state =>
-            currentState = state
-            notifyObservers(RedoEvent(currentState))
-          }
-          validInput = true
-        case "draw" =>
-          drawCardForCurrentPlayer()
-          validInput = true
-        case _ =>
-          validInput = handleCardPlacement(input)
-          undo = false
-      }
-    }
-  }
-
-  def executeUndoRedo(action: () => Option[GameState], event: GameEvent): Boolean = {
-    action().foreach { state =>
-      currentState = state
-      notifyObservers(event)
-    }
-    true
-  }
-
-  def handleCardPlacement(input: String): Boolean = {
-    input.trim.toLowerCase match {
-      case "undo" =>
-        executeUndoRedo(commandManager.undo, UndoEvent(currentState))
-        
-      case "redo" =>
-        executeUndoRedo(commandManager.redo, RedoEvent(currentState))
-      case _ =>
-        Try {
-          val parts = input.split(" ")
-          val cardIndex = parts(0).toInt
-          val x = parts(1).toInt
-          val y = parts(2).toInt
-
-          currentPlayer.getHand.lift(cardIndex) match {
-            case Some(card: NumberCards) =>
-              val points = grid.calculatePoints(x, y)
-              val command = new PlaceCardCommand(grid, card, currentPlayer, points, (x, y))
-              currentState = commandManager.executeCommand(command, currentState)
-              currentPlayer.addPoints(points)
-              //remove the card from hand after placing
-              currentPlayer.removeCard(card)
-              notifyObservers(RemoveCardFromHand(currentPlayer.name, card.toString))
-              notifyObservers(CardPlacementSuccess(x, y, card.toString, points))
-              notifyObservers(TotalPoints(player1.points, player2.points))
-              true
-            case _ =>
-              notifyObservers(InvalidPlacement())
-              false
-          }
-        } match {
-          case Success(result) => result
-          case Failure(_) =>
-            notifyObservers(InvalidPlacement())
-            false
-        }
-    }
-  }
-  
-
-  def switchTurns(): Unit = {
-    grid.display()
-    currentPlayer = if (currentPlayer == player1) player2 else player1
-    notifyObservers(PlayerTurn(currentPlayer.name))
-  }
-
-  def displayFinalScores(): Unit = {
-    notifyObservers(GameOver(player1.name, player1.points, player2.name, player2.points))
-  }
-
-  def addPlayers(player1Name: String, player2Name: String): (Player, Player) = {
-    val player1 = Player(player1Name)
-    val player2 = Player(player2Name)
-    (player1, player2)
+  /**
+   * Notifies all observers about a state change.
+   */
+  private def notifyObserversOnChange(): Unit = {
+    setChanged()
+    notifyObservers(this) // Pass the current game state
   }
 }

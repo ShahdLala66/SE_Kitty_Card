@@ -14,7 +14,7 @@ object GameModeFactory {
     mode.toLowerCase match {
       case "singleplayer" | "s" => new SinglePlayerMode(game, PlayerRepositoryImpl)
       case "multiplayer" | "m" =>
-        val selectedStrategy = strategy.getOrElse(new RandomStrategy())
+        val selectedStrategy = strategy.getOrElse(new NumbersOnlyStrategy())
         new MultiPlayerMode(game, selectedStrategy)
       case _ => throw new IllegalArgumentException("Invalid game mode")
     }

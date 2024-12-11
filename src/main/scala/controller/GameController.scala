@@ -31,7 +31,7 @@ class GameController extends Observer {
     def startGame(): Unit = {
         val mode = promptForGameMode()
         val game = new Game(deck, grid, null)
-        val strategy = if (mode.toLowerCase == "multiplayer") promptForStrategy().getOrElse(new RandomStrategy()) else new RandomStrategy()
+        val strategy = if (mode.toLowerCase == "multiplayer") promptForStrategy().getOrElse(new NumbersOnlyStrategy()) else new NumbersOnlyStrategy()
         val gameMode = GameModeFactory.createGameMode(mode, game, Some(strategy))
         game.gameMode = gameMode
 
@@ -101,11 +101,11 @@ class GameController extends Observer {
     private def promptForStrategy(): Option[Strategy] = {
         observer.foreach(_.update(StrategySelection()))
         val strategy = readLine().trim match {
-            case "1" => new RandomStrategy()
+            case "1" => new NumbersOnlyStrategy()
             case "2" => new PreSeenDeckStrategy()
             case _ =>
                 observer.foreach(_.update(Invalid()))
-                new RandomStrategy()
+                new NumbersOnlyStrategy()
         }
         selectedStrategy
     }
