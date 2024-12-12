@@ -3,11 +3,14 @@ package model.objects
 import model.objects.cards.Suit.*
 import model.objects.cards.Value.*
 import model.objects.cards.{NumberCards, Suit, Value}
+import util.observer.Observer
 
+import scala.collection.mutable.ListBuffer
 import scala.util.Random
 
 case class Grid(size: Int) {
     val eol: String = sys.props("line.separator") // End of line character
+    private val observers = ListBuffer[Observer]()
 
     // Initialize an empty grid with None values, representing empty spots
     private val grid: Array[Array[Option[NumberCards]]] = Array.fill(size, size)(None)
@@ -17,6 +20,10 @@ case class Grid(size: Int) {
     // List to store the history of grid states for undo functionality
     private var history: List[Array[Array[Option[NumberCards]]]] = List(grid.map(_.clone))
 
+
+    def addObserver(observer: Observer): Unit = {
+        observers += observer
+    }
     // Hilfsmethode für Testzwecke, um auf die Farben der Rechtecke zuzugreifen
     def getRectangleColors(x: Int, y: Int): Suit = rectangleColors(x)(y)
 
