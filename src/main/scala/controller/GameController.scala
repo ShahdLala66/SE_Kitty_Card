@@ -2,9 +2,9 @@
 package controller
 
 import model._
-import util.{ErrorMessages, GameCallbacks, Observer, GameEvent}
+import util.{Observer, GameEvent}
 
-class GameController extends GameCallbacks with Observer {
+class GameController extends Observer {
     private val deck = new Deck()
     private val grid = Grid()
     private var observer: Option[Observer] = None
