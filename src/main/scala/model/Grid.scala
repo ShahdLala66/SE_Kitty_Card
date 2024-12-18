@@ -1,9 +1,10 @@
 package model
 
-import scala.util.Random
 import model.cards.Suit.*
 import model.cards.Value.*
 import model.cards.{NumberCards, Suit, Value}
+
+import scala.util.Random
 
 case class Grid(size: Int = 3) {
     val eol: String = sys.props("line.separator") // End of line character
@@ -24,7 +25,7 @@ case class Grid(size: Int = 3) {
             y <- 0 until size
         } yield (x, y)).take(4)
 
-        val colorGrid = Array.fill(size, size)(Suit.White)  // Start with all White
+        val colorGrid = Array.fill(size, size)(Suit.White) // Start with all White
         positions.zip(Random.shuffle(colors)).foreach { case ((x, y), color) =>
             colorGrid(x)(y) = color
         }
@@ -54,13 +55,13 @@ case class Grid(size: Int = 3) {
             case Some(card) =>
                 println(s"Card: ${card.suit}, ${card.value}; Rectangle color: $rectangleColor")
                 if (card.suit == rectangleColor) {
-                    Value.toInt(card.value) * 2  // Double points if suits match
+                    Value.toInt(card.value) * 2 // Double points if suits match
                 } else if (rectangleColor == Suit.White) {
-                    Value.toInt(card.value)  // Regular points if placed on a white rectangle
+                    Value.toInt(card.value) // Regular points if placed on a white rectangle
                 } else {
-                    0  // No points if placed on a different colored rectangle
+                    0 // No points if placed on a different colored rectangle
                 }
-            case None => 0  // No card means no points
+            case None => 0 // No card means no points
         }
     }
 
@@ -76,7 +77,7 @@ case class Grid(size: Int = 3) {
             for (j <- grid(i).indices) {
                 val cardDisplay = grid(i)(j) match {
                     case Some(card) => s"${card.suit}, ${card.value}"
-                    case None       => "Empty"
+                    case None => "Empty"
                 }
                 val colorDisplay = s"[${rectangleColors(i)(j)}]"
                 print(f"$cardDisplay%-12s $colorDisplay%-10s | ")

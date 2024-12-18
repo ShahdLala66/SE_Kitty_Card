@@ -1,10 +1,10 @@
 // src/main/scala/controller/GameController.scala
 package controller
 
-import model._
-import util.{Observer, GameEvent}
+import model.*
+import util.Observer
 
-class GameController extends Observer {
+class GameController {
     private val deck = new Deck()
     private val grid = Grid()
     private var observer: Option[Observer] = None
@@ -25,21 +25,5 @@ class GameController extends Observer {
     private def promptForPlayerName(playerLabel: String): String = {
         println(s"Enter the name for $playerLabel:")
         scala.io.StdIn.readLine()
-    }
-
-    override def update(event: GameEvent): Unit = {
-        observer.foreach(_.update(event))
-    }
-
-    def displayBadChoice(color: String): Unit = {
-        println(s"Bad choice: $color")
-    }
-
-    def displayCatInColor(color: String): Unit = {
-        println(s"Cat in color: $color")
-    }
-
-    def displayMeh(color: String): Unit = {
-        println(s"Meh: $color")
     }
 }

@@ -2,13 +2,13 @@
 package model.cards
 
 class Hand {
-  private var cards: List[Card] = List()
+    private var cards: List[Card] = List()
 
-  def addCard(card: Card): Unit = {
-    cards = card :: cards
-  }
+    def addCard(card: Card): Unit = {
+        cards = card :: cards
+    }
 
-  def getCards: List[Card] = cards
+    def getCards: List[Card] = cards
 
-  override def toString: String = cards.mkString(", ")
+    override def toString: String = cards.mkString(", ")
 }
