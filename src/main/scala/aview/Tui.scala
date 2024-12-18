@@ -17,17 +17,6 @@ class Tui extends Observer {
         "White" -> "\u001b[37m"
     )
 
-    var undoCallback: () => Unit = () => {}
-    var redoCallback: () => Unit = () => {}
-
-    def setUndoCallback(callback: () => Unit): Unit = {
-        undoCallback = callback
-    }
-
-    def setRedoCallback(callback: () => Unit): Unit = {
-        redoCallback = callback
-    }
-
     def run(): Unit = {
         welcomeMessage()
         val gameMode = selectGameMode()

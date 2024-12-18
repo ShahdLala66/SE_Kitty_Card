@@ -3,12 +3,11 @@ package controller
 
 import model.*
 import model.logik.Game
-import model.objects.cards.Card
-import model.objects.{Deck, Grid, Player}
+import model.objects.{Deck, Grid}
 import model.patterns.*
 import util.*
-import util.observer.{GameEvent, Invalid, Observer, PromptForGameMode, PromptForPlayerName, RedoEvent, SelectSinglePlayerOption, StrategySelection, UndoEvent}
-import util.command.{CommandManager, CommandTrait, GameState}
+import util.command.CommandManager
+import util.observer.*
 
 import scala.io.StdIn.readLine
 
@@ -17,10 +16,6 @@ class GameController extends Observer {
     private val grid = Grid.getInstance(3)
     private var observer: Option[Observer] = None
     private val commandManager = new CommandManager()
-    private var currentState: GameState = new GameState(grid, List(), 0, 0) // Added points argument
-    private val players: List[Player] = List()
-    private val currentPlayerIndex: Int = 0
-    private var previousHands: List[List[Card]] = List()
     private var selectedStrategy: Option[Strategy] = None
 
 
@@ -49,35 +44,6 @@ class GameController extends Observer {
 
             case _ =>
                 observer.foreach(_.update(Invalid()))
-        }
-    }
-
-    def executeCommand(command: CommandTrait): Unit = {
-        saveCurrentHandState()
-        currentState = commandManager.executeCommand(command, currentState)
-    }
-
-    def undo(): Unit = {
-        if (previousHands.nonEmpty) {
-            players(currentPlayerIndex).hand = previousHands.head
-            previousHands = previousHands.tail
-        }
-        commandManager.undo().foreach { state =>
-            currentState = state
-            observer.foreach(_.update(UndoEvent(currentState)))
-        }
-    }
-
-    private def saveCurrentHandState(): Unit = {
-        if (players.nonEmpty) {
-            previousHands = players(currentPlayerIndex).hand :: previousHands
-        }
-    }
-
-    def redo(): Unit = {
-        commandManager.redo().foreach { state =>
-            currentState = state
-            observer.foreach(_.update(RedoEvent(currentState)))
         }
     }
 

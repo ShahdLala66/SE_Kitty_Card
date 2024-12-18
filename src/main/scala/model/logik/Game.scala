@@ -69,18 +69,6 @@ class Game(deck: Deck, grid: Grid, var gameMode: GameMode) extends Observable {
     while (!validInput) {
       val input = scala.io.StdIn.readLine()
       input.trim.toLowerCase match {
-        case "undo" =>
-          commandManager.undo().foreach { state =>
-            currentState = state
-            notifyObservers(UndoEvent(currentState))
-          }
-          validInput = true
-        case "redo" =>
-          commandManager.redo().foreach { state =>
-            currentState = state
-            notifyObservers(RedoEvent(currentState))
-          }
-          validInput = true
         case "draw" =>
           drawCardForCurrentPlayer()
           validInput = true
