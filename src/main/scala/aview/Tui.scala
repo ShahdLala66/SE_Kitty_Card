@@ -42,7 +42,7 @@ class Tui(gameController: GameController) extends Observer {
   def start(): Unit = {
     welcomeMessage()
     promptForPlayerName()
-    
+
   }
 
   def printBadChoice(color: String): Unit = {
@@ -65,6 +65,14 @@ class Tui(gameController: GameController) extends Observer {
     println(Console.MAGENTA + "\nWelcome to the Kitty Card Game!")
     println("Players take turns drawing and placing cards on the grid.")
     println("Earn points by placing cards on matching colors or white squares." + Console.RESET)
+  }
+
+  def printGridColors(): Unit = {
+    val colors = gameController.getGridColors
+    colors.foreach { case (x, y, card, color) =>
+      val cardInfo = card.map(_.toString).getOrElse("Empty")
+      println(s"Rectangle at ($x, $y) has card: $cardInfo and color: $color")
+    }
   }
 
   override def update(event: GameEvent): Unit = {
@@ -90,6 +98,9 @@ class Tui(gameController: GameController) extends Observer {
         } else {
           println("It's a tie!")
         }
+
+      case updateGrid(grid) =>
+        printGridColors()
     }
   }
 }

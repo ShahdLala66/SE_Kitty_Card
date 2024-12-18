@@ -2,6 +2,7 @@
 package model
 
 import model.cards.{Card, NumberCards}
+import model.Grid
 import util.*
 
 import scala.util.{Failure, Success, Try}
@@ -21,9 +22,11 @@ class Game(deck: Deck, grid: Grid) extends Observable {
     // maybe problem
     // notifyObservers(PromptForPlayerName(player1Name, player2Name))
     distributeInitialCards()
-    grid.displayInitialColors()
+    notifyObservers(updateGrid(grid))
+    //grid.displayInitialColors()
     gameLoop()
     displayFinalScores()
+
   }
 
   def distributeInitialCards(): Unit = {
@@ -39,6 +42,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
       currentPlayer.getHand.getCards.foreach(println) // Display cards in hand
       handlePlayerTurn()
       switchTurns()
+
     }
   }
 
@@ -83,7 +87,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
             val pointsEarned = grid.calculatePoints(x, y)
             currentPlayer.addPoints(pointsEarned)
             notifyObservers(CardPlacementSuccess(x, y, card.toString, pointsEarned))
-            grid.display() // Display updated grid
+           // grid.display() // Display updated grid
             true
           } else {
             notifyObservers(InvalidPlacement)
@@ -102,6 +106,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
   }
 
   def switchTurns(): Unit = {
+    notifyObservers(updateGrid(grid))
     currentPlayer = if (currentPlayer == player1) player2 else player1
   }
 
