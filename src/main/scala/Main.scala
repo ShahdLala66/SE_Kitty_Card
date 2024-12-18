@@ -1,11 +1,11 @@
 // src/main/scala/Main.scala
 
 import controller.GameController
-import view.Tui
+import aview.Tui
 
 object Main extends App {
     val controller = new GameController()
-    val tui = new Tui()
+    val tui = new Tui(controller)
 
     controller.setObserver(tui)
     //tui.printCatLoop()

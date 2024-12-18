@@ -1,11 +1,14 @@
-// src/main/scala/view/Tui.scala
-package view
+// src/main/scala/aview/Tui.scala
+package aview
 
+import controller.GameController
 import util.*
 
-class Tui extends Observer {
+class Tui(gameController: GameController) extends Observer {
 
-    private[view] val colors = Map(
+    private val inputProvider: InputProvider = new ConsoleProvider
+
+    private[aview] val colors = Map(
         "Green" -> "\u001b[32m",
         "Brown" -> "\u001b[33m",
         "Purple" -> "\u001b[35m",
@@ -29,11 +32,16 @@ class Tui extends Observer {
         }
     }
 
-    def PromptForPlayerName(playerLabel: String): String = {
+    def promptForPlayerName(playerLabel: String): String = {
         println(s"Enter the name for $playerLabel:")
         scala.io.StdIn.readLine()
     }
 
+    def start(): Unit = {
+        gameController.startGame2Player(inputProvider.getInput
+            , inputProvider.getInput
+        )
+    }
 
     def printBadChoice(color: String): Unit = {
         val colorCode = colors.getOrElse(color, "\u001b[0m")
