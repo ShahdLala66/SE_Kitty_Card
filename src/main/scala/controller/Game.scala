@@ -43,17 +43,24 @@ class Game(deck: Deck, grid: Grid) extends Observable {
   // Set the input for the current player's turn
   def setInput(newInput: String): Unit = {
     this.newInput = newInput
-    println(s"New input set: $newInput")
   }
 
   // The main game loop
   def gameLoop(): Unit = {
     while (deck.size > 0 && !grid.isFull) {
       notifyObservers(PlayerTurn(currentPlayer.name))
-      currentPlayer.getHand.foreach(println) // Display cards in hand
+
+      val currentHand: List[Card] = currentPlayer.getHand.toList //maybe dont need but maybe for gui
+      // Notify observers with the updated hand
+      notifyObservers(ShowCardsForPlayer(currentHand))
+
       handlePlayerTurn()
       switchTurns()
     }
+  }
+
+  def getCurrentPlayerHand: List[Card] = {
+    currentPlayer.getHand
   }
 
   // Handles a single player's turn
@@ -69,12 +76,21 @@ class Game(deck: Deck, grid: Grid) extends Observable {
   def drawCardForCurrentPlayer(): Unit = {
     currentPlayer.drawCard(deck) match {
       case Some(card) =>
+        // Notify observers about the drawn card
         notifyObservers(CardDrawn(currentPlayer.name, card.toString))
-        currentPlayer.getHand.foreach(println) // Display updated hand
+
+        // Collect cards from the player's hand into a list
+        val currentHand: List[Card] = currentPlayer.getHand.toList
+
+        // Notify observers with the updated hand
+        notifyObservers(ShowCardsForPlayer(currentHand))
+
       case None =>
+        // Notify observers about invalid placement
         notifyObservers(InvalidPlacement)
     }
   }
+
 
   def processPlayerInput(): Unit = {
     var validInput = false

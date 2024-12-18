@@ -101,6 +101,9 @@ class Tui(gameController: GameController) extends Observer {
 
       case updateGrid(grid) =>
         printGridColors()
+
+      case showCardsForPlayer =>
+        println("Your cards are:") //geht nicht? hm
     }
   }
 }
