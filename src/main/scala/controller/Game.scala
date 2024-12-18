@@ -100,8 +100,6 @@ class Game(deck: Deck, grid: Grid) extends Observable {
 
     def switchTurns(): Unit = {
         currentPlayer = if (currentPlayer == player1) player2 else player1
-        notifyObservers(PlayerTurn(currentPlayer.name))
-        grid.display() // Display updated grid after switching turns
     }
 
     def displayFinalScores(): Unit = {

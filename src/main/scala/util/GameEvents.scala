@@ -20,7 +20,6 @@ case class PromptForPlayerName(player: String) extends GameEvent
 case object StrategySelection extends GameEvent
 
 
-
 //Game Over
 case class  TotalPoints(player1Points: Int, player2Points: Int) extends GameEvent
 case class GameOver(player1Name: String, player1Points: Int, player2Name: String, player2Points: Int) extends GameEvent

@@ -53,7 +53,6 @@ case class Grid(size: Int = 3) {
         val rectangleColor = rectangleColors(x)(y)
         grid(x)(y) match {
             case Some(card) =>
-                println(s"Card: ${card.suit}, ${card.value}; Rectangle color: $rectangleColor")
                 if (card.suit == rectangleColor) {
                     Value.toInt(card.value) * 2 // Double points if suits match
                 } else if (rectangleColor == Suit.White) {
@@ -72,7 +71,7 @@ case class Grid(size: Int = 3) {
 
     // Method to display the grid along with rectangle colors
     def display(): Unit = {
-        println("Grid layout (cards and rectangle colors):")
+        println("\n")
         for (i <- grid.indices) {
             for (j <- grid(i).indices) {
                 val cardDisplay = grid(i)(j) match {
