@@ -42,6 +42,7 @@ class Tui(gameController: GameController) extends Observer {
   def start(): Unit = {
     welcomeMessage()
     promptForPlayerName()
+    
   }
 
   def printBadChoice(color: String): Unit = {
@@ -68,8 +69,8 @@ class Tui(gameController: GameController) extends Observer {
 
   override def update(event: GameEvent): Unit = {
     event match {
-      case PromptForPlayerName(player1, player2) =>
-        promptForPlayerName()
+      case GameStart =>
+        start()
       case PlayerTurn(playerName) =>
         println(Console.BLUE + s"\n$playerName's turn.\n" + Console.RESET)
       case CardDrawn(playerName, card) =>
