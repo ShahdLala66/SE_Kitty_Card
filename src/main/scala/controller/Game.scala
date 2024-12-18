@@ -33,6 +33,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
 
     }
 
+
     def distributeInitialCards(): Unit = {
         for (_ <- 1 to 3) {
             player1.drawCard(deck)
@@ -40,17 +41,67 @@ class Game(deck: Deck, grid: Grid) extends Observable {
         }
     }
 
-    def gameLoop(): Unit = {
-        while (deck.size > 0 && !grid.isFull) {
-            notifyObservers(PlayerTurn(currentPlayer.name))
-            currentPlayer.getHand.foreach(println) // Display cards in hand
-            handlePlayerTurn()
-            switchTurns()
+  }
 
-        }
+  var input: String = ""
+  var newInput: String = ""
+
+  // Set the input for the current player's turn
+  def setInput(newInput: String): Unit = {
+    this.newInput = newInput
+  }
+
+  // The main game loop
+  def gameLoop(): Unit = {
+    while (deck.size > 0 && !grid.isFull) {
+      notifyObservers(PlayerTurn(currentPlayer.name))
+
+      val currentHand: List[Card] = currentPlayer.getHand.toList //maybe dont need but maybe for gui
+      // Notify observers with the updated hand
+      notifyObservers(ShowCardsForPlayer(currentHand))
+
+      handlePlayerTurn()
+      switchTurns()
+    }
+  }
+
+  def getCurrentPlayerHand: List[Card] = {
+    currentPlayer.getHand
+  }
+
+  // Handles a single player's turn
+  def handlePlayerTurn(): Unit = {
+    drawCardForCurrentPlayer()
+    notifyObservers(WaitForPlayerInput)
+    processPlayerInput() // Process new input
+    input = newInput
+
+  }
+  //me and zayne
+
+  def drawCardForCurrentPlayer(): Unit = {
+    currentPlayer.drawCard(deck) match {
+      case Some(card) =>
+        // Notify observers about the drawn card
+        notifyObservers(CardDrawn(currentPlayer.name, card.toString))
+
+        // Collect cards from the player's hand into a list
+        val currentHand: List[Card] = currentPlayer.getHand.toList
+
+        // Notify observers with the updated hand
+        notifyObservers(ShowCardsForPlayer(currentHand))
+
+      case None =>
+        // Notify observers about invalid placement
+        notifyObservers(InvalidPlacement)
     }
 
     def handlePlayerTurn(): Unit = {
+
+  def processPlayerInput(): Unit = {
+    var validInput = false
+    while (!validInput) {
+      if (input.trim.toLowerCase == "draw") {
         drawCardForCurrentPlayer()
         processPlayerInput()
     }

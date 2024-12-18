@@ -1,7 +1,7 @@
 // src/main/scala/util/GameEvents.scala
 package util
 
-import model.cards.{AssistCard, NumberCards}
+import model.cards.{AssistCard, Card, Hand, NumberCards}
 import model.{Deck, Grid, Player}
 import util.command.GameState
 
@@ -33,6 +33,9 @@ case class PlayerTurn(playerName: String) extends GameEvent
 case class CardPlacementSuccess(x: Int, y: Int, card: String, points: Int) extends GameEvent
 case class RemoveCardFromHand(playerName: String, card: String) extends GameEvent
 case class RemoveCardFromGrid(id: NumberCards, x: Int, y: Int) extends GameEvent
+
+case class ShowCardsForPlayer(cand : List[Card]) extends GameEvent
+case class updateHand ( card : Card) extends GameEvent
 case object WaitForPlayerInput extends GameEvent
 case class InputUpdated(input: String) extends GameEvent
 case class AskForCardPlacement() extends GameEvent 

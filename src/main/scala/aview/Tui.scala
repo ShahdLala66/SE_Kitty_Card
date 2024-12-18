@@ -101,8 +101,11 @@ class Tui(gameController: GameController) extends Observer {
 
       case updateGrid(grid) =>
         printGridColors()
+
       case UndoEvent(_) => println("Undo performed.")
       case RedoEvent(_) => println("Redo performed.")
+      case showCardsForPlayer =>
+        println("Your cards are:") //geht nicht? hm
     }
   }
 }
