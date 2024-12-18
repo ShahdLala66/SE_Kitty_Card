@@ -17,6 +17,8 @@ class Game(deck: Deck, grid: Grid) extends Observable {
         player1 = p1
         player2 = p2
         currentPlayer = player1
+        // maybe problem
+        // notifyObservers(PromptForPlayerName(player1Name, player2Name))
         distributeInitialCards()
         grid.displayInitialColors()
         gameLoop()

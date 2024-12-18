@@ -16,7 +16,7 @@ case class ShowColoredCat(color: String) extends GameEvent
 
 //Game Starten
 case object GameStart extends GameEvent
-case class PromptForPlayerName(player: String) extends GameEvent
+case class PromptForPlayerName(player1: String, player2 : String) extends GameEvent
 case object StrategySelection extends GameEvent
 
 
