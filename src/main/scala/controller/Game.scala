@@ -4,7 +4,7 @@ package controller
 import model.cards.{Card, Hand, NumberCards}
 import model.{Deck, Grid, Player}
 import util.*
-import util.command.{CommandManager, GameState}
+import util.command.{CommandManager, GameState, PlaceCardCommand}
 
 import scala.util.{Failure, Success, Try}
 
@@ -106,7 +106,10 @@ class Game(deck: Deck, grid: Grid) extends Observable {
                     currentPlayer.getHand.lift(cardIndex) match {
                         case Some(card: NumberCards) =>
                             if (grid.placeCard(x, y, card)) {
+                                val points = grid.calculatePoints(x, y)
                                 val pointsEarned = grid.calculatePoints(x, y)
+                                val command = new PlaceCardCommand(grid, card, currentPlayer, points, (x, y))
+                                currentState = commandManager.executeCommand(command, currentState)
                                 currentPlayer.addPoints(pointsEarned)
                                 notifyObservers(CardPlacementSuccess(x, y, card.toString, pointsEarned))
                                 // grid.display() // Display updated grid
