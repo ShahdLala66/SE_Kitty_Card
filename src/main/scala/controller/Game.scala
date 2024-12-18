@@ -85,7 +85,6 @@ class Game(deck: Deck, grid: Grid) extends Observable {
                 notifyObservers(event)
                 true
             case None =>
-                print("shase")
                 false
         }
     }
