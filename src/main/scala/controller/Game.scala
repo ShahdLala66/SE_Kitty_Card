@@ -50,7 +50,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
   def gameLoop(): Unit = {
     while (deck.size > 0 && !grid.isFull) {
       notifyObservers(PlayerTurn(currentPlayer.name))
-      currentPlayer.getHand.getCards.foreach(println) // Display cards in hand
+      currentPlayer.getHand.foreach(println) // Display cards in hand
       handlePlayerTurn()
       switchTurns()
     }
@@ -70,7 +70,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
     currentPlayer.drawCard(deck) match {
       case Some(card) =>
         notifyObservers(CardDrawn(currentPlayer.name, card.toString))
-        currentPlayer.getHand.getCards.foreach(println) // Display updated hand
+        currentPlayer.getHand.foreach(println) // Display updated hand
       case None =>
         notifyObservers(InvalidPlacement)
     }
@@ -95,7 +95,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
       val x = parts(1).toInt
       val y = parts(2).toInt
 
-      currentPlayer.getHand.getCards.lift(cardIndex) match {
+      currentPlayer.getHand.lift(cardIndex) match {
         case Some(card: NumberCards) =>
           if (grid.placeCard(x, y, card)) {
             val pointsEarned = grid.calculatePoints(x, y)
