@@ -6,6 +6,7 @@ import model.{Deck, Grid, Player}
 import util.*
 import util.command.{CommandManager, GameState, PlaceCardCommand}
 
+import java.lang.Thread.sleep
 import scala.util.{Failure, Success, Try}
 
 
@@ -18,6 +19,9 @@ class Game(deck: Deck, grid: Grid) extends Observable {
     private var hand: Hand = new Hand()
 
 
+    def askForPlayerNames(): Unit = {
+        notifyObservers(PromptForPlayerName)
+    }
     def start(player1Name: String, player2Name: String): Unit = {
         println("Starting game...")
         val (p1, p2) = addPlayers(player1Name, player2Name)
@@ -27,8 +31,8 @@ class Game(deck: Deck, grid: Grid) extends Observable {
         player1 = p1
         player2 = p2
         currentPlayer = player1
+        notifyObservers(UpdatePlayers(player1, player2))
         notifyObservers(UpdatePlayer(currentPlayer))
-        println(s"Current Player initialized: $currentPlayer")
         // maybe problem
         // notifyObservers(PromptForPlayerName(player1Name, player2Name))
         distributeInitialCards()

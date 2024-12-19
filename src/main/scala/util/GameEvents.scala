@@ -16,7 +16,7 @@ case class ShowColoredCat(color: String) extends GameEvent
 
 //Game Starten
 case object GameStart extends GameEvent
-case class PromptForPlayerName(player1: String, player2 : String) extends GameEvent
+case object PromptForPlayerName extends GameEvent
 case object StrategySelection extends GameEvent
 
 
@@ -34,11 +34,13 @@ case class CardPlacementSuccess(x: Int, y: Int, card: String, points: Int) exten
 case class RemoveCardFromHand(playerName: String, card: String) extends GameEvent
 case class RemoveCardFromGrid(id: NumberCards, x: Int, y: Int) extends GameEvent
 case class UpdatePlayer(player1: Player) extends GameEvent
+case class UpdatePlayers(player1: Player, player2: Player) extends GameEvent
 
 case class ShowCardsForPlayer(cand : List[Card]) extends GameEvent
 case class updateHand ( card : Card) extends GameEvent
 case object WaitForPlayerInput extends GameEvent
 case class InputUpdated(input: String) extends GameEvent
+
 //special case
 case class StartCardPhaseOne(currentPlayer: Player, cards: AssistCard) extends GameEvent //Game state?, or just not allow the select for it
 case class StartCardPhaseTwo(currentPlayer: Player, cards: NumberCards) extends GameEvent

@@ -1,65 +1,94 @@
+// src/main/scala/aview/Gui.scala
+
 package aview
 
+import controller.GameController
 import scalafx.application.JFXApp3
+import scalafx.geometry.Insets
 import scalafx.scene.Scene
 import scalafx.scene.control._
 import scalafx.scene.image.{Image, ImageView}
 import scalafx.scene.layout._
+import scalafx.scene.paint.Color
 import scalafx.scene.text.Font
+import scala.concurrent.{Future, Promise}
+import util._
 
-case class Card(suit: String, value: String)
-
-object MyApp extends JFXApp3 {
-  private val gridPane = new GridPane {
-    layoutX = 84
-    layoutY = 83
-    prefHeight = 340
-    prefWidth = 460
-    columnConstraints = Seq(
-      new ColumnConstraints {
-        hgrow = Priority.Sometimes
-        maxWidth = 221.2
-        prefWidth = 156.2
-      },
-      new ColumnConstraints {
-        hgrow = Priority.Sometimes
-        maxWidth = 310
-        prefWidth = 170.4
-      },
-      new ColumnConstraints {
-        hgrow = Priority.Sometimes
-        maxWidth = 310
-        prefWidth = 144.0
-      }
-    )
-    rowConstraints = Seq(
-      new RowConstraints {
-        vgrow = Priority.Sometimes
-        maxHeight = 123.8
-        prefHeight = 77.6
-      },
-      new RowConstraints {
-        vgrow = Priority.Sometimes
-        maxHeight = 184
-        prefHeight = 133.6
-      },
-      new RowConstraints {
-        vgrow = Priority.Sometimes
-        maxHeight = 104.8
-        prefHeight = 104.8
-      }
-    )
-  }
-
-  private var input: String = ""
+class Gui(gameController: GameController) extends JFXApp3 with Observer {
 
   override def start(): Unit = {
+    val textField = new TextField {
+      layoutX = 253
+      layoutY = 41
+    }
+
+    val gridPane = new GridPane {
+      layoutX = 84
+      layoutY = 83
+      prefWidth = 450
+      prefHeight = 450
+      columnConstraints = Seq.fill(3)(new ColumnConstraints {
+        hgrow = Priority.Sometimes
+        prefWidth = 150
+      })
+      rowConstraints = Seq.fill(3)(new RowConstraints {
+        vgrow = Priority.Sometimes
+        prefHeight = 150
+      })
+      padding = Insets(10)
+      hgap = 10
+      vgap = 10
+    }
+
+    val submitButton = new Button("SubmitInput") {
+      layoutX = 287
+      layoutY = 67
+      onAction = _ => {
+        val input = textField.text.value.trim
+        val coordinates = input.split(" ").map(_.toIntOption)
+
+        if (coordinates.length == 2 && coordinates.forall(_.isDefined)) {
+          val row = coordinates(0).get - 1
+          val col = coordinates(1).get - 1
+
+          if (row >= 0 && row < 3 && col >= 0 && col < 3) {
+            val imageView = new ImageView {
+              image = new Image(getClass.getResourceAsStream("/yellow_card_1.png"))
+              fitWidth = 130
+              fitHeight = 130
+              preserveRatio = true
+            }
+            GridPane.setRowIndex(imageView, row)
+            GridPane.setColumnIndex(imageView, col)
+            gridPane.children.add(imageView)
+          } else {
+            new Alert(Alert.AlertType.Warning) {
+              contentText = "Coordinates must be between 1 and 3."
+            }.showAndWait()
+          }
+        } else {
+          new Alert(Alert.AlertType.Warning) {
+            contentText = "Invalid input. Enter coordinates in 'x y' format."
+          }.showAndWait()
+        }
+      }
+    }
+
+    val backgroundImage = new BackgroundImage(
+      new Image(getClass.getResourceAsStream("/IMG_0807.png")),
+      BackgroundRepeat.NoRepeat,
+      BackgroundRepeat.NoRepeat,
+      BackgroundPosition.Center,
+      new BackgroundSize(0.95, 0.95, true, true, false, false)
+    )
+
     stage = new JFXApp3.PrimaryStage {
-      title = "ScalaFX Application"
+      title = "ScalaFX Grid Image Placement"
       scene = new Scene {
         root = new VBox {
-          prefHeight = 400
+          prefHeight = 600
           prefWidth = 640
+          background = new Background(Array(backgroundImage))
           children = Seq(
             new MenuBar {
               VBox.setVgrow(this, Priority.Never)
@@ -68,9 +97,6 @@ object MyApp extends JFXApp3 {
                   items = Seq(
                     new MenuItem("Undo"),
                     new MenuItem("Redo"),
-                    new SeparatorMenuItem(),
-                    new MenuItem("Select All"),
-                    new MenuItem("Unselect All")
                   )
                 },
                 new Menu("Help") {
@@ -83,56 +109,20 @@ object MyApp extends JFXApp3 {
             new AnchorPane {
               VBox.setVgrow(this, Priority.Always)
               children = Seq(
-                new ImageView {
-                  disable = true
-                  fitHeight = 550
-                  fitWidth = 674
-                  layoutX = -1
-                  pickOnBounds = true
-                  preserveRatio = true
-                  image = new Image(getClass.getResourceAsStream("/IMG_0807.png"))
-                },
-                new Label("dfghjm,mgdf") {
-                  alignment = scalafx.geometry.Pos.Center
+                new Label("Top Left Label") {
                   layoutX = 32
                   layoutY = 14
-                  textFill = scalafx.scene.paint.Color.web("#9f9f9f")
+                  textFill = Color.web("#9f9f9f")
                   font = Font(18)
                 },
-                new Label("dfghjm,mgdf") {
-                  alignment = scalafx.geometry.Pos.Center
+                new Label("Top Right Label") {
                   layoutX = 517
                   layoutY = 14
-                  textFill = scalafx.scene.paint.Color.web("#9f9f9f")
+                  textFill = Color.web("#9f9f9f")
                   font = Font(18)
                 },
-                new Label("11") {
-                  alignment = scalafx.geometry.Pos.Center
-                  layoutX = 198
-                  layoutY = 14
-                  textFill = scalafx.scene.paint.Color.web("#9f9f9f")
-                  font = Font(18)
-                },
-                new Label("11") {
-                  alignment = scalafx.geometry.Pos.Center
-                  layoutX = 439
-                  layoutY = 14
-                  textFill = scalafx.scene.paint.Color.web("#9f9f9f")
-                  font = Font(18)
-                },
-                new TextField {
-                  layoutX = 253
-                  layoutY = 41
-                  onAction = _ => input = text.value
-                },
-                new Button("SubmitInput") {
-                  layoutX = 287
-                  layoutY = 67
-                  onAction = _ => {
-                    input = text.value
-                    handleInput()
-                  }
-                },
+                textField,
+                submitButton,
                 gridPane
               )
             }
@@ -141,41 +131,18 @@ object MyApp extends JFXApp3 {
       }
     }
   }
+  
+  import scala.concurrent.ExecutionContext.Implicits.global
 
-  def getCardImageFileName(suit: String, value: String): String = {
-    (suit, value) match {
-      case ("yellow", "1") => "yellow_card_1.png"
-      case ("red", "2") => "red_card_2.png"
-      case ("blue", "3") => "blue_card_3.png"
-      case ("green", "4") => "green_card_4.png"
-      case ("purple", "5") => "purple_card_5.png"
-      case ("brown", "6") => "brown_card_6.png"
-      case _ => "default_card.png"
-    }
-  }
+  override def update(event: util.GameEvent): Unit = {
+    event match {
+      case GameStart =>
+        start()
 
-  def placeCard(card: Card, row: Int, col: Int): Unit = {
-    val cardImageFileName = getCardImageFileName(card.suit, card.value)
-    val cardImage = new Image(getClass.getResourceAsStream(s"/$cardImageFileName"))
-    val imageView = new ImageView(cardImage) {
-      fitHeight = 100
-      fitWidth = 100
-      preserveRatio = true
-    }
-    gridPane.add(imageView, col, row)
-  }
+      case UpdatePlayers(player1, player2) =>
+        println(s"\nPlayer 1: $player1, Player 2: $player2")
 
-  def handleInput(): Unit = {
-    val parts = input.split(" ")
-    if (parts.length == 4) {
-      val suit = parts(0)
-      val value = parts(1)
-      val row = parts(2).toInt
-      val col = parts(3).toInt
-      val card = Card(suit, value)
-      placeCard(card, row, col)
-    } else {
-      println("Invalid input format. Expected format: <suit> <value> <row> <col>")
+      // Handle other events as needed...
     }
   }
 }

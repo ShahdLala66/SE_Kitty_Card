@@ -3,10 +3,11 @@ package aview
 import controller.GameController
 import util.*
 
+import scala.concurrent.{Future, Promise}
+
 class Tui(gameController: GameController) extends Observer {
 
   private val inputProvider: InputProvider = new ConsoleProvider
-
   private[aview] val colors = Map(
     "Green" -> "\u001b[32m",
     "Brown" -> "\u001b[33m",
@@ -39,10 +40,16 @@ class Tui(gameController: GameController) extends Observer {
     gameController.promptForPlayerName(player1, player2)
   }
 
+  private var skipPrompt = false
+
+  def skipNamePrompt(): Unit = {
+    skipPrompt = true
+  }
+
+
   def start(): Unit = {
     welcomeMessage()
     promptForPlayerName()
-
   }
 
   def printBadChoice(color: String): Unit = {
@@ -75,10 +82,13 @@ class Tui(gameController: GameController) extends Observer {
     }
   }
 
+  def test(): Unit = {
+    println("Test")
+  }
   override def update(event: GameEvent): Unit = {
     event match {
-      case GameStart =>
-        start()
+      case UpdatePlayers(player1, player2) =>
+        print("\n", player1, player2)
       case PlayerTurn(playerName) =>
         println(Console.BLUE + s"\n$playerName's turn.\n" + Console.RESET)
       case CardDrawn(playerName, card) =>
@@ -102,11 +112,15 @@ class Tui(gameController: GameController) extends Observer {
       case updateGrid(grid) =>
         printGridColors()
 
+
       case UndoEvent(_) => println("Undo performed.")
       case RedoEvent(_) => println("Redo performed.")
       case ShowCardsForPlayer(cards) =>
         cards.foreach(println)
       case UpdatePlayer(player1) => print(player1)
+      case PromptForPlayerName => promptForPlayerName()
+
+      case _ => println("Invalid event.")
     }
   }
 }
