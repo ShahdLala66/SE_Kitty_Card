@@ -33,13 +33,12 @@ case class PlayerTurn(playerName: String) extends GameEvent
 case class CardPlacementSuccess(x: Int, y: Int, card: String, points: Int) extends GameEvent
 case class RemoveCardFromHand(playerName: String, card: String) extends GameEvent
 case class RemoveCardFromGrid(id: NumberCards, x: Int, y: Int) extends GameEvent
+case class UpdatePlayer(player1: Player) extends GameEvent
 
 case class ShowCardsForPlayer(cand : List[Card]) extends GameEvent
 case class updateHand ( card : Card) extends GameEvent
 case object WaitForPlayerInput extends GameEvent
 case class InputUpdated(input: String) extends GameEvent
-case class AskForCardPlacement() extends GameEvent 
-
 //special case
 case class StartCardPhaseOne(currentPlayer: Player, cards: AssistCard) extends GameEvent //Game state?, or just not allow the select for it
 case class StartCardPhaseTwo(currentPlayer: Player, cards: NumberCards) extends GameEvent

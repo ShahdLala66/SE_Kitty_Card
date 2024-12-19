@@ -40,4 +40,6 @@ class GameController {
       }
     }.toList
   }
+  
+  def getCurrentplayer = game.getCurrentplayer
 }

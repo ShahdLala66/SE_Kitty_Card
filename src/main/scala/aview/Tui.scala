@@ -104,8 +104,9 @@ class Tui(gameController: GameController) extends Observer {
 
       case UndoEvent(_) => println("Undo performed.")
       case RedoEvent(_) => println("Redo performed.")
-      case showCardsForPlayer =>
-        println("Your cards are:") //geht nicht? hm
+      case ShowCardsForPlayer(cards) =>
+        cards.foreach(println)
+      case UpdatePlayer(player1) => print(player1)
     }
   }
 }

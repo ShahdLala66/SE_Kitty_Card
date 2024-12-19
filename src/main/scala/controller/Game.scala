@@ -19,10 +19,16 @@ class Game(deck: Deck, grid: Grid) extends Observable {
 
 
     def start(player1Name: String, player2Name: String): Unit = {
+        println("Starting game...")
         val (p1, p2) = addPlayers(player1Name, player2Name)
+        println(s"Player 1: $p1")
+        println(s"Player 2: $p2")
+
         player1 = p1
         player2 = p2
         currentPlayer = player1
+        notifyObservers(UpdatePlayer(currentPlayer))
+        println(s"Current Player initialized: $currentPlayer")
         // maybe problem
         // notifyObservers(PromptForPlayerName(player1Name, player2Name))
         distributeInitialCards()
@@ -43,7 +49,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
     def gameLoop(): Unit = {
         while (deck.size > 0 && !grid.isFull) {
             notifyObservers(PlayerTurn(currentPlayer.name))
-            currentPlayer.getHand.foreach(println) // Display cards in hand
+           // currentPlayer.getHand.foreach(println) // Display cards in hand
             handlePlayerTurn()
             switchTurns()
 
@@ -59,11 +65,13 @@ class Game(deck: Deck, grid: Grid) extends Observable {
         currentPlayer.drawCard(deck) match {
             case Some(card) =>
                 notifyObservers(CardDrawn(currentPlayer.name, card.toString))
-                currentPlayer.getHand.foreach(println) // Display updated hand
+                //currentPlayer.getHand.foreach(println) // Display updated hand
+                notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
             case None =>
                 notifyObservers(InvalidPlacement)
         }
     }
+
 
     def processPlayerInput(): Unit = {
         var validInput = false
@@ -130,10 +138,14 @@ class Game(deck: Deck, grid: Grid) extends Observable {
         }
     }
 
+    def getCurrentplayer: Player = currentPlayer
+
 
     def switchTurns(): Unit = {
         notifyObservers(updateGrid(grid))
         currentPlayer = if (currentPlayer == player1) player2 else player1
+        print(s"Switching turns... $currentPlayer ")
+
     }
 
     def displayFinalScores(): Unit = {
@@ -141,8 +153,8 @@ class Game(deck: Deck, grid: Grid) extends Observable {
     }
 
     def addPlayers(player1Name: String, player2Name: String): (Player, Player) = {
-        val player1 = Player(player1Name)
-        val player2 = Player(player2Name)
+        val player1 = Player(player1Name, 0)
+        val player2 = Player(player2Name, 0)
         (player1, player2)
     }
 }
