@@ -1,9 +1,9 @@
 package model
 
-import model.cardComp.Suit.Suit
-import model.cardComp.{Card, NumberCards}
-import model.deckComp.Deck
-import model.gridComp.Grid
+import model.cardComp.baseImp.Suit.Suit
+import model.cardComp.baseImp.{Card, NumberCards}
+import model.deckComp.baseImp.Deck
+import model.gridComp.baseImp.Grid
 
 trait CompInterface {
 

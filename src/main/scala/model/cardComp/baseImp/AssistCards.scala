@@ -1,4 +1,6 @@
-package model.cardComp
+package model.cardComp.baseImp
+
+import model.cardComp.baseImp.{AssistCardType, Card}
 
 object AssistCardType extends Enumeration {
     type AssistCardType = Value

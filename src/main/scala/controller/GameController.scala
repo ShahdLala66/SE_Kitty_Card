@@ -2,10 +2,10 @@
 package controller
 
 import model.*
-import model.cardComp.NumberCards
-import model.cardComp.Suit.Suit
-import model.deckComp.Deck
-import model.playerComp.Player
+import model.cardComp.baseImp.NumberCards
+import model.cardComp.baseImp.Suit.Suit
+import model.deckComp.baseImp.Deck
+import model.playerComp.baseImp.Player
 import util.Observer
 import util.grid.GridFactory
 

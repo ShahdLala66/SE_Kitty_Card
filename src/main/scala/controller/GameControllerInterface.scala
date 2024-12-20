@@ -1,9 +1,9 @@
 // src/main/scala/controller/GameControllerInterface.scala
 package controller
 
-import model.cardComp.NumberCards
-import model.cardComp.Suit.Suit
-import model.playerComp.Player
+import model.cardComp.baseImp.NumberCards
+import model.cardComp.baseImp.Suit.Suit
+import model.playerComp.baseImp.Player
 import util.Observer
 
 trait GameControllerInterface {

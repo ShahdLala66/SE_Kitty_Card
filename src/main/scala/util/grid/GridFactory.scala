@@ -1,7 +1,7 @@
 package util.grid
 
-import model.cardComp.Suit.Suit
-import model.gridComp.Grid
+import model.cardComp.baseImp.Suit.Suit
+import model.gridComp.baseImp.Grid
 
 object GridFactory {
   def createGrid(size: Int): Grid = {

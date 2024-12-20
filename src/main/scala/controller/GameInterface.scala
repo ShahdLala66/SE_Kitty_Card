@@ -1,6 +1,6 @@
 package controller
 
-import model.playerComp.Player
+import model.playerComp.baseImp.Player
 import util.GameEvent
 import util.command.GameState
 

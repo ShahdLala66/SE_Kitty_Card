@@ -1,6 +1,8 @@
-package model.cardComp
+package model.cardComp.baseImp
 
-object Value extends Enumeration {
+import model.cardComp.ValueInterface
+
+object Value extends Enumeration with ValueInterface {
     type Value1 = Value
     val One: Value = Value(1)
     val Two: Value = Value(2)
@@ -12,7 +14,7 @@ object Value extends Enumeration {
     val Eight: Value = Value(8)
 
     // Helper method to convert a Value to its integer representation
-    def toInt(value: Value): Int = value match {
+    override def toInt(value: Value): Int = value match {
         case One => 1
         case Two => 2
         case Three => 3

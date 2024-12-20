@@ -1,6 +1,7 @@
-package model.handComp
+package model.handComp.baseImp
 
-import model.cardComp.Card
+import model.cardComp.baseImp.Card
+import model.handComp.HandInterface
 
 class Hand extends HandInterface {
     private var cards: List[Card] = List()

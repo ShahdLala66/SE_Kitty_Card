@@ -1,7 +1,8 @@
-package model.gridComp
+package model.gridComp.baseImp
 
-import model.cardComp.Suit.Suit
-import model.cardComp.{NumberCards, Suit, Value}
+import model.cardComp.baseImp.Suit.Suit
+import model.cardComp.baseImp.{NumberCards, Suit, Value}
+import model.gridComp.GridInterface
 import util.Observer
 
 import scala.collection.mutable.ListBuffer

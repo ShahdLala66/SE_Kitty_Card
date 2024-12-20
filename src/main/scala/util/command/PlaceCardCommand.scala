@@ -1,8 +1,8 @@
 package util.command
 
-import model.cardComp.NumberCards
-import model.gridComp.Grid
-import model.playerComp.Player
+import model.cardComp.baseImp.NumberCards
+import model.gridComp.baseImp.Grid
+import model.playerComp.baseImp.Player
 
 class
 

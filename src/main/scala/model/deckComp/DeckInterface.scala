@@ -1,6 +1,6 @@
 package model.deckComp
 
-import model.cardComp.NumberCards
+import model.cardComp.baseImp.NumberCards
 
 trait DeckInterface {
     def drawCard(): Option[NumberCards]

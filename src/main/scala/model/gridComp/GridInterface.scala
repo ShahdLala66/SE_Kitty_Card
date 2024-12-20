@@ -1,7 +1,8 @@
 package model.gridComp
 
-import model.cardComp.Suit.Suit
-import model.cardComp.NumberCards
+import model.cardComp.baseImp.NumberCards
+import model.cardComp.baseImp.Suit.Suit
+import model.gridComp.baseImp.Grid
 
 trait GridInterface {
     def size: Int

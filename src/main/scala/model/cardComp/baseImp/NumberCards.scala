@@ -1,6 +1,7 @@
-package model.cardComp
+package model.cardComp.baseImp
 
-import model.cardComp.Value.Value
+import Value.Value
+import model.cardComp.baseImp.{Suit, Value}
 
 import scala.util.Random
 

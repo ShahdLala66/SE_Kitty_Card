@@ -1,7 +1,7 @@
 package model.playerComp
 
-import model.cardComp.Card
-import model.deckComp.Deck
+import model.cardComp.baseImp.Card
+import model.deckComp.baseImp.Deck
 
 trait PlayerInterface {
     def name: String
