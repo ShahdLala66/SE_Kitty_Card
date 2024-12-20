@@ -5,10 +5,11 @@ import model.*
 import model.cardComp.NumberCards
 import model.cardComp.Suit.Suit
 import model.deckComp.Deck
+import model.playerComp.Player
 import util.Observer
 import util.grid.GridFactory
 
-class GameController  {
+class GameController extends GameControllerInterface {
   private val deck = new Deck()
   private val grid = GridFactory.createGrid(3) // Use GridFactory to create a grid with random colors
   private var observer: Option[Observer] = None
@@ -30,7 +31,7 @@ class GameController  {
   var player2: String = ""
   var counter = 0
 
-  def promptForPlayerName(player1: String, player2: String) = {
+  def promptForPlayerName(player1: String, player2: String): Unit = {
     if (counter == 0) {
       this.player1 = player1
       this.player2 = player2
@@ -49,7 +50,7 @@ class GameController  {
     }.toList
   }
 
-  def getCurrentplayer = game.getCurrentplayer
+  def getCurrentplayer: Player = game.getCurrentplayer
 
 
 }

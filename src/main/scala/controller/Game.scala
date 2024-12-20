@@ -13,7 +13,7 @@ import java.lang.Thread.sleep
 import scala.util.{Failure, Success, Try}
 
 
-class Game(deck: Deck, grid: Grid) extends Observable {
+class Game(deck: Deck, grid: Grid) extends Observable with GameInterface {
     var currentPlayer: Player = _
     var player1: Player = _
     var player2: Player = _
