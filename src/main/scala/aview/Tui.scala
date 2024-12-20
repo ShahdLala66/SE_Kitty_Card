@@ -7,7 +7,7 @@ import scala.concurrent.{Future, Promise}
 
 class Tui(gameController: GameController) extends Observer {
 
-  gameController.add(this)
+  //gameController.add(this)
   private val inputProvider: InputProvider = new ConsoleProvider
   private[aview] val colors = Map(
     "Green" -> "\u001b[32m",

@@ -16,7 +16,7 @@ import util._
 
 class Gui(gameController: GameController) extends JFXApp3 with Observer {
 
-  gameController.add(this)
+  //gameController.add(this)
   override def start(): Unit = {
     val textField = new TextField {
       layoutX = 253

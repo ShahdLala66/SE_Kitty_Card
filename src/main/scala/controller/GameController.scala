@@ -4,10 +4,10 @@ package controller
 import model.*
 import model.cards.NumberCards
 import model.cards.Suit.Suit
-import util.{Observable, Observer, PromptForPlayerName, WaitForPlayerInput}
 import util.grid.GridFactory
+import util.{Observable, Observer, PromptForPlayerName}
 
-class GameController extends Observable {
+class GameController {
   private val deck = new Deck()
   private val grid = GridFactory.createGrid(3) // Use GridFactory to create a grid with random colors
   private var observer: Option[Observer] = None
@@ -18,12 +18,12 @@ class GameController extends Observable {
     this.observer = Some(observer)
 
   }
-  
+
   def startGame(): Unit = {
     val game = new Game(deck, grid)
     observer.foreach(game.add) //without this line no observer can trigger any event lol
-    notifyObservers(PromptForPlayerName)
-
+    //notifyObservers(PromptForPlayerName)
+    game.askForPlayerNames()
     game.askForPlayerNames()
     game.start(player1, player2)
   }
@@ -50,9 +50,9 @@ class GameController extends Observable {
       }
     }.toList
   }
-  
-  def setInput (input : String) = {
-    game.setInput(input)
+
+  def setInput(input: String) = {
+    //game.setInput(input)
   }
 
   def getCurrentplayer = game.getCurrentplayer

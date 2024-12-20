@@ -63,7 +63,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
 
   def handlePlayerTurn(): Unit = {
     drawCardForCurrentPlayer()
-    notifyObservers(WaitForPlayerInput)
+    //notifyObservers(WaitForPlayerInput)
     processPlayerInput()
   }
 
@@ -78,14 +78,15 @@ class Game(deck: Deck, grid: Grid) extends Observable {
     }
   }
 
-  var input = ""
-
-  def setInput(input: String): Unit = {
-    this.input = input
-  }
+//  var input = ""
+//
+//  def setInput(input: String): Unit = {
+//    this.input = input
+//  }
 
   def processPlayerInput(): Unit = {
     var validInput = false
+    var input = scala.io.StdIn.readLine()
     while (!validInput) {
       if (input.trim.toLowerCase == "draw") {
         drawCardForCurrentPlayer()

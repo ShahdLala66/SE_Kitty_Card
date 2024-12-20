@@ -9,7 +9,7 @@ import scalafx.stage.Stage
 import util.{GameEvent, Observer, PromptForPlayerName}
 
 class Name(gameController: GameController) extends JFXApp3 with Observer {
-  gameController.add(this)
+  //gameController.add(this)
 
   override def start(): Unit = {
     val player1Field = new TextField {

@@ -10,7 +10,7 @@ object Main extends App {
  // val gui = new Gui(controller)
   //val name = new Name(controller)
 
-
+controller.setObserver(tui)
   controller.startGame()
 
   //gui.main(Array.empty)
