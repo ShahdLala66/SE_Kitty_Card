@@ -3,11 +3,10 @@ package aview
 import controller.GameController
 import util.*
 
-import scala.concurrent.{Future, Promise}
-
 class Tui(gameController: GameController) extends Observer {
 
   gameController.add(this)
+
   private val inputProvider: InputProvider = new ConsoleProvider
   private[aview] val colors = Map(
     "Green" -> "\u001b[32m",
@@ -34,11 +33,12 @@ class Tui(gameController: GameController) extends Observer {
   }
 
   def promptForPlayerName(): Unit = {
-    println(s"Enter the name for Player 1:")
+    println(Console.YELLOW + s"Enter the name for Player 1:")
     val player1 = inputProvider.getInput
-    println(s"Enter the name for Player 2:")
+    println(s"Enter the name for Player 2:" + Console.RESET)
     val player2 = inputProvider.getInput
-    gameController.promptForPlayerName(player1, player2)
+    println()
+    //gameController.promptForPlayerName(player1, player2)
   }
 
   private var skipPrompt = false
@@ -49,8 +49,8 @@ class Tui(gameController: GameController) extends Observer {
 
 
   def start(): Unit = {
+    printCatLoop()
     welcomeMessage()
-    promptForPlayerName()
   }
 
   def printBadChoice(color: String): Unit = {
@@ -69,13 +69,13 @@ class Tui(gameController: GameController) extends Observer {
     println("\u001b[0m")
   }
 
-  def welcomeMessage(): Unit = {
+  private def welcomeMessage(): Unit = {
     println(Console.MAGENTA + "\nWelcome to the Kitty Card Game!")
     println("Players take turns drawing and placing cards on the grid.")
-    println("Earn points by placing cards on matching colors or white squares." + Console.RESET)
+    println("Earn points by placing cards on matching colors or white squares.\n" + Console.RESET)
   }
 
-  def printGridColors(): Unit = {
+  private def printGridColors(): Unit = {
     val colors = gameController.getGridColors
     colors.foreach { case (x, y, card, color) =>
       val cardInfo = card.map(_.toString).getOrElse("Empty")
@@ -86,14 +86,17 @@ class Tui(gameController: GameController) extends Observer {
   def test(): Unit = {
     println("Test")
   }
+
   override def update(event: GameEvent): Unit = {
     event match {
+      case GameStart =>
+        start()
       case UpdatePlayers(player1, player2) =>
         print("\n", player1, player2)
       case PlayerTurn(playerName) =>
-        println(Console.BLUE + s"\n$playerName's turn.\n" + Console.RESET)
+        println(Console.BLUE + s"\n$playerName's turn." + Console.RESET)
       case CardDrawn(playerName, card) =>
-        println(Console.BLUE + s"\n$playerName drew: $card\n" + Console.RESET)
+        println(Console.BLUE + s"$playerName drew: $card\n" + Console.RESET)
       case InvalidPlacement =>
         println("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
       case CardPlacementSuccess(x, y, card, points) =>
@@ -109,15 +112,13 @@ class Tui(gameController: GameController) extends Observer {
         } else {
           println("It's a tie!")
         }
-
-      case updateGrid(grid) =>
+      case UpdateGrid(grid) =>
         printGridColors()
-
-
       case UndoEvent(_) => println("Undo performed.")
       case RedoEvent(_) => println("Redo performed.")
       case ShowCardsForPlayer(cards) =>
         cards.foreach(println)
+        println()
       case UpdatePlayer(player1) => print(player1)
       case PromptForPlayerName => promptForPlayerName()
       case WaitForPlayerInput => gameController.setInput(inputProvider.getInput)

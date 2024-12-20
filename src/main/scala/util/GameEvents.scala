@@ -1,7 +1,7 @@
 // src/main/scala/util/GameEvents.scala
 package util
 
-import model.cards.{AssistCard, Card, Hand, NumberCards}
+import model.cards.{AssistCard, Card, NumberCards}
 import model.{Deck, Grid, Player}
 import util.command.GameState
 
@@ -27,7 +27,7 @@ case class GameOver(player1Name: String, player1Points: Int, player2Name: String
 //debate whether we should use strings and ints or actual objects
 
 //Game Events
-case class updateGrid(grid: Grid) extends GameEvent
+case class UpdateGrid(grid: Grid) extends GameEvent
 case class CardDrawn(playerName: String, card: String) extends GameEvent
 case class PlayerTurn(playerName: String) extends GameEvent
 case class CardPlacementSuccess(x: Int, y: Int, card: String, points: Int) extends GameEvent
@@ -37,7 +37,7 @@ case class UpdatePlayer(player1: Player) extends GameEvent
 case class UpdatePlayers(player1: Player, player2: Player) extends GameEvent
 
 case class ShowCardsForPlayer(cand : List[Card]) extends GameEvent
-case class updateHand ( card : Card) extends GameEvent
+case class UpdateHand ( card : Card) extends GameEvent
 case object WaitForPlayerInput extends GameEvent
 case class InputUpdated(input: String) extends GameEvent
 
