@@ -7,6 +7,7 @@ import scala.concurrent.{Future, Promise}
 
 class Tui(gameController: GameController) extends Observer {
 
+  gameController.add(this)
   private val inputProvider: InputProvider = new ConsoleProvider
   private[aview] val colors = Map(
     "Green" -> "\u001b[32m",
@@ -119,6 +120,7 @@ class Tui(gameController: GameController) extends Observer {
         cards.foreach(println)
       case UpdatePlayer(player1) => print(player1)
       case PromptForPlayerName => promptForPlayerName()
+      case WaitForPlayerInput => gameController.setInput(inputProvider.getInput)
 
       case _ => println("Invalid event.")
     }

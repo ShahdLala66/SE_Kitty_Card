@@ -3,16 +3,13 @@ package aview
 import controller.GameController
 import scalafx.application.JFXApp3
 import scalafx.scene.Scene
-import scalafx.scene.control.*
-import scalafx.scene.layout.*
+import scalafx.scene.control._
+import scalafx.scene.layout._
 import scalafx.stage.Stage
-import util.{Observer, PromptForPlayerName}
-
-import scala.concurrent.Promise
+import util.{GameEvent, Observer, PromptForPlayerName}
 
 class Name(gameController: GameController) extends JFXApp3 with Observer {
-  var nameSubmitted: Promise[Unit] = _
-
+  gameController.add(this)
 
   override def start(): Unit = {
     val player1Field = new TextField {
@@ -39,8 +36,7 @@ class Name(gameController: GameController) extends JFXApp3 with Observer {
                 if (player1Name.nonEmpty && player2Name.nonEmpty) {
                   gameController.promptForPlayerName(player1Name, player2Name)
                   println(s"Player 1: $player1Name, Player 2: $player2Name")
-                  //  alertStage.close()
-                  nameSubmitted.success(())
+                  //alertStage.close()
                 } else {
                   new Alert(Alert.AlertType.Warning) {
                     contentText = "Both player names must be entered."
@@ -59,9 +55,11 @@ class Name(gameController: GameController) extends JFXApp3 with Observer {
     println("Test")
   }
 
-  override def update(event: util.GameEvent): Unit = {
+  override def update(event: GameEvent): Unit = {
     event match {
       case PromptForPlayerName =>
+        main(Array.empty)
+
         test()
       case _ =>
         println("Name submitted")

@@ -7,7 +7,7 @@ import model.cards.Suit.Suit
 import util.{Observable, Observer, PromptForPlayerName, WaitForPlayerInput}
 import util.grid.GridFactory
 
-class GameController  {
+class GameController extends Observable {
   private val deck = new Deck()
   private val grid = GridFactory.createGrid(3) // Use GridFactory to create a grid with random colors
   private var observer: Option[Observer] = None
@@ -16,11 +16,14 @@ class GameController  {
 
   def setObserver(observer: Observer): Unit = {
     this.observer = Some(observer)
+
   }
   
   def startGame(): Unit = {
     val game = new Game(deck, grid)
     observer.foreach(game.add) //without this line no observer can trigger any event lol
+    notifyObservers(PromptForPlayerName)
+
     game.askForPlayerNames()
     game.start(player1, player2)
   }
@@ -46,6 +49,10 @@ class GameController  {
         (x, y, card, color)
       }
     }.toList
+  }
+  
+  def setInput (input : String) = {
+    game.setInput(input)
   }
 
   def getCurrentplayer = game.getCurrentplayer

@@ -16,6 +16,7 @@ import util._
 
 class Gui(gameController: GameController) extends JFXApp3 with Observer {
 
+  gameController.add(this)
   override def start(): Unit = {
     val textField = new TextField {
       layoutX = 253
@@ -132,16 +133,17 @@ class Gui(gameController: GameController) extends JFXApp3 with Observer {
     }
   }
   
-  import scala.concurrent.ExecutionContext.Implicits.global
 
-  override def update(event: util.GameEvent): Unit = {
+  override def update(event: GameEvent): Unit = {
     event match {
       case GameStart =>
         start()
 
       case UpdatePlayers(player1, player2) =>
+        start()
         println(s"\nPlayer 1: $player1, Player 2: $player2")
-
+      case PromptForPlayerName =>
+        println("Prompt for player name")
       // Handle other events as needed...
     }
   }

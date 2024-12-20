@@ -10,6 +10,8 @@ trait Observable {
 
     def add(observer: Observer): Unit = {
         observers = observer :: observers
+        println(s"Observer added: $observer")
+
     }
 
     def remove(observer: Observer): Unit = {
