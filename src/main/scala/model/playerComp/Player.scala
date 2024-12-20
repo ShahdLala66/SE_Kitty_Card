@@ -1,10 +1,10 @@
 // src/main/scala/model/Player.scala
-package model
+package model.playerComp
 
-import model.Deck
-import model.cards.{Card, NumberCards}
+import model.cardComp.Card
+import model.deckComp.Deck
 
-case class Player(name: String, var points: Int = 0) {
+case class Player(name: String, var points: Int = 0) extends PlayerInterface {
     var hand: List[Card] = List()
 
     def addPoints(newPoints: Int): Unit = {

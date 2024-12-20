@@ -1,12 +1,12 @@
-package model
+package model.gridComp
 
-import model.cards.Suit.Suit
-import model.cards.{NumberCards, Suit, Value}
+import model.cardComp.Suit.Suit
+import model.cardComp.{NumberCards, Suit, Value}
 import util.Observer
 
 import scala.collection.mutable.ListBuffer
 
-case class Grid(size: Int, rectangleColors: Array[Array[Suit]]) {
+case class Grid(size: Int, rectangleColors: Array[Array[Suit]]) extends GridInterface {
   private val observers = ListBuffer[Observer]()
   private val grid: Array[Array[Option[NumberCards]]] = Array.fill(size, size)(None)
 

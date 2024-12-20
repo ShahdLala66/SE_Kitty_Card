@@ -1,7 +1,8 @@
-// src/main/scala/model/cards/Hand.scala
-package model.cards
+package model.handComp
 
-class Hand {
+import model.cardComp.Card
+
+class Hand extends HandInterface {
     private var cards: List[Card] = List()
 
     def addCard(card: Card): Unit = {

@@ -1,6 +1,6 @@
-package model.cards
+package model.cardComp
 
-import model.cards.Value.Value
+import model.cardComp.Value.Value
 
 import scala.util.Random
 

@@ -2,9 +2,10 @@
 package controller
 
 import model.*
-import model.cards.NumberCards
-import model.cards.Suit.Suit
-import util.{Observable, Observer, PromptForPlayerName, WaitForPlayerInput}
+import model.cardComp.NumberCards
+import model.cardComp.Suit.Suit
+import model.deckComp.Deck
+import util.Observer
 import util.grid.GridFactory
 
 class GameController  {

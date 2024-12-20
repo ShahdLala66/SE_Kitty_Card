@@ -1,8 +1,11 @@
 // src/main/scala/model/Game.scala
 package controller
 
-import model.cards.{Card, Hand, NumberCards}
-import model.{Deck, Grid, Player}
+import model.cardComp.{Card, NumberCards}
+import model.playerComp.Player
+import model.deckComp.Deck
+import model.gridComp.Grid
+import model.handComp.Hand
 import util.*
 import util.command.{CommandManager, GameState, PlaceCardCommand}
 
