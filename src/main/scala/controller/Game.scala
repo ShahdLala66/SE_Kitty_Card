@@ -25,12 +25,8 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
 
   def start(player1Name: String, player2Name: String): Unit = {
     //controller.intro()
-    controller.askForPlayerNames()
 
     val (p1, p2) = addPlayers(player1Name, player2Name)
-   // println(s"Player 1: $p1")
-   // println(s"Player 2: $p2")
-
 
     player1 = p1
     player2 = p2
@@ -55,7 +51,6 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
   private def gameLoop(): Unit = {
     while (deck.size > 0 && !grid.isFull) {
       controller.notifyPlayerTurn(currentPlayer.name)
-      // currentPlayer.getHand.foreach(println) // Display cards in hand
       handlePlayerTurn()
       switchTurns()
 
@@ -72,7 +67,6 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
     currentPlayer.drawCard(deck) match {
       case Some(card) =>
         controller.cardDrawn(currentPlayer.name, card.toString)
-        //currentPlayer.getHand.foreach(println) // Display updated hand
         controller.showCardsForPlayer(currentPlayer.getHand)
       case None =>
         controller.invalidPlacement()
@@ -116,6 +110,7 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
         executeUndoRedo(commandManager.redo, RedoEvent(currentState))
       case _ =>
         Try {
+          print(input + "------------------------------------")
           val parts = input.split(" ")
           val cardIndex = parts(0).toInt
           val x = parts(1).toInt

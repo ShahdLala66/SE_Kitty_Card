@@ -38,7 +38,7 @@ class Tui(gameController: GameController) extends Observer {
     println(s"Enter the name for Player 2:" + Console.RESET)
     val player2 = inputProvider.getInput
     println()
-    //gameController.promptForPlayerName(player1, player2)
+    gameController.promptForPlayerName(player1, player2)
   }
 
   private var skipPrompt = false

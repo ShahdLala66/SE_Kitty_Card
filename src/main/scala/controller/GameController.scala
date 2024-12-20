@@ -17,7 +17,8 @@ class GameController extends Observable {
 
     def startGame(): Unit = {
         val game = new Game(deck, grid, this)
-        //game.askForPlayerNames()
+
+        askForPlayerNames()
         game.start(player1, player2)
     }
 
@@ -53,6 +54,8 @@ class GameController extends Observable {
     def askForPlayerNames(): Unit = {
         notifyObservers(PromptForPlayerName)
     }
+    
+    
 
     def updatePlayers(player1: Player, player2: Player): Unit =
         notifyObservers(UpdatePlayers(player1, player2))
