@@ -1,11 +1,11 @@
 package model
 
+import model.cardComp.*
 import model.cardComp.Suit.Suit
-import model.cardComp.{Card, CardInterface, NumberCards, Suit, Value}
-import model.deckComp.{Deck, DeckInterface}
-import model.gridComp.{Grid, GridInterface}
-import model.handComp.{Hand, HandInterface}
-import model.playerComp.{Player, PlayerInterface}
+import model.deckComp.*
+import model.gridComp.*
+import model.handComp.*
+import model.playerComp.*
 
 case class Comp(card: CardInterface, deck: DeckInterface, grid: GridInterface,
                 handI: HandInterface, player: PlayerInterface) extends CompInterface {
