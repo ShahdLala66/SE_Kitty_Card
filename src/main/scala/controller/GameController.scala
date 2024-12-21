@@ -1,43 +1,63 @@
-// src/main/scala/controller/GameController.scala
 package controller
 
 import model.*
 import model.cards.NumberCards
 import model.cards.Suit.Suit
 import util.grid.GridFactory
-import util.{Observable, Observer, PromptForPlayerName}
+import util.{Observable, Observer, PlayerTurn, PromptForPlayerName}
 
 class GameController {
   private val deck = new Deck()
-  private val grid = GridFactory.createGrid(3) // Use GridFactory to create a grid with random colors
+  private val grid = GridFactory.createGrid(3)
   private var observer: Option[Observer] = None
   private val game = new Game(deck, grid)
   private var gameEndCallback: () => Unit = () => {}
-
-  def setObserver(observer: Observer): Unit = {
-    this.observer = Some(observer)
-
-  }
-
-  def startGame(): Unit = {
-    val game = new Game(deck, grid)
-    observer.foreach(game.add) //without this line no observer can trigger any event lol
-    //notifyObservers(PromptForPlayerName)
-    game.askForPlayerNames()
-    game.askForPlayerNames()
-    game.start(player1, player2)
-  }
 
   var player1: String = ""
   var player2: String = ""
   var counter = 0
 
-  def promptForPlayerName(player1: String, player2: String) = {
+  def setObserver(observer: Observer): Unit = {
+    this.observer = Some(observer)
+    //game.add(observer)
+  }
+
+  def startGame(): Unit = {
+    observer.foreach(game.add)
+    game.askForPlayerNames()
+    game.start(player1, player2)
+    startGameLoop()
+  }
+
+  def startGameLoop(): Unit = {
+    while (!isGameOver) {
+      if (game.getCurrentplayer != null) {
+        observer.foreach(_.update(PlayerTurn(game.getCurrentplayer.name)))
+      }
+    }
+    game.displayFinalScores()
+  }
+
+  def handleCommand(command: String): Unit = {
+    command match {
+      case "undo" => game.handleCardPlacement("undo")
+      case "redo" => game.handleCardPlacement("redo")
+      case "draw" => game.drawCardForCurrentPlayer()
+    }
+  }
+
+  def handleCardPlacement(cardIndex: Int, x: Int, y: Int): Unit = {
+    if (game.handleCardPlacement(s"$cardIndex $x $y")) {
+      game.switchTurns()
+    }
+  }
+
+  def promptForPlayerName(player1: String, player2: String): Unit = {
     if (counter == 0) {
       this.player1 = player1
       this.player2 = player2
       counter += 1
-      game.addPlayers(player1, player2)
+      startGame()
     } else {
       print("Game already started")
     }
@@ -51,11 +71,9 @@ class GameController {
     }.toList
   }
 
-  def setInput(input: String) = {
-    //game.setInput(input)
+  private def isGameOver: Boolean = {
+    deck.size <= 0 || grid.isFull
   }
 
   def getCurrentplayer = game.getCurrentplayer
-
-
 }

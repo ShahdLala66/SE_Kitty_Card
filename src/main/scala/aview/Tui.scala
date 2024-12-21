@@ -1,13 +1,10 @@
+// src/main/scala/aview/Tui.scala
 package aview
 
 import controller.GameController
 import util.*
 
-import scala.concurrent.{Future, Promise}
-
 class Tui(gameController: GameController) extends Observer {
-
-  //gameController.add(this)
   private val inputProvider: InputProvider = new ConsoleProvider
   private[aview] val colors = Map(
     "Green" -> "\u001b[32m",
@@ -22,14 +19,30 @@ class Tui(gameController: GameController) extends Observer {
     println(s"$color ∧,,,∧")
     println(s"$color( ̳• · •̳)")
     println(s"$color/    づ♡")
-    println("\u001b[0m") // Reset color after printing
+    println("\u001b[0m")
   }
 
-  // Method to print the cat in all colors in a loop
   def printCatLoop(): Unit = {
     for (color <- colors.values) {
       printColoredCat(color)
-      Thread.sleep(500) // Optional: Delay for visual effect
+      Thread.sleep(500)
+    }
+  }
+
+  def processInput(input: String): Unit = {
+    input.trim.toLowerCase match {
+      case "undo" => gameController.handleCommand("undo")
+      case "redo" => gameController.handleCommand("redo")
+      case "draw" => gameController.handleCommand("draw")
+      case input if input.matches("\\d+\\s+\\d+\\s+\\d+") =>
+        val parts = input.split(" ")
+        gameController.handleCardPlacement(parts(0).toInt, parts(1).toInt, parts(2).toInt)
+      case _ =>
+        println("Invalid input! Please use one of the following formats:")
+        println("- 'draw' to draw a card")
+        println("- 'cardIndex x y' to place a card")
+        println("- 'undo' to undo last move")
+        println("- 'redo' to redo last move")
     }
   }
 
@@ -46,7 +59,6 @@ class Tui(gameController: GameController) extends Observer {
   def skipNamePrompt(): Unit = {
     skipPrompt = true
   }
-
 
   def start(): Unit = {
     welcomeMessage()
@@ -83,15 +95,14 @@ class Tui(gameController: GameController) extends Observer {
     }
   }
 
-  def test(): Unit = {
-    println("Test")
-  }
   override def update(event: GameEvent): Unit = {
     event match {
       case UpdatePlayers(player1, player2) =>
         print("\n", player1, player2)
       case PlayerTurn(playerName) =>
         println(Console.BLUE + s"\n$playerName's turn.\n" + Console.RESET)
+        val input = inputProvider.getInput
+        processInput(input)
       case CardDrawn(playerName, card) =>
         println(Console.BLUE + s"\n$playerName drew: $card\n" + Console.RESET)
       case InvalidPlacement =>
@@ -109,19 +120,14 @@ class Tui(gameController: GameController) extends Observer {
         } else {
           println("It's a tie!")
         }
-
       case updateGrid(grid) =>
         printGridColors()
-
-
       case UndoEvent(_) => println("Undo performed.")
       case RedoEvent(_) => println("Redo performed.")
       case ShowCardsForPlayer(cards) =>
         cards.foreach(println)
       case UpdatePlayer(player1) => print(player1)
       case PromptForPlayerName => promptForPlayerName()
-      case WaitForPlayerInput => gameController.setInput(inputProvider.getInput)
-
       case _ => println("Invalid event.")
     }
   }
