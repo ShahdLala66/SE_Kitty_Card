@@ -1,19 +1,16 @@
-// src/main/scala/Main.scala
-
-
-import aview.{Gui, Name, Tui}
+import scalafx.application.JFXApp3
+import aview.{Gui, Tui, Name}
 import controller.GameController
 
-object Main extends App {
-  val controller = new GameController()
-  val tui = new Tui(controller)
- // val gui = new Gui(controller)
-  //val name = new Name(controller)
+object Main extends JFXApp3 {
+  override def start(): Unit = {
+    val controller = new GameController()
+    val gui = new Gui(controller)
 
-controller.setObserver(tui)
-  controller.startGame()
+    // Set up observers
+    controller.setObserver(gui)
 
-  //gui.main(Array.empty)
-  //name.main(Array.empty)
-
+    // Start the GUI (which will handle game initialization)
+    gui.start()
+  }
 }

@@ -76,4 +76,8 @@ class GameController {
   }
 
   def getCurrentplayer = game.getCurrentplayer
+
+  def getGridColor(x: Int, y: Int): String = {
+    grid.toArray(x)(y)._2.toString.toLowerCase
+  }
 }
