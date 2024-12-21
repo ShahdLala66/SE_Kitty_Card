@@ -19,7 +19,6 @@ class Game(deck: Deck, grid: Grid) extends Observable {
   }
 
   def start(player1Name: String, player2Name: String): Unit = {
-    println("Starting game...")
     val (p1, p2) = addPlayers(player1Name, player2Name)
 
     player1 = p1
@@ -105,7 +104,6 @@ class Game(deck: Deck, grid: Grid) extends Observable {
   def switchTurns(): Unit = {
     notifyObservers(updateGrid(grid))
     currentPlayer = if (currentPlayer == player1) player2 else player1
-    print(s"Switching turns... $currentPlayer ")
   }
 
   def displayFinalScores(): Unit = {

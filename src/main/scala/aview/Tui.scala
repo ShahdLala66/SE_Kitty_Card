@@ -98,7 +98,7 @@ class Tui(gameController: GameController) extends Observer {
   override def update(event: GameEvent): Unit = {
     event match {
       case UpdatePlayers(player1, player2) =>
-        print("\n", player1, player2)
+        //print("\n", player1, player2)
       case PlayerTurn(playerName) =>
         println(Console.BLUE + s"\n$playerName's turn.\n" + Console.RESET)
         val input = inputProvider.getInput
