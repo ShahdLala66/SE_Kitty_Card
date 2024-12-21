@@ -57,7 +57,7 @@ class GameController {
       this.player1 = player1
       this.player2 = player2
       counter += 1
-      startGame()
+      //startGame()
     } else {
       print("Game already started")
     }
