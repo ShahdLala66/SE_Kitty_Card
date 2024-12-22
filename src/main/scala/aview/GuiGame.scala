@@ -1,3 +1,0 @@
-package aview
-
-class GuiGame

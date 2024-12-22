@@ -1,8 +1,8 @@
-// src/main/scala/aview/Tui.scala
 package aview
 
 import controller.GameController
-import util.*
+import scalafx.application.Platform
+import util._
 
 class Tui(gameController: GameController) extends Observer {
   private val inputProvider: InputProvider = new ConsoleProvider
@@ -47,11 +47,13 @@ class Tui(gameController: GameController) extends Observer {
   }
 
   def promptForPlayerName(): Unit = {
-    println(s"Enter the name for Player 1:")
-    val player1 = inputProvider.getInput
-    println(s"Enter the name for Player 2:")
-    val player2 = inputProvider.getInput
-    gameController.promptForPlayerName(player1, player2)
+    Platform.runLater {
+      val gui = new NameInputApp((player1, player2) => {
+        println(s" $player1, Last Name: $player2")
+        gameController.promptForPlayerName(player1, player2)
+      })
+      gui.show()
+    }
   }
 
   private var skipPrompt = false
@@ -98,7 +100,7 @@ class Tui(gameController: GameController) extends Observer {
   override def update(event: GameEvent): Unit = {
     event match {
       case UpdatePlayers(player1, player2) =>
-        //print("\n", player1, player2)
+      //print("\n", player1, player2)
       case PlayerTurn(playerName) =>
         println(Console.BLUE + s"\n$playerName's turn.\n" + Console.RESET)
         val input = inputProvider.getInput
