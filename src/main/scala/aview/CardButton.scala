@@ -1,18 +1,20 @@
 package aview
-
-import aview.CardButtonApp.stage
-import scalafx.Includes.*
+import aview.CardImage
 import scalafx.application.JFXApp3
 import scalafx.scene.Scene
 import scalafx.scene.image.{Image, ImageView}
 import scalafx.scene.input.MouseEvent
-import scalafx.scene.layout.{StackPane, VBox}
+import scalafx.scene.layout.{HBox, StackPane}
 import scalafx.scene.paint.Color
-import scalafx.scene.shape.Rectangle // Import the necessary implicit conversion
+import scalafx.scene.shape.Rectangle
+import scalafx.Includes.*
 
-class CardButton(imagePath: String, onClick: () => Unit) extends StackPane {
-  // Load the image
-  private val cardImage = new Image(imagePath)
+
+
+// UI Component for a Card
+class CardButton(card: CardImage, onClick: CardImage => Unit) extends StackPane {
+  // Load the image based on the card
+  private val cardImage = new Image(card.imagePath)
   private val imageView = new ImageView(cardImage) {
     fitWidth = 100
     fitHeight = 150
@@ -34,7 +36,7 @@ class CardButton(imagePath: String, onClick: () => Unit) extends StackPane {
   private var selected = false
 
   // Handle click events
-  onMouseClicked = (event: MouseEvent) => {
+  onMouseClicked = (_: MouseEvent) => {
     selected = !selected // Toggle selection state
     if (selected) {
       cardBorder.stroke = Color.Red // Change border color to red when selected
@@ -43,23 +45,7 @@ class CardButton(imagePath: String, onClick: () => Unit) extends StackPane {
       cardBorder.stroke = Color.Black // Revert border color when deselected
       cardBorder.fill = Color.Transparent // Remove overlay
     }
-    onClick()
+    onClick(card) // Pass the clicked card to the handler
   }
 }
 
-object CardButtonApp extends JFXApp3 {
-  override def start(): Unit = {
-    val cardButton = new CardButton("Assets/Cards/1/1-Blau.png", () => {
-      println("Card clicked!")
-    })
-
-    stage = new JFXApp3.PrimaryStage {
-      title = "Card Button Example"
-      scene = new Scene {
-        content = new VBox {
-          children = cardButton
-        }
-      }
-    }
-  }
-}
