@@ -2,14 +2,17 @@ package aview.Gui
 
 import controller.GameController
 import model.cards.{Card, NumberCards, Value}
-import util.*
 import scalafx.application.Platform
 import scalafx.scene.Scene
 import scalafx.scene.layout.HBox
 import scalafx.stage.Stage
+import util.*
+
+import java.util.concurrent.CountDownLatch
 
 class GameGuiTui(gameController: GameController) extends Observer {
   private val inputProvider: InputProvider = new ConsoleProvider
+  private var currentStage: Stage = _
 
   def processInput(input: String): Unit = {
     input.trim.toLowerCase match {
@@ -54,13 +57,19 @@ class GameGuiTui(gameController: GameController) extends Observer {
     }
   }
 
+  var toggle: Boolean = true
+
   override def update(event: GameEvent): Unit = {
     event match {
       case UpdatePlayers(player1, player2) =>
       case PlayerTurn(playerName) =>
         println(Console.BLUE + s"\n$playerName's turn.\n" + Console.RESET)
-        val input = inputProvider.getInput
-        processInput(input)
+        while toggle do {
+          val input = inputProvider.getInput
+          processInput(input)
+        }
+        toggle = true
+
       case CardDrawn(playerName, card) =>
         println(Console.BLUE + s"\n$playerName drew: $card\n" + Console.RESET)
       case InvalidPlacement =>
@@ -84,61 +93,94 @@ class GameGuiTui(gameController: GameController) extends Observer {
       case RedoEvent(_) => println("Redo performed.")
       case ShowCardsForPlayer(cards) =>
         println("\nYour cards:")
+        toggle = false
         cards.foreach(println)
         showCardsGUI(cards)
+        toggle = true
       case UpdatePlayer(player1) => print(player1)
       case PromptForPlayerName =>
       case _ => println("Invalid event.")
     }
   }
 
+
   def showCardsGUI(cards: Seq[Card]): Unit = {
+    println("Starting showCardsGUI method")
+
+    // Ensure JavaFX is initialized
+    GuiInitializer.ensureInitialized()
+    println("JavaFX initialization check complete")
+
+    if (!Platform.isFxApplicationThread) {
+      println("Not on JavaFX thread, scheduling UI update")
+    }
+
     Platform.runLater {
-      val cardImages = cards.map {
-        case NumberCards(suit, value) =>
-          val numericValue = value match {
-            case Value.One => "1"
-            case Value.Two => "2"
-            case Value.Three => "3"
-            case Value.Four => "4"
-            case Value.Five => "5"
-            case Value.Six => "6"
-            case _ => throw new IllegalArgumentException(s"Unsupported card value: $value")
-          }
+      try {
+        println("Inside Platform.runLater")
 
-          val germanSuit = suit.toString match {
-            case "Red" => "Rot"
-            case "Purple" => "Lila"
-            case "Brown" => "Braun"
-            case "Blue" => "Blau"
-            case "Green" => "Grün"
-            case _ => throw new IllegalArgumentException(s"Unsupported card suit: $suit")
-          }
+        // Close existing stage if it exists
+        Option(currentStage).foreach(_.close())
 
-          CardImage(numericValue, germanSuit)
-        case card =>
-          throw new IllegalArgumentException(s"Unsupported card type: $card")
-      }
+        println("Processing cards...")
+        val cardImages = cards.map {
+          case NumberCards(suit, value) =>
+            println(s"Processing card: $suit $value")
+            val numericValue = value match {
+              case Value.One => "1"
+              case Value.Two => "2"
+              case Value.Three => "3"
+              case Value.Four => "4"
+              case Value.Five => "5"
+              case Value.Six => "6"
+              case _ => throw new IllegalArgumentException(s"Unsupported card value: $value")
+            }
 
-      cardImages.foreach(cardImage => println(s"Generated imagePath: ${cardImage.imagePath}"))
+            val germanSuit = suit.toString match {
+              case "Red" => "Rot"
+              case "Purple" => "Lila"
+              case "Brown" => "Braun"
+              case "Blue" => "Blau"
+              case "Green" => "Grün"
+              case _ => throw new IllegalArgumentException(s"Unsupported card suit: $suit")
+            }
 
-      val cardButtons = cardImages.map(cardImage => {
-        println(s"Creating button for: ${cardImage.value} of ${cardImage.suit}")
-        new CardButton(cardImage, _ => {})
-      })
-
-      println("Creating stage and showing it...")
-      val stage = new Stage {
-        title = "Your Cards"
-        scene = new Scene {
-          content = new HBox {
-            spacing = 10
-            children = cardButtons
-          }
+            println(s"Created CardImage for $numericValue of $germanSuit")
+            CardImage(numericValue, germanSuit)
+          case card =>
+            throw new IllegalArgumentException(s"Unsupported card type: $card")
         }
+
+        println("Creating card buttons...")
+        val cardButtons = cardImages.map(cardImage => {
+          println(s"Creating button for ${cardImage.value} of ${cardImage.suit}")
+          new CardButton(cardImage, _ => {})
+        })
+
+        println("Creating new stage...")
+        currentStage = new Stage {
+          title = "Your Cards"
+          scene = new Scene {
+            root = new HBox {
+              spacing = 10
+              children = cardButtons
+            }
+          }
+
+          onCloseRequest = _ => println("Stage is being closed")
+        }
+
+        println("Showing stage...")
+        currentStage.show()
+        println("Stage shown successfully")
+
+      } catch {
+        case e: Exception =>
+          println(s"Error in GUI creation: ${e.getMessage}")
+          e.printStackTrace()
       }
-      stage.show()
-      println("Stage should be shown now.")
     }
   }
+
+
 }
