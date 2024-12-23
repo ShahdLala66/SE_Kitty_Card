@@ -47,5 +47,11 @@ class CardButton(card: CardImage, onClick: CardImage => Unit) extends StackPane 
     }
     onClick(card) // Pass the clicked card to the handler
   }
-}
+  
+    // Set the border color of the button
+    def setBorderColor(color: Color): Unit = {
+      style = s"-fx-border-color: ${color.toString}; -fx-border-width: 3"
+    }
+  }
+
 
