@@ -29,6 +29,8 @@ class Game(deck: Deck, grid: Grid) extends Observable {
 
     distributeInitialCards()
     notifyObservers(updateGrid(grid))
+    notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+
   }
 
   def distributeInitialCards(): Unit = {
@@ -36,14 +38,12 @@ class Game(deck: Deck, grid: Grid) extends Observable {
       player1.drawCard(deck)
       player2.drawCard(deck)
     }
-    notifyObservers(ShowCardsForPlayer(player1.getHand))
   }
 
   def drawCardForCurrentPlayer(): Unit = {
     currentPlayer.drawCard(deck) match {
       case Some(card) =>
         notifyObservers(CardDrawn(currentPlayer.name, card.toString))
-        notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
       case None =>
         notifyObservers(InvalidPlacement)
     }
@@ -104,6 +104,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
   def switchTurns(): Unit = {
     notifyObservers(updateGrid(grid))
     currentPlayer = if (currentPlayer == player1) player2 else player1
+    notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
   }
 
   def displayFinalScores(): Unit = {

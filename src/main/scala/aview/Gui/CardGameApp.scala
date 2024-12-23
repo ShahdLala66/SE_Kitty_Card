@@ -1,6 +1,7 @@
-package aview
+package aview.Gui
 
-import aview.CardGameApp.stage
+import aview.Gui.CardGameApp.stage
+import aview.Gui.{CardButton, CardImage}
 import scalafx.application.JFXApp3
 import scalafx.scene.Scene
 import scalafx.scene.layout.HBox
@@ -13,7 +14,12 @@ object CardGameApp extends JFXApp3 {
       CardImage("2", "Blau"),
       CardImage("3", "Blau"),
       CardImage("1", "Rot"),
+      CardImage("2", "Rot"),
+      CardImage("2", "Rot"),
+      CardImage("2", "Rot"),
       CardImage("2", "Rot")
+
+
     )
 
     // Create CardButtons for each card

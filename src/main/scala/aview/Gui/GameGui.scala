@@ -1,10 +1,11 @@
-package aview
+package aview.Gui
 
 import controller.GameController
-import scalafx.application.Platform
-import util._
+import util.*
 
-class Tui(gameController: GameController) extends Observer {
+import java.lang.Thread.sleep
+
+class GameGuiGui(gameController: GameController) extends Observer {
   private val inputProvider: InputProvider = new ConsoleProvider
   private[aview] val colors = Map(
     "Green" -> "\u001b[32m",
@@ -47,11 +48,11 @@ class Tui(gameController: GameController) extends Observer {
   }
 
   def promptForPlayerName(): Unit = {
-      println(s"Enter the name for Player 1:")
-      val player1 = inputProvider.getInput
-      println(s"Enter the name for Player 2:")
-      val player2 = inputProvider.getInput
-      gameController.promptForPlayerName(player1, player2)
+    println(s"Enter the name for Player 1:")
+    val player1 = inputProvider.getInput
+    println(s"Enter the name for Player 2:")
+    val player2 = inputProvider.getInput
+    gameController.promptForPlayerName(player1, player2)
   }
 
   private var skipPrompt = false
@@ -62,7 +63,7 @@ class Tui(gameController: GameController) extends Observer {
 
   def start(): Unit = {
     welcomeMessage()
-  // promptForPlayerName()
+    promptForPlayerName()
   }
 
   def printBadChoice(color: String): Unit = {
@@ -125,10 +126,79 @@ class Tui(gameController: GameController) extends Observer {
       case UndoEvent(_) => println("Undo performed.")
       case RedoEvent(_) => println("Redo performed.")
       case ShowCardsForPlayer(cards) =>
+        println("\nYour cards:")
         cards.foreach(println)
+        showCardsGUI(cards)
+
+        sleep(1000)
+
       case UpdatePlayer(player1) => print(player1)
-      case PromptForPlayerName => promptForPlayerName()
+      case PromptForPlayerName => //promptForPlayerName()
       case _ => println("Invalid event.")
     }
   }
+
+  import aview.Gui.{CardButton, CardImage}
+  import model.cards.{Card, NumberCards, Value}
+  import scalafx.application.Platform
+  import scalafx.scene.Scene
+  import scalafx.scene.layout.HBox
+  import scalafx.stage.Stage
+
+  def showCardsGUI(cards: Seq[Card]): Unit = {
+    // Create CardImage instances with numeric values and German suits
+    val cardImages = cards.map {
+      case NumberCards(suit, value) =>
+        val numericValue = value match {
+          case Value.One => "1"
+          case Value.Two => "2"
+          case Value.Three => "3"
+          case Value.Four => "4"
+          case Value.Five => "5"
+          case Value.Six => "6"
+          case _ => throw new IllegalArgumentException(s"Unsupported card value: $value")
+        }
+
+        val germanSuit = suit.toString match {
+          case "Red" => "Rot"
+          case "Purple" => "Lila"
+          case "Brown" => "Braun"
+          case "Blue" => "Blau"
+          case "Green" => "Grün"
+          case _ => throw new IllegalArgumentException(s"Unsupported card suit: $suit")
+        }
+
+        CardImage(numericValue, germanSuit)
+      case card =>
+        throw new IllegalArgumentException(s"Unsupported card type: $card")
+    }
+
+    // Debug print to ensure image paths are generated correctly
+    cardImages.foreach(cardImage => println(s"Generated imagePath: ${cardImage.imagePath}"))
+
+    // Create CardButtons for each card
+    val cardButtons = cardImages.map(cardImage => {
+      println(s"Creating button for: ${cardImage.value} of ${cardImage.suit}")
+      new CardButton(cardImage, _ => {})
+    })
+
+    // Create a new stage to display the cards
+    Platform.runLater {
+      println("Creating stage and showing it...") // Debugging line
+      val stage = new Stage {
+        title = "Your Cards"
+        scene = new Scene {
+          content = new HBox {
+            spacing = 10
+            children = cardButtons
+          }
+        }
+      }
+      stage.show()
+      println("Stage should be shown now.") // Debugging line
+    }
+
+
+  }
+
 }

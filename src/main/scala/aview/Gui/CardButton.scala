@@ -1,5 +1,6 @@
-package aview
-import aview.CardImage
+package aview.Gui
+
+import scalafx.Includes.*
 import scalafx.application.JFXApp3
 import scalafx.scene.Scene
 import scalafx.scene.image.{Image, ImageView}
@@ -7,7 +8,6 @@ import scalafx.scene.input.MouseEvent
 import scalafx.scene.layout.{HBox, StackPane}
 import scalafx.scene.paint.Color
 import scalafx.scene.shape.Rectangle
-import scalafx.Includes.*
 
 
 

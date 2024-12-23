@@ -1,4 +1,4 @@
-package aview
+package aview.Gui
 
 import scalafx.application.Platform
 import scalafx.scene.Scene
@@ -35,7 +35,7 @@ class NameInputApp(onSubmit: (String, String) => Unit) {
   }
 
   // Method to show the GUI
-  def show(): Unit = {
-    Platform.runLater(stage.show())
-  }
+ // def show(): Unit = {
+  //  Platform.runLater(stage.show())
+ // }
 }

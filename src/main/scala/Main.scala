@@ -1,6 +1,6 @@
-import scalafx.application.JFXApp3
 import aview.Tui
 import controller.GameController
+import scalafx.application.JFXApp3
 
 object Main extends JFXApp3 {
   override def start(): Unit = {
@@ -10,7 +10,8 @@ object Main extends JFXApp3 {
     // Set up observers
     controller.setObserver(tui)
 
+    controller.startGame()
     // Start the TUI
-    tui.start()
+    //tui.start()
   }
 }

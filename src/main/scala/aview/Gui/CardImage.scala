@@ -1,4 +1,5 @@
-package aview
+package aview.Gui
+
 // Model class for a Card
 case class CardImage(value: String, suit: String) {
   // Compute the image path based on value and suit
