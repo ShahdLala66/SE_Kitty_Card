@@ -1,34 +1,15 @@
 package aview.Gui
 
 import controller.GameController
+import model.cards.{Card, NumberCards, Value}
 import util.*
+import scalafx.application.Platform
+import scalafx.scene.Scene
+import scalafx.scene.layout.HBox
+import scalafx.stage.Stage
 
-import java.lang.Thread.sleep
-
-class GameGuiGui(gameController: GameController) extends Observer {
+class GameGuiTui(gameController: GameController) extends Observer {
   private val inputProvider: InputProvider = new ConsoleProvider
-  private[aview] val colors = Map(
-    "Green" -> "\u001b[32m",
-    "Brown" -> "\u001b[33m",
-    "Purple" -> "\u001b[35m",
-    "Blue" -> "\u001b[34m",
-    "Red" -> "\u001b[31m",
-    "White" -> "\u001b[37m"
-  )
-
-  private def printColoredCat(color: String): Unit = {
-    println(s"$color ∧,,,∧")
-    println(s"$color( ̳• · •̳)")
-    println(s"$color/    づ♡")
-    println("\u001b[0m")
-  }
-
-  def printCatLoop(): Unit = {
-    for (color <- colors.values) {
-      printColoredCat(color)
-      Thread.sleep(500)
-    }
-  }
 
   def processInput(input: String): Unit = {
     input.trim.toLowerCase match {
@@ -62,30 +43,7 @@ class GameGuiGui(gameController: GameController) extends Observer {
   }
 
   def start(): Unit = {
-    welcomeMessage()
     promptForPlayerName()
-  }
-
-  def printBadChoice(color: String): Unit = {
-    val colorCode = colors.getOrElse(color, "\u001b[0m")
-    println(s"$colorCode ∧,,,∧")
-    println(s"$colorCode ( ̳- · -̳)")
-    println(s"$colorCode/ づbad choiceづ")
-    println("\u001b[0m")
-  }
-
-  def printMeh(color: String): Unit = {
-    val colorCode = colors.getOrElse(color, "\u001b[0m")
-    println(s"$colorCode ∧,,,∧")
-    println(s"$colorCode ( ̳- · -̳)")
-    println(s"$colorCode/ づmehづ")
-    println("\u001b[0m")
-  }
-
-  def welcomeMessage(): Unit = {
-    println(Console.MAGENTA + "\nWelcome to the Kitty Card Game!")
-    println("Players take turns drawing and placing cards on the grid.")
-    println("Earn points by placing cards on matching colors or white squares." + Console.RESET)
   }
 
   def printGridColors(): Unit = {
@@ -99,7 +57,6 @@ class GameGuiGui(gameController: GameController) extends Observer {
   override def update(event: GameEvent): Unit = {
     event match {
       case UpdatePlayers(player1, player2) =>
-      //print("\n", player1, player2)
       case PlayerTurn(playerName) =>
         println(Console.BLUE + s"\n$playerName's turn.\n" + Console.RESET)
         val input = inputProvider.getInput
@@ -129,62 +86,48 @@ class GameGuiGui(gameController: GameController) extends Observer {
         println("\nYour cards:")
         cards.foreach(println)
         showCardsGUI(cards)
-
-        sleep(1000)
-
       case UpdatePlayer(player1) => print(player1)
-      case PromptForPlayerName => //promptForPlayerName()
+      case PromptForPlayerName =>
       case _ => println("Invalid event.")
     }
   }
 
-  import aview.Gui.{CardButton, CardImage}
-  import model.cards.{Card, NumberCards, Value}
-  import scalafx.application.Platform
-  import scalafx.scene.Scene
-  import scalafx.scene.layout.HBox
-  import scalafx.stage.Stage
-
   def showCardsGUI(cards: Seq[Card]): Unit = {
-    // Create CardImage instances with numeric values and German suits
-    val cardImages = cards.map {
-      case NumberCards(suit, value) =>
-        val numericValue = value match {
-          case Value.One => "1"
-          case Value.Two => "2"
-          case Value.Three => "3"
-          case Value.Four => "4"
-          case Value.Five => "5"
-          case Value.Six => "6"
-          case _ => throw new IllegalArgumentException(s"Unsupported card value: $value")
-        }
-
-        val germanSuit = suit.toString match {
-          case "Red" => "Rot"
-          case "Purple" => "Lila"
-          case "Brown" => "Braun"
-          case "Blue" => "Blau"
-          case "Green" => "Grün"
-          case _ => throw new IllegalArgumentException(s"Unsupported card suit: $suit")
-        }
-
-        CardImage(numericValue, germanSuit)
-      case card =>
-        throw new IllegalArgumentException(s"Unsupported card type: $card")
-    }
-
-    // Debug print to ensure image paths are generated correctly
-    cardImages.foreach(cardImage => println(s"Generated imagePath: ${cardImage.imagePath}"))
-
-    // Create CardButtons for each card
-    val cardButtons = cardImages.map(cardImage => {
-      println(s"Creating button for: ${cardImage.value} of ${cardImage.suit}")
-      new CardButton(cardImage, _ => {})
-    })
-
-    // Create a new stage to display the cards
     Platform.runLater {
-      println("Creating stage and showing it...") // Debugging line
+      val cardImages = cards.map {
+        case NumberCards(suit, value) =>
+          val numericValue = value match {
+            case Value.One => "1"
+            case Value.Two => "2"
+            case Value.Three => "3"
+            case Value.Four => "4"
+            case Value.Five => "5"
+            case Value.Six => "6"
+            case _ => throw new IllegalArgumentException(s"Unsupported card value: $value")
+          }
+
+          val germanSuit = suit.toString match {
+            case "Red" => "Rot"
+            case "Purple" => "Lila"
+            case "Brown" => "Braun"
+            case "Blue" => "Blau"
+            case "Green" => "Grün"
+            case _ => throw new IllegalArgumentException(s"Unsupported card suit: $suit")
+          }
+
+          CardImage(numericValue, germanSuit)
+        case card =>
+          throw new IllegalArgumentException(s"Unsupported card type: $card")
+      }
+
+      cardImages.foreach(cardImage => println(s"Generated imagePath: ${cardImage.imagePath}"))
+
+      val cardButtons = cardImages.map(cardImage => {
+        println(s"Creating button for: ${cardImage.value} of ${cardImage.suit}")
+        new CardButton(cardImage, _ => {})
+      })
+
+      println("Creating stage and showing it...")
       val stage = new Stage {
         title = "Your Cards"
         scene = new Scene {
@@ -195,10 +138,7 @@ class GameGuiGui(gameController: GameController) extends Observer {
         }
       }
       stage.show()
-      println("Stage should be shown now.") // Debugging line
+      println("Stage should be shown now.")
     }
-
-
   }
-
 }
