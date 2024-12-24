@@ -44,6 +44,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
     currentPlayer.drawCard(deck) match {
       case Some(card) =>
         notifyObservers(CardDrawn(currentPlayer.name, card.toString))
+        notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
       case None =>
         notifyObservers(InvalidPlacement)
     }
@@ -81,6 +82,8 @@ class Game(deck: Deck, grid: Grid) extends Observable {
                 currentState = commandManager.executeCommand(command, currentState)
                 currentPlayer.addPoints(points)
                 notifyObservers(CardPlacementSuccess(x, y, card.toString, points))
+                currentPlayer.removeCard(card)
+                notifyObservers(RemoveCardFromHand(currentPlayer.name, card.toString))
                 true
               } else {
                 notifyObservers(InvalidPlacement)

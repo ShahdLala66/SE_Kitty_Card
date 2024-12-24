@@ -6,6 +6,8 @@ import model.cards.Suit.Suit
 import util.grid.GridFactory
 import util.{Observable, Observer, PlayerTurn, PromptForPlayerName}
 
+import java.time.InstantSource.system
+
 class GameController {
   private val deck = new Deck()
   private val grid = GridFactory.createGrid(3)
@@ -36,6 +38,7 @@ class GameController {
       }
     }
     game.displayFinalScores()
+    System.exit(0)
   }
 
   def handleCommand(command: String): Unit = {
