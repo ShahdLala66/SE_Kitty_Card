@@ -8,10 +8,10 @@ import util.{Observable, Observer, PlayerTurn, PromptForPlayerName}
 
 import java.time.InstantSource.system
 
-class GameController {
+class GameController extends Observable {
   private val deck = new Deck()
   private val grid = GridFactory.createGrid(3)
-  private var observer: Option[Observer] = None
+  private var observers: List[Observer] = List()
   private val game = new Game(deck, grid)
   private var gameEndCallback: () => Unit = () => {}
 
@@ -19,13 +19,13 @@ class GameController {
   var player2: String = ""
   var counter = 0
 
-  def setObserver(observer: Observer): Unit = {
-    this.observer = Some(observer)
+  def addObserver(observer: Observer): Unit = {
+    observers = observer :: observers
     //game.add(observer)
   }
 
   def startGame(): Unit = {
-    observer.foreach(game.add)
+    observers.foreach(game.add)
     game.askForPlayerNames()
     game.start(player1, player2)
     startGameLoop()
@@ -34,7 +34,7 @@ class GameController {
   def startGameLoop(): Unit = {
     while (!isGameOver) {
       if (game.getCurrentplayer != null) {
-        observer.foreach(_.update(PlayerTurn(game.getCurrentplayer.name)))
+        observers.foreach(_.update(PlayerTurn(game.getCurrentplayer.name)))
       }
     }
     game.displayFinalScores()

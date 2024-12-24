@@ -5,13 +5,65 @@ import model.cards.{Card, NumberCards, Value}
 import scalafx.application.Platform
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.Scene
-import scalafx.scene.control.{Button, Label}
+import scalafx.scene.control.{Button, Label, TextField}
 import scalafx.scene.layout.{GridPane, HBox, VBox}
-import scalafx.stage.Stage
+import scalafx.stage.{Modality, Stage}
 import util.*
+import scalafx.scene.paint.Color
 
 class GameGuiTui(gameController: GameController) extends Observer {
   private val inputProvider: InputProvider = new ConsoleProvider
+  private var currentStage: Stage = _
+  private var cardPane: HBox = _
+  private var gridPane: GridPane = _
+  private var statusLabel: Label = _
+  private var controlPane: HBox = _
+  private var selectedCardIndex: Option[Int] = None
+
+  def promptForPlayerName(onComplete: (String, String) => Unit): Unit = {
+    Platform.runLater {
+      val dialog = new Stage {
+        title = "Player Names"
+        scene = new Scene {
+          val player1Field = new TextField {
+            promptText = "Player 1 Name"
+          }
+          val player2Field = new TextField {
+            promptText = "Player 2 Name"
+          }
+          val submitButton = new Button("Start Game") {
+            onAction = _ => {
+              if (player1Field.text.value.nonEmpty && player2Field.text.value.nonEmpty) {
+                close()
+                onComplete(player1Field.text.value, player2Field.text.value)
+              }
+            }
+          }
+
+          root = new VBox(10) {
+            padding = Insets(20)
+            alignment = Pos.Center
+            children = Seq(
+              new Label("Enter Player Names"),
+              player1Field,
+              player2Field,
+              submitButton
+            )
+          }
+        }
+        initModality(Modality.ApplicationModal)
+      }
+      dialog.showAndWait()
+    }
+  }
+
+  def start(): Unit = {
+    GuiInitializer.ensureInitialized()
+    promptForPlayerName { (player1Name, player2Name) =>
+      gameController.promptForPlayerName(player1Name, player2Name)
+      initialize()
+    }
+  }
 
   def processInput(input: String): Unit = {
     input.trim.toLowerCase match {
@@ -22,59 +74,17 @@ class GameGuiTui(gameController: GameController) extends Observer {
         val parts = input.split(" ")
         gameController.handleCardPlacement(parts(0).toInt, parts(1).toInt, parts(2).toInt)
       case _ =>
-        println("Invalid input! Please use one of the following formats:")
-        println("- 'draw' to draw a card")
-        println("- 'cardIndex x y' to place a card")
-        println("- 'undo' to undo last move")
-        println("- 'redo' to redo last move")
+        println("Invalid input!")
     }
   }
-
-  def promptForPlayerName(): Unit = {
-    println(s"Enter the name for Player 1:")
-    val player1 = inputProvider.getInput
-    println(s"Enter the name for Player 2:")
-    val player2 = inputProvider.getInput
-    gameController.promptForPlayerName(player1, player2)
-  }
-
-  private var skipPrompt = false
-  var toggle = false
-
-  def skipNamePrompt(): Unit = {
-    skipPrompt = true
-  }
-
-  def start(): Unit = {
-    promptForPlayerName()
-  }
-
-  def printGridColors(): Unit = {
-    val colors = gameController.getGridColors
-    colors.foreach { case (x, y, card, color) =>
-      val cardInfo = card.map(_.toString).getOrElse("Empty")
-      println(s"Rectangle at ($x, $y) has card: $cardInfo and color: $color")
-    }
-  }
-
-  private var currentStage: Stage = _
-  private var cardPane: HBox = _
-  private var gridPane: GridPane = _
-  private var statusLabel: Label = _ // Status label for feedback
-  private var controlPane: HBox = _ // New pane for additional controls
-  private var selectedCardIndex: Option[Int] = None
 
   def initialize(): Unit = {
-    GuiInitializer.ensureInitialized()
-
     Platform.runLater {
-      // Initialize status label
       statusLabel = new Label {
         text = "Welcome to the game!"
         style = "-fx-font-size: 14px;"
       }
 
-      // Initialize control pane with additional buttons
       controlPane = new HBox {
         spacing = 10
         padding = Insets(10)
@@ -108,12 +118,12 @@ class GameGuiTui(gameController: GameController) extends Observer {
             padding = Insets(10)
             alignment = Pos.Center
             children = Seq(
-              statusLabel, // Add status label at the top
+              statusLabel,
               new VBox {
                 alignment = Pos.Center
                 children = Seq(gridPane)
               },
-              controlPane, // Add control pane
+              controlPane,
               new VBox {
                 alignment = Pos.Center
                 children = Seq(cardPane)
@@ -122,7 +132,7 @@ class GameGuiTui(gameController: GameController) extends Observer {
           }
         }
         width = 500
-        height = 700 // Increased height to accommodate new elements
+        height = 700
       }
       currentStage.show()
     }
@@ -143,10 +153,7 @@ class GameGuiTui(gameController: GameController) extends Observer {
         style = s"-fx-background-color: $color;"
         prefWidth = 80
         prefHeight = 80
-
         onAction = _ => handleGridClick(x, y)
-
-        // Add hover effect
         onMouseEntered = _ => {
           if (selectedCardIndex.isDefined) {
             style = s"-fx-background-color: $color; -fx-opacity: 0.8;"
@@ -164,7 +171,6 @@ class GameGuiTui(gameController: GameController) extends Observer {
   private def handleGridClick(x: Int, y: Int): Unit = {
     selectedCardIndex match {
       case Some(cardIndex) =>
-        // Try to place the card
         updateStatus(s"Attempting to place card at position ($x, $y)")
         gameController.handleCardPlacement(cardIndex, x, y)
         selectedCardIndex = None
@@ -174,7 +180,6 @@ class GameGuiTui(gameController: GameController) extends Observer {
     }
   }
 
-  // Method to update status label
   def updateStatus(message: String): Unit = {
     Platform.runLater {
       if (statusLabel != null) {
@@ -183,9 +188,20 @@ class GameGuiTui(gameController: GameController) extends Observer {
     }
   }
 
+  // Fixed updateButtonStyles method
   private def updateButtonStyles(): Unit = {
-    cardPane.children.foreach { node =>
-      node.asInstanceOf[Button].style = ""
+    if (cardPane != null) {
+      cardPane.children.foreach { node =>
+        node match {
+          case stackPane: javafx.scene.layout.StackPane =>
+            // Reset the style for StackPane (CardButton)
+            stackPane.setStyle("")
+          case button: javafx.scene.control.Button =>
+            // Reset the style for regular buttons
+            button.setStyle("")
+          case _ => // Do nothing for other types
+        }
+      }
     }
   }
 
@@ -239,13 +255,6 @@ class GameGuiTui(gameController: GameController) extends Observer {
     }
   }
 
-
-  def updateDisplay(): Unit = {
-    if (currentStage == null) {
-      initialize()
-    }
-  }
-
   def showGrid(): Unit = {
     Platform.runLater {
       if (gridPane != null) {
@@ -254,6 +263,12 @@ class GameGuiTui(gameController: GameController) extends Observer {
         gridPane.children.addAll(newGrid.children)
       }
       updateDisplay()
+    }
+  }
+
+  def updateDisplay(): Unit = {
+    if (currentStage == null) {
+      initialize()
     }
   }
 
@@ -273,14 +288,12 @@ class GameGuiTui(gameController: GameController) extends Observer {
     updateStatus(s"$playerName drew: $card")
   }
 
-  // Rest of your update method remains the same
   override def update(event: GameEvent): Unit = {
     event match {
       case UpdatePlayers(player1, player2) =>
       case PlayerTurn(playerName) =>
         PlayerTurs(playerName)
         val input = inputProvider.getInput
-
       case CardDrawn(playerName, card) =>
         CardDrawns(playerName, card)
       case InvalidPlacement =>
@@ -299,7 +312,6 @@ class GameGuiTui(gameController: GameController) extends Observer {
           println("It's a tie!")
         }
       case updateGrid(grid) =>
-        printGridColors()
         showGrid()
       case UndoEvent(_) => println("Undo performed.")
       case RedoEvent(_) => println("Redo performed.")
@@ -308,35 +320,8 @@ class GameGuiTui(gameController: GameController) extends Observer {
         cards.foreach(println)
         showCardsGUI(cards)
       case UpdatePlayer(player1) => print(player1)
-      case PromptForPlayerName =>
+      case PromptForPlayerName => start()
       case _ => println("Invalid event.")
     }
   }
 }
-
-// Add a variable to store the selected card index
-//  private var selectedCardIndex: Option[Int] = None
-//
-//  // Update the CardButton to set the selected card index when clicked
-//  val cardButtons = cardImages.zipWithIndex.map { case (cardImage, index) =>
-//    new CardButton(cardImage, _ => {
-//      selectedCardIndex = Some(index)
-//      println(s"Selected card index: $index")
-//    })
-
-// Modify the SubmitButton's onAction to use the selected card index
-//  val SubmitButton = new Button {
-//    text = "Submit"
-//    onAction = _ => {
-//      selectedCardIndex match {
-//        case Some(index) =>
-//          val input = s"$index x y" // Replace x and y with actual values
-//          processInput(input)
-//        case None =>
-//          println("No card selected")
-//      }
-//      toggle = false
-//    }
-//  }
-
-

@@ -5,6 +5,8 @@ import scalafx.application.Platform
 import util._
 
 class Tui(gameController: GameController) extends Observer {
+  //gameController.add(this)
+
   private val inputProvider: InputProvider = new ConsoleProvider
   private[aview] val colors = Map(
     "Green" -> "\u001b[32m",
@@ -103,12 +105,8 @@ class Tui(gameController: GameController) extends Observer {
       //print("\n", player1, player2)
       case PlayerTurn(playerName) =>
         println(Console.BLUE + s"\n$playerName's turn.\n" + Console.RESET)
-        toggle = true
-        while toggle do {
           val input = inputProvider.getInput
           processInput(input)
-        }
-        toggle = false
       case CardDrawn(playerName, card) =>
         println(Console.BLUE + s"\n$playerName drew: $card\n" + Console.RESET)
       case InvalidPlacement =>

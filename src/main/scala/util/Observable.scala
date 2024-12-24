@@ -1,19 +1,18 @@
 // src/main/scala/util/Observable.scala
 package util
 
+import scala.collection.mutable.ListBuffer
+
 trait Observer {
     def update(event: GameEvent): Unit
 }
 
-trait Observable {
+class Observable {
     private var observers: List[Observer] = List()
 
     def add(observer: Observer): Unit = {
         observers = observer :: observers
-        println(s"Observer added: $observer")
-
     }
-
     def remove(observer: Observer): Unit = {
         observers = observers.filterNot(_ == observer)
     }
