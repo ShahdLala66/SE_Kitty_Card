@@ -257,24 +257,36 @@ class GameGuiTui(gameController: GameController) extends Observer {
     }
   }
 
+  def invalidPlacements(): Unit = {
+    updateStatus("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
+  }
+
+  def CardPlacementSuccesss(x: Int, y: Int, card: String, points: Int): Unit = {
+    updateStatus(s"Card placed at ($x, $y): $card. Points earned: $points.")
+  }
+
+  def PlayerTurs(playerName: String): Unit = {
+    updateStatus(s"$playerName's turn.")
+  }
+
+  def CardDrawns(playerName: String, card: String): Unit = {
+    updateStatus(s"$playerName drew: $card")
+  }
+
   // Rest of your update method remains the same
   override def update(event: GameEvent): Unit = {
     event match {
       case UpdatePlayers(player1, player2) =>
       case PlayerTurn(playerName) =>
-        println(Console.BLUE + s"\n$playerName's turn.\n" + Console.RESET)
-        while toggle do {
-          val input = inputProvider.getInput
-          processInput(input)
-        }
-        toggle = true
+        PlayerTurs(playerName)
+        val input = inputProvider.getInput
 
       case CardDrawn(playerName, card) =>
-        println(Console.BLUE + s"\n$playerName drew: $card\n" + Console.RESET)
+        CardDrawns(playerName, card)
       case InvalidPlacement =>
-        println("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
+        invalidPlacements()
       case CardPlacementSuccess(x, y, card, points) =>
-        println(Console.YELLOW + s"Card placed at ($x, $y): $card. Points earned: $points." + Console.RESET)
+        CardPlacementSuccesss(x, y, card, points)
       case GameOver(player1Name, player1Points, player2Name, player2Points) =>
         println("Game over!")
         println(s"$player1Name's final score: $player1Points")
