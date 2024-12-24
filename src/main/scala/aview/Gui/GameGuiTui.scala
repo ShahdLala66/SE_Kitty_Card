@@ -20,42 +20,69 @@ class GameGuiTui(gameController: GameController) extends Observer {
   private var controlPane: HBox = _
   private var selectedCardIndex: Option[Int] = None
 
+
+  private var isWaitingForNames = false
+  private var nameDialogStage: Option[Stage] = None
+
+  // Modify the promptForPlayerName method
   def promptForPlayerName(onComplete: (String, String) => Unit): Unit = {
-    Platform.runLater {
-      val dialog = new Stage {
-        title = "Player Names"
-        scene = new Scene {
-          val player1Field = new TextField {
-            promptText = "Player 1 Name"
-          }
-          val player2Field = new TextField {
-            promptText = "Player 2 Name"
-          }
-          val submitButton = new Button("Start Game") {
-            onAction = _ => {
-              if (player1Field.text.value.nonEmpty && player2Field.text.value.nonEmpty) {
-                close()
-                onComplete(player1Field.text.value, player2Field.text.value)
+    if (!isWaitingForNames) {
+      isWaitingForNames = true
+      Platform.runLater {
+        val dialog = new Stage {
+          title = "Player Names"
+          scene = new Scene {
+            val player1Field = new TextField {
+              promptText = "Player 1 Name"
+            }
+            val player2Field = new TextField {
+              promptText = "Player 2 Name"
+            }
+            val submitButton = new Button("Start Game") {
+              onAction = _ => {
+                if (player1Field.text.value.nonEmpty && player2Field.text.value.nonEmpty) {
+                  isWaitingForNames = false
+                  close()
+                  onComplete(player1Field.text.value, player2Field.text.value)
+                }
               }
             }
-          }
 
-          root = new VBox(10) {
-            padding = Insets(20)
-            alignment = Pos.Center
-            children = Seq(
-              new Label("Enter Player Names"),
-              player1Field,
-              player2Field,
-              submitButton
-            )
+            root = new VBox(10) {
+              padding = Insets(20)
+              alignment = Pos.Center
+              children = Seq(
+                new Label("Enter Player Names"),
+                player1Field,
+                player2Field,
+                submitButton
+              )
+            }
+          }
+          initModality(Modality.APPLICATION_MODAL)
+
+          // Add handler for when dialog is closed directly (X button)
+          onCloseRequest = _ => {
+            isWaitingForNames = false
           }
         }
-        initModality(Modality.ApplicationModal)
+        nameDialogStage = Some(dialog)
+        dialog.showAndWait()
       }
-      dialog.showAndWait()
     }
   }
+
+  // Add this method to close the name dialog if it's open
+  def closeNameDialog(): Unit = {
+    Platform.runLater {
+      nameDialogStage.foreach { dialog =>
+        dialog.close()
+        isWaitingForNames = false
+      }
+      nameDialogStage = None
+    }
+  }
+
 
   def start(): Unit = {
     GuiInitializer.ensureInitialized()
@@ -290,7 +317,7 @@ class GameGuiTui(gameController: GameController) extends Observer {
 
   override def update(event: GameEvent): Unit = {
     event match {
-      case UpdatePlayers(player1, player2) =>
+      case UpdatePlayers(player1, player2) => closeNameDialog()  // Close the GUI name dialog if it's open
       case PlayerTurn(playerName) =>
         PlayerTurs(playerName)
         val input = inputProvider.getInput
@@ -316,11 +343,11 @@ class GameGuiTui(gameController: GameController) extends Observer {
       case UndoEvent(_) => println("Undo performed.")
       case RedoEvent(_) => println("Redo performed.")
       case ShowCardsForPlayer(cards) =>
-        println("\nYour cards:")
         cards.foreach(println)
         showCardsGUI(cards)
       case UpdatePlayer(player1) => print(player1)
-      case PromptForPlayerName => start()
+      case PromptForPlayerName =>
+        if (!isWaitingForNames) {start()}
       case _ => println("Invalid event.")
     }
   }

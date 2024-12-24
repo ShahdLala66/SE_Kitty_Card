@@ -97,12 +97,15 @@ class Tui(gameController: GameController) extends Observer {
     }
   }
 
+  private var isWaitingForNames = false
+
+
   var toggle: Boolean = false
 
   override def update(event: GameEvent): Unit = {
     event match {
-      case UpdatePlayers(player1, player2) =>
-      //print("\n", player1, player2)
+      case UpdatePlayers(player1, player2) => isWaitingForNames = false
+        print("\n", player1, player2)
       case PlayerTurn(playerName) =>
         println(Console.BLUE + s"\n$playerName's turn.\n" + Console.RESET)
           val input = inputProvider.getInput
@@ -131,7 +134,9 @@ class Tui(gameController: GameController) extends Observer {
       case ShowCardsForPlayer(cards) =>
         cards.foreach(println)
       case UpdatePlayer(player1) => print(player1)
-      case PromptForPlayerName => promptForPlayerName()
+      case PromptForPlayerName =>
+        isWaitingForNames = true
+          promptForPlayerName()
       case _ => println("Invalid event.")
     }
   }
