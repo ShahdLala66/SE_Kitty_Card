@@ -217,20 +217,13 @@ class GameGuiTui(gameController: GameController) extends Observer {
 
             CardImage(numericValue, germanSuit)
         }
-        val cardButtons = cards.zipWithIndex.map { case (cardImages, index) =>
-          new Button {
-            text = cardImages.toString
-            prefWidth = 100
-            prefHeight = 150
-
-
-            onAction = _ => {
-              selectedCardIndex = Some(index)
-              updateButtonStyles()
-              style = "-fx-border-color: red; -fx-border-width: 2px;"
-              updateStatus(s"Selected card: $cardImages")
-            }
-          }
+        val cardButtons = cardImages.zipWithIndex.map { case (cardImage, index) =>
+          println(s"Creating button for ${cardImage.value} of ${cardImage.suit}")
+          new CardButton(cardImage, _ => {
+            selectedCardIndex = Some(index)
+            updateButtonStyles()
+            updateStatus(s"Selected card: $cardImage")
+          })
         }
 
         if (cardPane != null) {
@@ -245,6 +238,7 @@ class GameGuiTui(gameController: GameController) extends Observer {
       }
     }
   }
+
 
   def updateDisplay(): Unit = {
     if (currentStage == null) {
