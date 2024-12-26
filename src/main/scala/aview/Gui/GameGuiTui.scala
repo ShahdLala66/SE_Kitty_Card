@@ -12,7 +12,7 @@ import scalafx.stage.{Modality, Stage}
 import util.*
 
 class GameGuiTui(gameController: GameControllerInterface) extends Observer {
-  //gameController.add(this)
+  gameController.add(this)
   private var currentStage: Stage = _
   private var cardPane: HBox = _
   private var gridPane: GridPane = _
@@ -338,7 +338,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         } else {
           println("It's a tie!")
         }
-      case updateGrid(grid) =>
+      case UpdateGrid(grid) =>
         showGrid()
         
       case UndoEvent(_) => showGrid()

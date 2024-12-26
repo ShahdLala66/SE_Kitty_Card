@@ -9,12 +9,5 @@ object Main extends App {
   val tui = new Tui(controller)
   val gui = new GameGuiTui(controller)
 
-  // Set up observers
-  //gui.initialize()
-  controller.addObserver(gui)
-  controller.addObserver(tui)
-
   controller.startGame()
-  // Start the TUI
-  //tui.start()
 }

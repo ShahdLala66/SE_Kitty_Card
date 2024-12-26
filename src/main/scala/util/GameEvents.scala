@@ -30,7 +30,7 @@ case class GameOver(player1Name: String, player1Points: Int, player2Name: String
 //debate whether we should use strings and ints or actual objects
 
 //Game Events
-case class updateGrid(grid: Grid) extends GameEvent
+case class UpdateGrid(grid: Grid) extends GameEvent
 case class CardDrawn(playerName: String, card: String) extends GameEvent
 case class PlayerTurn(playerName: String) extends GameEvent
 case class CardPlacementSuccess(x: Int, y: Int, card: String, points: Int) extends GameEvent

@@ -1,5 +1,6 @@
 package model
 
+import controller.GameController
 import model.cardComp.CardInterface
 import model.cardComp.baseImp.{Grid, NumberCards}
 import model.deckComp.baseImp.Deck
@@ -10,7 +11,7 @@ import util.command.{CommandManager, GameState, PlaceCardCommand}
 
 import scala.util.{Failure, Success, Try}
 
-class Game(deck: Deck, grid: Grid) extends Observable {
+class Game(deck: Deck, grid: Grid, controller: GameController) {
   var currentPlayer: Player = _
   var player1: Player = _
   var player2: Player = _
@@ -19,7 +20,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
   private var hand: Hand = new Hand()
 
   def askForPlayerNames(): Unit = {
-    notifyObservers(PromptForPlayerName)
+    controller.askForPlayerNames()
   }
 
   def start(player1Name: String, player2Name: String): Unit = {
@@ -27,13 +28,14 @@ class Game(deck: Deck, grid: Grid) extends Observable {
 
     player1 = p1
     player2 = p2
-    notifyObservers(UpdatePlayers(player1, player2))
+    controller.updatePlayers(player1, player2)
     currentPlayer = player1
-    notifyObservers(UpdatePlayer(currentPlayer))
+    controller.updateCurrentPlayer(currentPlayer)
+
 
     distributeInitialCards()
-    notifyObservers(updateGrid(grid))
-    notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+    controller.updateGrid(grid)
+    controller.showCardsForPlayer(currentPlayer.getHand)
 
   }
 
@@ -47,10 +49,10 @@ class Game(deck: Deck, grid: Grid) extends Observable {
   def drawCardForCurrentPlayer(): Unit = {
     currentPlayer.drawCard(deck) match {
       case Some(card) =>
-        notifyObservers(CardDrawn(currentPlayer.name, card.toString))
-        notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+        controller.cardDrawn(currentPlayer.name, card.toString)
+        controller.showCardsForPlayer(currentPlayer.getHand)
       case None =>
-        notifyObservers(InvalidPlacement)
+        controller.invalidPlacement()
     }
   }
 
@@ -58,8 +60,8 @@ class Game(deck: Deck, grid: Grid) extends Observable {
     action() match {
       case Some(state) =>
         currentState = state
-        notifyObservers(event)
-        notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+        controller.notifyUndoRedo(event)
+        controller.showCardsForPlayer(currentPlayer.getHand)
         true
       case None =>
         false
@@ -84,25 +86,25 @@ class Game(deck: Deck, grid: Grid) extends Observable {
             case Some(card: NumberCards) =>
               if (grid.placeCard(x, y, card)) {
                 val points = grid.calculatePoints(x, y)
+                val pointsEarned = grid.calculatePoints(x, y)
                 val command = new PlaceCardCommand(grid, card, currentPlayer, points, (x, y))
                 currentState = commandManager.executeCommand(command, currentState)
-                currentPlayer.addPoints(points)
-                notifyObservers(CardPlacementSuccess(x, y, card.toString, points))
-                currentPlayer.removeCard(card)
-                //notifyObservers(RemoveCardFromHand(currentPlayer.name, card.toString))
+                currentPlayer.addPoints(pointsEarned)
+                controller.cardPlacementSuccess(x, y, card.toString, pointsEarned)
+                // grid.display() // Display updated grid
                 true
               } else {
-                notifyObservers(InvalidPlacement)
+                controller.invalidPlacement()
                 false
               }
             case _ =>
-              notifyObservers(InvalidPlacement)
+              controller.invalidPlacement()
               false
           }
         } match {
           case Success(result) => result
           case Failure(_) =>
-            notifyObservers(InvalidPlacement)
+            controller.invalidPlacement()
             false
         }
     }
@@ -111,13 +113,13 @@ class Game(deck: Deck, grid: Grid) extends Observable {
   def getCurrentplayer: Player = currentPlayer
 
   def switchTurns(): Unit = {
-    notifyObservers(updateGrid(grid))
+    controller.updateGrid(grid)
     currentPlayer = if (currentPlayer == player1) player2 else player1
-    notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+    controller.updateCurrentPlayer(currentPlayer)
   }
 
   def displayFinalScores(): Unit = {
-    notifyObservers(GameOver(player1.name, player1.points, player2.name, player2.points))
+    controller.gameOver(player1.name, player1.points, player2.name, player2.points)
   }
 
   def addPlayers(player1Name: String, player2Name: String): (Player, Player) = {

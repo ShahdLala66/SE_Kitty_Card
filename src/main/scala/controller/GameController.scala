@@ -2,36 +2,34 @@ package controller
 
 import model.*
 import model.cardComp.CardInterface
+import model.cardComp.baseImp.Grid
 import model.cardComp.baseImp.Suit.Suit
 import model.deckComp.baseImp.Deck
 import model.playerComp.baseImp.Player
 import util.grid.GridFactory
-import util.{Observable, Observer, PlayerTurn, UpdatePlayers}
+import util.*
+
+import javax.smartcardio.Card
 
 
 class GameController extends Observable with GameControllerInterface {
   private val deck = new Deck()
   private val grid = GridFactory.createGrid(3)
   private var observers: List[Observer] = List()
-  private val game = new Game(deck, grid)
-  private var gameEndCallback: () => Unit = () => {}
+  private val game = new Game(deck, grid, this)
 
   var player1: String = ""
   var player2: String = ""
   var counter = 0
 
-  def addObserver(observer: Observer): Unit = {
-    observers = observer :: observers
-    //game.add(observer)
-  }
+
 
   def startGame(): Unit = {
-    observers.foreach(game.add)
     game.askForPlayerNames()
     val player1Obj = new Player(player1)
     val player2Obj = new Player(player2)
     game.start(player1, player2)
-    observers.foreach(_.update(UpdatePlayers(player1Obj, player2Obj))) // update players
+    notifyObservers(UpdatePlayers(player1Obj, player2Obj)) // update players
 
     startGameLoop()
   }
@@ -39,8 +37,7 @@ class GameController extends Observable with GameControllerInterface {
   def startGameLoop(): Unit = {
     while (!isGameOver) {
       if (game.getCurrentplayer != null) {
-        observers.foreach(_.update(PlayerTurn(game.getCurrentplayer.name)))
-      }
+        notifyObservers(PlayerTurn(game.getCurrentplayer.name))      }
     }
     game.displayFinalScores()
     System.exit(0)
@@ -88,4 +85,41 @@ class GameController extends Observable with GameControllerInterface {
   def getGridColor(x: Int, y: Int): String = {
     grid.toArray(x)(y)._2.toString.toLowerCase
   }
+
+  def askForPlayerNames(): Unit = {
+    notifyObservers(PromptForPlayerName)
+  }
+
+  def updatePlayers(player1: Player, player2: Player): Unit =
+    notifyObservers(UpdatePlayers(player1, player2))
+
+  def updateCurrentPlayer(player: Player): Unit =
+    notifyObservers(UpdatePlayer(player))
+
+  def showCardsForPlayer(hand: List[CardInterface]): Unit =
+    notifyObservers(ShowCardsForPlayer(hand))
+
+  def notifyPlayerTurn(playerName: String): Unit = notifyObservers(PlayerTurn(playerName))
+
+  def cardDrawn(playerName: String, card: String): Unit =
+    notifyObservers(CardDrawn(playerName, card))
+
+  def invalidPlacement(): Unit =
+    notifyObservers(InvalidPlacement)
+
+  def notifyUndoRedo(event: GameEvent): Unit =
+    notifyObservers(event)
+
+  def cardPlacementSuccess(x: Int, y: Int, card: String, points: Int): Unit =
+    notifyObservers(CardPlacementSuccess(x, y, card, points))
+
+  def updateGrid(grid: Grid): Unit =
+    notifyObservers(UpdateGrid(grid))
+
+  def gameOver(player1Name: String, player1Points: Int, player2Name: String, player2Points: Int): Unit =
+    notifyObservers(GameOver(player1Name, player1Points, player2Name, player2Points))
+
+ // def intro(): Unit = {
+  //  notifyObservers(GameStart)
+ //}
 }
