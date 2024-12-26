@@ -1,16 +1,15 @@
 package controller
 
 import model.*
+import model.cardComp.CardInterface
 import model.cardComp.baseImp.Suit.Suit
-import model.cardComp.baseImp.NumberCards
 import model.deckComp.baseImp.Deck
 import model.playerComp.baseImp.Player
 import util.grid.GridFactory
-import util.{Observable, Observer, PlayerTurn, PromptForPlayerName, UpdatePlayers}
+import util.{Observable, Observer, PlayerTurn, UpdatePlayers}
 
-import java.time.InstantSource.system
 
-class GameController extends Observable {
+class GameController extends Observable with GameControllerInterface {
   private val deck = new Deck()
   private val grid = GridFactory.createGrid(3)
   private var observers: List[Observer] = List()
@@ -68,11 +67,11 @@ class GameController extends Observable {
       counter += 1
       //startGame()
     } else {
-      print("Game already started")
+      println("Game already started")
     }
   }
 
-  def getGridColors: List[(Int, Int, Option[NumberCards], Suit)] = {
+  def getGridColors: List[(Int, Int, Option[CardInterface], Suit)] = {
     grid.toArray.zipWithIndex.flatMap { case (row, x) =>
       row.zipWithIndex.map { case ((card, color), y) =>
         (x, y, card, color)
@@ -80,7 +79,7 @@ class GameController extends Observable {
     }.toList
   }
 
-  private def isGameOver: Boolean = {
+  def isGameOver: Boolean = {
     deck.size <= 0 || grid.isFull
   }
 

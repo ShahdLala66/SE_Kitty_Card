@@ -1,11 +1,10 @@
 package aview
 
-import controller.GameController
-import scalafx.application.Platform
-import util._
+import controller.GameControllerInterface
+import util.*
 
-class Tui(gameController: GameController) extends Observer {
-  gameController.add(this)
+class Tui(gameController: GameControllerInterface) extends Observer {
+  //gameController.add(this)
 
   private val inputProvider: InputProvider = new ConsoleProvider
   private[aview] val colors = Map(

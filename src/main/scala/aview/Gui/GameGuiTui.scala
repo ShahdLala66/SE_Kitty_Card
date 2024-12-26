@@ -1,6 +1,6 @@
 package aview.Gui
 
-import controller.GameController
+import controller.{GameController, GameControllerInterface}
 import model.cardComp.CardInterface
 import model.cardComp.baseImp.{NumberCards, Value}
 import scalafx.application.Platform
@@ -11,8 +11,8 @@ import scalafx.scene.layout.{GridPane, HBox, VBox}
 import scalafx.stage.{Modality, Stage}
 import util.*
 
-class GameGuiTui(gameController: GameController) extends Observer {
-  gameController.add(this)
+class GameGuiTui(gameController: GameControllerInterface) extends Observer {
+  //gameController.add(this)
   private val inputProvider: InputProvider = new ConsoleProvider
   private var currentStage: Stage = _
   private var cardPane: HBox = _
