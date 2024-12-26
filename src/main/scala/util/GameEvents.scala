@@ -1,8 +1,11 @@
 // src/main/scala/util/GameEvents.scala
 package util
 
-import model.cards.{AssistCard, Card, Hand, NumberCards}
-import model.{Deck, Grid, Player}
+import model.cardComp.CardInterface
+import model.cardComp.baseImp.{AssistCardInterface, Grid, NumberCards}
+import model.handComp.baseImp.Hand
+import model.playerComp.baseImp.Player
+import model.deckComp.baseImp.Deck
 import util.command.GameState
 
 sealed trait GameEvent
@@ -36,15 +39,15 @@ case class RemoveCardFromGrid(id: NumberCards, x: Int, y: Int) extends GameEvent
 case class UpdatePlayer(player1: Player) extends GameEvent
 case class UpdatePlayers(player1: Player, player2: Player) extends GameEvent
 
-case class ShowCardsForPlayer(cand : List[Card]) extends GameEvent
-case class updateHand ( card : Card) extends GameEvent
+case class ShowCardsForPlayer(cand : List[CardInterface]) extends GameEvent
+case class updateHand ( card : CardInterface) extends GameEvent
 case object WaitForPlayerInput extends GameEvent
 case class InputUpdated(input: String) extends GameEvent
 
 //special case
-case class StartCardPhaseOne(currentPlayer: Player, cards: AssistCard) extends GameEvent //Game state?, or just not allow the select for it
+case class StartCardPhaseOne(currentPlayer: Player, cards: AssistCardInterface) extends GameEvent //Game state?, or just not allow the select for it
 case class StartCardPhaseTwo(currentPlayer: Player, cards: NumberCards) extends GameEvent
-case class EndCardPhaseOne(currentPlayer : Player, cards : AssistCard) extends GameEvent //Game state?, or just not allow the select for it
+case class EndCardPhaseOne(currentPlayer : Player, cards : AssistCardInterface) extends GameEvent //Game state?, or just not allow the select for it
 case class EndCardPhaseTwo(currentPlayer : Player, cards : NumberCards) extends GameEvent
 case class FreezeEnemy(enemy : Player, currentPlayer : Player) extends GameEvent
 case class DestroyEnemyCards(enemy : Player, currentPlayer : Player) extends GameEvent //basically remove card from grid

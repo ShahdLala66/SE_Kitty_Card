@@ -1,7 +1,8 @@
 package aview.Gui
 
 import controller.GameController
-import model.cards.{Card, NumberCards, Value}
+import model.cardComp.CardInterface
+import model.cardComp.baseImp.{NumberCards, Value}
 import scalafx.application.Platform
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.Scene
@@ -232,7 +233,7 @@ class GameGuiTui(gameController: GameController) extends Observer {
     }
   }
 
-  def showCardsGUI(cards: Seq[Card]): Unit = {
+  def showCardsGUI(cards: Seq[CardInterface]): Unit = {
     Platform.runLater {
       try {
         println("Processing cards...")

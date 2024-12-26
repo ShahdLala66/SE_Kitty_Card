@@ -1,6 +1,7 @@
 package aview.Gui
 
-import model.cards.{Card, NumberCards, Value}
+import model.cardComp.CardInterface
+import model.cardComp.baseImp.{NumberCards, Value}
 import scalafx.application.{JFXApp3, Platform}
 
 

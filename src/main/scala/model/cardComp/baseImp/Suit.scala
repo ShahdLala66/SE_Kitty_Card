@@ -1,4 +1,4 @@
-package model.cards
+package model.cardComp.baseImp
 
 // Enumeration for the colors (suits)
 object Suit extends Enumeration {

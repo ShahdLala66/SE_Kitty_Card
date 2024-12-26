@@ -1,6 +1,10 @@
 package model
 
-import model.cards.{Card, Hand, NumberCards}
+import model.cardComp.CardInterface
+import model.cardComp.baseImp.{Grid, NumberCards}
+import model.deckComp.baseImp.Deck
+import model.handComp.baseImp.Hand
+import model.playerComp.baseImp.Player
 import util.*
 import util.command.{CommandManager, GameState, PlaceCardCommand}
 

@@ -1,4 +1,7 @@
-package model.cards
+package model.cardComp.baseImp
+
+import model.cardComp.CardInterface
+
 
 object AssistCardType extends Enumeration {
     type AssistCardType = Value
@@ -6,7 +9,7 @@ object AssistCardType extends Enumeration {
     Meowster, Purrator, KittyPow, MagicPaw, Byebye, PawCombo = Value
 }
 
-case class AssistCard(cardType: AssistCardType.Value) extends Card {
+case class AssistCardInterface(cardType: AssistCardType.Value) extends CardInterface {
 
     override def getColor: String = "Special"
 

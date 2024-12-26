@@ -1,11 +1,13 @@
 // src/main/scala/model/Player.scala
-package model
+package model.playerComp.baseImp
 
-import model.Deck
-import model.cards.{Card, NumberCards}
+import model.cardComp.CardInterface
+import model.deckComp.DeckInterface
+import model.playerComp.PlayerInterface
 
-case class Player(name: String, var points: Int = 0) {
-    var hand: List[Card] = List()
+case class Player(name: String, var points: Int = 0) extends PlayerInterface(name, points) {
+    var hand: List[CardInterface] = List()
+
 
     def addPoints(newPoints: Int): Unit = {
         points += newPoints
@@ -15,7 +17,7 @@ case class Player(name: String, var points: Int = 0) {
         points = newPoints
     }
 
-    def drawCard(deck: Deck): Option[Card] = {
+    def drawCard(deck: DeckInterface): Option[CardInterface] = {
         val drawnCard = deck.drawCard()
         drawnCard.foreach(card => hand = hand :+ card)
         drawnCard
@@ -25,13 +27,13 @@ case class Player(name: String, var points: Int = 0) {
         points = newPoints
     }
 
-    def getHand: List[Card] = hand
+    def getHand: List[CardInterface] = hand
 
-    def updateHand(newHand: List[Card]): Unit = {
+    def updateHand(newHand: List[CardInterface]): Unit = {
         hand = newHand
     }
 
-    def removeCard(card: Card): Unit = {
+    def removeCard(card: CardInterface): Unit = {
         hand = hand.filterNot(_ == card)
     }
 

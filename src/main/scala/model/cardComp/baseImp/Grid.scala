@@ -1,9 +1,7 @@
-package model
+package model.cardComp.baseImp
 
-import model.cards.Suit.Suit
-import model.cards.{NumberCards, Suit, Value}
+import Suit.Suit
 import util.Observer
-
 import scala.collection.mutable.ListBuffer
 
 case class Grid(size: Int, rectangleColors: Array[Array[Suit]]) {
