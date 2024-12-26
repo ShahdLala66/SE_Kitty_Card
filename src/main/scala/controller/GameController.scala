@@ -25,11 +25,13 @@ class GameController extends Observable with GameControllerInterface {
 
 
   def startGame(): Unit = {
+
     game.askForPlayerNames()
     val player1Obj = new Player(player1)
     val player2Obj = new Player(player2)
-    game.start(player1, player2)
     notifyObservers(UpdatePlayers(player1Obj, player2Obj)) // update players
+
+    game.start(player1, player2)
 
     startGameLoop()
   }

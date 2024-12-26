@@ -28,9 +28,9 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
 
     player1 = p1
     player2 = p2
-    controller.updatePlayers(player1, player2)
+   //controller.updatePlayers(player1, player2)
     currentPlayer = player1
-    controller.updateCurrentPlayer(currentPlayer)
+    //controller.updateCurrentPlayer(currentPlayer)
 
 
     distributeInitialCards()
