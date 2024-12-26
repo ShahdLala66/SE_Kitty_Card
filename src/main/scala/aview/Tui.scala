@@ -4,7 +4,7 @@ import controller.GameControllerInterface
 import util.*
 
 class Tui(gameController: GameControllerInterface) extends Observer {
-  //gameController.add(this)
+  //gameController.add(this) //
 
   private val inputProvider: InputProvider = new ConsoleProvider
   private[aview] val colors = Map(
@@ -100,6 +100,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
 
 
   var toggle: Boolean = false
+  var inputFromGUI: Boolean = false
 
   override def update(event: GameEvent): Unit = {
     event match {

@@ -42,6 +42,8 @@ class GameController extends Observable with GameControllerInterface {
         observers.foreach(_.update(PlayerTurn(game.getCurrentplayer.name)))
       }
     }
+
+    //observers.foreach(_.update(PlayerTurn("Game Over")))
     game.displayFinalScores()
     System.exit(0)
   }
@@ -80,7 +82,7 @@ class GameController extends Observable with GameControllerInterface {
   }
 
   def isGameOver: Boolean = {
-    deck.size <= 0 || grid.isFull
+    grid.isFull
   }
 
   def getCurrentplayer = game.getCurrentplayer

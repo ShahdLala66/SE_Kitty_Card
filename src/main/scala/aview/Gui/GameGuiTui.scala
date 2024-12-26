@@ -280,7 +280,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
          // println(s"Error in GUI creation: ${e.getMessage}")
           e.printStackTrace()
       }
-    }
+   }
   }
 
   def showGrid(): Unit = {
@@ -321,7 +321,6 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
       case UpdatePlayers(player1, player2) => closeNameDialog()  // Close the GUI name dialog if it's open
       case PlayerTurn(playerName) =>
         PlayerTurs(playerName)
-        val input = inputProvider.getInput
       case CardDrawn(playerName, card) =>
         CardDrawns(playerName, card)
       case InvalidPlacement =>
