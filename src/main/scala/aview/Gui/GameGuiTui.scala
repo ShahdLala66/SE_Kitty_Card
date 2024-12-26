@@ -9,9 +9,9 @@ import scalafx.scene.control.{Button, Label, TextField}
 import scalafx.scene.layout.{GridPane, HBox, VBox}
 import scalafx.stage.{Modality, Stage}
 import util.*
-import scalafx.scene.paint.Color
 
 class GameGuiTui(gameController: GameController) extends Observer {
+  gameController.add(this)
   private val inputProvider: InputProvider = new ConsoleProvider
   private var currentStage: Stage = _
   private var cardPane: HBox = _
@@ -340,8 +340,9 @@ class GameGuiTui(gameController: GameController) extends Observer {
         }
       case updateGrid(grid) =>
         showGrid()
-      case UndoEvent(_) => println("Undo performed.")
-      case RedoEvent(_) => println("Redo performed.")
+        
+      case UndoEvent(_) => showGrid()
+      case RedoEvent(_) => showGrid()
       case ShowCardsForPlayer(cards) =>
         cards.foreach(println)
         showCardsGUI(cards)

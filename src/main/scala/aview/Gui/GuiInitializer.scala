@@ -1,13 +1,8 @@
 package aview.Gui
 
-import controller.GameController
 import model.cards.{Card, NumberCards, Value}
 import scalafx.application.{JFXApp3, Platform}
-import scalafx.scene.Scene
-import scalafx.scene.layout.HBox
-import scalafx.stage.Stage
-import util.*
-import java.util.concurrent.CountDownLatch
+
 
 // First, create a singleton object to manage JavaFX initialization
 object GuiInitializer extends JFXApp3 {

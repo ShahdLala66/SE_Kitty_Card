@@ -4,7 +4,7 @@ import model.*
 import model.cards.NumberCards
 import model.cards.Suit.Suit
 import util.grid.GridFactory
-import util.{Observable, Observer, PlayerTurn, PromptForPlayerName}
+import util.{Observable, Observer, PlayerTurn, PromptForPlayerName, UpdatePlayers}
 
 import java.time.InstantSource.system
 
@@ -27,7 +27,11 @@ class GameController extends Observable {
   def startGame(): Unit = {
     observers.foreach(game.add)
     game.askForPlayerNames()
+    val player1Obj = new Player(player1)
+    val player2Obj = new Player(player2)
     game.start(player1, player2)
+    observers.foreach(_.update(UpdatePlayers(player1Obj, player2Obj))) // update players
+
     startGameLoop()
   }
 

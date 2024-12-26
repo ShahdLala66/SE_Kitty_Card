@@ -5,7 +5,7 @@ import scalafx.application.Platform
 import util._
 
 class Tui(gameController: GameController) extends Observer {
-  //gameController.add(this)
+  gameController.add(this)
 
   private val inputProvider: InputProvider = new ConsoleProvider
   private[aview] val colors = Map(
@@ -114,6 +114,7 @@ class Tui(gameController: GameController) extends Observer {
         println(Console.BLUE + s"\n$playerName drew: $card\n" + Console.RESET)
       case InvalidPlacement =>
         println("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
+        printGridColors()
       case CardPlacementSuccess(x, y, card, points) =>
         println(Console.YELLOW + s"Card placed at ($x, $y): $card. Points earned: $points." + Console.RESET)
       case GameOver(player1Name, player1Points, player2Name, player2Points) =>

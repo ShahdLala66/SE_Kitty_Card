@@ -9,8 +9,6 @@ object Main extends App {
 
   // Set up observers
   //gui.initialize()
-
-
   controller.addObserver(gui)
   controller.addObserver(tui)
 

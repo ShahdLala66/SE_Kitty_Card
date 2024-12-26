@@ -23,8 +23,8 @@ class Game(deck: Deck, grid: Grid) extends Observable {
 
     player1 = p1
     player2 = p2
-    currentPlayer = player1
     notifyObservers(UpdatePlayers(player1, player2))
+    currentPlayer = player1
     notifyObservers(UpdatePlayer(currentPlayer))
 
     distributeInitialCards()
