@@ -13,7 +13,6 @@ import util.*
 
 class GameGuiTui(gameController: GameControllerInterface) extends Observer {
   //gameController.add(this)
-  private val inputProvider: InputProvider = new ConsoleProvider
   private var currentStage: Stage = _
   private var cardPane: HBox = _
   private var gridPane: GridPane = _
@@ -321,7 +320,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
       case UpdatePlayers(player1, player2) => closeNameDialog()  // Close the GUI name dialog if it's open
       case PlayerTurn(playerName) =>
         PlayerTurs(playerName)
-        val input = inputProvider.getInput
+       // val input = inputProvider.getInput
       case CardDrawn(playerName, card) =>
         CardDrawns(playerName, card)
       case InvalidPlacement =>
