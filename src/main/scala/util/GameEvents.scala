@@ -18,9 +18,9 @@ case class ShowColoredCat(color: String) extends GameEvent
 
 
 //Game Starten
-case object GameStart extends GameEvent
+//case object GameStart extends GameEvent
 case object PromptForPlayerName extends GameEvent
-case object StrategySelection extends GameEvent
+//case object StrategySelection extends GameEvent
 
 
 //Game Over
@@ -40,9 +40,7 @@ case class UpdatePlayer(player1: Player) extends GameEvent
 case class UpdatePlayers(player1: Player, player2: Player) extends GameEvent
 
 case class ShowCardsForPlayer(cand : List[CardInterface]) extends GameEvent
-case class updateHand ( card : CardInterface) extends GameEvent
-case object WaitForPlayerInput extends GameEvent
-case class InputUpdated(input: String) extends GameEvent
+//case class UpdateHand ( card : CardInterface) extends GameEvent
 
 //special case
 case class StartCardPhaseOne(currentPlayer: Player, cards: AssistCardInterface) extends GameEvent //Game state?, or just not allow the select for it
@@ -61,6 +59,5 @@ case class RedoEvent(state: GameState) extends GameEvent
 
 
 //Error Stuff
-case object InvalidInput extends GameEvent                  // bei falscher Eingabe
 case object InvalidPlacement extends GameEvent              // bei richtiger Platzierung, allerdings Grid Place schon belegt
 case class EmptyDeckBro(deck : Deck) extends GameEvent

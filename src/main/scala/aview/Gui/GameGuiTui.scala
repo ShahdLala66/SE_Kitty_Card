@@ -236,10 +236,10 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
   def showCardsGUI(cards: Seq[CardInterface]): Unit = {
     Platform.runLater {
       try {
-        println("Processing cards...")
+       // println("Processing cards...")
         val cardImages = cards.map {
           case NumberCards(suit, value) =>
-            println(s"Processing card: $suit $value")
+           // println(s"Processing card: $suit $value")
             val numericValue = value match {
               case Value.One => "1"
               case Value.Two => "2"
@@ -262,7 +262,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
             CardImage(numericValue, germanSuit)
         }
         val cardButtons = cardImages.zipWithIndex.map { case (cardImage, index) =>
-          println(s"Creating button for ${cardImage.value} of ${cardImage.suit}")
+         // println(s"Creating button for ${cardImage.value} of ${cardImage.suit}")
           new CardButton(cardImage, _ => {
             selectedCardIndex = Some(index)
             updateButtonStyles()
@@ -277,7 +277,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
 
       } catch {
         case e: Exception =>
-          println(s"Error in GUI creation: ${e.getMessage}")
+         // println(s"Error in GUI creation: ${e.getMessage}")
           e.printStackTrace()
       }
     }
@@ -343,11 +343,14 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         showGrid()
         
       case UndoEvent(_) => showGrid()
+      updateDisplay()
+      // showCardsGUI(cards)
       case RedoEvent(_) => showGrid()
+      updateDisplay()
+       // showCardsGUI(cards)
       case ShowCardsForPlayer(cards) =>
-        cards.foreach(println)
         showCardsGUI(cards)
-      case UpdatePlayer(player1) => print(player1)
+      case UpdatePlayer(player1) =>
       case PromptForPlayerName =>
         if (!isWaitingForNames) {start()}
       case _ => println("Invalid event.")

@@ -59,6 +59,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
       case Some(state) =>
         currentState = state
         notifyObservers(event)
+        notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
         true
       case None =>
         false
@@ -71,6 +72,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
         executeUndoRedo(commandManager.undo, UndoEvent(currentState))
       case "redo" =>
         executeUndoRedo(commandManager.redo, RedoEvent(currentState))
+        //notifyobserver for hand / cards
       case _ =>
         Try {
           val parts = input.split(" ")
@@ -87,7 +89,7 @@ class Game(deck: Deck, grid: Grid) extends Observable {
                 currentPlayer.addPoints(points)
                 notifyObservers(CardPlacementSuccess(x, y, card.toString, points))
                 currentPlayer.removeCard(card)
-                notifyObservers(RemoveCardFromHand(currentPlayer.name, card.toString))
+                //notifyObservers(RemoveCardFromHand(currentPlayer.name, card.toString))
                 true
               } else {
                 notifyObservers(InvalidPlacement)
