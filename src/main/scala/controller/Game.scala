@@ -91,6 +91,7 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
                 currentState = commandManager.executeCommand(command, currentState)
                 currentPlayer.addPoints(pointsEarned)
                 controller.cardPlacementSuccess(x, y, card.toString, pointsEarned)
+                currentPlayer.removeCard(card)
                 // grid.display() // Display updated grid
                 true
               } else {
@@ -115,7 +116,7 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
   def switchTurns(): Unit = {
     controller.updateGrid(grid)
     currentPlayer = if (currentPlayer == player1) player2 else player1
-    controller.updateCurrentPlayer(currentPlayer)
+    controller.showCardsForPlayer(currentPlayer.getHand)
   }
 
   def displayFinalScores(): Unit = {
