@@ -7,6 +7,7 @@ import scalafx.application.Platform
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.Scene
 import scalafx.scene.control.{Button, Label, TextField}
+import scalafx.scene.image.{Image, ImageView}
 import scalafx.scene.layout.{GridPane, HBox, VBox}
 import scalafx.stage.{Modality, Stage}
 import util.*
@@ -44,22 +45,31 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         }
                     }
 
+                    // Hintergrundbild für den Dialog
                     root = new VBox(10) {
                         padding = Insets(20)
                         alignment = Pos.Center
+                        style = "-fx-background-image: url('file:src/main/resources/NameBackground.png'); " +
+                            "-fx-background-size: cover; " +
+                            "-fx-background-position: center; " +
+                            "-fx-background-repeat: no-repeat;"
                         children = Seq(
-                            new Label("Enter Player Names"),
+                            new Label("Enter Player Names") {
+                                style = "-fx-font-size: 16px; -fx-text-fill: black;"
+                            },
                             player1Field,
                             player2Field,
                             submitButton
                         )
                     }
                 }
+                width = 736/2 // Breite des Fensters
+                height = 877/2 // Höhe des Fensters
+
                 initModality(Modality.APPLICATION_MODAL)
 
                 // Add handler for when dialog is closed directly (X button)
-                onCloseRequest = _ => {
-                }
+                onCloseRequest = _ => {}
             }
             nameDialogStage = Some(dialog)
             dialog.showAndWait()
