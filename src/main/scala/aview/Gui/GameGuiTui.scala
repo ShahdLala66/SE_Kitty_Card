@@ -157,7 +157,9 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         Platform.runLater {
             statusLabel = new Label {
                 text = "Welcome to the game!"
-                style = "-fx-font-size: 14px;"
+                font = bubblegumSans
+                style = "-fx-font-size: 22px; -fx-text-fill: black; -fx-font-family: 'Bubblegum Sans';" // Ensure no conflicts
+
 
             }
             controlPane = new HBox {
@@ -179,8 +181,8 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
 
             cardPane = new HBox {
                 spacing = 10
-                padding = Insets(10)
-                alignment = Pos.Center
+                padding = Insets(10, 0, 0, 15)
+                alignment = Pos.BottomCenter
             }
 
             gridPane = createGrid()
@@ -202,23 +204,20 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                 )
             }
 
-
-
-            // Hintergrundbild als Stil hinzuf��gen
-            rootPane.style = "-fx-background-image: url('file:src/main/resources/IMG_0807.png'); " +
-                "-fx-background-size: 56% 45%; " + //weight height
-                "-fx-background-position: 53% 5%;" +
-                "-fx-background-repeat: no-repeat;"
-
             currentStage = new Stage {
                 title = "Game Display"
                 scene = new Scene {
                     root = rootPane
                 }
-                width = 600
-                height = 700
+                width = 444
+                height = 695
             }
             currentStage.show()
+
+            rootPane.style = "-fx-background-image: url('file:src/main/resources/Grid.png'); " +
+                s"-fx-background-size: 444px 695px; " +
+                "-fx-background-position: center;"
+
         }
     }
 
@@ -226,7 +225,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         val grid = new GridPane {
             hgap = 5
             vgap = 5
-            padding = Insets(10)
+            padding = Insets(61, 0, 0, 0) // Oben, Rechts, Unten, Links
             alignment = Pos.Center
         }
 
@@ -235,8 +234,8 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
             val buttonText = card.map(_.toString).getOrElse(s"($x, $y)")
             val button = new Button(buttonText) {
                 style = s"-fx-background-color: $color; -fx-opacity: 0.5;"
-                prefWidth = 70
-                prefHeight = 60
+                prefWidth = 92
+                prefHeight = 90
                 onAction = _ => handleGridClick(x, y)
                 onMouseEntered = _ => {
                     if (selectedCardIndex.isDefined) {
