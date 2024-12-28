@@ -8,12 +8,16 @@ import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.Scene
 import scalafx.scene.control.{Button, Label, TextField}
 import scalafx.scene.image.{Image, ImageView}
-import scalafx.scene.layout.{GridPane, HBox, VBox}
+import scalafx.scene.layout.{GridPane, HBox, Region, StackPane, VBox}
+import scalafx.scene.text.Font
 import scalafx.stage.{Modality, Stage}
 import util.*
 
+import scala.swing.MenuBar.NoMenuBar.font
+
 class GameGuiTui(gameController: GameControllerInterface) extends Observer {
     gameController.add(this)
+    val bubblegumSans: Font = Font.loadFont(getClass.getResourceAsStream("/BubblegumSans-Regular.ttf"), 20)
     private var currentStage: Stage = _
     private var cardPane: HBox = _
     private var gridPane: GridPane = _
@@ -29,14 +33,35 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         Platform.runLater {
             val dialog = new Stage {
                 title = "Player Names"
-                scene = new Scene {
+                scene = new Scene(500, 400) {
                     val player1Field = new TextField {
                         promptText = "Player 1 Name"
+                        font = bubblegumSans
+                        style = "-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 16px;"
+                        prefWidth = 300
+                        prefHeight = 50
+                        alignment = Pos.Center
                     }
+
                     val player2Field = new TextField {
                         promptText = "Player 2 Name"
+                        font = bubblegumSans
+                        style = "-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 16px;"
+                        prefWidth = 300
+                        prefHeight = 50
+                        alignment = Pos.Center
                     }
-                    val submitButton = new Button("Start Game") {
+
+                    val submitButton = new Button {
+                        text = "Start Game"
+                        minWidth = 500
+                        minHeight = 55
+                        style = "-fx-background-image: url('file:src/main/resources/Submit.png');" +
+                            "-fx-background-color: transparent; -fx-background-size: cover;" +
+                            "-fx-background-repeat: no-repeat;" +
+                            "-fx-background-insets: 0;" +
+                            "-fx-padding: 0;"
+                        font = bubblegumSans
                         onAction = _ => {
                             if (player1Field.text.value.nonEmpty && player2Field.text.value.nonEmpty) {
                                 close()
@@ -45,8 +70,33 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         }
                     }
 
-                    // Hintergrundbild für den Dialog
-                    root = new VBox(10) {
+                    val player1FieldWithImage = new StackPane {
+                        children = Seq(
+                            new ImageView(new Image("file:src/main/resources/TextField.png")) {
+                                fitWidth = 350
+                                fitHeight = 50
+                            },
+                            player1Field
+                        )
+                        alignment = Pos.Center
+                        prefWidth = 350
+                        prefHeight = 50
+                    }
+
+                    val player2FieldWithImage = new StackPane {
+                        children = Seq(
+                            new ImageView(new Image("file:src/main/resources/TextField.png")) {
+                                fitWidth = 350
+                                fitHeight = 50
+                            },
+                            player2Field
+                        )
+                        alignment = Pos.Center
+                        prefWidth = 350
+                        prefHeight = 50
+                    }
+
+                    root = new VBox(20) {
                         padding = Insets(20)
                         alignment = Pos.Center
                         style = "-fx-background-image: url('file:src/main/resources/NameBackground.png'); " +
@@ -55,27 +105,21 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                             "-fx-background-repeat: no-repeat;"
                         children = Seq(
                             new Label("Enter Player Names") {
-                                style = "-fx-font-size: 16px; -fx-text-fill: black;"
+                                font = bubblegumSans // Explicitly set the font
+                                style = "-fx-font-size: 22px; -fx-text-fill: black; -fx-font-family: 'Bubblegum Sans';" // Ensure no conflicts
                             },
-                            player1Field,
-                            player2Field,
+                            player1FieldWithImage,
+                            player2FieldWithImage,
                             submitButton
                         )
                     }
                 }
-                width = 736/2 // Breite des Fensters
-                height = 877/2 // Höhe des Fensters
-
                 initModality(Modality.APPLICATION_MODAL)
-
-                // Add handler for when dialog is closed directly (X button)
-                onCloseRequest = _ => {}
             }
             nameDialogStage = Some(dialog)
             dialog.showAndWait()
         }
     }
-
 
     // Add this method to close the name dialog if it's open
     def closeNameDialog(): Unit = {
