@@ -167,14 +167,20 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         spacing = 10
         padding = Insets(10)
         alignment = Pos.Center
+        translateX = -80 // Move the entire button group to the left
         children = Seq(
           new Button("Undo") {
+            style = "-fx-background-color: transparent;"
             onAction = _ => gameController.handleCommand("undo")
           },
           new Button("Redo") {
+            translateX = 20
+            //make the button transparent
+            style = "-fx-background-color: transparent;"
             onAction = _ => gameController.handleCommand("redo")
           },
           new Button("Draw Card") {
+            translateX = 30
             onAction = _ => gameController.handleCommand("draw")
           }
         )
