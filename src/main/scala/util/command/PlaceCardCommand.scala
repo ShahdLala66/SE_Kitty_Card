@@ -20,6 +20,10 @@ PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: Int, pos
         // Restore the previous state
         grid.updateGrid(previousState.getGrid)
         previousState.getPlayers.foreach(p => p.updateHand(previousState.getPlayers.head.getHand))
+        player.points = previousState.getPlayers.head.points
+       // player.updateHand(previousState.getPlayers.head.getHand) ok with this one it just slurps the cards haha lol
+        //the issue of the cards is here please fix it ahhh
+        player.addCard(card) //lol das war das problen sogar ohne copilot lol
     }
 
     override def redo(): Unit = {

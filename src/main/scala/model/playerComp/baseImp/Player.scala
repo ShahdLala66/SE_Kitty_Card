@@ -36,6 +36,10 @@ case class Player(name: String, var points: Int = 0) extends PlayerInterface(nam
     def removeCard(card: CardInterface): Unit = {
         hand = hand.filterNot(_ == card)
     }
+    
+    def addCard(card: CardInterface): Unit = {
+        hand = hand :+ card
+    }
 
     override def toString: String = s"$name (Points: $points)"
 }

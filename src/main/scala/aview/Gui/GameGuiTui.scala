@@ -271,32 +271,49 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
     val grid = new GridPane {
       hgap = 6
       vgap = 6
-      padding = Insets(81, 0, 10, 0) // Oben, Rechts, Unten, Links
+      padding = Insets(81, 0, 10, 0)
       alignment = Pos.Center
     }
 
+    // Custom color mapping with explicit string values
+    val colorMap = Map(
+      "Purple" -> "#c39bd3",
+      "Brown" -> "#e59866",
+      "Red" -> "#ec7063",
+      "Blue" -> "#85c1e9",
+      "Green" -> "#82e0aa",
+    )
+
     val colors = gameController.getGridColors
-    for ((x, y, card, color) <- colors) {
+
+    for ((x, y, card, colorName) <- colors) {
       val buttonText = card.map(_.toString).getOrElse(s"($x, $y)")
+      val hexColor = colorMap.get(colorName.toString
+      ) match {
+        case Some(hex) => hex
+        case None =>
+          colorName  // Fallback to original
+      }
+
+
       val button = new Button(buttonText) {
-        style = s"-fx-background-color: $color; -fx-opacity: 0.5;"
+        style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
         prefWidth = 91
         prefHeight = 90
-        onAction = _ => handleGridClick(x, y)
-        onMouseEntered = _ => {
+        onAction = * => handleGridClick(x, y)
+        onMouseEntered = * => {
           if (selectedCardIndex.isDefined) {
-            style = s"-fx-background-color: $color; -fx-opacity: 0.8;"
+            style = s"-fx-background-color: $hexColor; -fx-opacity: 0.8;"
           }
         }
         onMouseExited = _ => {
-          style = s"-fx-background-color: $color; -fx-opacity: 0.5;"
+          style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
         }
       }
       grid.add(button, x, y)
     }
     grid
   }
-
   private def handleGridClick(x: Int, y: Int): Unit = {
     selectedCardIndex match {
       case Some(cardIndex) =>
