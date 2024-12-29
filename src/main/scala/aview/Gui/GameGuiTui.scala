@@ -8,7 +8,7 @@ import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.Scene
 import scalafx.scene.control.{Button, Label, TextField}
 import scalafx.scene.image.{Image, ImageView}
-import scalafx.scene.layout.{GridPane, HBox, Region, StackPane, VBox}
+import scalafx.scene.layout.{AnchorPane, GridPane, HBox, Region, StackPane, VBox}
 import scalafx.scene.text.Font
 import scalafx.stage.{Modality, Stage}
 import util.*
@@ -158,20 +158,20 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
             statusLabel = new Label {
                 text = "Welcome to the game!"
                 font = bubblegumSans
-                style = "-fx-font-size: 22px; -fx-text-fill: black; -fx-font-family: 'Bubblegum Sans';" // Ensure no conflicts
-
-
+                style = "-fx-font-size: 22px; -fx-text-fill: black; -fx-font-family: 'Bubblegum Sans';"
             }
-            controlPane = new HBox {
+
+            // Create the basic control pane first
+            controlPane = new HBox { // Create a new HBox to hold the buttons
                 spacing = 10
-                padding = Insets(10)
+                padding = Insets(50, 0, 0, 20)
                 alignment = Pos.Center
                 children = Seq(
                     new Button("Undo") {
-                        onAction = _ => gameController.handleCommand("undo")
+                        onAction = * => gameController.handleCommand("undo")
                     },
                     new Button("Redo") {
-                        onAction = _ => gameController.handleCommand("redo")
+                        onAction = * => gameController.handleCommand("redo")
                     },
                     new Button("Draw Card") {
                         onAction = _ => gameController.handleCommand("draw")
@@ -179,16 +179,44 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                 )
             }
 
-            cardPane = new HBox {
+            cardPane = new HBox { // Create a new HBox to hold the cards
                 spacing = 10
-                padding = Insets(10, 0, 0, 15)
+                padding = Insets(35, 0, 0, 20)
                 alignment = Pos.BottomCenter
             }
 
             gridPane = createGrid()
+            gridPane.padding = Insets(60, 0, 0, 0) // Add padding to move the grid down
 
-            // Rename root to rootPane to avoid ambiguity
-            val rootPane = new VBox {
+
+            // Setup GIF
+            val gifPath = getClass.getResource("/ZayneChillingGif.gif")
+            if (gifPath == null) {
+                throw new IllegalStateException("GIF file not found in resources")
+            }
+
+            val image = new Image(gifPath.toExternalForm)
+            val imageView = new ImageView(image) {
+                fitWidth = 150
+                fitHeight = 150
+                preserveRatio = true
+                mouseTransparent = true // Ensure it doesn't block interactions
+            }
+
+            // Create an AnchorPane to hold both controls and GIF
+            val controlWithGifPane = new AnchorPane {
+                children = Seq(controlPane, imageView)
+
+                // Position the control pane
+                AnchorPane.setTopAnchor(controlPane, 0.0) // Adjust vertical position of the control pane (upwards) of the GIF
+                AnchorPane.setLeftAnchor(controlPane, 0.0)
+
+                // Position the GIF
+                AnchorPane.setTopAnchor(imageView, -100.0) // Adjust vertical position
+                AnchorPane.setLeftAnchor(imageView, 300.0) // Position it right of the Draw button
+            }
+
+            val rootPane = new VBox { // Create a new VBox to hold all the elements
                 spacing = 20
                 padding = Insets(10)
                 alignment = Pos.TopCenter
@@ -197,35 +225,33 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                     new VBox {
                         children = Seq(gridPane)
                     },
-                    controlPane,
+                    controlWithGifPane, // Use the new AnchorPane instead of controlPane
                     new VBox {
                         children = Seq(cardPane)
                     }
                 )
+
+                style = "-fx-background-image: url('file:src/main/resources/Grid.png'); " +
+                  "-fx-background-size: 444px 695px; " +
+                  "-fx-background-position: center;"
             }
 
             currentStage = new Stage {
-                title = "Game Display"
+                title = "Kitty Cardsss"
                 scene = new Scene {
                     root = rootPane
                 }
                 width = 444
-                height = 695
+                height = 750
             }
             currentStage.show()
-
-            rootPane.style = "-fx-background-image: url('file:src/main/resources/Grid.png'); " +
-                s"-fx-background-size: 444px 695px; " +
-                "-fx-background-position: center;"
-
         }
     }
-
     def createGrid(): GridPane = {
         val grid = new GridPane {
-            hgap = 5
-            vgap = 5
-            padding = Insets(61, 0, 0, 0) // Oben, Rechts, Unten, Links
+            hgap = 6
+            vgap = 6
+            padding = Insets(81, 0, 0, 0) // Oben, Rechts, Unten, Links
             alignment = Pos.Center
         }
 
@@ -234,7 +260,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
             val buttonText = card.map(_.toString).getOrElse(s"($x, $y)")
             val button = new Button(buttonText) {
                 style = s"-fx-background-color: $color; -fx-opacity: 0.5;"
-                prefWidth = 92
+                prefWidth = 91
                 prefHeight = 90
                 onAction = _ => handleGridClick(x, y)
                 onMouseEntered = _ => {

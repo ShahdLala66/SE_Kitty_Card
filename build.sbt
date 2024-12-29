@@ -21,6 +21,7 @@ libraryDependencies ++= Seq(
   "org.scalatestplus" %% "mockito-4-5" % "3.2.12.0" % "test",
   "com.typesafe.play" %% "play-json" % "2.10.5",
   "org.scala-lang.modules" %% "scala-swing" % "3.0.0",
+   "org.openjfx" % "javafx-media" % "23.0.1",
   "org.scalamock" %% "scalamock" % "6.0.0" % "test",
   "org.scalafx" %% "scalafx" % "22.0.0-R33"
 
