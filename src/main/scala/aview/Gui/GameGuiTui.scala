@@ -8,18 +8,16 @@ import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.Scene
 import scalafx.scene.control.{Button, Label, TextField}
 import scalafx.scene.image.{Image, ImageView}
-import scalafx.scene.layout.{AnchorPane, GridPane, HBox, Region, StackPane, VBox}
+import scalafx.scene.layout.*
 import scalafx.scene.text.Font
 import scalafx.stage.{Modality, Stage}
 import util.*
-
-import scala.swing.MenuBar.NoMenuBar.font
 
 class GameGuiTui(gameController: GameControllerInterface) extends Observer {
     gameController.add(this)
     val bubblegumSans: Font = Font.loadFont(getClass.getResourceAsStream("/BubblegumSans-Regular.ttf"), 20)
     private var currentStage: Stage = _
-    private var cardPane: HBox = _
+    private var cardPane: AnchorPane = _
     private var gridPane: GridPane = _
     private var statusLabel: Label = _
     private var controlPane: HBox = _
@@ -159,19 +157,19 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                 text = "Welcome to the game!"
                 font = bubblegumSans
                 style = "-fx-font-size: 22px; -fx-text-fill: black; -fx-font-family: 'Bubblegum Sans';"
+                padding = Insets(28, 0, 0, 0)
             }
 
-            // Create the basic control pane first
-            controlPane = new HBox { // Create a new HBox to hold the buttons
+            controlPane = new HBox {
                 spacing = 10
-                padding = Insets(50, 0, 0, 20)
+                padding = Insets(20, 0, 0, 20)
                 alignment = Pos.Center
                 children = Seq(
                     new Button("Undo") {
-                        onAction = * => gameController.handleCommand("undo")
+                        onAction = _ => gameController.handleCommand("undo")
                     },
                     new Button("Redo") {
-                        onAction = * => gameController.handleCommand("redo")
+                        onAction = _ => gameController.handleCommand("redo")
                     },
                     new Button("Draw Card") {
                         onAction = _ => gameController.handleCommand("draw")
@@ -179,65 +177,36 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                 )
             }
 
-            cardPane = new HBox { // Create a new HBox to hold the cards
-                spacing = 10
-                padding = Insets(35, 0, 0, 20)
-                alignment = Pos.BottomCenter
-            }
-
             gridPane = createGrid()
-            gridPane.padding = Insets(60, 0, 0, 0) // Add padding to move the grid down
- //huehuehue
+            gridPane.padding = Insets(60, 0, 0, 0)
 
-            // Setup GIF
-            val gifPath = getClass.getResource("/ZayneChillingGif.gif")
-            if (gifPath == null) {
-                throw new IllegalStateException("GIF file not found in resources")
+            cardPane = new AnchorPane {
+                prefHeight = 200
+                prefWidth = 400 // Feste Breite setzen
+                style = "-fx-background-color: transparent;" // Hintergrund für bessere Sichtbarkeit
             }
 
-            val image = new Image(gifPath.toExternalForm)
-            val imageView = new ImageView(image) {
-                fitWidth = 150
-                fitHeight = 150
-                preserveRatio = true
-                mouseTransparent = true // Ensure it doesn't block interactions
-            }
 
-            // Create an AnchorPane to hold both controls and GIF
-            val controlWithGifPane = new AnchorPane {
-                children = Seq(controlPane, imageView)
-
-                // Position the control pane
-                AnchorPane.setTopAnchor(controlPane, 0.0) // Adjust vertical position of the control pane (upwards) of the GIF
-                AnchorPane.setLeftAnchor(controlPane, 0.0)
-
-                // Position the GIF
-                AnchorPane.setTopAnchor(imageView, -100.0) // Adjust vertical position
-                AnchorPane.setLeftAnchor(imageView, 300.0) // Position it right of the Draw button
-            }
-
-            val rootPane = new VBox { // Create a new VBox to hold all the elements
+            val rootPane = new VBox {
                 spacing = 20
                 padding = Insets(10)
                 alignment = Pos.TopCenter
                 children = Seq(
                     statusLabel,
-                    new VBox {
-                        children = Seq(gridPane)
-                    },
-                    controlWithGifPane, // Use the new AnchorPane instead of controlPane
-                    new VBox {
-                        children = Seq(cardPane)
-                    }
+                    gridPane,
+                    controlPane, // Add controlPane independently
+                    cardPane // Card pane added separately
                 )
-
                 style = "-fx-background-image: url('file:src/main/resources/Grid.png'); " +
-                  "-fx-background-size: 444px 695px; " +
-                  "-fx-background-position: center;"
+                    "-fx-background-size: 444px 695px; " +
+                    "-fx-background-position: center;"
             }
 
+            val controlWithGifPane = createControlWithGifPane()
+            rootPane.children.add(controlWithGifPane) // Add controlWithGifPane independently
+
             currentStage = new Stage {
-                title = "Kitty Cardsss"
+                title = "Kitty Cards"
                 scene = new Scene {
                     root = rootPane
                 }
@@ -247,6 +216,30 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
             currentStage.show()
         }
     }
+
+    def createControlWithGifPane(): AnchorPane = {
+        val gifPath = getClass.getResource("/ZayneChillingGif.gif")
+        if (gifPath == null) {
+            throw new IllegalStateException("GIF file not found in resources")
+        } else {
+            println(s"GIF file found at: ${gifPath.toExternalForm}")
+        }
+
+        val image = new Image(gifPath.toExternalForm)
+        val imageView = new ImageView(image) {
+            fitWidth = 150
+            fitHeight = 150
+            preserveRatio = true
+            mouseTransparent = true
+        }
+
+        new AnchorPane {
+            children = Seq(imageView)
+            AnchorPane.setTopAnchor(imageView, -290.0)
+            AnchorPane.setLeftAnchor(imageView, 295.0)
+        }
+    }
+
     def createGrid(): GridPane = {
         val grid = new GridPane {
             hgap = 6
@@ -261,7 +254,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
             val button = new Button(buttonText) {
                 style = s"-fx-background-color: $color; -fx-opacity: 0.5;"
                 prefWidth = 91
-                prefHeight = 90
+                prefHeight = 98
                 onAction = _ => handleGridClick(x, y)
                 onMouseEntered = _ => {
                     if (selectedCardIndex.isDefined) {
@@ -317,6 +310,27 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
     def showCardsGUI(cards: Seq[CardInterface]): Unit = {
         Platform.runLater {
             try {
+                cardPane.children.clear() // Alte Karten entfernen
+                val offset = 10.0 // Verschiebe alle Karten um 50 Pixel nach rechts
+                cards.zipWithIndex.foreach { case (card, index) =>
+                    val cardButton = new Button {
+                        text = card.toString
+                        prefWidth = 91
+                        prefHeight = 89
+                        style = "-fx-background-color: lightblue;" // Kartenstil
+                        onAction = _ => {
+                            selectedCardIndex = Some(index)
+                            updateStatus(s"Selected card: ${card.toString}")
+                        }
+                    }
+                    val leftOffset = offset + index * 100.0 // Verschieben der Karten horizontal mit Abständen
+                    println(s"Placing card at leftOffset: $leftOffset, index: $index")
+
+                    AnchorPane.setLeftAnchor(cardButton, leftOffset)
+                    AnchorPane.setBottomAnchor(cardButton, 10.0)
+                    cardPane.children.add(cardButton)
+
+                }
                 // println("Processing cards...")
                 val cardImages = cards.map {
                     case NumberCards(suit, value) =>
@@ -343,7 +357,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         CardImage(numericValue, germanSuit)
                 }
                 val cardButtons = cardImages.zipWithIndex.map { case (cardImage, index) =>
-                    // println(s"Creating button for ${cardImage.value} of ${cardImage.suit}")
+                    println(s"Creating button for ${cardImage.value} of ${cardImage.suit}")
                     new CardButton(cardImage, _ => {
                         selectedCardIndex = Some(index)
                         updateButtonStyles()
