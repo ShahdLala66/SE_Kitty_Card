@@ -25,7 +25,7 @@ PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: Int, pos
         //the issue of the cards is here please fix it ahhh
         player.addCard(card) //lol das war das problen sogar ohne copilot lol
     }
-
+//hujkl
     override def redo(): Unit = {
         execute()
     }
