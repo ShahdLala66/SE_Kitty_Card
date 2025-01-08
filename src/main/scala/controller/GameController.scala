@@ -6,10 +6,8 @@ import model.cardComp.baseImp.Grid
 import model.cardComp.baseImp.Suit.Suit
 import model.deckComp.baseImp.Deck
 import model.playerComp.baseImp.Player
-import util.grid.GridFactory
 import util.*
-
-import javax.smartcardio.Card
+import util.grid.GridFactory
 
 
 class GameController extends Observable with GameControllerInterface {
@@ -17,11 +15,12 @@ class GameController extends Observable with GameControllerInterface {
   private val grid = GridFactory.createGrid(3)
   private var observers: List[Observer] = List()
   private val game = new Game(deck, grid, this)
+  private var playerIsAtTurn = true
+
 
   var player1: String = ""
   var player2: String = ""
   var counter = 0
-
 
 
   def startGame(): Unit = {
@@ -37,13 +36,14 @@ class GameController extends Observable with GameControllerInterface {
   }
 
   def startGameLoop(): Unit = {
-    while (!isGameOver) {
+    while (playerIsAtTurn) {
       if (game.getCurrentplayer != null) {
-        notifyObservers(PlayerTurn(game.getCurrentplayer.name))      }
+        playerIsAtTurn = false // Stop loop after getting current player
+        notifyObservers(PlayerTurn(game.getCurrentplayer.name))
+      }
     }
-    game.displayFinalScores()
-    System.exit(0)
   }
+
 
   def handleCommand(command: String): Unit = {
     command match {
@@ -56,6 +56,13 @@ class GameController extends Observable with GameControllerInterface {
   def handleCardPlacement(cardIndex: Int, x: Int, y: Int): Unit = {
     if (game.handleCardPlacement(s"$cardIndex $x $y")) {
       game.switchTurns()
+      playerIsAtTurn = true // Resume loop for next turn
+    }
+    if (!isGameOver) {
+      playerIsAtTurn = true // Reset flag if game isn't over
+    } else {
+      game.displayFinalScores()
+      System.exit(0)
     }
   }
 
@@ -121,7 +128,7 @@ class GameController extends Observable with GameControllerInterface {
   def gameOver(player1Name: String, player1Points: Int, player2Name: String, player2Points: Int): Unit =
     notifyObservers(GameOver(player1Name, player1Points, player2Name, player2Points))
 
- // def intro(): Unit = {
+  // def intro(): Unit = {
   //  notifyObservers(GameStart)
- //}
+  //}
 }

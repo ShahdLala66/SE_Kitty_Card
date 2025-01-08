@@ -48,11 +48,11 @@ class Tui(gameController: GameControllerInterface) extends Observer {
   }
 
   def promptForPlayerName(): Unit = {
-      println(s"Enter the name for Player 1:")
-      val player1 = inputProvider.getInput
-      println(s"Enter the name for Player 2:")
-      val player2 = inputProvider.getInput
-      gameController.promptForPlayerName(player1, player2)
+    println(s"Enter the name for Player 1:")
+    val player1 = inputProvider.getInput
+    println(s"Enter the name for Player 2:")
+    val player2 = inputProvider.getInput
+    gameController.promptForPlayerName(player1, player2)
   }
 
   private var skipPrompt = false
@@ -63,7 +63,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
 
   def start(): Unit = {
     welcomeMessage()
-  // promptForPlayerName()
+    // promptForPlayerName()
   }
 
   def printBadChoice(color: String): Unit = {
@@ -106,11 +106,12 @@ class Tui(gameController: GameControllerInterface) extends Observer {
       case UpdatePlayers(player1, player2) => isWaitingForNames = false
         print("\n", player1, player2)
       case PlayerTurn(playerName) =>
-        println(Console.BLUE + s"\n$playerName's turn.\n" + Console.RESET)
-          val input = inputProvider.getInput
-          processInput(input)
+        val input = inputProvider.getInput
+        processInput(input)
       case CardDrawn(playerName, card) =>
         println(Console.BLUE + s"\n$playerName drew: $card\n" + Console.RESET)
+      case UpdatePlayer(player1) =>
+        println(Console.BLUE + s"\n$player1's turn.\n" + Console.RESET)
       case InvalidPlacement =>
         println("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
         printGridColors()
@@ -136,7 +137,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
       case UpdatePlayer(player1) => print(player1)
       case PromptForPlayerName =>
         isWaitingForNames = true
-          promptForPlayerName()
+        promptForPlayerName()
       case _ => println("Invalid event.")
     }
   }
