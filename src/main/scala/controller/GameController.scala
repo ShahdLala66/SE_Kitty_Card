@@ -103,7 +103,7 @@ class GameController extends Observable with GameControllerInterface {
     notifyObservers(UpdatePlayers(player1, player2))
 
   def updateCurrentPlayer(player: Player): Unit =
-    notifyObservers(UpdatePlayer(player))
+    notifyObservers(UpdatePlayer(player.name))
 
   def showCardsForPlayer(hand: List[CardInterface]): Unit =
     notifyObservers(ShowCardsForPlayer(hand))

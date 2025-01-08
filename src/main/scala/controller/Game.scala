@@ -24,7 +24,7 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
   }
 
   def start(player1Name: String, player2Name: String): Unit = {
-    
+
     val (p1, p2) = addPlayers(player1Name, player2Name)
 
     player1 = p1
@@ -117,6 +117,7 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
   def switchTurns(): Unit = {
     controller.updateGrid(grid)
     currentPlayer = if (currentPlayer == player1) player2 else player1
+    controller.updateCurrentPlayer(currentPlayer)
     controller.showCardsForPlayer(currentPlayer.getHand)
   }
 
