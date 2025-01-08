@@ -111,6 +111,7 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
         }
     }
   }
+  //hi 
 
   def getCurrentplayer: Player = currentPlayer
 
