@@ -34,6 +34,8 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
     //controller.updateCurrentPlayer(currentPlayer)
 
 
+ //   controller.updatePlayers(player1, player2)
+    controller.updateCurrentPlayer(currentPlayer)
     distributeInitialCards()
     controller.updateGrid(grid)
     controller.showCardsForPlayer(currentPlayer.getHand)
@@ -111,7 +113,7 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
         }
     }
   }
-  //hi 
+  //hi
 
   def getCurrentplayer: Player = currentPlayer
 

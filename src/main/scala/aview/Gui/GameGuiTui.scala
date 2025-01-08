@@ -464,6 +464,8 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
       // showCardsGUI(cards)
       case RedoEvent(_) => showGrid()
         updateDisplay()
+      case UpdatePlayer(player1) =>
+        updateStatus(s"$player1's turn.")
       // showCardsGUI(cards)
       case ShowCardsForPlayer(cards) =>
         showCardsGUI(cards)
