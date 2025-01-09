@@ -19,10 +19,6 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
   private var currentState: GameState = new GameState(grid, List(), 0, 0)
   private var hand: Hand = new Hand()
 
-  def askForPlayerNames(): Unit = {
-    controller.askForPlayerNames()
-  }
-
   def start(player1Name: String, player2Name: String): Unit = {
 
     val (p1, p2) = addPlayers(player1Name, player2Name)
@@ -123,6 +119,8 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
     controller.updateCurrentPlayer(currentPlayer)
     controller.showCardsForPlayer(currentPlayer.getHand)
   }
+  
+  
 
   def displayFinalScores(): Unit = {
     controller.gameOver(player1.name, player1.points, player2.name, player2.points)

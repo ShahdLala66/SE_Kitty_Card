@@ -24,8 +24,8 @@ class GameController extends Observable with GameControllerInterface {
 
 
   def startGame(): Unit = {
+    notifyObservers(PromptForPlayerName)
 
-    game.askForPlayerNames()
     val player1Obj = new Player(player1)
     val player2Obj = new Player(player2)
     notifyObservers(UpdatePlayers(player1Obj, player2Obj)) // update players
@@ -71,7 +71,7 @@ class GameController extends Observable with GameControllerInterface {
       this.player1 = player1
       this.player2 = player2
       counter += 1
-      //startGame()
+      notifyObservers(UpdatePlayers(new Player(player1), new Player(player2)))
     } else {
       println("Game already started")
     }
@@ -93,10 +93,6 @@ class GameController extends Observable with GameControllerInterface {
 
   def getGridColor(x: Int, y: Int): String = {
     grid.toArray(x)(y)._2.toString.toLowerCase
-  }
-
-  def askForPlayerNames(): Unit = {
-    notifyObservers(PromptForPlayerName)
   }
 
   def updatePlayers(player1: Player, player2: Player): Unit =

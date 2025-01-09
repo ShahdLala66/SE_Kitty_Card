@@ -47,25 +47,6 @@ class Tui(gameController: GameControllerInterface) extends Observer {
     }
   }
 
-  def promptForPlayerName(): Unit = {
-    println(s"Enter the name for Player 1:")
-    val player1 = inputProvider.getInput
-    println(s"Enter the name for Player 2:")
-    val player2 = inputProvider.getInput
-    gameController.promptForPlayerName(player1, player2)
-  }
-
-  private var skipPrompt = false
-
-  def skipNamePrompt(): Unit = {
-    skipPrompt = true
-  }
-
-  def start(): Unit = {
-    welcomeMessage()
-    // promptForPlayerName()
-  }
-
   def printBadChoice(color: String): Unit = {
     val colorCode = colors.getOrElse(color, "\u001b[0m")
     println(s"$colorCode ∧,,,∧")
@@ -96,14 +77,11 @@ class Tui(gameController: GameControllerInterface) extends Observer {
     }
   }
 
-  private var isWaitingForNames = false
-
-
   var toggle: Boolean = false
 
   override def update(event: GameEvent): Unit = {
     event match {
-      case UpdatePlayers(player1, player2) => isWaitingForNames = false
+      case UpdatePlayers(player1, player2) =>
         print("\n", player1, player2)
       case PlayerTurn(playerName) =>
         val input = inputProvider.getInput
@@ -134,10 +112,12 @@ class Tui(gameController: GameControllerInterface) extends Observer {
       case RedoEvent(_) => println("Redo performed.")
       case ShowCardsForPlayer(cards) =>
         cards.foreach(println)
-      case UpdatePlayer(player1) => print(player1)
       case PromptForPlayerName =>
-        isWaitingForNames = true
-        promptForPlayerName()
+        println(s"Enter the name for Player 1:")
+        val player1 = inputProvider.getInput
+        println(s"Enter the name for Player 2:")
+        val player2 = inputProvider.getInput
+        gameController.promptForPlayerName(player1, player2)
       case _ => println("Invalid event.")
     }
   }

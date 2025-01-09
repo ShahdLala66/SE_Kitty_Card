@@ -28,9 +28,7 @@ trait GameControllerInterface {
     def getCurrentplayer: PlayerInterface
 
     def getGridColor(x: Int, y: Int): String
-
-    def askForPlayerNames(): Unit
-
+    
     def updatePlayers(player1: Player, player2: Player): Unit
 
     def updateCurrentPlayer(player: Player): Unit
