@@ -3,9 +3,8 @@ package util
 
 import model.cardComp.CardInterface
 import model.cardComp.baseImp.{AssistCardInterface, Grid, NumberCards}
-import model.handComp.baseImp.Hand
-import model.playerComp.baseImp.Player
 import model.deckComp.baseImp.Deck
+import model.playerComp.baseImp.Player
 import util.command.GameState
 
 sealed trait GameEvent

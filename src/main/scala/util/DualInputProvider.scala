@@ -8,7 +8,7 @@ class DualInputProvider extends InputProvider {
   private var isWaitingForInput = false
   private var toggle = false
 
-  def interrupt(): Unit = ???
+  def interrupt(): Unit = println()
   def getInput: String = {
     lock.synchronized {
       isWaitingForInput = true

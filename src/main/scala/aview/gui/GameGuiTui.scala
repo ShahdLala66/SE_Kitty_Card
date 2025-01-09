@@ -1,4 +1,4 @@
-package aview.Gui
+package aview.gui
 
 import controller.GameControllerInterface
 import model.cardComp.CardInterface
@@ -8,27 +8,59 @@ import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.Scene
 import scalafx.scene.control.{Button, Label, TextField}
 import scalafx.scene.image.{Image, ImageView}
-import scalafx.scene.layout.{AnchorPane, GridPane, HBox, Region, StackPane, VBox}
+import scalafx.scene.layout.*
 import scalafx.scene.media.{Media, MediaPlayer}
 import scalafx.scene.text.{Font, Text}
 import scalafx.stage.{Modality, Stage}
 import util.*
 
-import java.io.File
-
 class GameGuiTui(gameController: GameControllerInterface) extends Observer {
     gameController.add(this)
 
-    val bubblegumSans: Font = Font.loadFont(getClass.getResourceAsStream("/BubblegumSans-Regular.ttf"), 20)
+    private val bubblegumSans: Font = Font.loadFont(getClass.getResourceAsStream("/assets/fonds/BubblegumSans-Regular.ttf"), 20)
     private var currentStage: Stage = _
     private var cardPane: HBox = _
     private var gridPane: GridPane = _
     private var statusLabel: Label = _
     private var controlPane: HBox = _
     private var selectedCardIndex: Option[Int] = None
-
-
     private var nameDialogStage: Option[Stage] = None
+
+    override def update(event: GameEvent): Unit = {
+        event match {
+            case UpdatePlayers(player1, player2) => closeNameDialog() // Close the GUI name dialog if it's open
+            case PlayerTurn(playerName) =>
+                PlayerTurs(playerName)
+            case CardDrawn(playerName, card) =>
+                CardDrawns(playerName, card)
+            case InvalidPlacement =>
+                invalidPlacements()
+            case CardPlacementSuccess(x, y, card, points) =>
+                CardPlacementSuccesss(x, y, card, points)
+            case GameOver(player1Name, player1Points, player2Name, player2Points) =>
+                showGameOverWindow(player1Name, player1Points, player2Name, player2Points)
+            case UpdateGrid(grid) =>
+                showGrid()
+            case UndoEvent(_) => showGrid()
+                updateDisplay()
+            case RedoEvent(_) => showGrid()
+                updateDisplay()
+            case UpdatePlayer(player1) =>
+                updateStatus(s"$player1's turn.")
+            case ShowCardsForPlayer(cards) =>
+                showCardsGUI(cards)
+            case PromptForPlayerName => start()
+            case _ => println("Invalid event.")
+        }
+    }
+
+    def start(): Unit = {
+        GuiInitializer.ensureInitialized()
+        playBackgroundMusic()
+        promptForPlayerName { (player1Name, player2Name) =>
+            gameController.promptForPlayerName(player1Name, player2Name)
+        }
+    }
 
     // Modify the promptForPlayerName method
     def promptForPlayerName(onComplete: (String, String) => Unit): Unit = {
@@ -54,11 +86,11 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         alignment = Pos.Center
                     }
 
-                    val submitButton = new Button {
+                    val submitButton: Button = new Button {
                         text = "Start Game"
                         minWidth = 500
                         minHeight = 55
-                        style = "-fx-background-image: url('file:src/main/resources/Submit.png');" +
+                        style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
                             "-fx-background-color: transparent; -fx-background-size: cover;" +
                             "-fx-background-repeat: no-repeat;" +
                             "-fx-background-insets: 0;" +
@@ -72,36 +104,13 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         }
                     }
 
-                    val player1FieldWithImage = new StackPane {
-                        children = Seq(
-                            new ImageView(new Image("file:src/main/resources/TextField.png")) {
-                                fitWidth = 350
-                                fitHeight = 50
-                            },
-                            player1Field
-                        )
-                        alignment = Pos.Center
-                        prefWidth = 350
-                        prefHeight = 50
-                    }
-
-                    val player2FieldWithImage = new StackPane {
-                        children = Seq(
-                            new ImageView(new Image("file:src/main/resources/TextField.png")) {
-                                fitWidth = 350
-                                fitHeight = 50
-                            },
-                            player2Field
-                        )
-                        alignment = Pos.Center
-                        prefWidth = 350
-                        prefHeight = 50
-                    }
+                    val player1FieldWithImage: StackPane = createFieldWithImage(player1Field)
+                    val player2FieldWithImage: StackPane = createFieldWithImage(player2Field)
 
                     root = new VBox(20) {
                         padding = Insets(20)
                         alignment = Pos.Center
-                        style = "-fx-background-image: url('file:src/main/resources/NameBackground.png'); " +
+                        style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/NameBackground.png'); " +
                             "-fx-background-size: cover; " +
                             "-fx-background-position: center; " +
                             "-fx-background-repeat: no-repeat;"
@@ -116,15 +125,34 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         )
                     }
                 }
-                initModality(Modality.APPLICATION_MODAL)
+                initModality(Modality.ApplicationModal)
+                resizable = false
+                onCloseRequest = _ =>
+                    System.exit(0)
+                    Platform.exit()
             }
             nameDialogStage = Some(dialog)
             dialog.showAndWait()
         }
     }
 
+    private def createFieldWithImage(textField: TextField): StackPane = {
+        new StackPane {
+            children = Seq(
+                new ImageView(new Image("file:src/main/resources/assets/backgrounds/TextField.png")) {
+                    fitWidth = 350
+                    fitHeight = 50
+                },
+                textField
+            )
+            alignment = Pos.Center
+            prefWidth = 350
+            prefHeight = 50
+        }
+    }
+
     // Add this method to close the name dialog if it's open
-    def closeNameDialog(): Unit = {
+    private def closeNameDialog(): Unit = {
         Platform.runLater {
             nameDialogStage.foreach { dialog =>
                 dialog.close()
@@ -133,8 +161,8 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         }
     }
 
-    def playBackgroundMusic(): Unit = {
-        val musicFile = getClass.getResource("/backgroundmusic.mp3")
+    private def playBackgroundMusic(): Unit = {
+        val musicFile = getClass.getResource("/assets/music/backgroundmusic.mp3")
         Platform.runLater {
             try {
                 val media = new Media(musicFile.toURI.toString)
@@ -146,17 +174,6 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
             }
         }
 
-    }
-
-    def start(): Unit = {
-        GuiInitializer.ensureInitialized()
-        //playBackgroundMusic()
-        promptForPlayerName { (player1Name, player2Name) =>
-            //initialize()
-            gameController.promptForPlayerName(player1Name, player2Name)
-            //gameController.isWaitingForNames.set(false)
-
-        }
     }
 
     def processInput(input: String): Unit = {
@@ -192,7 +209,6 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                     new Button() {
                         translateX = 20
                         translateY = -20
-
                         style = "-fx-background-color: transparent;"
                         prefWidth = 50
                         prefHeight = 40
@@ -201,8 +217,6 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                     new Button() {
                         translateX = 30
                         translateY = -20
-
-                        //make the button transparent
                         style = "-fx-background-color: transparent;"
                         prefWidth = 50
                         prefHeight = 40
@@ -227,7 +241,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
             gridPane = createGrid()
 
             // Create GIF ImageView
-            val gifPath = getClass.getResource("/ZayneChillingGif.gif")
+            val gifPath = getClass.getResource("/assets/backgrounds/ZayneChillingGif.gif")
             if (gifPath == null) {
                 throw new IllegalStateException("GIF file not found in resources")
             }
@@ -279,7 +293,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                     overlayPane,
                     cardPane
                 )
-                style = "-fx-background-image: url('file:src/main/resources/Grid.png'); " +
+                style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Grid.png'); " +
                     "-fx-background-size: 444px 695px; " +
                     "-fx-background-position: center;"
             }
@@ -291,8 +305,10 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                 }
                 width = 444
                 height = 750
-                //lock the frame size
                 resizable = false
+                onCloseRequest = _ =>
+                    System.exit(0)
+                    Platform.exit()
             }
             currentStage.show()
         }
@@ -358,7 +374,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         }
     }
 
-    def updateStatus(message: String): Unit = {
+    private def updateStatus(message: String): Unit = {
         Platform.runLater {
             if (statusLabel != null) {
                 statusLabel.text = message
@@ -369,21 +385,19 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
     // Fixed updateButtonStyles method
     private def updateButtonStyles(): Unit = {
         if (cardPane != null) {
-            cardPane.children.foreach { node =>
-                node match {
-                    case stackPane: javafx.scene.layout.StackPane =>
-                        // Reset the style for StackPane (CardButton)
-                        stackPane.setStyle("")
-                    case button: javafx.scene.control.Button =>
-                        // Reset the style for regular buttons
-                        button.setStyle("")
-                    case _ => // Do nothing for other types
-                }
+            cardPane.children.foreach {
+                case stackPane: javafx.scene.layout.StackPane =>
+                    // Reset the style for StackPane (CardButton)
+                    stackPane.setStyle("")
+                case button: javafx.scene.control.Button =>
+                    // Reset the style for regular buttons
+                    button.setStyle("")
+                case _ => // Do nothing for other types
             }
         }
     }
 
-    def showCardsGUI(cards: Seq[CardInterface]): Unit = {
+    private def showCardsGUI(cards: Seq[CardInterface]): Unit = {
         Platform.runLater {
             try {
                 // println("Processing cards...")
@@ -433,7 +447,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         }
     }
 
-    def showGrid(): Unit = {
+    private def showGrid(): Unit = {
         Platform.runLater {
             if (gridPane != null) {
                 val newGrid = createGrid()
@@ -444,29 +458,29 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         }
     }
 
-    def updateDisplay(): Unit = {
+    private def updateDisplay(): Unit = {
         if (currentStage == null) {
             initialize()
         }
     }
 
-    def invalidPlacements(): Unit = {
+    private def invalidPlacements(): Unit = {
         updateStatus("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
     }
 
-    def CardPlacementSuccesss(x: Int, y: Int, card: String, points: Int): Unit = {
+    private def CardPlacementSuccesss(x: Int, y: Int, card: String, points: Int): Unit = {
         updateStatus(s"Card placed at ($x, $y): $card. Points earned: $points.")
     }
 
-    def PlayerTurs(playerName: String): Unit = {
+    private def PlayerTurs(playerName: String): Unit = {
         updateStatus(s"$playerName's turn.")
     }
 
-    def CardDrawns(playerName: String, card: String): Unit = {
+    private def CardDrawns(playerName: String, card: String): Unit = {
         updateStatus(s"$playerName drew: $card")
     }
 
-    def showGameOverWindow(player1Name: String, player1Points: Int, player2Name: String, player2Points: Int): Unit = {
+    private def showGameOverWindow(player1Name: String, player1Points: Int, player2Name: String, player2Points: Int): Unit = {
         Platform.runLater {
             val winner = if (player1Points > player2Points) {
                 s"$player1Name wins!"
@@ -478,50 +492,41 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
 
             val dialog = new Stage {
                 title = "Game Over"
-                scene = new Scene(300, 200) {
+                scene = new Scene(469, 669) {
                     root = new VBox {
                         spacing = 10
-                        padding = Insets(20)
-                        alignment = Pos.Center
+                        padding = Insets(130, 0, 0, 0)
+                        alignment = Pos.TopCenter
+                        style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/GameOverBackground.png'); " +
+                            "-fx-background-size: cover; " +
+                            "-fx-background-position: center;"
                         children = Seq(
-                            new Text(s"Game over!"),
-                            new Text(s"$player1Name's final score: $player1Points"),
-                            new Text(s"$player2Name's final score: $player2Points"),
-                            new Text(winner)
+                            new Text("Game over!") {
+                                font = bubblegumSans
+                                style = "-fx-font-size: 24px; -fx-fill: red;"
+                            },
+                            new Text(s"$player1Name's final score: $player1Points") {
+                                font = bubblegumSans
+                                style = "-fx-font-size: 24px;"
+                            },
+                            new Text(s"$player2Name's final score: $player2Points") {
+                                font = bubblegumSans
+                                style = "-fx-font-size: 24px;"
+                            },
+                            new Text(winner) {
+                                font = bubblegumSans
+                                style = "-fx-font-size: 24px;"
+                            }
                         )
                     }
                 }
-                initModality(Modality.APPLICATION_MODAL)
+                initModality(Modality.ApplicationModal)
+                resizable = false
+                onCloseRequest = _ =>
+                    System.exit(0)
+                    Platform.exit()
             }
             dialog.showAndWait()
-        }
-    }
-
-    override def update(event: GameEvent): Unit = {
-        event match {
-            case UpdatePlayers(player1, player2) => closeNameDialog() // Close the GUI name dialog if it's open
-            case PlayerTurn(playerName) =>
-                PlayerTurs(playerName)
-            case CardDrawn(playerName, card) =>
-                CardDrawns(playerName, card)
-            case InvalidPlacement =>
-                invalidPlacements()
-            case CardPlacementSuccess(x, y, card, points) =>
-                CardPlacementSuccesss(x, y, card, points)
-            case GameOver(player1Name, player1Points, player2Name, player2Points) =>
-                showGameOverWindow(player1Name, player1Points, player2Name, player2Points)
-            case UpdateGrid(grid) =>
-                showGrid()
-            case UndoEvent(_) => showGrid()
-                updateDisplay()
-            case RedoEvent(_) => showGrid()
-                updateDisplay()
-            case UpdatePlayer(player1) =>
-                updateStatus(s"$player1's turn.")
-            case ShowCardsForPlayer(cards) =>
-                showCardsGUI(cards)
-            case PromptForPlayerName => start()
-            case _ => println("Invalid event.")
         }
     }
 }

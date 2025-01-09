@@ -1,13 +1,13 @@
 import java.nio.ByteBuffer
 import java.nio.channels.{Channels, ReadableByteChannel}
 import java.util.concurrent.atomic.AtomicBoolean
-import scala.concurrent.{Future, Promise}
+import javax.swing.*
 import scala.concurrent.ExecutionContext.Implicits.global
-import javax.swing._
+import scala.concurrent.Future
 
-object GUIInterruptExample {
-  @volatile var guiInput: Option[String] = None
-  val inputReceived = new AtomicBoolean(false) // Flag to track if input is received from GUI
+object Test {
+  @volatile private var guiInput: Option[String] = None
+  private val inputReceived = new AtomicBoolean(false) // Flag to track if input is received from GUI
 
   def main(args: Array[String]): Unit = {
     // Set up GUI
@@ -46,7 +46,7 @@ object GUIInterruptExample {
     }
   }
 
-  def readConsoleInput(): Future[Thread] = Future {
+  private def readConsoleInput(): Future[Thread] = Future {
     val thread = Thread.currentThread()
     val channel: ReadableByteChannel = Channels.newChannel(System.in)
     val buffer: ByteBuffer = ByteBuffer.allocate(256)

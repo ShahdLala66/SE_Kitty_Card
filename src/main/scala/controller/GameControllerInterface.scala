@@ -11,11 +11,9 @@ import util.{GameEvent, Observer}
 import java.util.concurrent.atomic.AtomicBoolean
 
 trait GameControllerInterface {
-
-    var isWaitingForNames: AtomicBoolean
     
     def add(observer: Observer): Unit
-    
+
     def startGame(): Unit
 
     def startGameLoop(): Unit
@@ -33,7 +31,7 @@ trait GameControllerInterface {
     def getCurrentplayer: PlayerInterface
 
     def getGridColor(x: Int, y: Int): String
-    
+
     def updatePlayers(player1: Player, player2: Player): Unit
 
     def updateCurrentPlayer(player: Player): Unit

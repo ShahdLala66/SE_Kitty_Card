@@ -48,9 +48,9 @@ case class Grid(size: Int, rectangleColors: Array[Array[Suit]]) {
     }
   }
 
-  def isWithinBounds(x: Int, y: Int): Boolean = x >= 0 && x < size && y >= 0 && y < size
+  private def isWithinBounds(x: Int, y: Int): Boolean = x >= 0 && x < size && y >= 0 && y < size
 
-  def saveState(): Unit = {
+  private def saveState(): Unit = {
     val gridCopy = grid.map(_.map(_.map(card => card.copy())))
     history = gridCopy :: history
   }

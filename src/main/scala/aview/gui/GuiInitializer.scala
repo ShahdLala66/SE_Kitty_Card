@@ -1,4 +1,4 @@
-package aview.Gui
+package aview.gui
 
 import scalafx.application.JFXApp3
 
