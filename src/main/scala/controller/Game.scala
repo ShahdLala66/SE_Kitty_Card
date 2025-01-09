@@ -73,7 +73,6 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
         executeUndoRedo(commandManager.undo, UndoEvent(currentState))
       case "redo" =>
         executeUndoRedo(commandManager.redo, RedoEvent(currentState))
-        //notifyobserver for hand / cards
       case _ =>
         Try {
           val parts = input.split(" ")
@@ -114,9 +113,9 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
   def getCurrentplayer: Player = currentPlayer
 
   def switchTurns(): Unit = {
-    controller.updateGrid(grid)
     currentPlayer = if (currentPlayer == player1) player2 else player1
     controller.updateCurrentPlayer(currentPlayer)
+    controller.updateGrid(grid)
     controller.showCardsForPlayer(currentPlayer.getHand)
   }
   
@@ -127,8 +126,8 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
   }
 
   def addPlayers(player1Name: String, player2Name: String): (Player, Player) = {
-    val player1 = Player(player1Name, 0)
-    val player2 = Player(player2Name, 0)
+    val player1 = Player(player1Name)
+    val player2 = Player(player2Name)
     (player1, player2)
   }
 }

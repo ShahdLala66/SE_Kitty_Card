@@ -150,11 +150,11 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
 
     def start(): Unit = {
         GuiInitializer.ensureInitialized()
-        playBackgroundMusic() // Start the background music
+        //playBackgroundMusic()
         promptForPlayerName { (player1Name, player2Name) =>
             //initialize()
             gameController.promptForPlayerName(player1Name, player2Name)
-            gameController.isWaitingForNames.set(false)
+            //gameController.isWaitingForNames.set(false)
 
         }
     }

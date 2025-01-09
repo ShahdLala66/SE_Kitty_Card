@@ -23,6 +23,10 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         println("\u001b[0m")
     }
 
+    def flush(): Unit = {
+        print("\n" * 25)
+    }
+
     def printCatLoop(): Unit = {
         for (color <- colors.values) {
             printColoredCat(color)
@@ -75,6 +79,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
             val cardInfo = card.map(_.toString).getOrElse("Empty")
             println(s"Rectangle at ($x, $y) has card: $cardInfo and color: $color")
         }
+        println()
     }
 
     var toggle: Boolean = false
@@ -87,22 +92,25 @@ class Tui(gameController: GameControllerInterface) extends Observer {
             case CardDrawn(playerName, card) =>
                 println(Console.BLUE + s"\n$playerName drew: $card\n" + Console.RESET)
             case UpdatePlayer(player1) =>
-                println(Console.BLUE + s"\n$player1's turn.\n" + Console.RESET)
+                println(Console.BLUE + s"\nIt's $player1's turn!\n" + Console.RESET)
             case InvalidPlacement =>
-                println("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
+                flush()
+                println(Console.RED +"Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.\n"+ Console.RESET)
+                println(Console.BLUE + s"\nIt's ${gameController.getCurrentplayer.getPlayerName}'s turn!\n" + Console.RESET)
                 printGridColors()
+                gameController.showCardsForPlayer(gameController.getCurrentplayer.getHand)
             case CardPlacementSuccess(x, y, card, points) =>
-                println(Console.YELLOW + s"Card placed at ($x, $y): $card. Points earned: $points." + Console.RESET)
+                println(Console.YELLOW + s"\nCard placed at ($x, $y): $card. You have earned $points points!" + Console.RESET)
             case GameOver(player1Name, player1Points, player2Name, player2Points) =>
-                println("Game over!")
-                println(s"$player1Name's final score: $player1Points")
+                println(Console.RED + "\n\nGame over!")
+                println(Console.YELLOW + s"$player1Name's final score: $player1Points")
                 println(s"$player2Name's final score: $player2Points")
                 if (player1Points > player2Points) {
-                    println(s"$player1Name wins!")
+                    println(s"$player1Name wins!"+ Console.RESET)
                 } else if (player2Points > player1Points) {
-                    println(s"$player2Name wins!")
+                    println(s"$player2Name wins!"+ Console.RESET)
                 } else {
-                    println("It's a tie!")
+                    println("It's a tie!"+ Console.RESET)
                 }
             case UpdateGrid(grid) =>
                 printGridColors()
@@ -111,6 +119,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
             case ShowCardsForPlayer(cards) =>
                 cards.foreach(println)
             case PromptForPlayerName =>
+                    flush()
                     println(s"Enter the name for Player 1:")
                     val player1 = inputProvider.getInput
                     if (player1 == null) return  // Input was interrupted
@@ -124,7 +133,9 @@ class Tui(gameController: GameControllerInterface) extends Observer {
             case UpdatePlayers(player1, player2) =>
                 // Interrupt any pending input when players are updated through GUI
                 inputProvider.interrupt()
-                print("\n", player1, player2)
+                flush()
+                println(Console.YELLOW +"The Players are " + player1.name + " and " + player2.name)
+                println("Let's start the game!" + Console.RESET)
 
             case _ => println("Invalid event.")
         }
