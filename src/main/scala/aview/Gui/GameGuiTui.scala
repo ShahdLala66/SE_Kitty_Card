@@ -139,7 +139,6 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
       gameController.promptForPlayerName(player1Name, player2Name)
       gameController.isWaitingForNames.set(false)
 
-      gameController.startGameLoop()
     }
   }
 
