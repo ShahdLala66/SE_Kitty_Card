@@ -7,7 +7,7 @@ import scala.util.Random
 
 object GridUtils {
   def generateRandomColors(size: Int): Array[Array[Suit]] = {
-    val colors = List(Suit.Blue, Suit.Green, Suit.Purple, Suit.Red)
+    val colors = List(Suit.Blue, Suit.Green, Suit.Purple, Suit.Red, Suit.Brown)
     val positions = Random.shuffle(for {
       x <- 0 until size
       y <- 0 until size

@@ -179,6 +179,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                 text = "Welcome to the game!"
                 font = bubblegumSans
                 style = "-fx-font-size: 22px; -fx-text-fill: black; -fx-font-family: 'Bubblegum Sans';"
+                padding = Insets(27, 0, 0, 0)
             }
 
             // Create control buttons
@@ -188,18 +189,31 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                 alignment = Pos.Center
                 translateX = -80 // Move the entire button group to the left
                 children = Seq(
-                    new Button("Undo") {
+                    new Button() {
+                        translateX = 20
+                        translateY = -20
+
                         style = "-fx-background-color: transparent;"
+                        prefWidth = 50
+                        prefHeight = 40
                         onAction = _ => gameController.handleCommand("undo")
                     },
-                    new Button("Redo") {
-                        translateX = 20
+                    new Button() {
+                        translateX = 30
+                        translateY = -20
+
                         //make the button transparent
                         style = "-fx-background-color: transparent;"
+                        prefWidth = 50
+                        prefHeight = 40
                         onAction = _ => gameController.handleCommand("redo")
                     },
-                    new Button("Draw Card") {
-                        translateX = 30
+                    new Button() {
+                        translateX = 28
+                        translateY = -20
+                        prefWidth = 90
+                        prefHeight = 50
+                        style = "-fx-background-color: transparent;"
                         onAction = _ => gameController.handleCommand("draw")
                     }
                 )
@@ -207,7 +221,6 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
 
             cardPane = new HBox { // HBox for the cards
                 spacing = 10
-                padding = Insets(30, 0, 0, 0)
                 alignment = Pos.BottomCenter
             }
 
@@ -290,17 +303,17 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         val grid = new GridPane {
             hgap = 6
             vgap = 6
-            padding = Insets(81, 0, 10, 0)
+            padding = Insets(60, 0, 10, 0)
             alignment = Pos.Center
         }
 
-        // Custom color mapping with explicit string values
         val colorMap = Map(
-            "Purple" -> "#c39bd3",
-            "Brown" -> "#e59866",
-            "Red" -> "#ec7063",
-            "Blue" -> "#85c1e9",
-            "Green" -> "#82e0aa",
+            "Purple" -> "#9966cc",
+            "Brown" -> "#cc8566",
+            "Red" -> "#d95959",
+            "Blue" -> "#66b4cc",
+            "Green" -> "#6ecc66",
+            "White" -> "#ffffff"
         )
 
         val colors = gameController.getGridColors
@@ -310,15 +323,14 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
             val hexColor = colorMap.get(colorName.toString
             ) match {
                 case Some(hex) => hex
-                case None =>
-                    colorName // Fallback to original
+                case None => colorName // Fallback to original
             }
 
 
             val button = new Button(buttonText) {
                 style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
                 prefWidth = 91
-                prefHeight = 90
+                prefHeight = 89
                 onAction = * => handleGridClick(x, y)
                 onMouseEntered = * => {
                     if (selectedCardIndex.isDefined) {

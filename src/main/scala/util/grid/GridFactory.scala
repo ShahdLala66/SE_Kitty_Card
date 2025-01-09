@@ -9,7 +9,7 @@ object GridFactory {
     Grid(size, rectangleColors)
   }
 
-  def createPredefinedGrid(size: Int, predefinedColors: Array[Array[Suit]]): Grid = {
-    Grid(size, predefinedColors)
-  }
+ // def createPredefinedGrid(size: Int, predefinedColors: Array[Array[Suit]]): Grid = {
+  //  Grid(size, predefinedColors)
+  //}
 }
