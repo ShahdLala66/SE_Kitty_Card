@@ -30,8 +30,8 @@ class GameController extends Observable with GameControllerInterface {
   def startGame(): Unit = {
     notifyObservers(PromptForPlayerName)
 
-    val player1Obj = new Player(player1)
-    val player2Obj = new Player(player2)
+    val player1Obj = Player(player1)
+    val player2Obj = Player(player2)
     //notifyObservers(UpdatePlayers(player1Obj, player2Obj)) // update players
 
     game.start(player1, player2)
@@ -66,7 +66,7 @@ class GameController extends Observable with GameControllerInterface {
       playerIsAtTurn = true // Reset flag if game isn't over
     } else {
       game.displayFinalScores()
-      System.exit(0)
+      //System.exit(0)
     }
   }
 
@@ -75,10 +75,7 @@ class GameController extends Observable with GameControllerInterface {
       this.player1 = player1
       this.player2 = player2
       counter += 1
-      notifyObservers(UpdatePlayers(new Player(player1), new Player(player2)))
-     // isWaitingForNames.set(false)
-    //  startGameLoop()
-
+      notifyObservers(UpdatePlayers(Player(player1), Player(player2)))
     } else {
       println("Game already started")
     }
@@ -96,7 +93,7 @@ class GameController extends Observable with GameControllerInterface {
     deck.size <= 0 || grid.isFull
   }
 
-  def getCurrentplayer = game.getCurrentplayer
+  def getCurrentplayer: Player = game.getCurrentplayer
 
   def getGridColor(x: Int, y: Int): String = {
     grid.toArray(x)(y)._2.toString.toLowerCase

@@ -3,8 +3,6 @@ package aview
 import controller.GameControllerInterface
 import util.*
 
-import scala.concurrent.Future
-
 class Tui(gameController: GameControllerInterface) extends Observer {
     gameController.add(this)
 
