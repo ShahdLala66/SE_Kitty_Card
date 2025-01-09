@@ -8,7 +8,12 @@ import model.playerComp.PlayerInterface
 import model.playerComp.baseImp.Player
 import util.{GameEvent, Observer}
 
+import java.util.concurrent.atomic.AtomicBoolean
+
 trait GameControllerInterface {
+
+    var isWaitingForNames: AtomicBoolean
+    
     def add(observer: Observer): Unit
     
     def startGame(): Unit

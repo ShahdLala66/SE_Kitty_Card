@@ -8,6 +8,8 @@ class SharedInputProvider extends InputProvider {
   @volatile private var inputQueue: Option[String] = None
   @volatile private var inputPromise: Option[Promise[String]] = None
 
+  def interrupt(): Unit = ???
+  
   def getInput: String = {
     import scala.concurrent.Await
     import scala.concurrent.duration.Duration

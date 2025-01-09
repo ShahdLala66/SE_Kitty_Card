@@ -9,6 +9,8 @@ import model.playerComp.baseImp.Player
 import util.*
 import util.grid.GridFactory
 
+import java.util.concurrent.atomic.AtomicBoolean
+
 
 class GameController extends Observable with GameControllerInterface {
   private val deck = new Deck()
@@ -23,12 +25,14 @@ class GameController extends Observable with GameControllerInterface {
   var counter = 0
 
 
+  var isWaitingForNames: AtomicBoolean = new AtomicBoolean(true)
+
   def startGame(): Unit = {
     notifyObservers(PromptForPlayerName)
 
     val player1Obj = new Player(player1)
     val player2Obj = new Player(player2)
-    notifyObservers(UpdatePlayers(player1Obj, player2Obj)) // update players
+    //notifyObservers(UpdatePlayers(player1Obj, player2Obj)) // update players
 
     game.start(player1, player2)
 
@@ -72,6 +76,9 @@ class GameController extends Observable with GameControllerInterface {
       this.player2 = player2
       counter += 1
       notifyObservers(UpdatePlayers(new Player(player1), new Player(player2)))
+     // isWaitingForNames.set(false)
+    //  startGameLoop()
+
     } else {
       println("Game already started")
     }
