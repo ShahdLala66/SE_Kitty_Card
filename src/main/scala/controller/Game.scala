@@ -44,6 +44,7 @@ class Game(deck: Deck, grid: Grid, controller: GameController) {
             case Some(card) =>
                 controller.cardDrawn(currentPlayer.name, card.toString)
                 controller.showCardsForPlayer(currentPlayer.getHand)
+                switchTurns()
             case None =>
                 controller.invalidPlacement()
         }

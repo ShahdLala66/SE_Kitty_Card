@@ -38,24 +38,23 @@ class Tui(gameController: GameControllerInterface) extends Observer {
                 }
             case UpdateGrid(grid) =>
                 printGridColors()
-            case UndoEvent(_) => println("Undo performed.")
-            case RedoEvent(_) => println("Redo performed.")
+            case UndoEvent(_) => println(Console.RED + "\nUndo performed." + Console.RESET)
+            case RedoEvent(_) => println(Console.RED + "\nRedo performed." + Console.RESET)
             case ShowCardsForPlayer(cards) =>
                 cards.foreach(println)
             case PromptForPlayerName =>
                 flush()
                 println(s"Enter the name for Player 1:")
                 val player1 = inputProvider.getInput
-                if (player1 == null) return // Input was interrupted
+                if (player1 == null) return
 
                 println(s"Enter the name for Player 2:")
                 val player2 = inputProvider.getInput
-                if (player2 == null) return // Input was interrupted
+                if (player2 == null) return
 
                 gameController.promptForPlayerName(player1, player2)
 
             case UpdatePlayers(player1, player2) =>
-                // Interrupt any pending input when players are updated through GUI
                 inputProvider.interrupt()
                 flush()
                 println(Console.YELLOW + "The Players are " + player1.name + " and " + player2.name)

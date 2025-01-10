@@ -12,6 +12,6 @@ object Main extends App {
 
  // val musicPlayer = new BackgroundMusicPlayer("src/main/resources/backgroundmusic.mp3")
  // musicPlayer.play()
-
+  
   controller.startGame()
 }
