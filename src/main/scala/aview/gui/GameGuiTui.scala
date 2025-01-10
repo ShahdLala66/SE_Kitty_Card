@@ -1,8 +1,8 @@
 package aview.gui
 
 import controller.GameControllerInterface
-import model.cardComp.CardInterface
-import model.cardComp.baseImp.{NumberCards, Value}
+import model.baseImp.{NumberCards, Value}
+import model.CardInterface
 import scalafx.application.Platform
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.Scene

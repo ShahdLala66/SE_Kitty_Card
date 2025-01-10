@@ -1,4 +1,4 @@
-package model.cardComp.baseImp
+package model.baseImp
 
 object Value extends Enumeration {
     type Value1 = Value

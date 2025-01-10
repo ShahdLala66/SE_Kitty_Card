@@ -1,10 +1,8 @@
 // src/main/scala/util/GameEvents.scala
 package util
 
-import model.cardComp.CardInterface
-import model.cardComp.baseImp.{AssistCardInterface, Grid, NumberCards}
-import model.deckComp.baseImp.Deck
-import model.playerComp.baseImp.Player
+import model.baseImp.{AssistCardInterface, Deck, Grid, NumberCards, Player}
+import model.CardInterface
 import util.command.GameState
 
 sealed trait GameEvent

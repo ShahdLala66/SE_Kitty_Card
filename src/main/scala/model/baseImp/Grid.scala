@@ -1,7 +1,8 @@
-package model.cardComp.baseImp
+package model.baseImp
 
 import Suit.Suit
 import util.Observer
+
 import scala.collection.mutable.ListBuffer
 
 case class Grid(size: Int, rectangleColors: Array[Array[Suit]]) {

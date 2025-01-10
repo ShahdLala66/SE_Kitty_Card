@@ -1,7 +1,22 @@
-package model.playerComp
+package model
 
-import model.cardComp.CardInterface
-import model.deckComp.DeckInterface
+import model.baseImp.Suit.Suit
+
+trait CardInterface{
+    def getColor: String
+    def toString: String
+}
+
+trait DeckInterface {
+    def drawCard(): Option[CardInterface]
+    def size: Int
+}
+
+trait HandInterface {
+    def addCard(card: CardInterface): Unit
+    def getCards: List[CardInterface]
+    def toString: String
+}
 
 trait PlayerInterface(nameI: String, var pointsI: Int = 0) {
     def getPlayerName: String = nameI

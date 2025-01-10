@@ -10,8 +10,5 @@ object Main extends App {
   val tui = new Tui(controller)
   val gui = new GameGuiTui(controller)
 
- // val musicPlayer = new BackgroundMusicPlayer("src/main/resources/backgroundmusic.mp3")
- // musicPlayer.play()
-  
   controller.startGame()
 }

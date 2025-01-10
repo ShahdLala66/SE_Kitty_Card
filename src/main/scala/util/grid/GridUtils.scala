@@ -1,6 +1,6 @@
 package util.grid
 
-import model.cardComp.baseImp.Suit
+import model.baseImp.Suit
 import Suit.Suit
 
 import scala.util.Random

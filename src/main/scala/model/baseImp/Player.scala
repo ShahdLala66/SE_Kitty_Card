@@ -1,9 +1,7 @@
 // src/main/scala/model/Player.scala
-package model.playerComp.baseImp
+package model.baseImp
 
-import model.cardComp.CardInterface
-import model.deckComp.DeckInterface
-import model.playerComp.PlayerInterface
+import model.{CardInterface, DeckInterface, PlayerInterface}
 
 case class Player(name: String, var points: Int = 0) extends PlayerInterface(name, points) {
     var hand: List[CardInterface] = List()

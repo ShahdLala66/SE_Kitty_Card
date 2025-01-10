@@ -1,8 +1,6 @@
-package model.deckComp.baseImp
+package model.baseImp
 
-import model.cardComp.baseImp.{NumberCards, Suit, Value}
-import model.cardComp.{CardInterface, baseImp}
-import model.deckComp.DeckInterface
+import model.*
 
 import scala.util.Random
 
@@ -10,7 +8,7 @@ class Deck extends DeckInterface {
     private val cards: List[CardInterface] = for {
         suit <- Suit.values.toList if suit != Suit.White // Exclude White suit
         value <- Value.values.toList
-    } yield baseImp.NumberCards(suit, value)
+    } yield NumberCards(suit, value)
 
     private var shuffledDeck: List[CardInterface] = Random.shuffle(cards)
 

@@ -1,16 +1,14 @@
 // src/main/scala/controller/GameControllerInterface.scala
 package controller
 
-import model.cardComp.CardInterface
-import model.cardComp.baseImp.Grid
-import model.cardComp.baseImp.Suit.Suit
-import model.playerComp.PlayerInterface
-import model.playerComp.baseImp.Player
+import model.baseImp.{Deck, Grid, Hand, Player}
+import model.{CardInterface, PlayerInterface}
+import model.baseImp.Suit.Suit
 import util.{GameEvent, Observer}
 
 import java.util.concurrent.atomic.AtomicBoolean
 
-trait GameControllerInterface {
+trait GameControllerInterface(deck: Deck, hand: Hand) {
     
     def add(observer: Observer): Unit
 

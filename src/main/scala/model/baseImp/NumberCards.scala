@@ -1,6 +1,6 @@
-package model.cardComp.baseImp
+package model.baseImp
 
-import model.cardComp.CardInterface
+import model.CardInterface
 
 import scala.util.Random
 
