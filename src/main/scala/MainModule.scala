@@ -9,7 +9,7 @@ class MainModule extends AbstractModule {
         bind(classOf[HandInterface]).to(classOf[Hand]) // Bind Hand to HandInterface
         bind(classOf[GameControllerInterface]).to(classOf[GameController])
     }
-
+//hi
     @Provides
     def provideGameController(deck: DeckInterface, hand: HandInterface): GameController = {
         new GameController(deck.asInstanceOf[Deck], hand.asInstanceOf[Hand])
