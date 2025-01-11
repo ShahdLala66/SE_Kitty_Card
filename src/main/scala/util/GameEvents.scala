@@ -14,6 +14,10 @@ case class TurnReactionBad(color: String) extends GameEvent
 case class ShowColoredCat(color: String) extends GameEvent
 
 
+//Game Mode setten , single und multi 
+case object AskForGameMode extends GameEvent
+
+
 //Game Starten
 //case object GameStart extends GameEvent
 case object PromptForPlayerName extends GameEvent

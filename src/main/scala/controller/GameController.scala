@@ -10,6 +10,7 @@ import util.grid.GridFactory
 import scala.util.{Failure, Success, Try}
 
 class GameController(deck: Deck, hand: Hand) extends Observable with GameControllerInterface(deck: Deck, hand: Hand) {
+    private var gameMode: GameMode = _ // No default mode initially
     private val grid = GridFactory.createGrid(3)
     private var observers: List[Observer] = List()
     private var playerIsAtTurn = true
@@ -23,7 +24,26 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
     var player2String: String = ""
     private var counter = 0
 
+    // Start the game and ask for game mode selection
     def startGame(): Unit = {
+       notifyObservers(AskForGameMode) // Notify observers to ask for the game mode
+    }
+
+    // This method will be triggered when the observer event is received with the chosen game mode
+     def setGameMode(mode: String): Unit = {
+        mode.toLowerCase match {
+            case "s" => gameMode = new SinglePlayerMode()
+            case "m"  => gameMode = new MultiPlayerMode()
+            case _ =>
+                println(s"Invalid game mode: $mode. Defaulting to Multi Player mode.")
+                gameMode = new MultiPlayerMode() // Fall back to multiplayer if invalid mode
+        }
+
+        // Once the game mode is set, start the game in the selected mode
+        gameMode.startGame(this)
+    }
+
+     def startMultiPlayerGame(): Unit = {
         notifyObservers(PromptForPlayerName)
         val (p1, p2) = addPlayers(player1String, player2String)
         player1 = p1

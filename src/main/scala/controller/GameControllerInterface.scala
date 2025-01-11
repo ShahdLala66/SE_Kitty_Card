@@ -4,12 +4,17 @@ package controller
 import model.baseImp.{Deck, Grid, Hand, Player}
 import model.{CardInterface, PlayerInterface}
 import model.baseImp.Suit.Suit
-import util.{GameEvent, Observer}
+import util.{AskForGameMode, GameEvent, Observer}
 
 import java.util.concurrent.atomic.AtomicBoolean
 
 trait GameControllerInterface(deck: Deck, hand: Hand) {
-    
+
+
+    def setGameMode(mode: String): Unit
+
+    def startMultiPlayerGame(): Unit
+
     def add(observer: Observer): Unit
 
     def startGame(): Unit
