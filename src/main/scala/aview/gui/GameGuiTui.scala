@@ -49,7 +49,8 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         updateStatus(s"$player1's turn.")
       case ShowCardsForPlayer(cards) =>
         showCardsGUI(cards)
-      case PromptForPlayerName => askForName()
+      case PromptForPlayerName =>   promptForPlayerName { (player1Name, player2Name) =>
+        gameController.promptForPlayerName(player1Name, player2Name)}
       case AskForGameMode =>
         start()
       case _ => println("Invalid event.")
@@ -244,6 +245,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         case e: Exception => println(s"Fehler beim Abspielen der Musik: ${e.getMessage}")
       }
     }
+
 
   }
 

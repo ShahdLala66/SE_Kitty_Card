@@ -43,6 +43,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
       case ShowCardsForPlayer(cards) =>
         cards.foreach(println)
       case PromptForPlayerName =>
+        inputProvider.interrupt()
         flush()
         println(s"Enter the name for Player 1:")
         val player1 = inputProvider.getInput
