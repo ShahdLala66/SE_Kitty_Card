@@ -49,19 +49,17 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         updateStatus(s"$player1's turn.")
       case ShowCardsForPlayer(cards) =>
         showCardsGUI(cards)
-      case PromptForPlayerName =>   promptForPlayerName { (player1Name, player2Name) =>
-        gameController.promptForPlayerName(player1Name, player2Name)}
-      case AskForGameMode =>
-        start()
+      case PromptForPlayerName => start()
       case _ => println("Invalid event.")
     }
   }
 
   def start(): Unit = {
     GuiInitializer.ensureInitialized()
-    //playBackgroundMusic()
-    showAskForGameModeWindow { (gameMode) => gameController.setGameMode(gameMode) }
-
+    // playBackgroundMusic()
+    promptForPlayerName { (player1Name, player2Name) =>
+      gameController.promptForPlayerName(player1Name, player2Name)
+    }
   }
   private def askForName(): Unit = {
     promptForPlayerName { (player1Name, player2Name) =>
