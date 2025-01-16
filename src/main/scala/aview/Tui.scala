@@ -112,6 +112,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         println("- 'cardIndex x y' to place a card")
         println("- 'undo' to undo last move")
         println("- 'redo' to redo last move")
+        gameController.askForInputAgain()
     }
   }
 

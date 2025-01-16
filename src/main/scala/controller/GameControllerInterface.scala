@@ -40,6 +40,8 @@ trait GameControllerInterface(deck: Deck, hand: Hand) {
     def updateCurrentPlayer(player: Player): Unit
 
     def showCardsForPlayer(hand: List[CardInterface]): Unit
+    
+    def askForInputAgain(): Unit
 
     def notifyPlayerTurn(playerName: String): Unit
 

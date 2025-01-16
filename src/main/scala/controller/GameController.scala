@@ -56,6 +56,10 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
         startGameLoop()
     }
 
+     def askForInputAgain(): Unit = {
+         playerIsAtTurn = true
+     }
+
     private def distributeInitialCards(): Unit = {
         for (_ <- 1 to 3) {
             player1.drawCard(deck)
