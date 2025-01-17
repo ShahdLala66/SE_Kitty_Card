@@ -1,69 +1,47 @@
 // src/main/scala/controller/GameControllerInterface.scala
 package controller
 
+import model.FileIO.FileIOInterface
 import model.baseImp.Suit.Suit
-import model.baseImp.{Deck, Grid, Hand, Player}
+import model.baseImp.{Deck, Hand, Player}
 import model.{CardInterface, PlayerInterface}
+import util.Observer
 import util.command.GameState
-import util.{GameEvent, Observer}
 
-trait GameControllerInterface(deck: Deck, hand: Hand) {
+trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) {
 
+    var currentState: GameState = _
 
-  def setGameMode(mode: String): Unit
+    def setGameMode(mode: String): Unit
 
-  def startMultiPlayerGame(): Unit
+    def startMultiPlayerGame(): Unit
 
-  def add(observer: Observer): Unit
+    def add(observer: Observer): Unit
 
-  def startGame(): Unit
+    def startGame(): Unit
 
-  def startGameLoop(): Unit
+    def startGameLoop(): Unit
 
-  def handleCommand(command: String): Unit
+    def handleCommand(command: String): Unit
 
-  def handleCardPlacement(cardIndex: Int, x: Int, y: Int): Unit
+    def handleCardPlacement(cardIndex: Int, x: Int, y: Int): Unit
 
-  def promptForPlayerName(player1: String, player2: String): Unit
+    def promptForPlayerName(player1: String, player2: String): Unit
 
-  def getGridColors: List[(Int, Int, Option[CardInterface], Suit)]
+    def getGridColors: List[(Int, Int, Option[CardInterface], Suit)]
 
-  def isGameOver: Boolean
+    def isGameOver: Boolean
 
-  def getCurrentplayer: PlayerInterface
+    def getCurrentplayer: PlayerInterface
 
-  def getGridColor(x: Int, y: Int): String
+    def getGridColor(x: Int, y: Int): String
+    
+    def getCurrentState: GameState //savw
 
-  def updatePlayers(player1: Player, player2: Player): Unit
+    def loadGameState(gameState: GameState): Unit //load
 
-  def updateCurrentPlayer(player: Player): Unit
+    def getPlayers: List[Player] //save
 
-  def showCardsForPlayer(hand: List[CardInterface]): Unit
-
-  def askForInputAgain(): Unit
-
-  def notifyPlayerTurn(playerName: String): Unit
-
-  def cardDrawn(playerName: String, card: String): Unit
-
-  def invalidPlacement(): Unit
-
-  def cardPlacementSuccess(x: Int, y: Int, card: String, points: Int): Unit
-
-  def notifyUndoRedo(event: GameEvent): Unit
-
-  def updateGrid(grid: Grid): Unit
-
-  def gameOver(player1Name: String, player1Points: Int, player2Name: String, player2Points: Int): Unit
-
-  //input output methods
-  def getCurrentState: GameState //savw
-
-  def loadGameState(gameState: GameState): Unit //load
-
-  def getPlayers: List[Player] //save
-
- // def setGrid(grid: List[(Int, Int, Option[CardInterface], Suit)]): Unit //load
-
+    def askForInputAgain(): Unit
 }
 

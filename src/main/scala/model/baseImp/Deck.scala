@@ -21,8 +21,6 @@ class Deck extends DeckInterface {
             None
         }
     }
-
-  //shuffle max size
-
+    
     def size: Int = shuffledDeck.size
 }

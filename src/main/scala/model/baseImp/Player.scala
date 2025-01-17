@@ -1,4 +1,3 @@
-// src/main/scala/model/Player.scala
 package model.baseImp
 
 import model.{CardInterface, DeckInterface, PlayerInterface}

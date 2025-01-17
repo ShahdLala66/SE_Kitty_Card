@@ -9,8 +9,6 @@ object Value extends Enumeration {
     val Five: Value = Value(5)
     val Six: Value = Value(6)
 
-
-    // Helper method to convert a Value to its integer representation
     def toInt(value: Value): Int = value match {
         case One => 1
         case Two => 2
