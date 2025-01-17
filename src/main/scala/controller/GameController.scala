@@ -10,7 +10,7 @@ import util.grid.GridFactory
 
 import scala.util.{Failure, Success, Try}
 
-class GameController(deck: Deck, hand: Hand) extends Observable with GameControllerInterface(deck: Deck, hand: Hand) {
+class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) extends Observable with GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) {
   var gameMode: GameMode = _ // No default mode initially
   var grid: Grid = _
   var observers: List[Observer] = List()
@@ -19,7 +19,7 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
   var player1: Player = _
   var player2: Player = _
   val commandManager = new CommandManager()
-  var currentState: GameState = _
+ // var currentState: GameState = _
 
   var fileIO: FileIOInterface = new FileIOXML()
   var player1String: String = ""
@@ -75,7 +75,7 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
   def handleCommand(command: String): Unit = {
     command match {
       case "save" =>
-        fileIO.save(this)
+        fileIO.save(this, grid)
         notifyObservers(GameSaved)
       case "load" =>
         try {

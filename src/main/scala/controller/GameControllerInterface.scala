@@ -1,15 +1,16 @@
 // src/main/scala/controller/GameControllerInterface.scala
 package controller
 
+import model.FileIO.FileIOInterface
 import model.baseImp.Suit.Suit
 import model.baseImp.{Deck, Grid, Hand, Player}
 import model.{CardInterface, PlayerInterface}
 import util.command.GameState
 import util.{GameEvent, Observer}
 
-trait GameControllerInterface(deck: Deck, hand: Hand) {
+trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) {
 
-
+  var currentState: GameState = _
   def setGameMode(mode: String): Unit
 
   def startMultiPlayerGame(): Unit
