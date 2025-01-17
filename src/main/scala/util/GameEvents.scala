@@ -81,3 +81,5 @@ case class UpdateLoadedGame(grid: List[(Int, Int, Option[CardInterface], Suit)],
 case object InvalidPlacement extends GameEvent
 
 case class EmptyDeckBro(deck: Deck) extends GameEvent
+
+case object UnknownEvent extends GameEvent
