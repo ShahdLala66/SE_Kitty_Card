@@ -21,6 +21,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
                 hand.foreach(println)
 
             case UpdatePlayers(player1, player2) =>
+                inputProvider.interrupt()
                 flush()
                 println(Console.YELLOW + "The Players are " + player1.name + " and " + player2.name)
                 println("Let's start the game!" + Console.RESET)
@@ -78,6 +79,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
                 if (player2 == null) return
 
                 gameController.promptForPlayerName(player1, player2)
+                inputProvider.interrupt()
 
             case UpdatePlayer(player1) =>
                 updateStatus(s"$player1's turn.")
@@ -105,6 +107,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
                 }
 
             case GameLoaded(grid, currentPlayer, player1, player2, currentPlayerHand) => print("")
+            inputProvider.interrupt()
 
             case _ => println("Invalid event.")
         }
