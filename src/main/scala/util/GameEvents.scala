@@ -77,7 +77,6 @@ case class StopEnemyAttack(enemy: Player, currentPlayer: Player) extends GameEve
 case object AskForLoadGame extends GameEvent
 
 case object GameSaved extends GameEvent
-
 case object SaveGameError extends GameEvent
 
 case object LoadGameError extends GameEvent

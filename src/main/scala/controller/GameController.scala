@@ -11,7 +11,7 @@ import util.grid.GridFactory
 import scala.util.{Failure, Success, Try}
 
 class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) extends Observable with GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) {
-  var gameMode: GameMode = _ // No default mode initially
+  var gameMode: GameMode = _
   var grid: Grid = _
   var observers: List[Observer] = List()
   var playerIsAtTurn = true
@@ -19,21 +19,17 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
   var player1: Player = _
   var player2: Player = _
   val commandManager = new CommandManager()
- // var currentState: GameState = _
-
   var fileIO: FileIOInterface = new FileIOXML()
   var player1String: String = ""
   var player2String: String = ""
   private var counter = 0
 
-  // Start the game and ask for game mode selection
   def startGame(): Unit = {
-    notifyObservers(AskForGameMode) // Notify observers to ask for the game mode
+    notifyObservers(AskForGameMode)
   }
 
   def getPlayers: List[Player] = List(player1, player2)
 
-  // This method will be triggered when the observer event is received with the chosen game mode
   def setGameMode(mode: String): Unit = {
     mode.toLowerCase match {
       case "s" => gameMode = new SinglePlayerMode()
@@ -42,15 +38,12 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
         println(s"Invalid game mode: $mode. Defaulting to Multi Player mode.")
         gameMode = new MultiPlayerMode() // Fall back to multiplayer if invalid mode
     }
-
-    // Once the game mode is set, start the game in the selected mode
-    //  gameMode.startGame(this)
+    
     notifyObservers(AskForLoadGame)
 
   }
 
   def startMultiPlayerGame(): Unit = {
-    //notifyObservers(PromptForPlayerName)
     val (p1, p2) = addPlayers(player1String, player2String)
     player1 = p1
     player2 = p2
@@ -65,13 +58,9 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
   def askForInputAgain(): Unit = {
     playerIsAtTurn = true
   }
-
-  // INPUT OUT BUT
-
+  
   def getCurrentState: GameState = currentState
-
-  // In your GameController class, update these methods:
-
+  
   def handleCommand(command: String): Unit = {
     command match {
       case "save" =>
@@ -80,16 +69,14 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
       case "load" =>
         try {
           fileIO.load(this)
-          print("Game loaded successfully")
         } catch {
           case e: Exception =>
             print(s"Error loading game: ${e.getMessage}")
         }
       case "start" =>
-        grid = GridFactory.createGrid(3) // For new games
+        grid = GridFactory.createGrid(3)
         currentState = new GameState(grid, List(player1, player2), 0, 0)
         notifyObservers(PromptForPlayerName)
-      // gameMode.startGame(this)
       case "undo" => processCardPlacement("undo")
       case "redo" => processCardPlacement("redo")
       case "draw" => drawCardForCurrentPlayer()
@@ -109,7 +96,6 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
         throw e
     }
   }
-  //____________________________________
 
   private def distributeInitialCards(): Unit = {
     for (_ <- 1 to 3) {
@@ -144,10 +130,10 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
   def handleCardPlacement(cardIndex: Int, x: Int, y: Int): Unit = {
     if (processCardPlacement(s"$cardIndex $x $y")) {
       switchTurns()
-      playerIsAtTurn = true // Resume loop for next turn
+      playerIsAtTurn = true
     }
     if (!isGameOver) {
-      playerIsAtTurn = true // Reset flag if game isn't over
+      playerIsAtTurn = true
     } else {
       displayFinalScores()
     }
@@ -197,7 +183,7 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
   def startGameLoop(): Unit = {
     while (playerIsAtTurn) {
       if (getCurrentplayer != null) {
-        playerIsAtTurn = false // Stop loop after getting current player
+        playerIsAtTurn = false
         notifyPlayerTurn(getCurrentplayer.name)
       }
     }

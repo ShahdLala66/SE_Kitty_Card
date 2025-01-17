@@ -1,10 +1,11 @@
+// FileIOJSON.scala
 package model.FileIO
 
 import controller.GameControllerInterface
-import model.baseImp.*
+import model.baseImp.{Grid, NumberCards, Player, Suit, Value}
 import util.command.GameState
 import util.grid.GridUtils
-import play.api.libs.json.*
+import play.api.libs.json._
 
 class FileIOJSON extends FileIOInterface {
 
@@ -38,8 +39,8 @@ class FileIOJSON extends FileIOInterface {
                         "cellColor" -> cellColor.toString, // Konvertiere zu String
                         "card" -> cardOpt.map { card =>
                             Json.obj(
-                                "suit" -> card.suit.toString, // Konvertiere zu String
-                                "value" -> card.value.toString, // Konvertiere zu String
+                                "suit" -> card.asInstanceOf[NumberCards].suit.toString, // Konvertiere zu String
+                                "value" -> card.asInstanceOf[NumberCards].value.toString, // Konvertiere zu String
                                 "color" -> card.getColor
                             )
                         }.getOrElse(Json.obj("card" -> "Empty"))
@@ -52,16 +53,14 @@ class FileIOJSON extends FileIOInterface {
 
         val jsonString = Json.prettyPrint(json)
         import java.io.PrintWriter
-        println(s"Current working directory: ${new java.io.File(".").getCanonicalPath}")
-
-        new PrintWriter("/SE_Kitty_Card/game.json") {
+        new PrintWriter("game.json") {
             write(jsonString);
             close()
         }
-
         "Game saved successfully"
     }
 
+    
     override def load(game: GameControllerInterface): String = {
         try {
             import scala.io.Source

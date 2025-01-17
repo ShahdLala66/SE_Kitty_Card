@@ -10,9 +10,8 @@ class Tui(gameController: GameControllerInterface) extends Observer {
 
   override def update(event: GameEvent): Unit = {
     event match {
-      case InitializeGUIForLoad =>
-      // No equivalent needed for TUI as it doesn't need initialization
-
+      case GameSaved =>
+        println("Game saved successfully")
       case UpdateLoadedGame(gridColors, currentPlayer, p1, p2, hand) =>
         println("Game loaded successfully")
         printGridColors()
@@ -85,12 +84,16 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         updateStatus(s"$player1's turn.")
 
       case AskForGameMode =>
-        println(s"Single or Multi (s/m)")
+        inputProvider.interrupt()
+
+        println(s"Single- or Multiplayer (s/m):")
         val mode = inputProvider.getInput
         if (mode == null) return
         gameController.setGameMode(mode)
 
       case AskForLoadGame =>
+        inputProvider.interrupt()
+
         println("Would you like to:")
         println("(1) Start new game")
         println("(2) Load saved game")
@@ -102,7 +105,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         }
 
       case GameLoaded(grid, currentPlayer, player1, player2, currentPlayerHand) =>
-        println("Game loaded successfully")
+        //println("Game loaded successfully")
         gameController.updateCurrentPlayer(currentPlayer)
         gameController.updatePlayers(player1, player2)
         gameController.showCardsForPlayer(currentPlayerHand)

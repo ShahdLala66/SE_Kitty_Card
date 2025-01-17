@@ -1,11 +1,10 @@
 package model.FileIO
 
 import controller.GameControllerInterface
-import model.baseImp.*
+import model.baseImp.{Grid, NumberCards, Player, Suit, Value}
 import util.command.GameState
 import util.grid.GridUtils
-
-import scala.xml.*
+import scala.xml._
 
 class FileIOXML extends FileIOInterface {
 
@@ -18,24 +17,14 @@ class FileIOXML extends FileIOInterface {
                 <players>
                     {players.map(player =>
                     <player>
-                        <name>
-                            {player.name}
-                        </name>
-                        <points>
-                            {player.points}
-                        </points>
+                        <name>{player.name}</name>
+                        <points>{player.points}</points>
                         <hand>
                             {player.getHand.map(card =>
                             <card>
-                                <suit>
-                                    {card.asInstanceOf[NumberCards].suit}
-                                </suit>
-                                <value>
-                                    {card.asInstanceOf[NumberCards].value}
-                                </value>
-                                <color>
-                                    {card.getColor}
-                                </color>
+                                <suit>{card.asInstanceOf[NumberCards].suit}</suit>
+                                <value>{card.asInstanceOf[NumberCards].value}</value>
+                                <color>{card.getColor}</color>
                             </card>
                         )}
                         </hand>
@@ -49,36 +38,21 @@ class FileIOXML extends FileIOInterface {
                 } yield {
                     val (cardOpt, cellColor) = grid.toArray(x)(y)
                     <cell>
-                        <x>
-                            {x}
-                        </x>
-                        <y>
-                            {y}
-                        </y>
-                        <cellColor>
-                            {cellColor}
-                        </cellColor>{cardOpt.map(card =>
+                        <x>{x}</x>
+                        <y>{y}</y>
+                        <cellColor>{cellColor}</cellColor>
+                        {cardOpt.map(card =>
                         <card>
-                            <suit>
-                                {card.suit}
-                            </suit>
-                            <value>
-                                {card.value}
-                            </value>
-                            <color>
-                                {card.getColor}
-                            </color>
+                            <suit>{card.asInstanceOf[NumberCards].suit}</suit>
+                            <value>{card.asInstanceOf[NumberCards].value}</value>
+                            <color>{card.getColor}</color>
                         </card>
                     ).getOrElse(<card>Empty</card>)}
                     </cell>
                 }}
                 </grid>
-                <currentPlayerIndex>
-                    {currentState.getCurrentPlayerIndex}
-                </currentPlayerIndex>
-                <points>
-                    {currentState.getPoints}
-                </points>
+                <currentPlayerIndex>{currentState.getCurrentPlayerIndex}</currentPlayerIndex>
+                <points>{currentState.getPoints}</points>
             </gameState>
 
         scala.xml.XML.save("game.xml", xml, "UTF-8", xmlDecl = true, null)
@@ -88,6 +62,8 @@ class FileIOXML extends FileIOInterface {
     override def load(game: GameControllerInterface): String = {
         try {
             val file = scala.xml.XML.loadFile("game.xml")
+
+            // Create empty grid with your specific implementation
             val size = 3
             val grid = GridUtils.createEmptyGrid(size)
 
@@ -129,6 +105,7 @@ class FileIOXML extends FileIOInterface {
             val currentPlayerIndex = (file \\ "currentPlayerIndex").text.toInt
             val points = (file \\ "points").text.toInt
 
+            // Create and return new state
             val newState = new GameState(grid, players, currentPlayerIndex, points)
             game.loadGameState(newState)
             "Game loaded successfully"
