@@ -4,6 +4,7 @@ package controller
 import model.baseImp.{Deck, Grid, Hand, Player}
 import model.{CardInterface, PlayerInterface}
 import model.baseImp.Suit.Suit
+import util.command.GameState
 import util.{AskForGameMode, GameEvent, Observer}
 
 import java.util.concurrent.atomic.AtomicBoolean
@@ -50,10 +51,13 @@ trait GameControllerInterface(deck: Deck, hand: Hand) {
     def invalidPlacement(): Unit
 
     def cardPlacementSuccess(x: Int, y: Int, card: String, points: Int): Unit
-
+    
     def notifyUndoRedo(event: GameEvent): Unit
 
     def updateGrid(grid: Grid): Unit
 
     def gameOver(player1Name: String, player1Points: Int, player2Name: String, player2Points: Int): Unit
+    //input output methods
+    def getCurrentState: GameState //savw
+    def loadGameState(gameState: GameState): Unit //load
 }

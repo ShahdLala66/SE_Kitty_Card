@@ -39,5 +39,9 @@ case class Player(name: String, var points: Int = 0) extends PlayerInterface(nam
         hand = hand :+ card
     }
 
+    override def setHand(newHand: List[CardInterface]): Unit = {
+        hand = newHand
+    }
+
     override def toString: String = s"$name (Points: $points)"
 }

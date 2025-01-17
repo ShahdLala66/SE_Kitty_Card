@@ -66,8 +66,18 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         if (mode == null) return
         gameController.setGameMode(mode)
 
-
+      case AskForLoadGame =>
+        println("Would you like to:")
+        println("(1) Start new game")
+        println("(2) Load saved game")
+        val choice = inputProvider.getInput
+        if (choice == null) return
+        choice match {
+          case "2" => gameController.handleCommand("load")
+          case _ => gameController.handleCommand("start")
+        }
       case _ => println("Invalid event.")
+      
     }
   }
 
@@ -103,6 +113,9 @@ class Tui(gameController: GameControllerInterface) extends Observer {
       case "undo" => gameController.handleCommand("undo")
       case "redo" => gameController.handleCommand("redo")
       case "draw" => gameController.handleCommand("draw")
+      case "save" => gameController.handleCommand("save")
+      case "load" => gameController.handleCommand("load")
+
       case input if input.matches("\\d+\\s+\\d+\\s+\\d+") =>
         val parts = input.split(" ")
         gameController.handleCardPlacement(parts(0).toInt, parts(1).toInt, parts(2).toInt)
@@ -113,6 +126,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         println("- 'undo' to undo last move")
         println("- 'redo' to redo last move")
         gameController.askForInputAgain()
+
     }
   }
 

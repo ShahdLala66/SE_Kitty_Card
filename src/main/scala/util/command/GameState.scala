@@ -11,6 +11,7 @@ class GameState(private val grid: Grid, private val players: List[Player], priva
 
     def getCurrentPlayer: Player = players(currentPlayerIndex)
 
+    
     def getPoints: Int = points
 
     def updateGrid(newGrid: Grid): GameState = {
@@ -24,4 +25,7 @@ class GameState(private val grid: Grid, private val players: List[Player], priva
     def update(newGrid: Grid, newPoints: Int): GameState = {
         new GameState(newGrid, players, currentPlayerIndex, newPoints)
     }
+
+    def getCurrentPlayerIndex: Int = currentPlayerIndex
+
 }
