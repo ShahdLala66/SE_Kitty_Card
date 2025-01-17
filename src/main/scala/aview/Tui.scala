@@ -10,21 +10,39 @@ class Tui(gameController: GameControllerInterface) extends Observer {
 
   override def update(event: GameEvent): Unit = {
     event match {
+      case InitializeGUIForLoad =>
+      // No equivalent needed for TUI as it doesn't need initialization
+
+      case UpdateLoadedGame(gridColors, currentPlayer, p1, p2, hand) =>
+        println("Game loaded successfully")
+        printGridColors()
+        println(s"\nCurrent players: ${p1.name} vs ${p2.name}")
+        println(s"\n${currentPlayer.name}'s turn!")
+        println("\nYour cards:")
+        hand.foreach(println)
+
+      case UpdatePlayers(player1, player2) =>
+        flush()
+        println(Console.YELLOW + "The Players are " + player1.name + " and " + player2.name)
+        println("Let's start the game!" + Console.RESET)
+
       case PlayerTurn(playerName) =>
         val input = inputProvider.getInput
         processInput(input)
+
       case CardDrawn(playerName, card) =>
         println(Console.BLUE + s"\n$playerName drew: $card\n" + Console.RESET)
-      case UpdatePlayer(player1) =>
-        println(Console.BLUE + s"\nIt's $player1's turn!\n" + Console.RESET)
+
       case InvalidPlacement =>
         flush()
         println(Console.RED + "Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.\n" + Console.RESET)
         println(Console.BLUE + s"\nIt's ${gameController.getCurrentplayer.getPlayerName}'s turn!\n" + Console.RESET)
         printGridColors()
         gameController.showCardsForPlayer(gameController.getCurrentplayer.getHand)
+
       case CardPlacementSuccess(x, y, card, points) =>
         println(Console.YELLOW + s"\nCard placed at ($x, $y): $card. You have earned $points points!" + Console.RESET)
+
       case GameOver(player1Name, player1Points, player2Name, player2Points) =>
         println(Console.RED + "\n\nGame over!")
         println(Console.YELLOW + s"$player1Name's final score: $player1Points")
@@ -36,12 +54,20 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         } else {
           println("It's a tie!" + Console.RESET)
         }
+
       case UpdateGrid(grid) =>
         printGridColors()
-      case UndoEvent(_) => println(Console.RED + "\nUndo performed." + Console.RESET)
-      case RedoEvent(_) => println(Console.RED + "\nRedo performed." + Console.RESET)
+
+      case UndoEvent(_) =>
+        println(Console.RED + "\nUndo performed." + Console.RESET)
+
+      case RedoEvent(_) =>
+        println(Console.RED + "\nRedo performed." + Console.RESET)
+
       case ShowCardsForPlayer(cards) =>
+        println("\nYour cards:")
         cards.foreach(println)
+
       case PromptForPlayerName =>
         inputProvider.interrupt()
         flush()
@@ -55,13 +81,11 @@ class Tui(gameController: GameControllerInterface) extends Observer {
 
         gameController.promptForPlayerName(player1, player2)
 
-      case UpdatePlayers(player1, player2) =>
-        inputProvider.interrupt()
-        flush()
-        println(Console.YELLOW + "The Players are " + player1.name + " and " + player2.name)
-        println("Let's start the game!" + Console.RESET)
+      case UpdatePlayer(player1) =>
+        updateStatus(s"$player1's turn.")
+
       case AskForGameMode =>
-        println(s"Single od Multi (s/m ;)")
+        println(s"Single or Multi (s/m)")
         val mode = inputProvider.getInput
         if (mode == null) return
         gameController.setGameMode(mode)
@@ -79,16 +103,17 @@ class Tui(gameController: GameControllerInterface) extends Observer {
 
       case GameLoaded(grid, currentPlayer, player1, player2, currentPlayerHand) =>
         println("Game loaded successfully")
-       // gameController.setGrid(grid)
         gameController.updateCurrentPlayer(currentPlayer)
         gameController.updatePlayers(player1, player2)
         gameController.showCardsForPlayer(currentPlayerHand)
-       
-      case _ => println("Invalid event.")
 
+      case _ => println("Invalid event.")
     }
   }
 
+  private def updateStatus(message: String): Unit = {
+    println(Console.BLUE + message + Console.RESET)
+  }
   private[aview] val colors = Map(
     "Green" -> "\u001b[32m",
     "Brown" -> "\u001b[33m",
