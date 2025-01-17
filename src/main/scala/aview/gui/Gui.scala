@@ -14,7 +14,7 @@ import scalafx.scene.media.{Media, MediaPlayer}
 import scalafx.scene.text.{Font, Text}
 import scalafx.stage.{Modality, Stage}
 import util.*
-
+//Hi Zayne.
 class Gui(gameController: GameControllerInterface) extends Observer {
   gameController.add(this)
 
