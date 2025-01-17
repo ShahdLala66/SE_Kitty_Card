@@ -37,6 +37,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
       case UpdateLoadedGame(gridColors, currentPlayer, p1, p2, hand) =>
         Platform.runLater {
           //GuiInitializer.ensureInitialized()
+          updateDisplay()
           updateGridDisplay(gridColors)
           updatePlayerDisplay(p1, p2)
           updateCurrentPlayerStatus(currentPlayer)
