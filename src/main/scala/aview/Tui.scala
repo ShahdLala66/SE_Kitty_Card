@@ -89,6 +89,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         val mode = inputProvider.getInput
         if (mode == null) return
         gameController.setGameMode(mode)
+        inputProvider.interrupt()
 
       case AskForLoadGame =>
         println("Would you like to:")
