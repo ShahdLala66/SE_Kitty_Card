@@ -36,7 +36,8 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
 
       case UpdateLoadedGame(gridColors, currentPlayer, p1, p2, hand) =>
         Platform.runLater {
-          //GuiInitializer.ensureInitialized()
+          //   GuiInitializer.ensureInitialized()
+          updateDisplay()
           updateGridDisplay(gridColors)
           updatePlayerDisplay(p1, p2)
           updateCurrentPlayerStatus(currentPlayer)
@@ -105,7 +106,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
   }
 
   def start(): Unit = {
-    GuiInitializer.ensureInitialized()
+    ensureGUIInitialized()
     promptForPlayerName { (player1Name, player2Name) =>
       gameController.promptForPlayerName(player1Name, player2Name)
     }
