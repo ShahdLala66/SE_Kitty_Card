@@ -11,15 +11,15 @@ import util.grid.GridFactory
 import scala.util.{Failure, Success, Try}
 
 class GameController(deck: Deck, hand: Hand) extends Observable with GameControllerInterface(deck: Deck, hand: Hand) {
-  private var gameMode: GameMode = _ // No default mode initially
-  private var grid: Grid = _
-  private var observers: List[Observer] = List()
-  private var playerIsAtTurn = true
-  private var currentPlayer: Player = _
-  private var player1: Player = _
-  private var player2: Player = _
-  private val commandManager = new CommandManager()
-  private var currentState: GameState = _
+   var gameMode: GameMode = _ // No default mode initially
+   var grid: Grid = _
+   var observers: List[Observer] = List()
+   var playerIsAtTurn = true
+   var currentPlayer: Player = _
+   var player1: Player = _
+   var player2: Player = _
+   val commandManager = new CommandManager()
+   var currentState: GameState = _
 
   var fileIO: FileIOInterface = new FileIOXML()
   var player1String: String = ""
@@ -99,32 +99,9 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
   def loadGameState(state: GameState): Unit = {
     try {
       println("Starting load process...")
-
-      // Update grid
-      grid = state.getGrid
-      println("Grid loaded")
-
-      // Update players
-      val players = state.getPlayers
-      if (players.nonEmpty) {
-        player1 = players.head
-        if (players.length > 1) {
-          player2 = players(1)
-        }
-        println("Players loaded")
-      }
-
-      // Update current player
-      currentPlayer = state.getCurrentPlayer
-      println("Current player set")
-
-      // Update state
       currentState = state
-      println("State loaded")
-
-      // Notify UI
-      notifyObservers(GameLoaded(getGridColorsFromGrid(grid), currentPlayer, player1, player2, currentPlayer.getHand))
-      println("UI updated")
+      gameMode.loadGame(this, state)
+      println("Game loaded successfully")
     } catch {
       case e: Exception =>
         println(s"Error in loadGameState: ${e.getMessage}")

@@ -89,7 +89,9 @@ case class UndoEvent(state: GameState) extends GameEvent
 
 case class RedoEvent(state: GameState) extends GameEvent
 
+case object InitializeGUIForLoad extends GameEvent
 
+case class UpdateLoadedGame(grid: List[(Int, Int, Option[CardInterface], Suit)], currentPlayer: Player, player1: Player, player2: Player, currentPlayerHand: List[CardInterface]) extends GameEvent
 //Error Stuff
 case object InvalidPlacement extends GameEvent // bei richtiger Platzierung, allerdings Grid Place schon belegt
 

@@ -2,7 +2,8 @@ package aview.gui
 
 import controller.GameControllerInterface
 import model.CardInterface
-import model.baseImp.{NumberCards, Value}
+import model.baseImp.Suit.Suit
+import model.baseImp.{NumberCards, Player, Value}
 import scalafx.application.Platform
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.Scene
@@ -25,42 +26,153 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
   private var controlPane: HBox = _
   private var selectedCardIndex: Option[Int] = None
   private var nameDialogStage: Option[Stage] = None
+  private var isInitialized = false
 
   override def update(event: GameEvent): Unit = {
     event match {
-      case UpdatePlayers(player1, player2) => closeNameDialog() // Close the GUI name dialog if it's open
+      // Handle initialization events first
+      case InitializeGUIForLoad =>
+        GuiInitializer.ensureInitialized()
+
+      case UpdateLoadedGame(gridColors, currentPlayer, p1, p2, hand) =>
+        Platform.runLater {
+          GuiInitializer.ensureInitialized()
+          updateGridDisplay(gridColors)
+          updatePlayerDisplay(p1, p2)
+          updateCurrentPlayerStatus(currentPlayer)
+          showCardsGUI(hand)
+        }
+
+      // Regular game events
+      case UpdatePlayers(player1, player2) =>
+        Platform.runLater {
+          closeNameDialog()
+          updatePlayerDisplay(player1, player2)
+        }
+
       case PlayerTurn(playerName) =>
         PlayerTurs(playerName)
+
       case CardDrawn(playerName, card) =>
         CardDrawns(playerName, card)
+
       case InvalidPlacement =>
         invalidPlacements()
+
       case CardPlacementSuccess(x, y, card, points) =>
         CardPlacementSuccesss(x, y, card, points)
+
       case GameOver(player1Name, player1Points, player2Name, player2Points) =>
         showGameOverWindow(player1Name, player1Points, player2Name, player2Points)
+
       case UpdateGrid(grid) =>
-        showGrid()
-      case UndoEvent(_) => showGrid()
-        updateDisplay()
-      case RedoEvent(_) => showGrid()
-        updateDisplay()
+        Platform.runLater {
+          showGrid()
+        }
+
+      case UndoEvent(_) =>
+        Platform.runLater {
+          showGrid()
+          updateDisplay()
+        }
+
+      case RedoEvent(_) =>
+        Platform.runLater {
+          showGrid()
+          updateDisplay()
+        }
+
       case UpdatePlayer(player1) =>
         updateStatus(s"$player1's turn.")
+
       case ShowCardsForPlayer(cards) =>
         showCardsGUI(cards)
-      case PromptForPlayerName => start()
+
+      case PromptForPlayerName =>
+        start()
+
       case _ => println("Invalid event.")
     }
   }
 
+  private def ensureGUIInitialized(): Unit = {
+    if (!isInitialized) {
+      Platform.runLater {
+        initialize()
+        isInitialized = true
+      }
+    }
+  }
+
   def start(): Unit = {
-    GuiInitializer.ensureInitialized()
-    // playBackgroundMusic()
+    ensureGUIInitialized()
     promptForPlayerName { (player1Name, player2Name) =>
       gameController.promptForPlayerName(player1Name, player2Name)
     }
   }
+
+  private def updateGridDisplay(gridColors: List[(Int, Int, Option[CardInterface], Suit)]): Unit = {
+    Platform.runLater {
+      if (gridPane != null) {
+        val newGrid = createGridFromColors(gridColors)
+        gridPane.children.clear()
+        gridPane.children.addAll(newGrid.children)
+      }
+    }
+  }
+
+  private def createGridFromColors(colors: List[(Int, Int, Option[CardInterface], Suit)]): GridPane = {
+    val grid = new GridPane {
+      hgap = 6
+      vgap = 6
+      padding = Insets(60, 0, 10, 0)
+      alignment = Pos.Center
+    }
+
+    val colorMap = Map(
+      "Purple" -> "#9966cc",
+      "Brown" -> "#cc8566",
+      "Red" -> "#d95959",
+      "Blue" -> "#66b4cc",
+      "Green" -> "#6ecc66",
+      "White" -> "#ffffff"
+    )
+
+    for ((x, y, card, colorName) <- colors) {
+      val buttonText = card.map(_.toString).getOrElse(s"($x, $y)")
+      val hexColor = colorMap.getOrElse(colorName.toString, "#ffffff")
+
+      val button = new Button(buttonText) {
+        style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
+        prefWidth = 91
+        prefHeight = 89
+        onAction = _ => handleGridClick(x, y)
+        onMouseEntered = _ => {
+          if (selectedCardIndex.isDefined) {
+            style = s"-fx-background-color: $hexColor; -fx-opacity: 0.8;"
+          }
+        }
+        onMouseExited = _ => {
+          style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
+        }
+      }
+      grid.add(button, x, y)
+    }
+    grid
+  }
+
+  private def updatePlayerDisplay(player1: Player, player2: Player): Unit = {
+    Platform.runLater {
+      updateStatus(s"${player1.name} vs ${player2.name}")
+    }
+  }
+
+  private def updateCurrentPlayerStatus(player: Player): Unit = {
+    Platform.runLater {
+      updateStatus(s"${player.name}'s turn")
+    }
+  }
+
   private def askForName(): Unit = {
     promptForPlayerName { (player1Name, player2Name) =>
       gameController.promptForPlayerName(player1Name, player2Name)
