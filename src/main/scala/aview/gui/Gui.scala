@@ -26,27 +26,26 @@ class Gui(gameController: GameControllerInterface) extends Observer {
   private var controlPane: HBox = _
   private var selectedCardIndex: Option[Int] = None
   private var nameDialogStage: Option[Stage] = None
+  private var loadGameDialog : Option[Stage] = None
+  private var multiGameDialog : Option[Stage] = None
 
 
   override def update(event: GameEvent): Unit = {
     event match {
       case AskForLoadGame =>
+        closeMultiDialog()
         showStartOrLoadGameWindow { choice =>
           gameController.handleCommand(choice)
         }
       case InitializeGUIForLoad =>
       //GuiInitializer.ensureInitialized()
       case UpdateLoadedGame(gridColors, currentPlayer, p1, p2, hand) =>
+        closeLoadDialog()
         updateDisplay()
         updateGridDisplay(gridColors)
         updatePlayerDisplay(p1, p2)
         updateCurrentPlayerStatus(currentPlayer)
         showCardsGUI(hand)
-      case MakeNewGame =>
-      //  GuiInitializer.ensureInitialized()
-      //updateDisplay()
-      //  initialize()
-      //updateDisplay() // Initialize the GUI
       case UpdatePlayers(player1, player2) => closeNameDialog()
         updateDisplay() //wichtig
       case PlayerTurn(playerName) =>
@@ -72,6 +71,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
         showCardsGUI(cards)
       // updateDisplay()
       case PromptForPlayerName =>
+        closeLoadDialog()
         promptForPlayerName { (player1Name, player2Name) =>
           gameController.promptForPlayerName(player1Name, player2Name)
         }
@@ -83,7 +83,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
 
   def start(): Unit = {
     GuiInitializer.ensureInitialized()
-    //  playBackgroundMusic()
+    playBackgroundMusic()
 
     showAskForGameModeWindow { gameMode =>
       gameController.setGameMode(gameMode)
@@ -154,6 +154,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
           System.exit(0)
           Platform.exit()
       }
+      loadGameDialog = Some(dialog)
       dialog.showAndWait()
     }
   }
@@ -176,7 +177,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
             onAction = _ => {
               new Thread(() => {
                 onComplete("s")
-                close()
+               // close()
               }).start()
             }
           }
@@ -195,7 +196,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
               // close()
               new Thread(() => {
                 onComplete("m")
-                close()
+              //  close()
               }).start()
             }
           }
@@ -223,6 +224,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
           System.exit(0)
           Platform.exit()
       }
+      loadGameDialog = Some(dialog)
+
       dialog.showAndWait()
     }
   }
@@ -387,6 +390,24 @@ class Gui(gameController: GameControllerInterface) extends Observer {
         dialog.close()
       }
       nameDialogStage = None
+    }
+  }
+
+  private def closeLoadDialog(): Unit = {
+    Platform.runLater {
+      loadGameDialog.foreach { dialog =>
+        dialog.close()
+      }
+      loadGameDialog = None
+    }
+  }
+
+  private def closeMultiDialog(): Unit = {
+    Platform.runLater {
+      multiGameDialog.foreach { dialog =>
+        dialog.close()
+      }
+      multiGameDialog = None
     }
   }
 
