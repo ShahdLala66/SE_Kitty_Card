@@ -11,15 +11,15 @@ import util.grid.GridFactory
 import scala.util.{Failure, Success, Try}
 
 class GameController(deck: Deck, hand: Hand) extends Observable with GameControllerInterface(deck: Deck, hand: Hand) {
-   var gameMode: GameMode = _ // No default mode initially
-   var grid: Grid = _
-   var observers: List[Observer] = List()
-   var playerIsAtTurn = true
-   var currentPlayer: Player = _
-   var player1: Player = _
-   var player2: Player = _
-   val commandManager = new CommandManager()
-   var currentState: GameState = _
+  var gameMode: GameMode = _ // No default mode initially
+  var grid: Grid = _
+  var observers: List[Observer] = List()
+  var playerIsAtTurn = true
+  var currentPlayer: Player = _
+  var player1: Player = _
+  var player2: Player = _
+  val commandManager = new CommandManager()
+  var currentState: GameState = _
 
   var fileIO: FileIOInterface = new FileIOXML()
   var player1String: String = ""
@@ -88,8 +88,8 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
       case "start" =>
         grid = GridFactory.createGrid(3) // For new games
         currentState = new GameState(grid, List(player1, player2), 0, 0)
-       notifyObservers(PromptForPlayerName)
-       // gameMode.startGame(this)
+        notifyObservers(PromptForPlayerName)
+      // gameMode.startGame(this)
       case "undo" => processCardPlacement("undo")
       case "redo" => processCardPlacement("redo")
       case "draw" => drawCardForCurrentPlayer()
@@ -212,7 +212,7 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
     } else {
       println("Game already started")
     }
-     gameMode.startGame(this)
+    gameMode.startGame(this)
   }
 
   def getCurrentplayer: Player = currentPlayer

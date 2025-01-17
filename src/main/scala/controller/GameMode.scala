@@ -38,7 +38,7 @@ class MultiPlayerMode extends GameMode {
   override def startGame(controller: GameController): Unit = {
     controller.grid = GridFactory.createGrid(3)
     //controller.notifyObservers(PromptForPlayerName)
-   // controller.startGameLoop()
+    // controller.startGameLoop()
     controller.startMultiPlayerGame()
 
 
