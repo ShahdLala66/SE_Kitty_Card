@@ -78,6 +78,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         if (player2 == null) return
 
         gameController.promptForPlayerName(player1, player2)
+        inputProvider.interrupt()
 
       case UpdatePlayer(player1) =>
         updateStatus(s"$player1's turn.")
@@ -103,6 +104,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
           case "2" => gameController.handleCommand("load")
           case _ => gameController.handleCommand("start")
         }
+        inputProvider.interrupt()
 
       case GameLoaded(grid, currentPlayer, player1, player2, currentPlayerHand) =>  print("")
 
