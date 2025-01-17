@@ -2,7 +2,8 @@ package aview.gui
 
 import controller.GameControllerInterface
 import model.CardInterface
-import model.baseImp.{NumberCards, Value}
+import model.baseImp.Suit.Suit
+import model.baseImp.{NumberCards, Player, Value}
 import scalafx.application.Platform
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.Scene
@@ -26,12 +27,21 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
     private var selectedCardIndex: Option[Int] = None
     private var nameDialogStage: Option[Stage] = None
 
+
     override def update(event: GameEvent): Unit = {
         event match {
             case AskForLoadGame =>
                 showStartOrLoadGameWindow { choice =>
                     gameController.handleCommand(choice)
                 }
+            case InitializeGUIForLoad =>
+                //GuiInitializer.ensureInitialized()
+            case UpdateLoadedGame(gridColors, currentPlayer, p1, p2, hand) =>
+                updateDisplay()
+                updateGridDisplay(gridColors)
+                updatePlayerDisplay(p1, p2)
+                updateCurrentPlayerStatus(currentPlayer)
+                showCardsGUI(hand)
             case UpdatePlayers(player1, player2) => closeNameDialog()
             case PlayerTurn(playerName) =>
                 PlayerTurs(playerName)
@@ -82,10 +92,10 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         minWidth = 500
                         minHeight = 55
                         style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
-                            "-fx-background-color: transparent; -fx-background-size: cover;" +
-                            "-fx-background-repeat: no-repeat;" +
-                            "-fx-background-insets: 0;" +
-                            "-fx-padding: 0;"
+                          "-fx-background-color: transparent; -fx-background-size: cover;" +
+                          "-fx-background-repeat: no-repeat;" +
+                          "-fx-background-insets: 0;" +
+                          "-fx-padding: 0;"
                         font = bubblegumSans
                         onAction = _ => {
                             close()
@@ -100,10 +110,10 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         minWidth = 500
                         minHeight = 55
                         style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
-                            "-fx-background-color: transparent; -fx-background-size: cover;" +
-                            "-fx-background-repeat: no-repeat;" +
-                            "-fx-background-insets: 0;" +
-                            "-fx-padding: 0;"
+                          "-fx-background-color: transparent; -fx-background-size: cover;" +
+                          "-fx-background-repeat: no-repeat;" +
+                          "-fx-background-insets: 0;" +
+                          "-fx-padding: 0;"
                         font = bubblegumSans
                         onAction = _ => {
                             new Thread(() => {
@@ -116,9 +126,9 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         padding = Insets(20)
                         alignment = Pos.Center
                         style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/NameBackground.png'); " +
-                            "-fx-background-size: cover; " +
-                            "-fx-background-position: center; " +
-                            "-fx-background-repeat: no-repeat;"
+                          "-fx-background-size: cover; " +
+                          "-fx-background-position: center; " +
+                          "-fx-background-repeat: no-repeat;"
                         children = Seq(
                             new Label("Do you want to start a new game or load an existing one?") {
                                 font = bubblegumSans
@@ -149,10 +159,10 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         minWidth = 500
                         minHeight = 55
                         style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
-                            "-fx-background-color: transparent; -fx-background-size: cover;" +
-                            "-fx-background-repeat: no-repeat;" +
-                            "-fx-background-insets: 0;" +
-                            "-fx-padding: 0;"
+                          "-fx-background-color: transparent; -fx-background-size: cover;" +
+                          "-fx-background-repeat: no-repeat;" +
+                          "-fx-background-insets: 0;" +
+                          "-fx-padding: 0;"
                         font = bubblegumSans
                         onAction = _ => {
                             new Thread(() => {
@@ -167,10 +177,10 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         minWidth = 500
                         minHeight = 55
                         style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
-                            "-fx-background-color: transparent; -fx-background-size: cover;" +
-                            "-fx-background-repeat: no-repeat;" +
-                            "-fx-background-insets: 0;" +
-                            "-fx-padding: 0;"
+                          "-fx-background-color: transparent; -fx-background-size: cover;" +
+                          "-fx-background-repeat: no-repeat;" +
+                          "-fx-background-insets: 0;" +
+                          "-fx-padding: 0;"
                         font = bubblegumSans
                         onAction = _ => {
                             close()
@@ -184,9 +194,9 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         padding = Insets(20)
                         alignment = Pos.Center
                         style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/NameBackground.png'); " +
-                            "-fx-background-size: cover; " +
-                            "-fx-background-position: center; " +
-                            "-fx-background-repeat: no-repeat;"
+                          "-fx-background-size: cover; " +
+                          "-fx-background-position: center; " +
+                          "-fx-background-repeat: no-repeat;"
                         children = Seq(
                             new Label("Choose Game Mode") {
                                 font = bubblegumSans
@@ -235,10 +245,10 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         minWidth = 500
                         minHeight = 55
                         style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
-                            "-fx-background-color: transparent; -fx-background-size: cover;" +
-                            "-fx-background-repeat: no-repeat;" +
-                            "-fx-background-insets: 0;" +
-                            "-fx-padding: 0;"
+                          "-fx-background-color: transparent; -fx-background-size: cover;" +
+                          "-fx-background-repeat: no-repeat;" +
+                          "-fx-background-insets: 0;" +
+                          "-fx-padding: 0;"
                         font = bubblegumSans
                         onAction = _ => {
                             if (player1Field.text.value.nonEmpty && player2Field.text.value.nonEmpty) {
@@ -255,9 +265,9 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         padding = Insets(20)
                         alignment = Pos.Center
                         style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/NameBackground.png'); " +
-                            "-fx-background-size: cover; " +
-                            "-fx-background-position: center; " +
-                            "-fx-background-repeat: no-repeat;"
+                          "-fx-background-size: cover; " +
+                          "-fx-background-position: center; " +
+                          "-fx-background-repeat: no-repeat;"
                         children = Seq(
                             new Label("Enter Player Names") {
                                 font = bubblegumSans
@@ -279,6 +289,70 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
             dialog.showAndWait()
         }
     }
+
+    private def updateGridDisplay(gridColors: List[(Int, Int, Option[CardInterface], Suit)]): Unit = {
+        Platform.runLater {
+            if (gridPane != null) {
+                val newGrid = createGridFromColors(gridColors)
+                gridPane.children.clear()
+                gridPane.children.addAll(newGrid.children)
+            }
+        }
+    }
+
+    private def createGridFromColors(colors: List[(Int, Int, Option[CardInterface], Suit)]): GridPane = {
+        val grid = new GridPane {
+            hgap = 6
+            vgap = 6
+            padding = Insets(60, 0, 10, 0)
+            alignment = Pos.Center
+        }
+
+        val colorMap = Map(
+            "Purple" -> "#9966cc",
+            "Brown" -> "#cc8566",
+            "Red" -> "#d95959",
+            "Blue" -> "#66b4cc",
+            "Green" -> "#6ecc66",
+            "White" -> "#ffffff"
+        )
+
+        for ((x, y, card, colorName) <- colors) {
+            val buttonText = card.map(_.toString).getOrElse(s"($x, $y)")
+            val hexColor = colorMap.getOrElse(colorName.toString, "#ffffff")
+
+            val button = new Button(buttonText) {
+                style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
+                prefWidth = 91
+                prefHeight = 89
+                onAction = _ => handleGridClick(x, y)
+                onMouseEntered = _ => {
+                    if (selectedCardIndex.isDefined) {
+                        style = s"-fx-background-color: $hexColor; -fx-opacity: 0.8;"
+                    }
+                }
+                onMouseExited = _ => {
+                    style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
+                }
+            }
+            grid.add(button, x, y)
+        }
+        grid
+    }
+
+
+    private def updatePlayerDisplay(player1: Player, player2: Player): Unit = {
+        Platform.runLater {
+            updateStatus(s"${player1.name} vs ${player2.name}")
+        }
+    }
+
+    private def updateCurrentPlayerStatus(player: Player): Unit = {
+        Platform.runLater {
+            updateStatus(s"${player.name}'s turn")
+        }
+    }
+
 
     private def createFieldWithImage(textField: TextField): StackPane = {
         new StackPane {
