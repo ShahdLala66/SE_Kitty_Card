@@ -1,15 +1,21 @@
 // src/main/scala/controller/GameControllerInterface.scala
 package controller
 
-import model.baseImp.{Deck, Grid, Hand, Player}
-import model.{CardInterface, PlayerInterface}
+import model.FileIO.FileIOInterface
 import model.baseImp.Suit.Suit
-import util.{GameEvent, Observer}
+import model.baseImp.{Deck, Hand, Player}
+import model.{CardInterface, PlayerInterface}
+import util.Observer
+import util.command.GameState
 
-import java.util.concurrent.atomic.AtomicBoolean
+trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) {
 
-trait GameControllerInterface(deck: Deck, hand: Hand) {
-    
+    var currentState: GameState = _
+
+    def setGameMode(mode: String): Unit
+
+    def startMultiPlayerGame(): Unit
+
     def add(observer: Observer): Unit
 
     def startGame(): Unit
@@ -24,29 +30,20 @@ trait GameControllerInterface(deck: Deck, hand: Hand) {
 
     def getGridColors: List[(Int, Int, Option[CardInterface], Suit)]
 
+    def askForGameLoad(): Unit
+
     def isGameOver: Boolean
 
     def getCurrentplayer: PlayerInterface
 
     def getGridColor(x: Int, y: Int): String
+    
+    def getCurrentState: GameState //savw
 
-    def updatePlayers(player1: Player, player2: Player): Unit
+    def loadGameState(gameState: GameState): Unit //load
 
-    def updateCurrentPlayer(player: Player): Unit
+    def getPlayers: List[Player] //save
 
-    def showCardsForPlayer(hand: List[CardInterface]): Unit
-
-    def notifyPlayerTurn(playerName: String): Unit
-
-    def cardDrawn(playerName: String, card: String): Unit
-
-    def invalidPlacement(): Unit
-
-    def cardPlacementSuccess(x: Int, y: Int, card: String, points: Int): Unit
-
-    def notifyUndoRedo(event: GameEvent): Unit
-
-    def updateGrid(grid: Grid): Unit
-
-    def gameOver(player1Name: String, player1Points: Int, player2Name: String, player2Points: Int): Unit
+    def askForInputAgain(): Unit
 }
+

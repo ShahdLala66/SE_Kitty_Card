@@ -1,7 +1,5 @@
 package model
 
-import model.baseImp.Suit.Suit
-
 trait CardInterface{
     def getColor: String
     def toString: String
@@ -29,4 +27,5 @@ trait PlayerInterface(nameI: String, var pointsI: Int = 0) {
     def getHand: List[CardInterface]
     def updateHand(newHand: List[CardInterface]): Unit
     def removeCard(card: CardInterface): Unit
+    def setHand(newHand: List[CardInterface]): Unit
 }

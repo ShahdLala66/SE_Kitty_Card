@@ -14,11 +14,3 @@ case class AssistCardInterface(cardType: AssistCardType.Value) extends CardInter
 
     override def toString: String = cardType.toString
 }
-
-//vielleicht einstelle was 
-// die warscheinlichkeit ist karten zu ziehen
-
-
-//in 5. semster können wir gacha zufügen kurz, karten ziehen und wenn man gute karte hat dann 
-//kann man stärker sein und mehr privligen hat, iwi die battle und kitty cards machen  , aber gacha logic wäre witzig 
-

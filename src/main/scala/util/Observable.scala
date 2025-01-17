@@ -1,4 +1,3 @@
-// src/main/scala/util/Observable.scala
 package util
 
 trait Observer {

@@ -1,4 +1,3 @@
-// src/main/scala/model/Player.scala
 package model.baseImp
 
 import model.{CardInterface, DeckInterface, PlayerInterface}
@@ -37,6 +36,10 @@ case class Player(name: String, var points: Int = 0) extends PlayerInterface(nam
     
     def addCard(card: CardInterface): Unit = {
         hand = hand :+ card
+    }
+
+    override def setHand(newHand: List[CardInterface]): Unit = {
+        hand = newHand
     }
 
     override def toString: String = s"$name (Points: $points)"
