@@ -31,6 +31,8 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
     notifyObservers(AskForGameMode) // Notify observers to ask for the game mode
   }
 
+  def getPlayers: List[Player] = List(player1, player2)
+  
   // This method will be triggered when the observer event is received with the chosen game mode
   def setGameMode(mode: String): Unit = {
     mode.toLowerCase match {

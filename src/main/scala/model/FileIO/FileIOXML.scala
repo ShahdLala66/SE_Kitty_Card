@@ -11,7 +11,8 @@ class FileIOXML extends FileIOInterface {
     val currentState = game.getCurrentState
     val grid = currentState.getGrid
     //Create list of players
-    val players: List[Player] = currentState.getPlayers
+    
+    val players: List[Player] = game.getPlayers
     //print player
     players.foreach(player => println(player))
     println("test")

@@ -60,4 +60,6 @@ trait GameControllerInterface(deck: Deck, hand: Hand) {
     //input output methods
     def getCurrentState: GameState //savw
     def loadGameState(gameState: GameState): Unit //load
+
+    def getPlayers: List[Player] //save
 }
