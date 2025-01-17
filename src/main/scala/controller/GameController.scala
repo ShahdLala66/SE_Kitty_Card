@@ -2,8 +2,8 @@ package controller
 
 import model.*
 import model.FileIO.{FileIOInterface, FileIOXML}
-import model.baseImp.Suit.Suit
 import model.baseImp.*
+import model.baseImp.Suit.Suit
 import util.*
 import util.command.{CommandManager, GameState, PlaceCardCommand}
 import util.grid.GridFactory
@@ -12,14 +12,14 @@ import scala.util.{Failure, Success, Try}
 
 class GameController(deck: Deck, hand: Hand) extends Observable with GameControllerInterface(deck: Deck, hand: Hand) {
   private var gameMode: GameMode = _ // No default mode initially
-  private var grid = GridFactory.createGrid(3)
+  private var grid: Grid = _
   private var observers: List[Observer] = List()
   private var playerIsAtTurn = true
   private var currentPlayer: Player = _
   private var player1: Player = _
   private var player2: Player = _
   private val commandManager = new CommandManager()
-  private var currentState: GameState = new GameState(grid, List(), 0, 0)
+  private var currentState: GameState = _
 
   var fileIO: FileIOInterface = new FileIOXML()
   var player1String: String = ""
@@ -32,7 +32,7 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
   }
 
   def getPlayers: List[Player] = List(player1, player2)
-  
+
   // This method will be triggered when the observer event is received with the chosen game mode
   def setGameMode(mode: String): Unit = {
     mode.toLowerCase match {
@@ -50,7 +50,7 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
   }
 
   def startMultiPlayerGame(): Unit = {
-  //  notifyObservers(PromptForPlayerName)
+    //notifyObservers(PromptForPlayerName)
     val (p1, p2) = addPlayers(player1String, player2String)
     player1 = p1
     player2 = p2
@@ -66,18 +66,45 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
     playerIsAtTurn = true
   }
 
+  // INPUT OUT BUT
+
   def getCurrentState: GameState = currentState
+
+  // In your GameController class, update these methods:
+
+  def handleCommand(command: String): Unit = {
+    command match {
+      case "save" =>
+        fileIO.save(this)
+        notifyObservers(GameSaved)
+      case "load" =>
+        try {
+          fileIO.load(this)
+          print("Game loaded successfully")
+        } catch {
+          case e: Exception =>
+            print(s"Error loading game: ${e.getMessage}")
+        }
+      case "start" =>
+        grid = GridFactory.createGrid(3) // For new games
+        currentState = new GameState(grid, List(player1, player2), 0, 0)
+       notifyObservers(PromptForPlayerName)
+       // gameMode.startGame(this)
+      case "undo" => processCardPlacement("undo")
+      case "redo" => processCardPlacement("redo")
+      case "draw" => drawCardForCurrentPlayer()
+    }
+  }
 
   def loadGameState(state: GameState): Unit = {
     try {
       println("Starting load process...")
 
-      // Safely copy grid state
-      val newGrid = state.getGrid
-      grid = newGrid // Make sure your Grid class has proper copy semantics
+      // Update grid
+      grid = state.getGrid
       println("Grid loaded")
 
-      // Safely set players
+      // Update players
       val players = state.getPlayers
       if (players.nonEmpty) {
         player1 = players.head
@@ -87,18 +114,16 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
         println("Players loaded")
       }
 
-      // Set current player
+      // Update current player
       currentPlayer = state.getCurrentPlayer
       println("Current player set")
 
-      // Finally set the state
+      // Update state
       currentState = state
       println("State loaded")
 
-      // Update UI only if everything succeeded
-      updateGrid(grid)
-      updateCurrentPlayer(currentPlayer)
-      showCardsForPlayer(currentPlayer.getHand)
+      // Notify UI
+      notifyObservers(GameLoaded(getGridColorsFromGrid(grid), currentPlayer, player1, player2, currentPlayer.getHand))
       println("UI updated")
     } catch {
       case e: Exception =>
@@ -107,6 +132,7 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
         throw e
     }
   }
+  //____________________________________
 
   private def distributeInitialCards(): Unit = {
     for (_ <- 1 to 3) {
@@ -191,27 +217,6 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
   }
 
 
-
-  def handleCommand(command: String): Unit = {
-    command match {
-      case "save" =>
-        fileIO.save(this)
-        notifyObservers(GameSaved)
-      case "load" =>
-        try {
-          fileIO.load(this)
-          print("Game loaded successfully")
-        } catch {
-          case _: Exception =>
-            print("Error loading game")
-        }
-      case "undo" => processCardPlacement("undo")
-      case "redo" => processCardPlacement("redo")
-      case "start" => notifyObservers(PromptForPlayerName)
-      case "draw" => drawCardForCurrentPlayer()
-    }
-  }
-
   def startGameLoop(): Unit = {
     while (playerIsAtTurn) {
       if (getCurrentplayer != null) {
@@ -253,6 +258,14 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
   }
 
   def getGridColors: List[(Int, Int, Option[CardInterface], Suit)] = {
+    grid.toArray.zipWithIndex.flatMap { case (row, x) =>
+      row.zipWithIndex.map { case ((card, color), y) =>
+        (x, y, card, color)
+      }
+    }.toList
+  }
+
+  def getGridColorsFromGrid(grid: Grid): List[(Int, Int, Option[CardInterface], Suit)] = {
     grid.toArray.zipWithIndex.flatMap { case (row, x) =>
       row.zipWithIndex.map { case ((card, color), y) =>
         (x, y, card, color)

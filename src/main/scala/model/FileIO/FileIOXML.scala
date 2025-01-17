@@ -1,8 +1,10 @@
+// FileIOXML.scala
 package model.FileIO
 
 import controller.GameControllerInterface
 import model.baseImp.{Grid, NumberCards, Player, Suit, Value}
 import util.command.GameState
+import util.grid.GridUtils
 import scala.xml._
 
 class FileIOXML extends FileIOInterface {
@@ -10,12 +12,8 @@ class FileIOXML extends FileIOInterface {
   override def save(game: GameControllerInterface): String = {
     val currentState = game.getCurrentState
     val grid = currentState.getGrid
-    //Create list of players
-    
-    val players: List[Player] = game.getPlayers
-    //print player
-    players.foreach(player => println(player))
-    println("test")
+    val players = game.getPlayers
+
     val xml =
       <gameState>
         <players>
@@ -67,10 +65,9 @@ class FileIOXML extends FileIOInterface {
     try {
       val file = scala.xml.XML.loadFile("game.xml")
 
-      // Create a new grid with the correct parameters
+      // Create empty grid with your specific implementation
       val size = 3
-      val rectangleColors = Array.ofDim[Suit.Suit](size, size)
-      val grid = new Grid(size, rectangleColors)
+      val grid = GridUtils.createEmptyGrid(size)
 
       // Load players first
       val players = (file \\ "players" \\ "player").map { playerNode =>
@@ -126,7 +123,6 @@ class FileIOXML extends FileIOInterface {
     val suit = Suit.withName((cardNode \ "suit").text)
     val value = Value.withName((cardNode \ "value").text)
     val color = (cardNode \ "color").text
-    val card = NumberCards(suit, value)
-    card
+    NumberCards(suit, value)
   }
 }

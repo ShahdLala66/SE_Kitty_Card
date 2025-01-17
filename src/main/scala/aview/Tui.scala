@@ -76,8 +76,16 @@ class Tui(gameController: GameControllerInterface) extends Observer {
           case "2" => gameController.handleCommand("load")
           case _ => gameController.handleCommand("start")
         }
+
+      case GameLoaded(grid, currentPlayer, player1, player2, currentPlayerHand) =>
+        println("Game loaded successfully")
+       // gameController.setGrid(grid)
+        gameController.updateCurrentPlayer(currentPlayer)
+        gameController.updatePlayers(player1, player2)
+        gameController.showCardsForPlayer(currentPlayerHand)
+       
       case _ => println("Invalid event.")
-      
+
     }
   }
 

@@ -1,7 +1,9 @@
+// GridUtils.scala
 package util.grid
 
 import model.baseImp.Suit
 import Suit.Suit
+import model.baseImp.Grid
 
 import scala.util.Random
 
@@ -19,5 +21,10 @@ object GridUtils {
     }
 
     colorGrid
+  }
+
+  def createEmptyGrid(size: Int): Grid = {
+    val emptyColors = Array.fill(size, size)(Suit.White)
+    new Grid(size, emptyColors)
   }
 }

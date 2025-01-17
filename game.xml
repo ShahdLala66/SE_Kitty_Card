@@ -2,31 +2,31 @@
 <gameState>
         <players>
           <player>
-            <name>sdf</name>
-            <points>6</points>
+            <name>Shahd</name>
+            <points>4</points>
             <hand>
               <card>
-                <suit>Red</suit>
-                <value>Two</value>
-                <color>Purple</color>
-              </card><card>
                 <suit>Brown</suit>
                 <value>Three</value>
                 <color>Brown</color>
+              </card><card>
+                <suit>Purple</suit>
+                <value>Five</value>
+                <color>Purple</color>
               </card>
             </hand>
           </player><player>
-            <name>sdfg</name>
-            <points>5</points>
+            <name>Zayne</name>
+            <points>6</points>
             <hand>
               <card>
                 <suit>Blue</suit>
                 <value>Three</value>
-                <color>Red</color>
+                <color>Blue</color>
               </card><card>
-                <suit>Brown</suit>
-                <value>Two</value>
-                <color>Red</color>
+                <suit>Red</suit>
+                <value>Three</value>
+                <color>Green</color>
               </card>
             </hand>
           </player>
@@ -35,30 +35,30 @@
           <cell>
             <x>0</x>
             <y>0</y>
-            <cellColor>White</cellColor>
-            <card>Empty</card>
-          </cell><cell>
-            <x>0</x>
-            <y>1</y>
-            <cellColor>White</cellColor>
-            <card>
-              <suit>Blue</suit>
-              <value>Five</value>
-              <color>Green</color>
-            </card>
-          </cell><cell>
-            <x>0</x>
-            <y>2</y>
             <cellColor>Green</cellColor>
             <card>Empty</card>
           </cell><cell>
+            <x>0</x>
+            <y>1</y>
+            <cellColor>White</cellColor>
+            <card>
+              <suit>Brown</suit>
+              <value>Six</value>
+              <color>Purple</color>
+            </card>
+          </cell><cell>
+            <x>0</x>
+            <y>2</y>
+            <cellColor>White</cellColor>
+            <card>Empty</card>
+          </cell><cell>
             <x>1</x>
             <y>0</y>
             <cellColor>White</cellColor>
             <card>
-              <suit>Green</suit>
-              <value>Six</value>
-              <color>Green</color>
+              <suit>Blue</suit>
+              <value>Four</value>
+              <color>Blue</color>
             </card>
           </cell><cell>
             <x>1</x>
@@ -68,22 +68,22 @@
           </cell><cell>
             <x>1</x>
             <y>2</y>
-            <cellColor>Red</cellColor>
+            <cellColor>White</cellColor>
             <card>Empty</card>
           </cell><cell>
             <x>2</x>
             <y>0</y>
-            <cellColor>Purple</cellColor>
-            <card>Empty</card>
-          </cell><cell>
-            <x>2</x>
-            <y>1</y>
             <cellColor>Brown</cellColor>
             <card>Empty</card>
           </cell><cell>
             <x>2</x>
+            <y>1</y>
+            <cellColor>Red</cellColor>
+            <card>Empty</card>
+          </cell><cell>
+            <x>2</x>
             <y>2</y>
-            <cellColor>White</cellColor>
+            <cellColor>Blue</cellColor>
             <card>Empty</card>
           </cell>
         </grid>

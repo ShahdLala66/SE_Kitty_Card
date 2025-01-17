@@ -3,6 +3,7 @@ package util
 
 import model.CardInterface
 import model.baseImp.*
+import model.baseImp.Suit.Suit
 import util.command.GameState
 
 sealed trait GameEvent
@@ -81,6 +82,8 @@ case object SaveGameError extends GameEvent
 
 case object LoadGameError extends GameEvent
 
+// src/main/scala/util/GameEvents.scala
+case class GameLoaded(grid: List[(Int, Int, Option[CardInterface], Suit)], currentPlayer: Player, player1: Player, player2: Player, currentPlayerHand: List[CardInterface]) extends GameEvent
 //Undo/Redo
 case class UndoEvent(state: GameState) extends GameEvent
 
