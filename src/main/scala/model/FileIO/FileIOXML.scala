@@ -43,8 +43,8 @@ class FileIOXML extends FileIOInterface {
                         <cellColor>{cellColor}</cellColor>
                         {cardOpt.map(card =>
                         <card>
-                            <suit>{card.asInstanceOf[NumberCards].suit}</suit>
-                            <value>{card.asInstanceOf[NumberCards].value}</value>
+                            <suit>{card.suit}</suit>
+                            <value>{card.value}</value>
                             <color>{card.getColor}</color>
                         </card>
                     ).getOrElse(<card>Empty</card>)}
@@ -62,12 +62,9 @@ class FileIOXML extends FileIOInterface {
     override def load(game: GameControllerInterface): String = {
         try {
             val file = scala.xml.XML.loadFile("game.xml")
-
-            // Create empty grid with your specific implementation
             val size = 3
             val grid = GridUtils.createEmptyGrid(size)
 
-            // Load players first
             val players = (file \\ "players" \\ "player").map { playerNode =>
                 val name = (playerNode \ "name").text
                 val points = (playerNode \ "points").text.toInt
@@ -81,12 +78,10 @@ class FileIOXML extends FileIOInterface {
                 player
             }.toList
 
-            // Ensure players list is not empty
             if (players.isEmpty) {
                 throw new NoSuchElementException("No players found in the saved game")
             }
 
-            // Load grid state
             (file \\ "grid" \\ "cell").foreach { cell =>
                 val x = (cell \ "x").text.toInt
                 val y = (cell \ "y").text.toInt
@@ -105,7 +100,6 @@ class FileIOXML extends FileIOInterface {
             val currentPlayerIndex = (file \\ "currentPlayerIndex").text.toInt
             val points = (file \\ "points").text.toInt
 
-            // Create and return new state
             val newState = new GameState(grid, players, currentPlayerIndex, points)
             game.loadGameState(newState)
             "Game loaded successfully"

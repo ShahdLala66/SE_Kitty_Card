@@ -1,4 +1,3 @@
-// src/main/scala/util/GameEvents.scala
 package util
 
 import model.CardInterface
@@ -17,24 +16,15 @@ case class TurnReactionBad(color: String) extends GameEvent
 case class ShowColoredCat(color: String) extends GameEvent
 
 
-//Game Mode setten , single und multi 
+//Game Mechanics
 case object AskForGameMode extends GameEvent
 
-
-//Game Starten
-//case object GameStart extends GameEvent
 case object PromptForPlayerName extends GameEvent
-//case object StrategySelection extends GameEvent
 
-
-//Game Over
 case class TotalPoints(player1Points: Int, player2Points: Int) extends GameEvent
 
 case class GameOver(player1Name: String, player1Points: Int, player2Name: String, player2Points: Int) extends GameEvent
 
-//debate whether we should use strings and ints or actual objects
-
-//Game Events
 case class UpdateGrid(grid: Grid) extends GameEvent
 
 case class CardDrawn(playerName: String, card: String) extends GameEvent
@@ -52,7 +42,6 @@ case class UpdatePlayer(player1: String) extends GameEvent
 case class UpdatePlayers(player1: Player, player2: Player) extends GameEvent
 
 case class ShowCardsForPlayer(cand: List[CardInterface]) extends GameEvent
-//case class UpdateHand ( card : CardInterface) extends GameEvent
 
 //special case
 case class StartCardPhaseOne(currentPlayer: Player, cards: AssistCardInterface) extends GameEvent //Game state?, or just not allow the select for it
@@ -71,19 +60,16 @@ case class StealEnemyCard(enemy: Player, currentPlayer: Player, id: NumberCards)
 
 case class StopEnemyAttack(enemy: Player, currentPlayer: Player) extends GameEvent
 
-
-// Input output
-// Add these new events to your GameEvent hierarchy
 case object AskForLoadGame extends GameEvent
 
 case object GameSaved extends GameEvent
+
 case object SaveGameError extends GameEvent
 
 case object LoadGameError extends GameEvent
 
-// src/main/scala/util/GameEvents.scala
 case class GameLoaded(grid: List[(Int, Int, Option[CardInterface], Suit)], currentPlayer: Player, player1: Player, player2: Player, currentPlayerHand: List[CardInterface]) extends GameEvent
-//Undo/Redo
+
 case class UndoEvent(state: GameState) extends GameEvent
 
 case class RedoEvent(state: GameState) extends GameEvent
@@ -91,7 +77,7 @@ case class RedoEvent(state: GameState) extends GameEvent
 case object InitializeGUIForLoad extends GameEvent
 
 case class UpdateLoadedGame(grid: List[(Int, Int, Option[CardInterface], Suit)], currentPlayer: Player, player1: Player, player2: Player, currentPlayerHand: List[CardInterface]) extends GameEvent
-//Error Stuff
-case object InvalidPlacement extends GameEvent // bei richtiger Platzierung, allerdings Grid Place schon belegt
+
+case object InvalidPlacement extends GameEvent
 
 case class EmptyDeckBro(deck: Deck) extends GameEvent

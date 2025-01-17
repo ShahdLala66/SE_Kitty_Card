@@ -20,8 +20,8 @@ class FileIOJSON extends FileIOInterface {
                     "points" -> player.points,
                     "hand" -> player.getHand.map { card =>
                         Json.obj(
-                            "suit" -> card.asInstanceOf[NumberCards].suit.toString, // Konvertiere zu String
-                            "value" -> card.asInstanceOf[NumberCards].value.toString, // Konvertiere zu String
+                            "suit" -> card.asInstanceOf[NumberCards].suit.toString,
+                            "value" -> card.asInstanceOf[NumberCards].value.toString,
                             "color" -> card.getColor
                         )
                     }
@@ -36,11 +36,11 @@ class FileIOJSON extends FileIOInterface {
                     Json.obj(
                         "x" -> x,
                         "y" -> y,
-                        "cellColor" -> cellColor.toString, // Konvertiere zu String
+                        "cellColor" -> cellColor.toString, 
                         "card" -> cardOpt.map { card =>
                             Json.obj(
-                                "suit" -> card.asInstanceOf[NumberCards].suit.toString, // Konvertiere zu String
-                                "value" -> card.asInstanceOf[NumberCards].value.toString, // Konvertiere zu String
+                                "suit" -> card.suit.toString, 
+                                "value" -> card.value.toString, 
                                 "color" -> card.getColor
                             )
                         }.getOrElse(Json.obj("card" -> "Empty"))
@@ -54,7 +54,7 @@ class FileIOJSON extends FileIOInterface {
         val jsonString = Json.prettyPrint(json)
         import java.io.PrintWriter
         new PrintWriter("game.json") {
-            write(jsonString);
+            write(jsonString)
             close()
         }
         "Game saved successfully"

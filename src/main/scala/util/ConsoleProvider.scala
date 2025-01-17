@@ -13,30 +13,27 @@ class ConsoleProvider extends InputProvider {
         shouldInterrupt.set(false)
         var input: String = null
 
-        // Store the current thread so we can interrupt it
         currentThread = Some(Thread.currentThread())
 
         try {
-            // Check if input is available before blocking
             while (!shouldInterrupt.get() && !reader.ready()) {
-                TimeUnit.MILLISECONDS.sleep(100)  // Small delay to prevent CPU spinning
+                TimeUnit.MILLISECONDS.sleep(100)
             }
 
             if (shouldInterrupt.get()) {
-                return null  // Return null if interrupted
+                return null
             }
 
             input = reader.readLine()
         } catch {
             case _: InterruptedException =>
-                return null  // Return null if interrupted
+                return null 
             case e: Exception =>
                 e.printStackTrace()
                 return null
         } finally {
             currentThread = None
         }
-
         input
     }
 

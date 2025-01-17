@@ -1,4 +1,3 @@
-// src/main/scala/model/cards/Hand.scala
 package model.baseImp
 
 import model.{CardInterface, HandInterface}

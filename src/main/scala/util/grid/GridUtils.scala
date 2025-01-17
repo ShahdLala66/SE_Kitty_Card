@@ -1,4 +1,3 @@
-// GridUtils.scala
 package util.grid
 
 import model.baseImp.Suit
@@ -15,7 +14,7 @@ object GridUtils {
       y <- 0 until size
     } yield (x, y)).take(4)
 
-    val colorGrid = Array.fill(size, size)(Suit.White) // Start with all White
+    val colorGrid = Array.fill(size, size)(Suit.White) 
     positions.zip(Random.shuffle(colors)).foreach { case ((x, y), color) =>
       colorGrid(x)(y) = color
     }
@@ -25,6 +24,6 @@ object GridUtils {
 
   def createEmptyGrid(size: Int): Grid = {
     val emptyColors = Array.fill(size, size)(Suit.White)
-    new Grid(size, emptyColors)
+      Grid(size, emptyColors)
   }
 }

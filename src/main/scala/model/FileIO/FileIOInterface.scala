@@ -1,6 +1,6 @@
 package model.FileIO
 
-import controller.{GameController, GameControllerInterface}
+import controller.GameControllerInterface
 import model.baseImp.Grid
 
 trait FileIOInterface {

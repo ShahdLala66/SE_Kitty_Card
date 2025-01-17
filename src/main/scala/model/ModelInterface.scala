@@ -1,7 +1,5 @@
 package model
 
-import model.baseImp.Suit.Suit
-
 trait CardInterface{
     def getColor: String
     def toString: String
