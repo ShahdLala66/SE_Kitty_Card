@@ -105,7 +105,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
   }
 
   def start(): Unit = {
-    ensureGUIInitialized()
+    GuiInitializer.ensureInitialized()
     promptForPlayerName { (player1Name, player2Name) =>
       gameController.promptForPlayerName(player1Name, player2Name)
     }

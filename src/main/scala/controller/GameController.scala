@@ -212,7 +212,7 @@ class GameController(deck: Deck, hand: Hand) extends Observable with GameControl
     } else {
       println("Game already started")
     }
-    gameMode.startGame(this)
+     gameMode.startGame(this)
   }
 
   def getCurrentplayer: Player = currentPlayer
