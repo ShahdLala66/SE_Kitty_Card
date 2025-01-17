@@ -37,7 +37,6 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         println(Console.RED + "Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.\n" + Console.RESET)
         println(Console.BLUE + s"\nIt's ${gameController.getCurrentplayer.getPlayerName}'s turn!\n" + Console.RESET)
         printGridColors()
-        gameController.showCardsForPlayer(gameController.getCurrentplayer.getHand)
 
       case CardPlacementSuccess(x, y, card, points) =>
         println(Console.YELLOW + s"\nCard placed at ($x, $y): $card. You have earned $points points!" + Console.RESET)
@@ -104,11 +103,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
           case _ => gameController.handleCommand("start")
         }
 
-      case GameLoaded(grid, currentPlayer, player1, player2, currentPlayerHand) =>
-        //println("Game loaded successfully")
-        gameController.updateCurrentPlayer(currentPlayer)
-        gameController.updatePlayers(player1, player2)
-        gameController.showCardsForPlayer(currentPlayerHand)
+      case GameLoaded(grid, currentPlayer, player1, player2, currentPlayerHand) =>  print("")
 
       case _ => println("Invalid event.")
     }

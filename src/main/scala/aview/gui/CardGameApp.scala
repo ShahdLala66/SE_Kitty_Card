@@ -12,7 +12,6 @@ object CardGameApp extends JFXApp3 {
     private var gridCellMap: Map[(Int, Int), Option[CardImage]] = Map.empty // Track what card is placed at each grid position
 
     override def start(): Unit = {
-        // Example cards
         val cards = Seq(
             CardImage("1", "Blau"),
             CardImage("2", "Blau"),
@@ -21,18 +20,16 @@ object CardGameApp extends JFXApp3 {
             CardImage("2", "Rot")
         )
 
-        // Create CardButtons for each card and populate the map
         val cardButtons = cards.map { card =>
             val button = new CardButton(card, onClick = handleCardClick)
             cardButtonMap += (card -> button)
             button
         }
 
-        // Create a 3x3 grid
         val grid = new GridPane
         for (x <- 0 until 3; y <- 0 until 3) {
             grid.add(new GridCell(x, y, handleGridClick), x, y)
-            gridCellMap += ((x, y) -> None) // Initialize grid cell map
+            gridCellMap += ((x, y) -> None)
         }
 
         stage = new JFXApp3.PrimaryStage {
@@ -52,30 +49,26 @@ object CardGameApp extends JFXApp3 {
         }
     }
 
-    // Handle card clicks
     private def handleCardClick(card: CardImage): Unit = {
-        // Deselect the previous card
         selectedCard match {
             case Some(prevCard) =>
                 cardButtonMap.get(prevCard).foreach { button =>
-                    button.setBorderColor(Color.Black) // Reset previous border color
+                    button.setBorderColor(Color.Black)
                 }
             case None =>
         }
 
-        // Select the new card
         if (usedCards.contains(card)) {
             println(s"Card ${card.value} of ${card.suit} is already used and cannot be selected again.")
         } else {
             println(s"Selected card: ${card.value} of ${card.suit}")
             selectedCard = Some(card)
             cardButtonMap.get(card).foreach { button =>
-                button.setBorderColor(Color.Red) // Change border color to indicate selection
+                button.setBorderColor(Color.Red)
             }
         }
     }
 
-    // Handle grid cell clicks
     def handleGridClick(x: Int, y: Int): Unit = {
         selectedCard match {
             case Some(card) =>

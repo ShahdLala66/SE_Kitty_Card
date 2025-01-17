@@ -32,7 +32,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                 showStartOrLoadGameWindow { choice =>
                     gameController.handleCommand(choice)
                 }
-            case UpdatePlayers(player1, player2) => closeNameDialog() // Close the GUI name dialog if it's open
+            case UpdatePlayers(player1, player2) => closeNameDialog()
             case PlayerTurn(playerName) =>
                 PlayerTurs(playerName)
             case CardDrawn(playerName, card) =>
@@ -65,7 +65,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
 
     def start(): Unit = {
         GuiInitializer.ensureInitialized()
-        //playBackgroundMusic()
+        playBackgroundMusic()
 
         showAskForGameModeWindow { gameMode =>
             gameController.setGameMode(gameMode)
@@ -207,7 +207,6 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         }
     }
 
-    // Modify the promptForPlayerName method
     def promptForPlayerName(onComplete: (String, String) => Unit): Unit = {
         Platform.runLater {
             val dialog = new Stage {
@@ -296,7 +295,6 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         }
     }
 
-    // Add this method to close the name dialog if it's open
     private def closeNameDialog(): Unit = {
         Platform.runLater {
             nameDialogStage.foreach { dialog =>
@@ -345,12 +343,11 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                 padding = Insets(27, 0, 0, 0)
             }
 
-            // Create control buttons
             controlPane = new HBox {
                 spacing = 10
                 padding = Insets(10)
                 alignment = Pos.Center
-                translateX = -80 // Move the entire button group to the left
+                translateX = -80
                 children = Seq(
                     new Button() {
                         translateX = 20
@@ -379,14 +376,13 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                 )
             }
 
-            cardPane = new HBox { // HBox for the cards
+            cardPane = new HBox {
                 spacing = 10
                 alignment = Pos.BottomCenter
             }
 
             gridPane = createGrid()
 
-            // Create GIF ImageView
             val gifPath = getClass.getResource("/assets/backgrounds/ZayneChillingGif.gif")
             if (gifPath == null) {
                 throw new IllegalStateException("GIF file not found in resources")
@@ -396,21 +392,17 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                 fitWidth = 150
                 fitHeight = 150
                 preserveRatio = true
-                mouseTransparent = true // Make sure the GIF doesn't block interactions
+                mouseTransparent = true
             }
 
-            // Create a container for the GIF that won't affect other elements
             val gifContainer = new StackPane {
                 children = imageView
                 alignment = Pos.TopRight
-                // Use managed = false to prevent it from affecting layout calculations- SEHR WICHTIG
                 managed = false
-                // Position the GIF absolutely
-                translateX = 430 // wenn grosse zahl dann geht nach rechts
-                translateY = 405 // grossere zahle nach unten
+                translateX = 430
+                translateY = 405
             }
 
-            // Main layout container
             val gameContainer = new VBox(20) {
                 alignment = Pos.TopCenter
                 children = Seq(
@@ -420,17 +412,14 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                 )
             }
 
-            // Create an overlay pane that will contain both the game elements and the GIF
             val overlayPane = new StackPane {
                 children = Seq(
                     gameContainer,
                     gifContainer
                 )
-                // Ensure the GIF container is always on top
                 StackPane.setAlignment(gifContainer, Pos.TopRight)
             }
 
-            // Final root container with the cards at the bottom
             val rootPane = new VBox {
                 spacing = 20
                 padding = Insets(10, 0, 0, 0)
@@ -485,7 +474,7 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
             val hexColor = colorMap.get(colorName.toString
             ) match {
                 case Some(hex) => hex
-                case None => colorName // Fallback to original
+                case None => colorName
             }
 
 
@@ -528,17 +517,14 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
         }
     }
 
-    // Fixed updateButtonStyles method
     private def updateButtonStyles(): Unit = {
         if (cardPane != null) {
             cardPane.children.foreach {
                 case stackPane: javafx.scene.layout.StackPane =>
-                    // Reset the style for StackPane (CardButton)
                     stackPane.setStyle("")
                 case button: javafx.scene.control.Button =>
-                    // Reset the style for regular buttons
                     button.setStyle("")
-                case _ => // Do nothing for other types
+                case _ =>
             }
         }
     }
@@ -546,10 +532,8 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
     private def showCardsGUI(cards: Seq[CardInterface]): Unit = {
         Platform.runLater {
             try {
-                // println("Processing cards...")
                 val cardImages = cards.map {
                     case NumberCards(suit, value) =>
-                        // println(s"Processing card: $suit $value")
                         val numericValue = value match {
                             case Value.One => "1"
                             case Value.Two => "2"
@@ -572,7 +556,6 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
                         CardImage(numericValue, germanSuit)
                 }
                 val cardButtons = cardImages.zipWithIndex.map { case (cardImage, index) =>
-                    // println(s"Creating button for ${cardImage.value} of ${cardImage.suit}")
                     new CardButton(cardImage, _ => {
                         selectedCardIndex = Some(index)
                         updateButtonStyles()
@@ -587,7 +570,6 @@ class GameGuiTui(gameController: GameControllerInterface) extends Observer {
 
             } catch {
                 case e: Exception =>
-                    // println(s"Error in GUI creation: ${e.getMessage}")
                     e.printStackTrace()
             }
         }
