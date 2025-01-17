@@ -30,6 +30,8 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
 
     def getGridColors: List[(Int, Int, Option[CardInterface], Suit)]
 
+    def askForGameLoad(): Unit
+
     def isGameOver: Boolean
 
     def getCurrentplayer: PlayerInterface

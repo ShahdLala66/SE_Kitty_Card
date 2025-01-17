@@ -3,6 +3,8 @@ package aview
 import controller.GameControllerInterface
 import util.*
 
+import java.lang.Thread.sleep
+
 class Tui(gameController: GameControllerInterface) extends Observer {
     gameController.add(this)
     
@@ -29,6 +31,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
             case PlayerTurn(playerName) =>
                 val input = inputProvider.getInput
                 processInput(input)
+                inputProvider.interrupt()
 
             case CardDrawn(playerName, card) =>
                 println(Console.BLUE + s"\n$playerName drew: $card\n" + Console.RESET)
@@ -59,9 +62,12 @@ class Tui(gameController: GameControllerInterface) extends Observer {
 
             case UndoEvent(_) =>
                 println(Console.RED + "\nUndo performed." + Console.RESET)
+                inputProvider.interrupt()
 
             case RedoEvent(_) =>
                 println(Console.RED + "\nRedo performed." + Console.RESET)
+                inputProvider.interrupt()
+
 
             case ShowCardsForPlayer(cards) =>
                 println("\nYour cards:")
@@ -69,7 +75,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
 
             case PromptForPlayerName =>
                 inputProvider.interrupt()
-                flush()
+                // flush()
                 println(s"Enter the name for Player 1:")
                 val player1 = inputProvider.getInput
                 if (player1 == null) return
@@ -144,16 +150,28 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         }
     }
 
-    def processInput(input: String): Unit = {
+    private def processInput(input: String): Unit = {
+        if (input == null) throw new IllegalArgumentException("Input cannot be null")
+        gameController.askForInputAgain()
         input.trim.toLowerCase match {
-            case "undo" => gameController.handleCommand("undo")
-            case "redo" => gameController.handleCommand("redo")
-            case "draw" => gameController.handleCommand("draw")
-            case "save" => gameController.handleCommand("save")
-            case "load" => gameController.handleCommand("load")
-
+            case "undo" =>
+                gameController.handleCommand("undo")
+                gameController.askForInputAgain()
+            case "redo" =>
+                gameController.handleCommand("redo")
+                gameController.askForInputAgain()
+            case "draw" =>
+                gameController.handleCommand("draw")
+                gameController.askForInputAgain()
+            case "save" =>
+                gameController.handleCommand("save")
+                gameController.askForInputAgain()
+            case "load" =>
+                gameController.handleCommand("load")
+                gameController.askForInputAgain()
             case input if input.matches("\\d+\\s+\\d+\\s+\\d+") =>
                 val parts = input.split(" ")
+                if (parts.length != 3) throw new IllegalArgumentException("Invalid input format for card placement")
                 gameController.handleCardPlacement(parts(0).toInt, parts(1).toInt, parts(2).toInt)
             case _ =>
                 println("Invalid input! Please use one of the following formats:")
@@ -162,10 +180,8 @@ class Tui(gameController: GameControllerInterface) extends Observer {
                 println("- 'undo' to undo last move")
                 println("- 'redo' to redo last move")
                 gameController.askForInputAgain()
-
         }
     }
-
     def printBadChoice(color: String): Unit = {
         val colorCode = colors.getOrElse(color, "\u001b[0m")
         println(s"$colorCode ∧,,,∧")

@@ -64,6 +64,8 @@ case object AskForLoadGame extends GameEvent
 
 case object GameSaved extends GameEvent
 
+case object MakeNewGame extends GameEvent
+
 case object SaveGameError extends GameEvent
 
 case object LoadGameError extends GameEvent

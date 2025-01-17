@@ -37,12 +37,16 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
     def setGameMode(mode: String): Unit = {
         mode.toLowerCase match {
             case "s" => gameMode = new SinglePlayerMode()
+                notifyObservers(AskForLoadGame)
+
+            //  gameMode.startGame(this)
             case "m" => gameMode = new MultiPlayerMode()
+                notifyObservers(AskForLoadGame)
+
             case _ =>
                 println(s"Invalid game mode: $mode. Defaulting to Multi Player mode.")
                 gameMode = new MultiPlayerMode()
         }
-        notifyObservers(AskForLoadGame)
     }
 
     def startMultiPlayerGame(): Unit = {
@@ -54,11 +58,16 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
         distributeInitialCards()
         notifyObservers(UpdateGrid(grid))
         notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+        notifyObservers(MakeNewGame)
         startGameLoop()
     }
 
     def askForInputAgain(): Unit = {
         playerIsAtTurn = true
+    }
+
+    def askForGameLoad(): Unit = {
+        notifyObservers(AskForLoadGame)
     }
 
     def handleCommand(command: String): Unit = {
