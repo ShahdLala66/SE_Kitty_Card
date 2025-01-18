@@ -48,5 +48,5 @@ There are $${\color{#9370db}4\space colors\space of\space cards}$$ and $${\color
 
 
 - Other modes to be added in the future (ahem Semester 5)
-────୨ৎ────────୨ৎ────────୨ৎ────────୨ৎ────────୨ৎ────
-- cups as in Grid cells <3 
+  ────୨ৎ────────୨ৎ────────୨ৎ────────୨ৎ────────୨ৎ────
+  cups as in Grid cells <3 
