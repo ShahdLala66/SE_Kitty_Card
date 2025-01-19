@@ -30,6 +30,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
     private var multiGameDialog : Option[Stage] = None
 
 
+    // hi
     override def update(event: GameEvent): Unit = {
         event match {
             case AskForLoadGame =>
