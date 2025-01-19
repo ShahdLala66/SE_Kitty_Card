@@ -154,7 +154,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
     }
   }
 
-  private def processInput(input: String): Unit = {
+  def processInput(input: String): Unit = {
     if (input == null) throw new IllegalArgumentException("Input cannot be null")
     gameController.askForInputAgain()
     input.trim.toLowerCase match {
