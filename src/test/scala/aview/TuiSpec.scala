@@ -19,6 +19,18 @@ class TuiSpec extends AnyWordSpec with MockitoSugar {
         val tui = new Tui(gameControllerMock)
         tui.inputProvider = inputProviderMock
 
+        "handle AskForLoadGame event correctly when loading a saved game" in {
+            when(inputProviderMock.getInput).thenReturn("2")
+            val outStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outStream) {
+                tui.update(AskForLoadGame)
+            }
+
+            verify(gameControllerMock).handleCommand("load")
+            val expectedOutput = "Would you like to:\n(1) Start new game\n(2) Load saved game"
+            outStream.toString should not be empty
+        }
+
         "handle GameSaved event correctly" in {
             val outStream = new java.io.ByteArrayOutputStream()
             Console.withOut(outStream) {
@@ -28,7 +40,45 @@ class TuiSpec extends AnyWordSpec with MockitoSugar {
             outStream.toString should include(expectedOutput)
         }
 
+        "handle UpdateLoadedGame event correctly" in {
+            val card1 = mock[CardInterface]
+            val card2 = mock[CardInterface]
+            when(card1.toString).thenReturn("Card1")
+            when(card2.toString).thenReturn("Card2")
+            val gridColors = List(
+                (0, 0, Some(card1), Suit.Red),
+                (0, 1, Some(card2), Suit.Green)
+            )
+            val currentPlayer = mock[Player]
+            val player1 = mock[Player]
+            val player2 = mock[Player]
+            val hand = List(mock[CardInterface], mock[CardInterface])
+
+            when(currentPlayer.getPlayerName).thenReturn("CurrentPlayer")
+            when(player1.getPlayerName).thenReturn("Player1")
+            when(player2.getPlayerName).thenReturn("Player2")
+            when(hand.head.toString).thenReturn("Card1")
+            when(hand(1).toString).thenReturn("Card2")
+            when(gameControllerMock.getGridColors).thenReturn(gridColors)
+
+            val outStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outStream) {
+                tui.update(UpdateLoadedGame(gridColors, currentPlayer, player1, player2, hand))
+            }
+
+            val expectedOutput = "Game loaded successfully\n" +
+                "Rectangle at (0, 0) has card: Card1 and color: Red\n" +
+                "Rectangle at (0, 1) has card: Card2 and color: Green\n\n" +
+                "Current players: Player1 vs Player2\n" +
+                "CurrentPlayer's turn!\n\n" +
+                "Your cards:\nCard1\nCard2\n"
+
+            val actualOutput = outStream.toString.replace("\r\n", "\n")
+            actualOutput should not be empty
+        }
+
         "process PlayerTurn event correctly" in {
+            reset(inputProviderMock)
             when(inputProviderMock.getInput).thenReturn("some input")
             tui.update(PlayerTurn("Player1"))
             verify(inputProviderMock).getInput
@@ -58,6 +108,7 @@ class TuiSpec extends AnyWordSpec with MockitoSugar {
             }
             outStream.toString.contains(expectedOutput)
         }
+
 
         "handle InvalidPlacement event correctly" in {
             val outStream = new java.io.ByteArrayOutputStream()
@@ -365,5 +416,36 @@ class TuiSpec extends AnyWordSpec with MockitoSugar {
 
             verify(gameControllerMock).handleCardPlacement(1, 2, 3)
         }
+
+        "handle invalid input correctly" in {
+            val inputProviderMock = mock[InputProvider]
+            when(inputProviderMock.getInput).thenReturn("invalid input")
+            tui.inputProvider = inputProviderMock
+            reset(gameControllerMock)
+            val outStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outStream) {
+                tui.update(PlayerTurn("Player1"))
+            }
+
+            verify(gameControllerMock, times(2)).askForInputAgain()
+            val expectedOutput = "Invalid input! Please use one of the following formats:"
+            outStream.toString should include(expectedOutput)
+        }
+
+        "handle AskForLoadGame event correctly when starting a new game" in {
+            when(inputProviderMock.getInput).thenReturn("1")
+
+            val outStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outStream) {
+                tui.update(AskForLoadGame)
+            }
+
+            verify(gameControllerMock).handleCommand("start")
+            val expectedOutput = "Would you like to:\n(1) Start new game\n(2) Load saved game"
+            outStream.toString should not be empty
+        }
+
+
+
     }
 }

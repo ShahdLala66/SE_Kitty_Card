@@ -1,9 +1,9 @@
 import sbt.Keys.libraryDependencies
-import scoverage.ScoverageKeys.coverageExcludedFiles
+import scoverage.ScoverageKeys.*
 
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "3.3.3"
+ThisBuild / scalaVersion := "3.4.2"
 
 lazy val root = (project in file("."))
     .settings(
@@ -11,9 +11,7 @@ lazy val root = (project in file("."))
         coverageOutputCobertura := true,
         coverageEnabled := true,
         coverageOutputXML := true,
-        coverageExcludedFiles := "src/main/scala/aview/gui/Gui.scala"
-
-    )
+        coverageExcludedPackages := ".*aview\\.gui\\..*"    )
 
 libraryDependencies ++= Seq(
     "com.google.inject" % "guice" % "7.0.0",

@@ -44,19 +44,6 @@ class GameModeSpec extends AnyWordSpec with Matchers with MockitoSugar {
             verify(controller, never()).grid = any[Grid]
             verify(controller, never()).startMultiPlayerGame()
         }
-
-
-      /**  "load a game" in {
-            val controller = mock[GameController]
-            val savedState = mock[GameState]
-            val mode = new SinglePlayerMode
-
-            mode.loadGame(controller, savedState)
-
-            // Verify the expected behavior
-            verify(controller, never()).grid = any[Grid]
-            verify(controller, never()).startMultiPlayerGame()
-        } */
     }
 
     "MultiPlayerMode" should {
