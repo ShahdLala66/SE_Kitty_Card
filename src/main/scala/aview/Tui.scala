@@ -124,36 +124,29 @@ class Tui(gameController: GameControllerInterface) extends Observer {
 
             case _ => println("Invalid event.")
         }
-    }
+        inputProvider.interrupt()
 
-    private def updateStatus(message: String): Unit = {
-        println(Console.BLUE + message + Console.RESET)
-    }
+      case CardDrawn(playerName, card) =>
+        println(Console.BLUE + s"\n$playerName drew: $card\n" + Console.RESET)
 
-    private[aview] val colors = Map(
-        "Green" -> "\u001b[32m",
-        "Brown" -> "\u001b[33m",
-        "Purple" -> "\u001b[35m",
-        "Blue" -> "\u001b[34m",
-        "Red" -> "\u001b[31m",
-        "White" -> "\u001b[37m"
-    )
+      case InvalidPlacement =>
+        flush()
+        println(Console.RED + "Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.\n" + Console.RESET)
+        inputProvider.interrupt()
 
-    def printColoredCat(color: String): Unit = {
-        println(s"$color ∧,,,∧")
-        println(s"$color( ̳• · •̳)")
-        println(s"$color/    づ♡")
-        println("\u001b[0m")
-    }
+      case CardPlacementSuccess(x, y, card, points) =>
+        println(Console.YELLOW + s"\nCard placed at ($x, $y): $card. You () have earned $points points!" + Console.RESET)
 
-    def flush(): Unit = {
-        print("\n" * 25)
-    }
-
-    def printCatLoop(): Unit = {
-        for (color <- colors.values) {
-            printColoredCat(color)
-            Thread.sleep(500)
+      case GameOver(player1Name, player1Points, player2Name, player2Points) =>
+        println(Console.RED + "\n\nGame over!")
+        println(Console.YELLOW + s"$player1Name's final score: $player1Points")
+        println(s"$player2Name's final score: $player2Points")
+        if (player1Points > player2Points) {
+          println(s"$player1Name wins!" + Console.RESET)
+        } else if (player2Points > player1Points) {
+          println(s"$player2Name wins!" + Console.RESET)
+        } else {
+          println("It's a tie!" + Console.RESET)
         }
     }
 

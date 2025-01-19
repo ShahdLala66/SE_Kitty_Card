@@ -12,7 +12,6 @@ lazy val root = (project in file("."))
         coverageEnabled := true,
         coverageOutputXML := true,
         coverageExcludedFiles := "src/main/scala/aview/gui/Gui.scala"
-
     )
 
 libraryDependencies ++= Seq(
