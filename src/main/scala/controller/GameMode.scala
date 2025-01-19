@@ -14,13 +14,15 @@ trait GameMode {
     def loadGame(controller: GameController, savedState: GameState): Unit
 }
 
-class SinglePlayerMode extends GameMode {
+class SinglePlayerMode(desktop: Desktop = Desktop.getDesktop) extends GameMode {
     override def startGame(controller: GameController): Unit = {
-        Try(Desktop.getDesktop.browse(new URI("https://youtu.be/dQw4w9WgXcQ"))) match {
-            case Success(_) => println("Single player mode triggered. Joke on you no such thing as Single Game hahaha")
+        Try(desktop.browse(new URI("https://youtu.be/dQw4w9WgXcQ"))) match {
+            case Success(_) =>
+                println("Single player mode triggered. Joke on you no such thing as Single Game hahaha")
                 controller.grid = GridFactory.createGrid(3)
                 controller.startMultiPlayerGame()
-            case Failure(e) => println(s"Failed to open URL: ${e.getMessage}")
+            case Failure(e) =>
+                println(s"Failed to open URL: ${e.getMessage}")
         }
     }
 
@@ -28,6 +30,7 @@ class SinglePlayerMode extends GameMode {
         println("Single player mode triggered. Joke on you no such thing as Single Game hahaha")
     }
 }
+
 
 class MultiPlayerMode extends GameMode {
     override def startGame(controller: GameController): Unit = {

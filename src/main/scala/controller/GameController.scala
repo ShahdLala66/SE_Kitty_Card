@@ -19,10 +19,10 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
     var player1: Player = _
     var player2: Player = _
     val commandManager = new CommandManager()
-    var fileIO: FileIOInterface = new FileIOXML()
+    //var fileIO: FileIOInterface = new FileIOXML()
     var player1String: String = ""
     var player2String: String = ""
-    private var counter = 0
+    var counter = 0
 
     def getPlayers: List[Player] = List(player1, player2)
 
@@ -71,10 +71,10 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
     def handleCommand(command: String): Unit = {
         command match {
             case "save" =>
-                fileIO.save(this, grid)
+                fileIOInterface.save(this, grid)
                 notifyObservers(GameSaved)
             case "load" =>
-                Try(fileIO.load(this)) match {
+                Try(fileIOInterface.load(this)) match {
                     case Success(_) =>
                     case Failure(e) => println(s"Error loading game: ${e.getMessage}")
                 }

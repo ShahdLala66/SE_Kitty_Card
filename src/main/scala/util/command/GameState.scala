@@ -3,7 +3,7 @@ package util.command
 
 import model.baseImp.{Grid, Player}
 
-class GameState(private val grid: Grid, private val players: List[Player], private val currentPlayerIndex: Int, private val points: Int) {
+class GameState(val grid: Grid, val players: List[Player], val currentPlayerIndex: Int, private val points: Int) {
 
     def getGrid: Grid = grid
 

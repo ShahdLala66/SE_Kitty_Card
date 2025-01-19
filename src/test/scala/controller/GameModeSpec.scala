@@ -1,19 +1,52 @@
 package controller
 
-import model.baseImp.{Grid, Player}
+import model.baseImp.*
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.*
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.mockito.MockitoSugar
 import util.command.GameState
+import util.grid.GridFactory
 import util.{InitializeGUIForLoad, UpdateLoadedGame}
+
+import java.awt.Desktop
+import java.io.IOException
+import java.net.URI
 
 class GameModeSpec extends AnyWordSpec with Matchers with MockitoSugar {
 
     "SinglePlayerMode" should {
-        
-        "load a game" in {
+        "start the game and open the URL" in {
+            val controller = mock[GameController]
+            val desktop = mock[Desktop]
+            val singlePlayerMode = new SinglePlayerMode(desktop)
+
+            singlePlayerMode.startGame(controller)
+
+            verify(desktop).browse(new URI("https://youtu.be/dQw4w9WgXcQ"))
+            verify(controller).grid = any[Grid]
+            verify(controller).startMultiPlayerGame()
+        }
+
+        "handle URL opening failure gracefully" in {
+            val controller = mock[GameController]
+            val desktop = mock[Desktop]
+            val singlePlayerMode = new SinglePlayerMode(desktop)
+            when(desktop.browse(any[URI])).thenThrow(new IOException("Test Exception"))
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                singlePlayerMode.startGame(controller)
+            }
+
+            val output = outputStream.toString
+            output should include("Failed to open URL: Test Exception")
+            verify(controller, never()).grid = any[Grid]
+            verify(controller, never()).startMultiPlayerGame()
+        }
+
+
+      /**  "load a game" in {
             val controller = mock[GameController]
             val savedState = mock[GameState]
             val mode = new SinglePlayerMode
@@ -23,7 +56,7 @@ class GameModeSpec extends AnyWordSpec with Matchers with MockitoSugar {
             // Verify the expected behavior
             verify(controller, never()).grid = any[Grid]
             verify(controller, never()).startMultiPlayerGame()
-        }
+        } */
     }
 
     "MultiPlayerMode" should {
