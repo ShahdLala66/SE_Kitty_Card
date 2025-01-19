@@ -171,6 +171,9 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
                                 true
                             } else {
                                 notifyObservers(InvalidPlacement)
+                                currentPlayer.removeCard(card)
+                                switchTurns()
+
                                 false
                             }
                         case _ =>
