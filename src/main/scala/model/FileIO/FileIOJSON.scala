@@ -120,7 +120,8 @@ class FileIOJSON extends FileIOInterface {
                 "Error loading game"
         }
     }
-    private def createCard(cardJson: JsValue): NumberCards = {
+    
+    def createCard(cardJson: JsValue): NumberCards = {
         val suit = Suit.withName((cardJson \ "suit").as[String])
         val value = Value.withName((cardJson \ "value").as[String])
         NumberCards(suit, value)

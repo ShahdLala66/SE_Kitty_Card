@@ -111,7 +111,7 @@ class FileIOXML extends FileIOInterface {
         }
     }
 
-    private def createCard(cardNode: Node): NumberCards = {
+    def createCard(cardNode: Node): NumberCards = {
         val suit = Suit.withName((cardNode \ "suit").text)
         val value = Value.withName((cardNode \ "value").text)
         val color = (cardNode \ "color").text
