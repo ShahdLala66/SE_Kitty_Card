@@ -7,7 +7,7 @@ import model.baseImp.{NumberCards, Player, Value}
 import scalafx.application.Platform
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.Scene
-import scalafx.scene.control.{Button, Label, TextField}
+import scalafx.scene.control.{Button, ContentDisplay, Label, TextField}
 import scalafx.scene.image.{Image, ImageView}
 import scalafx.scene.layout.*
 import scalafx.scene.media.{Media, MediaPlayer}
@@ -29,6 +29,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
   private var nameDialogStage: Option[Stage] = None
   private var loadGameDialog: Option[Stage] = None
   private var multiGameDialog: Option[Stage] = None
+  private var gifOverlayPane: Pane = _
 
 
   override def update(event: GameEvent): Unit = {
@@ -38,8 +39,6 @@ class Gui(gameController: GameControllerInterface) extends Observer {
         showStartOrLoadGameWindow { choice =>
           gameController.handleCommand(choice)
         }
-      case InitializeGUIForLoad =>
-      //GuiInitializer.ensureInitialized()
       case UpdateLoadedGame(gridColors, currentPlayer, p1, p2, hand) =>
         closeLoadDialog()
         updateDisplay()
@@ -56,7 +55,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
         CardDrawns(playerName, card)
       case InvalidPlacement =>
         invalidPlacements()
-      case CardPlacementSuccess(x, y, card, points, player) =>
+      case CardPlacementSuccess(x, y, card, points) =>
         addCatGifInCell(x, y)
         CardPlacementSuccesss(x, y, card, points)
       case GameOver(player1Name, player1Points, player2Name, player2Points) =>
@@ -72,7 +71,6 @@ class Gui(gameController: GameControllerInterface) extends Observer {
         updateStatus(s"$player1's turn.")
       case ShowCardsForPlayer(cards) =>
         showCardsGUI(cards)
-      // updateDisplay()
       case PromptForPlayerName =>
         closeLoadDialog()
         promptForPlayerName { (player1Name, player2Name) =>
@@ -92,121 +90,11 @@ class Gui(gameController: GameControllerInterface) extends Observer {
       gameController.setGameMode(gameMode)
     }
   }
+  
 
-
-  import scalafx.Includes.jfxNode2sfx
-
-
-  // Add this as a class variable
-
-  // Then modify addCatGifInCell:
-  // Change the type of gifOverlayPane to Pane
-  private var gifOverlayPane: Pane = _
-
-  def addCatGifInCell(x: Int, y: Int): Unit = {
-    Platform.runLater {
-      val currentPlayer = gameController.getCurrentPlayerString
-      val isPlayer1 = currentPlayer == gameController.getPlayer1
-
-      val gifPath = if (isPlayer1) {
-        getClass.getResource("/assets/backgrounds/ZayneChillingGif.gif")
-      } else {
-        getClass.getResource("/assets/backgrounds/XavierChillingGif.gif")
-      }
-
-      if (gifPath != null) {
-        val imageView = new ImageView(new Image(gifPath.toExternalForm)) {
-          fitWidth = 60
-          fitHeight = 60
-          preserveRatio = true
-          mouseTransparent = true
-        }
-
-        val gifContainer = new StackPane {
-          children = imageView
-          prefWidth = 91
-          prefHeight = 89
-          alignment = Pos.Center
-          mouseTransparent = true
-        }
-
-        gifContainer.setLayoutX(x * 92 + 78) //  add more to the 75 tp move
-        gifContainer.setLayoutY(y * 89 + 140)//
-
-        gifOverlayPane.getChildren.add(gifContainer)
-      }
-    }
-  }
-
-  private def showStartOrLoadGameWindow(onComplete: String => Unit): Unit = {
-    Platform.runLater {
-      val dialog = new Stage {
-        title = "Start or Load Game"
-        scene = new Scene(500, 400) {
-          val startGameButton: Button = new Button {
-            text = "Start Game"
-            minWidth = 500
-            minHeight = 55
-            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
-              "-fx-background-color: transparent; -fx-background-size: cover;" +
-              "-fx-background-repeat: no-repeat;" +
-              "-fx-background-insets: 0;" +
-              "-fx-padding: 0;"
-            font = bubblegumSans
-            onAction = _ => {
-              // close()
-              new Thread(() => {
-                onComplete("start")
-              }).start()
-            }
-          }
-
-          val loadGameButton: Button = new Button {
-            text = "Load Game"
-            minWidth = 500
-            minHeight = 55
-            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
-              "-fx-background-color: transparent; -fx-background-size: cover;" +
-              "-fx-background-repeat: no-repeat;" +
-              "-fx-background-insets: 0;" +
-              "-fx-padding: 0;"
-            font = bubblegumSans
-            onAction = _ => {
-              // close()
-              new Thread(() => {
-                onComplete("load")
-              }).start()
-            }
-          }
-
-          root = new VBox(20) {
-            padding = Insets(20)
-            alignment = Pos.Center
-            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/NameBackground.png'); " +
-              "-fx-background-size: cover; " +
-              "-fx-background-position: center; " +
-              "-fx-background-repeat: no-repeat;"
-            children = Seq(
-              new Label("Do you want to start a new game or load an existing one?") {
-                font = bubblegumSans
-                style = "-fx-font-size: 22px; -fx-text-fill: black; -fx-font-family: 'Bubblegum Sans';"
-              },
-              startGameButton,
-              loadGameButton
-            )
-          }
-        }
-        initModality(Modality.ApplicationModal)
-        resizable = false
-        onCloseRequest = _ =>
-          System.exit(0)
-          Platform.exit()
-      }
-      loadGameDialog = Some(dialog)
-      dialog.showAndWait()
-    }
-  }
-
+  
+  // INTRO START ____________________---
+  
   private def showAskForGameModeWindow(onComplete: String => Unit): Unit = {
     Platform.runLater {
       val dialog = new Stage {
@@ -277,7 +165,78 @@ class Gui(gameController: GameControllerInterface) extends Observer {
       dialog.showAndWait()
     }
   }
+  
 
+  private def showStartOrLoadGameWindow(onComplete: String => Unit): Unit = {
+    Platform.runLater {
+      val dialog = new Stage {
+        title = "Start or Load Game"
+        scene = new Scene(500, 400) {
+          val startGameButton: Button = new Button {
+            text = "Start Game"
+            minWidth = 500
+            minHeight = 55
+            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
+              "-fx-background-color: transparent; -fx-background-size: cover;" +
+              "-fx-background-repeat: no-repeat;" +
+              "-fx-background-insets: 0;" +
+              "-fx-padding: 0;"
+            font = bubblegumSans
+            onAction = _ => {
+              // close()
+              new Thread(() => {
+                onComplete("start")
+              }).start()
+            }
+          }
+
+          val loadGameButton: Button = new Button {
+            text = "Load Game"
+            minWidth = 500
+            minHeight = 55
+            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
+              "-fx-background-color: transparent; -fx-background-size: cover;" +
+              "-fx-background-repeat: no-repeat;" +
+              "-fx-background-insets: 0;" +
+              "-fx-padding: 0;"
+            font = bubblegumSans
+            onAction = _ => {
+              // close()
+              new Thread(() => {
+                onComplete("load")
+              }).start()
+            }
+          }
+
+          root = new VBox(20) {
+            padding = Insets(20)
+            alignment = Pos.Center
+            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/NameBackground.png'); " +
+              "-fx-background-size: cover; " +
+              "-fx-background-position: center; " +
+              "-fx-background-repeat: no-repeat;"
+            children = Seq(
+              new Label("Do you want to start a new game or load an existing one?") {
+                font = bubblegumSans
+                style = "-fx-font-size: 22px; -fx-text-fill: black; -fx-font-family: 'Bubblegum Sans';"
+              },
+              startGameButton,
+              loadGameButton
+            )
+          }
+        }
+        initModality(Modality.ApplicationModal)
+        resizable = false
+        onCloseRequest = _ =>
+          System.exit(0)
+          Platform.exit()
+      }
+      loadGameDialog = Some(dialog)
+      dialog.showAndWait()
+    }
+  }
+
+  
   def promptForPlayerName(onComplete: (String, String) => Unit): Unit = {
     Platform.runLater {
       val dialog = new Stage {
@@ -352,141 +311,9 @@ class Gui(gameController: GameControllerInterface) extends Observer {
       dialog.showAndWait()
     }
   }
-
-  private def updateGridDisplay(gridColors: List[(Int, Int, Option[CardInterface], Suit)]): Unit = {
-    Platform.runLater {
-      if (gridPane != null) {
-        val newGrid = createGridFromColors(gridColors)
-        gridPane.children.clear()
-        gridPane.children.addAll(newGrid.children)
-      }
-    }
-  }
-
-  private def createGridFromColors(colors: List[(Int, Int, Option[CardInterface], Suit)]): GridPane = {
-    val grid = new GridPane {
-      hgap = 6
-      vgap = 6
-      padding = Insets(60, 0, 10, 0)
-      alignment = Pos.Center
-    }
-
-    val colorMap = Map(
-      "Purple" -> "#9966cc",
-      "Brown" -> "#cc8566",
-      "Red" -> "#d95959",
-      "Blue" -> "#66b4cc",
-      "Green" -> "#6ecc66",
-      "White" -> "#ffffff"
-    )
-
-    for ((x, y, card, colorName) <- colors) {
-      val buttonText = card.map(_.toString).getOrElse(s"($x, $y)")
-      val hexColor = colorMap.getOrElse(colorName.toString, "#ffffff")
-
-      val button = new Button(buttonText) {
-        style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
-        prefWidth = 91
-        prefHeight = 89
-        onAction = _ => handleGridClick(x, y)
-        onMouseEntered = _ => {
-          if (selectedCardIndex.isDefined) {
-            style = s"-fx-background-color: $hexColor; -fx-opacity: 0.8;"
-          }
-        }
-        onMouseExited = _ => {
-          style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
-        }
-      }
-      grid.add(button, x, y)
-    }
-    grid
-  }
-
-
-  private def updatePlayerDisplay(player1: Player, player2: Player): Unit = {
-    Platform.runLater {
-      updateStatus(s"${player1.name} vs ${player2.name}")
-    }
-  }
-
-  private def updateCurrentPlayerStatus(player: Player): Unit = {
-    Platform.runLater {
-      updateStatus(s"${player.name}'s turn")
-    }
-  }
-
-
-  private def createFieldWithImage(textField: TextField): StackPane = {
-    new StackPane {
-      children = Seq(
-        new ImageView(new Image("file:src/main/resources/assets/backgrounds/TextField.png")) {
-          fitWidth = 350
-          fitHeight = 50
-        },
-        textField
-      )
-      alignment = Pos.Center
-      prefWidth = 350
-      prefHeight = 50
-    }
-  }
-
-  private def closeNameDialog(): Unit = {
-    Platform.runLater {
-      nameDialogStage.foreach { dialog =>
-        dialog.close()
-      }
-      nameDialogStage = None
-    }
-  }
-
-  private def closeLoadDialog(): Unit = {
-    Platform.runLater {
-      loadGameDialog.foreach { dialog =>
-        dialog.close()
-      }
-      loadGameDialog = None
-    }
-  }
-
-  private def closeMultiDialog(): Unit = {
-    Platform.runLater {
-      multiGameDialog.foreach { dialog =>
-        dialog.close()
-      }
-      multiGameDialog = None
-    }
-  }
-
-  private def playBackgroundMusic(): Unit = {
-    val musicFile = getClass.getResource("/assets/music/backgroundmusic.mp3")
-    Platform.runLater {
-      try {
-        val media = new Media(musicFile.toURI.toString)
-        val mediaPlayer = new MediaPlayer(media)
-        mediaPlayer.setCycleCount(MediaPlayer.Indefinite)
-        mediaPlayer.play()
-      } catch {
-        case e: Exception => println(s"Fehler beim Abspielen der Musik: ${e.getMessage}")
-      }
-    }
-
-
-  }
-
-  def processInput(input: String): Unit = {
-    input.trim.toLowerCase match {
-      case "undo" => gameController.handleCommand("undo")
-      case "redo" => gameController.handleCommand("redo")
-      case "draw" => gameController.handleCommand("draw")
-      case input if input.matches("\\d+\\s+\\d+\\s+\\d+") =>
-        val parts = input.split(" ")
-        gameController.handleCardPlacement(parts(0).toInt, parts(1).toInt, parts(2).toInt)
-      case _ =>
-        println("Invalid input!")
-    }
-  }
+  
+  
+  // GAME START GUI MAKE SURE ITS WOKRING 
 
   def initialize(): Unit = {
     Platform.runLater {
@@ -497,13 +324,13 @@ class Gui(gameController: GameControllerInterface) extends Observer {
         padding = Insets(27, 0, 0, 0)
       }
 
-   gifOverlayPane = new Pane {
-//        hgap = 6
-//        vgap = 6
-//        padding = Insets(60, 0, 10, 0)
-//        //they should not interact with each other or cause each other to move
-//
-//        alignment = Pos.Center
+      gifOverlayPane = new Pane {
+        //        hgap = 6
+        //        vgap = 6
+        //        padding = Insets(60, 0, 10, 0)
+        //        //they should not interact with each other or cause each other to move
+        //
+        //        alignment = Pos.Center
         mouseTransparent = true
       }
 
@@ -616,7 +443,90 @@ class Gui(gameController: GameControllerInterface) extends Observer {
       currentStage.show()
     }
   }
+  
+  // Make sure it works for loading
+  
+  private def updateGridDisplay(gridColors: List[(Int, Int, Option[CardInterface], Suit)]): Unit = {
+    Platform.runLater {
+      if (gridPane != null) {
+        val newGrid = createGridFromColors(gridColors)
+        gridPane.children.clear()
+        gridPane.children.addAll(newGrid.children)
+      }
+    }
+  }
 
+  private def createGridFromColors(colors: List[(Int, Int, Option[CardInterface], Suit)]): GridPane = {
+    val grid = new GridPane {
+      hgap = 6
+      vgap = 6
+      padding = Insets(60, 0, 10, 0)
+      alignment = Pos.Center
+    }
+
+    val colorMap = Map(
+      "Purple" -> "#9966cc",
+      "Brown" -> "#cc8566",
+      "Red" -> "#d95959",
+      "Blue" -> "#66b4cc",
+      "Green" -> "#6ecc66",
+      "White" -> "#ffffff"
+    )
+
+    for ((x, y, card, colorName) <- colors) {
+      val buttonText = card.map(_.toString).getOrElse(s"($x, $y)")
+      val hexColor = colorMap.getOrElse(colorName.toString, "#ffffff")
+
+      val button = new Button(buttonText) {
+        style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
+        prefWidth = 91
+        prefHeight = 89
+        onAction = _ => handleGridClick(x, y)
+        onMouseEntered = _ => {
+          if (selectedCardIndex.isDefined) {
+            style = s"-fx-background-color: $hexColor; -fx-opacity: 0.8;"
+          }
+        }
+        onMouseExited = _ => {
+          style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
+        }
+      }
+      grid.add(button, x, y)
+    }
+    grid
+  }
+
+  private def updatePlayerDisplay(player1: Player, player2: Player): Unit = {
+    Platform.runLater {
+      updateStatus(s"${player1.name} vs ${player2.name}")
+    }
+  }
+
+  private def updateCurrentPlayerStatus(player: Player): Unit = {
+    Platform.runLater {
+      updateStatus(s"${player.name}'s turn")
+    }
+  } 
+  
+  
+  
+// GUI ELEMENTS ________________________
+  
+  private def createFieldWithImage(textField: TextField): StackPane = {
+    new StackPane {
+      children = Seq(
+        new ImageView(new Image("file:src/main/resources/assets/backgrounds/TextField.png")) {
+          fitWidth = 350
+          fitHeight = 50
+        },
+        textField
+      )
+      alignment = Pos.Center
+      prefWidth = 350
+      prefHeight = 50
+    }
+  }
+  
   def createGrid(): GridPane = {
     val grid = new GridPane {
       hgap = 6
@@ -638,6 +548,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
 
     for ((x, y, card, colorName) <- colors) {
       val buttonText = card.map(_.toString).getOrElse(s"($x, $y)")
+      //set the text to the top of the buttonz
       val hexColor = colorMap.get(colorName.toString
       ) match {
         case Some(hex) => hex
@@ -663,6 +574,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
     }
     grid
   }
+
   private def handleGridClick(x: Int, y: Int): Unit = {
     selectedCardIndex match {
       case Some(cardIndex) =>
@@ -773,6 +685,104 @@ class Gui(gameController: GameControllerInterface) extends Observer {
   private def CardDrawns(playerName: String, card: String): Unit = {
     updateStatus(s"$playerName drew: $card")
   }
+
+
+  // Put kitties in Grid cell
+  def addCatGifInCell(x: Int, y: Int): Unit = {
+    Platform.runLater {
+      val currentPlayer = gameController.getCurrentPlayerString
+      val isPlayer1 = currentPlayer == gameController.getPlayer1
+
+      val gifPath = if (isPlayer1) {
+        getClass.getResource("/assets/backgrounds/ZayneGrid1.gif")
+      } else {
+        getClass.getResource("/assets/backgrounds/XavierChillingGif.gif")
+      }
+
+      if (gifPath != null) {
+        val imageView = new ImageView(new Image(gifPath.toExternalForm)) {
+          fitWidth = 80
+          fitHeight = 80
+          preserveRatio = true
+          mouseTransparent = true
+        }
+
+        val gifContainer = new StackPane {
+          children = imageView
+          prefWidth = 91
+          prefHeight = 89
+          alignment = Pos.Center
+          mouseTransparent = true
+        }
+
+        gifContainer.setLayoutX(x * 92 + 78) //  add more to the 75 tp move
+        gifContainer.setLayoutY(y * 89 + 140) //
+
+        gifOverlayPane.getChildren.add(gifContainer)
+      }
+    }
+  }
+  
+  
+// PROCESS INPUT ________________________  AND FUNCTIONALITY __________
+  
+  private def closeNameDialog(): Unit = {
+    Platform.runLater {
+      nameDialogStage.foreach { dialog =>
+        dialog.close()
+      }
+      nameDialogStage = None
+    }
+  }
+
+  private def closeLoadDialog(): Unit = {
+    Platform.runLater {
+      loadGameDialog.foreach { dialog =>
+        dialog.close()
+      }
+      loadGameDialog = None
+    }
+  }
+
+  private def closeMultiDialog(): Unit = {
+    Platform.runLater {
+      multiGameDialog.foreach { dialog =>
+        dialog.close()
+      }
+      multiGameDialog = None
+    }
+  }
+
+  private def playBackgroundMusic(): Unit = {
+    val musicFile = getClass.getResource("/assets/music/backgroundmusic.mp3")
+    Platform.runLater {
+      try {
+        val media = new Media(musicFile.toURI.toString)
+        val mediaPlayer = new MediaPlayer(media)
+        mediaPlayer.setCycleCount(MediaPlayer.Indefinite)
+        mediaPlayer.play()
+      } catch {
+        case e: Exception => println(s"Fehler beim Abspielen der Musik: ${e.getMessage}")
+      }
+    }
+
+
+  }
+
+  def processInput(input: String): Unit = {
+    input.trim.toLowerCase match {
+      case "undo" => gameController.handleCommand("undo")
+      case "redo" => gameController.handleCommand("redo")
+      case "draw" => gameController.handleCommand("draw")
+      case input if input.matches("\\d+\\s+\\d+\\s+\\d+") =>
+        val parts = input.split(" ")
+        gameController.handleCardPlacement(parts(0).toInt, parts(1).toInt, parts(2).toInt)
+      case _ =>
+        println("Invalid input!")
+    }
+  }
+  
+  // GAME OVER -------------------------------------------
 
   private def showGameOverWindow(player1Name: String, player1Points: Int, player2Name: String, player2Points: Int): Unit = {
     Platform.runLater {
