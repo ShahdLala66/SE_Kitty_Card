@@ -1,7 +1,7 @@
 package aview
 
 import controller.GameControllerInterface
-import model.PlayerInterface
+import model.{CardInterface, PlayerInterface}
 import model.baseImp.{Player, Suit}
 import org.mockito.Mockito.*
 import org.scalatest.matchers.should.Matchers.*
@@ -18,6 +18,15 @@ class TuiSpec extends AnyWordSpec with MockitoSugar {
         val inputProviderMock = mock[InputProvider]
         val tui = new Tui(gameControllerMock)
         tui.inputProvider = inputProviderMock
+
+        "handle GameSaved event correctly" in {
+            val outStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outStream) {
+                tui.update(GameSaved)
+            }
+            val expectedOutput = "Game saved successfully"
+            outStream.toString should include(expectedOutput)
+        }
 
         "process PlayerTurn event correctly" in {
             when(inputProviderMock.getInput).thenReturn("some input")

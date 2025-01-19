@@ -1,4 +1,5 @@
 import sbt.Keys.libraryDependencies
+import scoverage.ScoverageKeys.coverageExcludedFiles
 
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
@@ -10,8 +11,8 @@ lazy val root = (project in file("."))
         coverageOutputCobertura := true,
         coverageEnabled := true,
         coverageOutputXML := true,
-        Test / fork := true,
-        Test / javaOptions += "-Djava.awt.headless=true"
+        coverageExcludedFiles := "src/main/scala/aview/gui/Gui.scala"
+
     )
 
 libraryDependencies ++= Seq(
