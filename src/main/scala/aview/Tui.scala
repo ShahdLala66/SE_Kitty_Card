@@ -49,8 +49,8 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         println(Console.BLUE + s"\nIt's ${gameController.getCurrentplayer.getPlayerName}'s turn!\n" + Console.RESET)
         printGridColors()
 
-      case CardPlacementSuccess(x, y, card, points) =>
-        println(Console.YELLOW + s"\nCard placed at ($x, $y): $card. You have earned $points points!" + Console.RESET)
+      case CardPlacementSuccess(x, y, card, points, player) =>
+        println(Console.YELLOW + s"\nCard placed at ($x, $y): $card. You ($player) have earned $points points!" + Console.RESET)
 
       case GameOver(player1Name, player1Points, player2Name, player2Points) =>
         println(Console.RED + "\n\nGame over!")

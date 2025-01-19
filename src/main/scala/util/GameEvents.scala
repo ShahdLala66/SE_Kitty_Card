@@ -31,7 +31,7 @@ case class CardDrawn(playerName: String, card: String) extends GameEvent
 
 case class PlayerTurn(playerName: String) extends GameEvent
 
-case class CardPlacementSuccess(x: Int, y: Int, card: String, points: Int) extends GameEvent
+case class CardPlacementSuccess(x: Int, y: Int, card: String, points: Int, player : String) extends GameEvent
 
 case class RemoveCardFromHand(playerName: String, card: String) extends GameEvent
 

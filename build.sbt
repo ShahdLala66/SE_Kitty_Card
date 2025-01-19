@@ -1,4 +1,5 @@
 import sbt.Keys.libraryDependencies
+import scoverage.ScoverageKeys.coverageExcludedFiles
 
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
@@ -9,7 +10,8 @@ lazy val root = (project in file("."))
     name := "SE_Kitty_Card_1",
     coverageOutputCobertura := true,
     coverageEnabled := true,
-    coverageOutputXML := true
+    coverageOutputXML := true,
+    coverageExcludedFiles := ".*gui/.*"
 
   )
 

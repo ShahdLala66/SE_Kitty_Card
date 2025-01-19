@@ -165,7 +165,7 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
                                 val command = new PlaceCardCommand(grid, card, currentPlayer, pointsEarned, (x, y))
                                 currentState = commandManager.executeCommand(command, currentState)
                                 currentPlayer.addPoints(pointsEarned)
-                                notifyObservers(CardPlacementSuccess(x, y, card.toString, pointsEarned))
+                                notifyObservers(CardPlacementSuccess(x, y, card.toString, pointsEarned, currentPlayer.name))
 
                                 currentPlayer.removeCard(card)
                                 true
@@ -243,6 +243,12 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
             }
         }.toList
     }
+    
+    def getPlayer1: String = player1.name
+    
+    def getPlayer2: String = player2.name
+
+    def getCurrentPlayerString: String = currentPlayer.name
 
     def isGameOver: Boolean = {
         deck.size <= 0 || grid.isFull
