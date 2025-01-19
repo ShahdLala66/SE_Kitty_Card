@@ -98,9 +98,11 @@ class Gui(gameController: GameControllerInterface) extends Observer {
 
 
   // Add this as a class variable
-  private var gifOverlayPane: GridPane = _
 
   // Then modify addCatGifInCell:
+  // Change the type of gifOverlayPane to Pane
+  private var gifOverlayPane: Pane = _
+
   def addCatGifInCell(x: Int, y: Int): Unit = {
     Platform.runLater {
       val currentPlayer = gameController.getCurrentPlayerString
@@ -128,10 +130,14 @@ class Gui(gameController: GameControllerInterface) extends Observer {
           mouseTransparent = true
         }
 
-        gifOverlayPane.add(gifContainer, x, y)
+        gifContainer.setLayoutX(x * 92 + 78) //  add more to the 75 tp move
+        gifContainer.setLayoutY(y * 89 + 140)//
+
+        gifOverlayPane.getChildren.add(gifContainer)
       }
     }
   }
+
   private def showStartOrLoadGameWindow(onComplete: String => Unit): Unit = {
     Platform.runLater {
       val dialog = new Stage {
@@ -491,11 +497,13 @@ class Gui(gameController: GameControllerInterface) extends Observer {
         padding = Insets(27, 0, 0, 0)
       }
 
-      gifOverlayPane = new GridPane {
-        hgap = 6
-        vgap = 6
-        padding = Insets(60, 0, 10, 0)
-        alignment = Pos.Center
+   gifOverlayPane = new Pane {
+//        hgap = 6
+//        vgap = 6
+//        padding = Insets(60, 0, 10, 0)
+//        //they should not interact with each other or cause each other to move
+//
+//        alignment = Pos.Center
         mouseTransparent = true
       }
 
