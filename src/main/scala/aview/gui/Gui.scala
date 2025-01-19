@@ -14,7 +14,6 @@ import scalafx.scene.media.{Media, MediaPlayer}
 import scalafx.scene.text.{Font, Text}
 import scalafx.stage.{Modality, Stage}
 import util.*
-
 //Hi Zayne.
 class Gui(gameController: GameControllerInterface) extends Observer {
   gameController.add(this)
@@ -27,8 +26,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
   private var controlPane: HBox = _
   private var selectedCardIndex: Option[Int] = None
   private var nameDialogStage: Option[Stage] = None
-  private var loadGameDialog: Option[Stage] = None
-  private var multiGameDialog: Option[Stage] = None
+  private var loadGameDialog : Option[Stage] = None
+  private var multiGameDialog : Option[Stage] = None
 
 
   override def update(event: GameEvent): Unit = {
@@ -57,18 +56,17 @@ class Gui(gameController: GameControllerInterface) extends Observer {
       case InvalidPlacement =>
         invalidPlacements()
       case CardPlacementSuccess(x, y, card, points, player) =>
+        addGifOverlayToCell(x, y)
         CardPlacementSuccesss(x, y, card, points)
-        addCatGifInCell(x, y)
       case GameOver(player1Name, player1Points, player2Name, player2Points) =>
         showGameOverWindow(player1Name, player1Points, player2Name, player2Points)
       case UpdateGrid(grid) =>
         showGrid()
-        updateDisplay()
-      case UndoEvent(_) =>
-        showGrid()
+      case UndoEvent(_) => showGrid()
         updateDisplay()
       case RedoEvent(_) => showGrid()
         updateDisplay()
+        //moin
       case UpdatePlayer(player1) =>
         updateStatus(s"$player1's turn.")
       case ShowCardsForPlayer(cards) =>
@@ -94,105 +92,34 @@ class Gui(gameController: GameControllerInterface) extends Observer {
     }
   }
 
-  import scalafx.Includes.jfxNode2sfx
-  import scalafx.scene.control.Button
-  import scalafx.scene.layout.StackPane
-
-  import scalafx.Includes._ // Add this import at the top with other imports
-
-  def addCatGifInCell(x: Int, y: Int): Unit = {
-    Platform.runLater {
-      println("Adding cat gif to cell")
-      val currentPlayer = gameController.getCurrentPlayerString
-      val isPlayer1 = currentPlayer == gameController.getPlayer1
-      println(s"Current player: $currentPlayer, isPlayer1: $isPlayer1")
-
-      val gifPath = if (isPlayer1) {
-        getClass.getResource(s"/assets/backgrounds/ZayneChillingGif.gif")
-      } else {
-        getClass.getResource("/assets/backgrounds/XavierChillingGif.gif")
-      }
-
-      if (gifPath != null) {
-        println("GIF path found")
-        val imageView = new ImageView(new Image(gifPath.toExternalForm)) {
-          fitWidth = 40 // Increased size a bit
-          fitHeight = 40
-          preserveRatio = true
-          mouseTransparent = true
-          style = "-fx-opacity: 1.0;" // Ensure full opacity
-          //set gif on top layer
-          toFront()
-        }
-
-        val gifContainer = new StackPane {
-          children = List(imageView)
-          mouseTransparent = true
-          managed = true // Changed to true
-          style = "-fx-opacity: 1.0;" // Ensure full opacity
-          // Ensure the container is visible
-          visible = true
-          // Add some padding to position the GIF
-          padding = Insets(5)
-          toFront()
-        }
-
-        println(s"Looking for button at coordinates ($x, $y)")
-        println(s"Number of children in gridPane: ${gridPane.children.size}")
-
-        var nodeToReplace: Option[javafx.scene.Node] = None
-        var colToReplace = 0
-        var rowToReplace = 0
-
-        gridPane.children.foreach { node =>
-          val col = Option(GridPane.getColumnIndex(node)).map(_.intValue).getOrElse(0)
-          val row = Option(GridPane.getRowIndex(node)).map(_.intValue).getOrElse(0)
-
-          if (node.isInstanceOf[javafx.scene.control.Button] && col == x && row == y) {
-            println("Found matching button!")
-            nodeToReplace = Some(node)
-            colToReplace = col
-            rowToReplace = row
-          }
-        }
-
-        nodeToReplace.foreach { node =>
-          val javafxButton = node.asInstanceOf[javafx.scene.control.Button]
-          val sfxButton = new Button {
-            text = javafxButton.getText
-            style = javafxButton.getStyle // Preserve the original button style
-            prefWidth = 91
-            prefHeight = 89
-            // Make button slightly transparent to ensure GIF is visible
-            opacity = 0.9
-          }
-
-          val stackPane = new StackPane {
-            children = List(sfxButton, gifContainer)
-            alignment = Pos.Center
-            // Ensure the stack pane itself is visible
-            visible = true
-            managed = true
-            style = "-fx-opacity: 1.0;"
-
-            // Add mouse click handler to the original button functionality
-            onMouseClicked = javafxButton.getOnMouseClicked
-          }
-
-          println("Removing old node and adding stack pane")
-          gridPane.children.remove(node)
-          gridPane.add(stackPane, colToReplace, rowToReplace)
-          println(s"Added cat gif to cell ($colToReplace, $rowToReplace)")
-
-          // Force a layout pass
-          stackPane.layout()
-        }
-      } else {
-        println("GIF path was null")
-      }
+  private def addGifOverlayToCell(x: Int, y: Int): Unit = {
+    val gifPath = getClass.getResource("/assets/backgrounds/XavierChillingGif.gif")
+    if (gifPath == null) {
+      throw new IllegalStateException("GIF file not found in resources")
     }
-    updateDisplay()
+
+    // Create the ImageView for the GIF
+    val gifView = new ImageView(new Image(gifPath.toExternalForm)) {
+      fitWidth = 50 // Adjust the size as needed
+      fitHeight = 50
+      preserveRatio = true
+      mouseTransparent = true // Ensure the GIF does not block interactions
+    }
+
+    // Add the GIF overlay at the specified cell position
+    val gifOverlay = new StackPane {
+      children = gifView
+      alignment = Pos.TopLeft // Align to the top-left corner of the grid cell
+      translateX = x * 97 // Assuming each cell is ~97px wide; adjust based on your grid setup
+      translateY = y * 97 // Assuming each cell is ~97px tall; adjust based on your grid setup
+      managed = false // Exclude from layout calculations
+    }
+
+    Platform.runLater {
+      gridPane.children.add(gifOverlay) // Add the overlay to the gridPane or parent container
+    }
   }
+
 
   private def showStartOrLoadGameWindow(onComplete: String => Unit): Unit = {
     Platform.runLater {
@@ -809,8 +736,6 @@ class Gui(gameController: GameControllerInterface) extends Observer {
 
   private def CardPlacementSuccesss(x: Int, y: Int, card: String, points: Int): Unit = {
     updateStatus(s"Card placed at ($x, $y): $card. Points earned: $points.")
-   // addCatGifInCell(x, y)
-
   }
 
   private def PlayerTurs(playerName: String): Unit = {
