@@ -21,7 +21,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
                 println(s"\n${currentPlayer.name}'s turn!")
                 println("\nYour cards:")
                 hand.foreach(println)
-
+//hi
             case UpdatePlayers(player1, player2) =>
                 inputProvider.interrupt()
                 inputProvider.interrupt()
