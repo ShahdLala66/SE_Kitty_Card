@@ -83,7 +83,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
 
   def start(): Unit = {
     GuiInitializer.ensureInitialized()
-    playBackgroundMusic()
+   // playBackgroundMusic()
 
     showAskForGameModeWindow { gameMode =>
       gameController.setGameMode(gameMode)
@@ -224,8 +224,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
           System.exit(0)
           Platform.exit()
       }
-      loadGameDialog = Some(dialog)
 
+      multiGameDialog = Some(dialog)
       dialog.showAndWait()
     }
   }

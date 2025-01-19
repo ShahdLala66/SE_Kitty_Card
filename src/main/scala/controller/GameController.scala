@@ -57,7 +57,6 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
         distributeInitialCards()
         notifyObservers(UpdateGrid(grid))
         notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
-        notifyObservers(MakeNewGame)
         startGameLoop()
     }
 
