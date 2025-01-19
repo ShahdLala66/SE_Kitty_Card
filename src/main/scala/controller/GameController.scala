@@ -39,7 +39,6 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
             case "s" => gameMode = new SinglePlayerMode()
                 notifyObservers(AskForLoadGame)
 
-            //  gameMode.startGame(this)
             case "m" => gameMode = new MultiPlayerMode()
                 notifyObservers(AskForLoadGame)
 
@@ -76,11 +75,9 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
                 fileIO.save(this, grid)
                 notifyObservers(GameSaved)
             case "load" =>
-                try {
-                    fileIO.load(this)
-                } catch {
-                    case e: Exception =>
-                        print(s"Error loading game: ${e.getMessage}")
+                Try(fileIO.load(this)) match {
+                    case Success(_) =>
+                    case Failure(e) => println(s"Error loading game: ${e.getMessage}")
                 }
             case "start" =>
                 grid = GridFactory.createGrid(3)
@@ -93,13 +90,14 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
     }
 
     def loadGameState(state: GameState): Unit = {
-        try {
+        Try {
             println("Starting load process...")
             currentState = state
             gameMode.loadGame(this, state)
             println("Game loaded successfully")
-        } catch {
-            case e: Exception =>
+        } match {
+            case Success(_) =>
+            case Failure(e) =>
                 println(s"Error in loadGameState: ${e.getMessage}")
                 e.printStackTrace()
                 throw e
@@ -192,9 +190,11 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
 
     def startGameLoop(): Unit = {
         while (playerIsAtTurn) {
-            if (getCurrentplayer != null) {
-                playerIsAtTurn = false
-                notifyObservers(PlayerTurn(getCurrentplayer.name))
+            Option(getCurrentplayer) match {
+                case Some(player) =>
+                    playerIsAtTurn = false
+                    notifyObservers(PlayerTurn(getCurrentplayer.name))
+                case None =>
             }
         }
     }
