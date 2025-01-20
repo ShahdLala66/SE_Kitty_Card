@@ -707,7 +707,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
   // Modify your addCatGifInCell method
   private def addCatGifInCell(x: Int, y: Int): Unit = {
     Platform.runLater {
-
+      val currentPlayer = gameController.getCurrentPlayerString
       val player1 = gameController.getPlayer1
 
       val gifPath = if (player1 != currentPlayer) {
