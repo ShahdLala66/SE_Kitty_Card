@@ -47,7 +47,7 @@ There are $${\color{#9370db}4\space colors\space of\space cards}$$ and $${\color
   
 ##### **About the winner:**
 - The one with most Points will win.
-- If you get the ACE, you are lucky! you will be able to freeze your enemy! Although it might only give you one point, but a win is a win! 
+- If you get the $${\color{#9370db}ACE}$$, you are lucky! you will be able to freeze your enemy! Although it might only give you one point, but a win is a win! 
 
 
 - Other modes to be added in the future (ahem Semester 5)
