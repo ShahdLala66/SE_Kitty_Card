@@ -563,19 +563,19 @@ class Gui(gameController: GameControllerInterface) extends Observer {
 
 
             val button = new Button(buttonText) {
-                style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5; -fx-font-size: 10px; -fx-padding: 30 0 0 0;"
+                style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5; -fx-font-size: 10px; -fx-padding: 50 0 0 0;"
                 prefWidth = 91
                 prefHeight = 89
                 onAction = * => handleGridClick(x, y)
                 onMouseEntered = * => {
                     if (selectedCardIndex.isDefined) {
-                        style = s"-fx-background-color: $hexColor; -fx-opacity: 0.8;"
+                        style = s"-fx-background-color: $hexColor; -fx-opacity: 0.8; -fx-font-size: 13px; -fx-padding: 40 0 0 0;"
                     }
                 }
                 onMouseExited = _ => {
-                    style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
+                    style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5; -fx-font-size: 10px; -fx-padding: 50 0 0 0;"
                 }
-                style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5; -fx-font-size: 10px; -fx-padding: 30 0 0 0;"
+                style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5; -fx-font-size: 10px; -fx-padding: 50 0 0 0;"
 
             }
             grid.add(button, x, y)
