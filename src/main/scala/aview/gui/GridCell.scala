@@ -20,5 +20,4 @@ class GridCell(x: Int, y: Int, onClick: (Int, Int) => Unit) extends Button {
         }
     }
 
-
 }
