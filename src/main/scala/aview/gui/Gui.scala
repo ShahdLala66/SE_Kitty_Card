@@ -707,10 +707,10 @@ class Gui(gameController: GameControllerInterface) extends Observer {
   // Modify your addCatGifInCell method
   private def addCatGifInCell(x: Int, y: Int): Unit = {
     Platform.runLater {
-      val currentPlayer = gameController.getCurrentPlayerString
-      val isPlayer1 = currentPlayer == gameController.getPlayer1
 
-      val gifPath = if (isPlayer1) {
+      val player1 = gameController.getPlayer1
+
+      val gifPath = if (player1 != currentPlayer) {
         getClass.getResource("/assets/backgrounds/ZayneGrid1.gif")
       } else {
         getClass.getResource("/assets/backgrounds/XavierChillingGif.gif")
