@@ -27,7 +27,6 @@ class SinglePlayerMode(desktop: Desktop = Desktop.getDesktop) extends GameMode {
     }
 
     def loadGame(controller: GameController, savedState: GameState): Unit = {
-        println("Single player mode triggered. Joke on you no such thing as Single Game hahaha")
     }
 }
 

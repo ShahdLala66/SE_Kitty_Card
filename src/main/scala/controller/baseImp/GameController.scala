@@ -13,7 +13,7 @@ import util.grid.GridFactory
 import scala.compiletime.uninitialized
 import scala.util.{Failure, Success, Try}
 
-class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) extends Observable with GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) {
+class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) extends GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) {
   var gameMode: GameMode = uninitialized
   var grid: Grid = uninitialized
   var observers: List[Observer] = List()
@@ -25,8 +25,8 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
   var player1String: String = ""
   var player2String: String = ""
   var counter = 0
-
-
+  
+  
   def startGame(): Unit = {
     notifyObservers(AskForGameMode)
   }
@@ -168,15 +168,12 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
                 notifyObservers(CardPlacementSuccess(x, y, card.toString, pointsEarned))
                 currentPlayer.removeCard(card)
                 if (card.value.equals(Value.One)) {
-                  println("You placed a 1 ACE ACE ACE")
                   notifyObservers(FreezeEnemy)
                   notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
                   false
                 }
 
                 else if (card.value.equals(Value.Seven)) {
-                  println("You placed a 2 ACE ACE ACE")
-                  // notifyObservers(DestroyEnemyCardOnGrid)
                   if (player2.getHand.nonEmpty) {
                     //second player remove card too
                     if (currentPlayer == player1) {

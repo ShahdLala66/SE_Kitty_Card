@@ -5,11 +5,12 @@ import model.fileIOComp.FileIOInterface
 import model.gameModelComp.baseImp.Suit.Suit
 import model.gameModelComp.baseImp.{Deck, Hand, Player}
 import model.gameModelComp.{CardInterface, PlayerInterface}
-import util.Observer
+import util.{Observable, Observer}
 import util.command.GameState
+
 import scala.compiletime.uninitialized
 
-trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) {
+trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) extends Observable {
 
     var currentState: GameState = uninitialized
 
@@ -17,7 +18,7 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
 
     def startMultiPlayerGame(): Unit
 
-    def add(observer: Observer): Unit
+    //def add(observer: Observer): Unit
 
     def startGame(): Unit
 
