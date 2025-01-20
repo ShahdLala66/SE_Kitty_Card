@@ -1,6 +1,6 @@
 # $${\color{#9370db}KITTY \space CARDS \space GAME}$$  ≽^•⩊•^≼
 ![Top language](https://img.shields.io/github/languages/top/ShahdLala66/SE_Kitty_Card)
-[![Coverage Status](https://coveralls.io/repos/github/ShahdLala66/SE_Kitty_Card/badge.svg?branch=main)](https://coveralls.io/github/ShahdLala66/SE_Kitty_Card?branch=main)[![codecov](https://codecov.io/gh/Shahdlala66/SE_Kitty_Card/branch/main/graph/badge.svg)](https://codecov.io/gh/YOUR_ACCOUNT/YOUR_REPO)
+[![Coverage Status](https://coveralls.io/repos/github/ShahdLala66/SE_Kitty_Card/badge.svg?branch=master)](https://coveralls.io/github/ShahdLala66/SE_Kitty_Card?branch=master) [![codecov](https://codecov.io/gh/Shahdlala66/SE_Kitty_Card/branch/master/graph/badge.svg)](https://codecov.io/gh/YOUR_ACCOUNT/YOUR_REPO)
 ![Custom badge](https://img.shields.io/badge/With_Zayne-420-purple)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8067b3954490468f9db6ae49c9254232)](https://app.codacy.com/gh/ShahdLala66/SE_Kitty_Card/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Build Status](https://app.travis-ci.com/ShahdLala66/SE_Kitty_Card.svg?token=HH1pij9kc7Ve4oqguSMe&branch=developer)](https://app.travis-ci.com/ShahdLala66/SE_Kitty_Card)
@@ -42,9 +42,12 @@ There are $${\color{#9370db}4\space colors\space of\space cards}$$ and $${\color
 - **White Cup** gives $${\color{#9370db}standard\space points}$$.  
 - **Unmatched Cup** (kitty color doesn’t match the cup color) gives $${\color{#9370db}no\space points}$$.
 
+##### **About the card placement:**
+- Careful where you place your card! if you place it in the wrong cell the cat will destroy it! Your turn will be cancled.
+  
 ##### **About the winner:**
 - The one with most Points will win.
-
+- If you get the $${\color{#9370db}ACE}$$, you are lucky! you will be able to freeze your enemy! Although it might only give you one point, but a win is a win! 
 
 
 - Other modes to be added in the future (ahem Semester 5)
