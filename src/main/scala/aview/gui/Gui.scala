@@ -80,6 +80,10 @@ class Gui(gameController: GameControllerInterface) extends Observer {
                 }
             case AskForGameMode =>
                 start()
+            case FreezeEnemy =>
+                updateStatus("Enemy's turn is frozen.")
+                updateDisplay()
+            case InitializeGUIForLoad =>
             case _ => println("Invalid event.")
         }
     }
