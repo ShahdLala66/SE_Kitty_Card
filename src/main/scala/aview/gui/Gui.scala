@@ -84,7 +84,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
 
   def start(): Unit = {
     GuiInitializer.ensureInitialized()
-    // playBackgroundMusic()
+     playBackgroundMusic()
 
     showAskForGameModeWindow { gameMode =>
       gameController.setGameMode(gameMode)
