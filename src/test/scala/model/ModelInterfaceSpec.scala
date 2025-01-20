@@ -1,9 +1,7 @@
 package model
 
-import model.baseImp.Player
-import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
-import org.scalatestplus.mockito.MockitoSugar.mock
+import org.scalatest.wordspec.AnyWordSpec
 
 class ModelInterfaceSpec extends AnyWordSpec with Matchers {
 

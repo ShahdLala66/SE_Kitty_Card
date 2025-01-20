@@ -10,7 +10,7 @@ class JsonModule extends AbstractModule {
         bind(classOf[HandInterface]).to(classOf[Hand])
         bind(classOf[GameControllerInterface]).to(classOf[GameController])
     }
-//hi
+
     @Provides
     def provideFileIO(): FileIOInterface = {
         new FileIOJSON()

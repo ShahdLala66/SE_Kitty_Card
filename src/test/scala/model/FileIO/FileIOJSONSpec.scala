@@ -1,15 +1,12 @@
 package model.FileIO
 
-import controller.{GameController, GameControllerInterface}
+import controller.GameController
 import model.baseImp.*
-import org.mockito.Mockito.{mock, mockStatic}
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 import play.api.libs.json.Json
 import util.command.GameState
 import util.grid.GridUtils
-
-import scala.io.Source
 
 class FileIOJSONSpec extends AnyWordSpec {
 

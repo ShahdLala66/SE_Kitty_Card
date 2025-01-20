@@ -7,10 +7,11 @@ import model.baseImp.{Deck, Hand, Player}
 import model.{CardInterface, PlayerInterface}
 import util.Observer
 import util.command.GameState
+import scala.compiletime.uninitialized
 
 trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) {
 
-    var currentState: GameState = _
+    var currentState: GameState = uninitialized
 
     def setGameMode(mode: String): Unit
 
@@ -35,11 +36,11 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
     def isGameOver: Boolean
 
     def getCurrentplayer: PlayerInterface
-    
-    def getCurrentPlayerString : String 
+
+    def getCurrentPlayerString: String
 
     def getGridColor(x: Int, y: Int): String
-    
+
     def getCurrentState: GameState //savw
 
     def loadGameState(gameState: GameState): Unit //load

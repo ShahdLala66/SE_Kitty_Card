@@ -10,7 +10,7 @@ class DeckSpec extends AnyWordSpec with Matchers {
         "should draw a card and reduce deck size" in {
             val deck = new Deck()
             val initialDeckSize = deck.size
-            deck.drawCard().isDefined // A card is successfully drawn
+            deck.drawCard().isDefined
             deck.size shouldBe initialDeckSize - 1
         }
         "Deck should allow repetitive cards" in {

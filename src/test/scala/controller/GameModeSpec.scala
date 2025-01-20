@@ -1,6 +1,6 @@
 package controller
 
-import model.baseImp.{Grid, Player}
+import model.baseImp.*
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.*
 import org.scalatest.matchers.should.Matchers
@@ -9,18 +9,37 @@ import org.scalatestplus.mockito.MockitoSugar
 import util.command.GameState
 import util.{InitializeGUIForLoad, UpdateLoadedGame}
 
+import java.awt.Desktop
+import java.io.IOException
+import java.net.URI
+
 class GameModeSpec extends AnyWordSpec with Matchers with MockitoSugar {
 
     "SinglePlayerMode" should {
-        
-        "load a game" in {
+        "start the game and open the URL" in {
             val controller = mock[GameController]
-            val savedState = mock[GameState]
-            val mode = new SinglePlayerMode
+            val desktop = mock[Desktop]
+            val singlePlayerMode = new SinglePlayerMode(desktop)
 
-            mode.loadGame(controller, savedState)
+            singlePlayerMode.startGame(controller)
 
-            // Verify the expected behavior
+            verify(desktop).browse(new URI("https://youtu.be/dQw4w9WgXcQ"))
+            verify(controller).grid = any[Grid]
+            verify(controller).startMultiPlayerGame()
+        }
+
+        "handle URL opening failure gracefully" in {
+            val controller = mock[GameController]
+            val desktop = mock[Desktop]
+            val singlePlayerMode = new SinglePlayerMode(desktop)
+            when(desktop.browse(any[URI])).thenThrow(new IOException("Test Exception"))
+            val outputStream = new java.io.ByteArrayOutputStream()
+            Console.withOut(outputStream) {
+                singlePlayerMode.startGame(controller)
+            }
+
+            val output = outputStream.toString
+            output should include("Failed to open URL: Test Exception")
             verify(controller, never()).grid = any[Grid]
             verify(controller, never()).startMultiPlayerGame()
         }
@@ -48,7 +67,7 @@ class GameModeSpec extends AnyWordSpec with Matchers with MockitoSugar {
             when(savedState.getGrid).thenReturn(grid)
             when(savedState.getPlayers).thenReturn(List(player1, player2))
             when(savedState.getCurrentPlayer).thenReturn(currentPlayer)
-            when(controller.currentPlayer).thenReturn(currentPlayer) // Ensure currentPlayer is mocked
+            when(controller.currentPlayer).thenReturn(currentPlayer)
 
             val mode = new MultiPlayerMode
 
@@ -59,7 +78,7 @@ class GameModeSpec extends AnyWordSpec with Matchers with MockitoSugar {
             verify(controller).player1 = player1
             verify(controller).player2 = player2
             verify(controller).currentPlayer = currentPlayer
-            verify(controller, times(2)).notifyObservers(any[UpdateLoadedGame]) // Expect notifyObservers to be called twice
+            verify(controller, times(2)).notifyObservers(any[UpdateLoadedGame])
             verify(controller).startGameLoop()
         }
     }

@@ -7,6 +7,7 @@ import org.scalatest.wordspec.AnyWordSpec
 import util.command.GameState
 import util.grid.GridUtils
 
+import scala.compiletime.uninitialized
 import scala.xml.*
 
 
@@ -36,7 +37,7 @@ class FileIOXMLSpec extends AnyWordSpec {
             val deck = new Deck()
             val hand = new Hand()
             val gameController: GameController = new GameController(deck, hand, fileIO) {
-                var loadedState: GameState = _
+                var loadedState: GameState = uninitialized
 
                 override def getCurrentState: GameState = ???
 

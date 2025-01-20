@@ -3,6 +3,7 @@ package util.command
 
 import scala.collection.mutable
 import scala.collection.mutable.Stack
+import scala.compiletime.uninitialized
 
 class CommandManager {
     private val undoStack: mutable.Stack[CommandTrait] = mutable.Stack()
@@ -39,7 +40,7 @@ class CommandManager {
 }
 
 trait CommandTrait {
-    var previousState: GameState = _
+    var previousState: GameState = uninitialized
     def execute(): Unit
     def undo(): Unit
     def redo(): Unit

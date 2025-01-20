@@ -8,9 +8,6 @@ import util.grid.GridUtils
 import play.api.libs.json.*
 import scala.util.{Try, Success, Failure}
 
-
-import scala.util.{Failure, Success}
-
 class FileIOJSON extends FileIOInterface {
 
     override def save(game: GameControllerInterface, grid: Grid): String = {
