@@ -34,6 +34,11 @@ When all 9 cups^ are filled with kitties, the player with $${\color{#9370db}more
 
 ##### **About Cards:**
 There are $${\color{#9370db}4\space colors\space of\space cards}$$ and $${\color{#9370db}5\space colors\space of\space cups}$$, including the $${\color{#9370db}white\space cup}$$.
+- There are the ACE and Bomb cards.
+  - The ace card freezses the enemy! More rounds for you!
+  - If you get the bomb card, consider yourslef lucky since its the best!
+  Most points and it destry the enemy's card AND let you play again. If you dont win that round it's on you.
+  
 
 ##### **About Points:**
 - You can put your cards in any unoccupied cups.  
