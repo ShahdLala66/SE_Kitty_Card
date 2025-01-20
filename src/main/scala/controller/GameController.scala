@@ -22,7 +22,7 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
   var fileIO: FileIOInterface = new FileIOXML()
   var player1String: String = ""
   var player2String: String = ""
-  private var counter = 0
+  var counter = 0
 
    
   def startGame(): Unit = {
