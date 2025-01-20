@@ -1,7 +1,9 @@
 package model
 
+import model.baseImp.Player
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.mockito.MockitoSugar.mock
 
 class ModelInterfaceSpec extends AnyWordSpec with Matchers {
 
@@ -54,4 +56,56 @@ class ModelInterfaceSpec extends AnyWordSpec with Matchers {
             hand.toString should be ("Red Card")
         }
     }
+
+    "A PlayerInterface" should {
+
+        "be created with a name and default points of 0" in {
+            val player: PlayerInterface = new PlayerInterface("Alice") {
+                var hand: List[CardInterface] = List()
+
+                override def addPoints(newPoints: Int): Unit = pointsI += newPoints
+
+                override def setPoints(newPoints: Int): Unit = pointsI = newPoints
+
+                override def drawCard(deck: DeckInterface): Option[CardInterface] = None
+
+                override def updatePoints(newPoints: Int): Unit = pointsI = newPoints
+
+                override def getHand: List[CardInterface] = hand
+
+                override def updateHand(newHand: List[CardInterface]): Unit = hand = newHand
+
+                override def removeCard(card: CardInterface): Unit = hand = hand.filterNot(_ == card)
+
+                override def setHand(newHand: List[CardInterface]): Unit = hand = newHand
+            }
+            player.getPoints shouldBe 0
+        }
+
+        "allow points to be added with addPoints" in {
+            val player: PlayerInterface = new PlayerInterface("Bob") {
+                var hand: List[CardInterface] = List()
+
+                override def addPoints(newPoints: Int): Unit = pointsI += newPoints
+
+                override def setPoints(newPoints: Int): Unit = pointsI = newPoints
+
+                override def drawCard(deck: DeckInterface): Option[CardInterface] = None
+
+                override def updatePoints(newPoints: Int): Unit = pointsI = newPoints
+
+                override def getHand: List[CardInterface] = hand
+
+                override def updateHand(newHand: List[CardInterface]): Unit = hand = newHand
+
+                override def removeCard(card: CardInterface): Unit = hand = hand.filterNot(_ == card)
+
+                override def setHand(newHand: List[CardInterface]): Unit = hand = newHand
+            }
+            player.addPoints(10)
+            player.getPoints shouldBe 10
+        }
+
+    }
+
 }

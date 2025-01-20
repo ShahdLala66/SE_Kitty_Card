@@ -74,5 +74,13 @@ class GameStateSpec extends AnyWordSpec with Matchers with MockitoSugar {
             updatedGameState.getGrid should be (newGrid)
             updatedGameState.getPoints should be (20)
         }
+
+        "return the correct current player index" in {
+            val grid = mock[Grid]
+            val players = List(mock[Player])
+            val gameState = new GameState(grid, players, 1, 0)
+
+            gameState.getCurrentPlayerIndex should be(1)
+        }
     }
 }

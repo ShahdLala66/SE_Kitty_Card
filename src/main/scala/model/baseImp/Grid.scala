@@ -11,7 +11,7 @@ case class Grid(size: Int, rectangleColors: Array[Array[Suit]]) {
 
     def toArray: Array[Array[(Option[NumberCards], Suit)]] = {
         Array.tabulate(size, size) { (x, y) =>
-            (grid(x)(y), rectangleColors(x)(y)) // Return a tuple of the card and the color
+            (grid(x)(y), rectangleColors(x)(y))
         }
     }
 
@@ -52,7 +52,6 @@ case class Grid(size: Int, rectangleColors: Array[Array[Suit]]) {
         history = gridCopy :: history
     }
 
-    //redo undo stuff that need to be moved later
     def setColor(x: Int, y: Int, color: Suit): Unit = {
         rectangleColors(x)(y) = color
     }

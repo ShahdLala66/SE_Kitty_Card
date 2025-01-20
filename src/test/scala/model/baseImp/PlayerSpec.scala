@@ -88,5 +88,15 @@ class PlayerSpec extends AnyWordSpec with Matchers with MockitoSugar {
             player.getHand should contain(card)
         }
 
+        "update the player's hand correctly" in {
+            val player = Player("TestPlayer")
+            val card1 = mock[CardInterface]
+            val card2 = mock[CardInterface]
+            val newHand = List(card1, card2)
+
+            player.setHand(newHand)
+            player.getHand shouldBe newHand
+        }
+
     }
 }

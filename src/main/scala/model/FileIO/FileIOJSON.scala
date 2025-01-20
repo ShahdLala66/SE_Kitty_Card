@@ -5,7 +5,11 @@ import controller.GameControllerInterface
 import model.baseImp.{Grid, NumberCards, Player, Suit, Value}
 import util.command.GameState
 import util.grid.GridUtils
-import play.api.libs.json._
+import play.api.libs.json.*
+import scala.util.{Try, Success, Failure}
+
+
+import scala.util.{Failure, Success}
 
 class FileIOJSON extends FileIOInterface {
 
@@ -62,7 +66,7 @@ class FileIOJSON extends FileIOInterface {
 
     
     override def load(game: GameControllerInterface): String = {
-        try {
+        Try {
             import scala.io.Source
             val jsonString = Source.fromFile("game.json").getLines.mkString
             val json = Json.parse(jsonString)
@@ -73,9 +77,9 @@ class FileIOJSON extends FileIOInterface {
             val players = (json \ "players").as[Seq[JsValue]].map { playerJson =>
                 val name = (playerJson \ "name").as[String]
                 val points = (playerJson \ "points").as[Int]
-                val hand = (playerJson \ "hand").as[Seq[JsValue]].map { cardJson =>
-                    if ((cardJson \ "suit").asOpt[String].isDefined) createCard(cardJson) else null
-                }.filter(_ != null).toList
+                val hand = (playerJson \ "hand").as[Seq[JsValue]].flatMap { cardJson =>
+                    (cardJson \ "suit").asOpt[String].map(_ => createCard(cardJson))
+                }.toList
 
                 val player = Player(name)
                 player.setPoints(points)
@@ -108,15 +112,16 @@ class FileIOJSON extends FileIOInterface {
             val newState = new GameState(grid, players, currentPlayerIndex, points)
             game.loadGameState(newState)
             "Game loaded successfully"
-        } catch {
-            case e: Exception =>
+        } match {
+            case Success(message) => message
+            case Failure(e) =>
                 println(s"Error loading game: ${e.getMessage}")
                 e.printStackTrace()
-                throw e
+                "Error loading game"
         }
     }
-
-    private def createCard(cardJson: JsValue): NumberCards = {
+    
+    def createCard(cardJson: JsValue): NumberCards = {
         val suit = Suit.withName((cardJson \ "suit").as[String])
         val value = Value.withName((cardJson \ "value").as[String])
         NumberCards(suit, value)

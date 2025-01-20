@@ -1,18 +1,21 @@
 import sbt.Keys.libraryDependencies
+import scoverage.ScoverageKeys.coverageExcludedFiles
 
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "3.3.3"
+ThisBuild / scalaVersion := "3.3.3" // 2.13.8
 
 lazy val root = (project in file("."))
   .settings(
     name := "SE_Kitty_Card_1",
     coverageOutputCobertura := true,
     coverageEnabled := true,
-    coverageOutputXML := true
+    coverageOutputXML := true,
+    coverageExcludedFiles := ".*gui/.*"
 
   )
 
+//hi
 
 libraryDependencies ++= Seq(
   "com.google.inject" % "guice" % "7.0.0",

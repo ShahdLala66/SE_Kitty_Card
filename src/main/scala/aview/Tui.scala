@@ -24,11 +24,14 @@ class Tui(gameController: GameControllerInterface) extends Observer {
 
       case UpdatePlayers(player1, player2) =>
         inputProvider.interrupt()
+        inputProvider.interrupt()
         flush()
         println(Console.YELLOW + "The Players are " + player1.name + " and " + player2.name)
         println("Let's start the game!" + Console.RESET)
+        inputProvider.interrupt()
 
       case PlayerTurn(playerName) =>
+        inputProvider.interrupt()
         val input = inputProvider.getInput
         if (input != null) {
           processInput(input)
@@ -43,11 +46,10 @@ class Tui(gameController: GameControllerInterface) extends Observer {
       case InvalidPlacement =>
         flush()
         println(Console.RED + "Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.\n" + Console.RESET)
-        println(Console.BLUE + s"\nIt's ${gameController.getCurrentplayer.getPlayerName}'s turn!\n" + Console.RESET)
-        printGridColors()
+        inputProvider.interrupt()
 
       case CardPlacementSuccess(x, y, card, points) =>
-        println(Console.YELLOW + s"\nCard placed at ($x, $y): $card. You have earned $points points!" + Console.RESET)
+        println(Console.YELLOW + s"\nCard placed at ($x, $y): $card. You () have earned $points points!" + Console.RESET)
 
       case GameOver(player1Name, player1Points, player2Name, player2Points) =>
         println(Console.RED + "\n\nGame over!")
@@ -66,10 +68,12 @@ class Tui(gameController: GameControllerInterface) extends Observer {
 
       case UndoEvent(_) =>
         println(Console.RED + "\nUndo performed." + Console.RESET)
+        printGridColors()
         inputProvider.interrupt()
 
       case RedoEvent(_) =>
         println(Console.RED + "\nRedo performed." + Console.RESET)
+        printGridColors()
         inputProvider.interrupt()
 
 
@@ -83,20 +87,20 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         println(s"Enter the name for Player 1:")
         val player1 = inputProvider.getInput
         if (player1 == null) return
+        inputProvider.interrupt()
 
         println(s"Enter the name for Player 2:")
         val player2 = inputProvider.getInput
         if (player2 == null) return
+        inputProvider.interrupt()
 
         gameController.promptForPlayerName(player1, player2)
-        inputProvider.interrupt()
 
       case UpdatePlayer(player1) =>
         updateStatus(s"$player1's turn.")
 
       case AskForGameMode =>
         inputProvider.interrupt()
-
         println(s"Single- or Multiplayer (s/m):")
         val mode = inputProvider.getInput
         if (mode == null) return
@@ -105,7 +109,6 @@ class Tui(gameController: GameControllerInterface) extends Observer {
 
       case AskForLoadGame =>
         inputProvider.interrupt()
-
         println("Would you like to:")
         println("(1) Start new game")
         println("(2) Load saved game")
@@ -115,7 +118,6 @@ class Tui(gameController: GameControllerInterface) extends Observer {
           case "2" => gameController.handleCommand("load")
           case _ => gameController.handleCommand("start")
         }
-
       case GameLoaded(grid, currentPlayer, player1, player2, currentPlayerHand) => print("")
         inputProvider.interrupt()
 
