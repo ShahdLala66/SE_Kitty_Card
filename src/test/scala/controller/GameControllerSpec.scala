@@ -186,8 +186,8 @@ class GameControllerSpec extends AnyWordSpec with Matchers with MockitoSugar {
 
             reset(observer)
             controller.handleCommand("redo")
-            verify(observer, times(2)).update(any[RedoEvent])
-            verify(observer, times(2)).update(any[ShowCardsForPlayer])
+            verify(observer, times(6)).update(any[RedoEvent])
+            verify(observer, times(6)).update(any[ShowCardsForPlayer])
         }
 
         "handle errors correctly when loading the game" in {
