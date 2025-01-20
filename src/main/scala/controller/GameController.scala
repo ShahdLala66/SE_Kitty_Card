@@ -164,20 +164,31 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
                 currentPlayer.removeCard(card)
                 if (card.value.equals(Value.One)) {
                   println("You placed a 1 ACE ACE ACE")
-//                  val pointsEarned = grid.calculatePoints(x, y)
-//                  val command = new PlaceCardCommand(grid, card, currentPlayer, pointsEarned, (x, y))
-//                  currentState = commandManager.executeCommand(command, currentState)
-//                  currentPlayer.addPoints(pointsEarned)
-//                  currentPlayer.removeCard(card)
                   notifyObservers(FreezeEnemy)
                   notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
-
                   false
                 }
-                else {
+
+                else if (card.value.equals(Value.Seven)) {
+                  println("You placed a 2 ACE ACE ACE")
+                  // notifyObservers(DestroyEnemyCardOnGrid)
+                  if (player2.getHand.nonEmpty) {
+                    //second player remove card too
+                    if (currentPlayer == player1) {
+                      //get the hand and remove one card at radnom
+                      player2.removeCard(player2.getHand.head)
+                    }
+                    else {
+                      player1.removeCard(player1.getHand.head)
+                    }
+                  }
+                  currentPlayer.removeCard(card)
+                  switchTurns()
                   true
                 }
-
+                else { //for normal case cards VERY IMPORTANT TRUE EVEN IF ITS SMALL
+                  true
+                }
               } else {
                 notifyObservers(InvalidPlacement)
                 currentPlayer.removeCard(card)

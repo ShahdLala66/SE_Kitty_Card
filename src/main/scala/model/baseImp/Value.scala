@@ -8,6 +8,7 @@ object Value extends Enumeration {
     val Four: Value = Value(4)
     val Five: Value = Value(5)
     val Six: Value = Value(6)
+    val Seven: Value = Value(7)
 
     def toInt(value: Value): Int = value match {
         case One => 1
@@ -16,5 +17,6 @@ object Value extends Enumeration {
         case Four => 4
         case Five => 5
         case Six => 6
+        case Seven => 7
     }
 }
