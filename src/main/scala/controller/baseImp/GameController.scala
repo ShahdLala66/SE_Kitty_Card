@@ -145,9 +145,12 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
   private def processCardPlacement(input: String): Boolean = {
     input.trim.toLowerCase match {
       case "undo" =>
+        switchTurns()
         executeUndoRedo(commandManager.undo, UndoEvent(currentState))
       case "redo" =>
+        switchTurns()
         executeUndoRedo(commandManager.redo, RedoEvent(currentState))
+
       case _ =>
         Try {
           val parts = input.split(" ")
@@ -260,6 +263,7 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
       case Some(state) =>
         currentState = state
         notifyObservers(event)
+        notifyObservers(UpdateGrid(grid))
         notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
         true
       case None =>

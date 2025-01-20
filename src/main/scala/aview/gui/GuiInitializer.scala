@@ -21,5 +21,11 @@ object GuiInitializer extends JFXApp3 {
         }
     }
 
-    override def start(): Unit = {}
+    override def start(): Unit = {
+        stage = new JFXApp3.PrimaryStage {
+            title.value = " "
+            width = 1
+            height = 1
+        }
+    }
 }

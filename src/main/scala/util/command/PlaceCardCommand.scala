@@ -11,6 +11,7 @@ PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: Int, pos
     override def execute(): Unit = {
         previousState = new GameState(grid, List(player.copy()), 0, player.points) // Save the previous state
         grid.placeCard(position._1, position._2, card)
+
     }
 
     override def undo(): Unit = {
@@ -23,6 +24,10 @@ PlaceCardCommand(grid: Grid, card: NumberCards, player: Player, points: Int, pos
     }
 
     override def redo(): Unit = {
+      //  player.removeCard(card)
+        //grid.placeCard(position._1, position._2)
+        player.removeCard(card)
+
         execute()
     }
 }
