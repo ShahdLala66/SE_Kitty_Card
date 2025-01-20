@@ -32,6 +32,10 @@ Now for the Game itself!
 ![image](https://github.com/user-attachments/assets/9f592665-8085-4664-b3d9-3281d1907bdd)
 
 Arent the little kitties cute????
+Btw THEYRE ALL MOVING!
+
+![image](https://github.com/user-attachments/assets/4789d1dd-f420-4a28-9237-1f270d346c70)
+
 
 ![image](https://github.com/user-attachments/assets/f4761088-5c92-4b2a-ad1b-d7495532a261)
 
@@ -40,6 +44,12 @@ And Game Over:
 
 ![image](https://github.com/user-attachments/assets/90c78aaa-d0af-455b-a8ae-c2bf2257085d)
 
+
+
+![ZayneGrid](https://github.com/user-attachments/assets/0dabce1d-05ac-43b2-9b42-0b0db84bbe00)
+
+
+![ZayneChillingGif](https://github.com/user-attachments/assets/efecb4e8-2e53-4586-8bd7-b79ecacc3ab6)
 
 
 
