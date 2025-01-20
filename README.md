@@ -19,6 +19,33 @@ If its youre first time Playing it, obv you need to start a new game.
 
 now for the---
 
+## GAME!!!!!
+
+LOOK!!! 
+After being asked what mode you wanna play, you get this: 
+
+![image](https://github.com/user-attachments/assets/d9a47570-83dd-42af-a7e9-470f9e398ab5)
+
+
+Now for the Game itself! 
+
+![image](https://github.com/user-attachments/assets/9f592665-8085-4664-b3d9-3281d1907bdd)
+
+Arent the little kitties cute????
+
+![image](https://github.com/user-attachments/assets/f4761088-5c92-4b2a-ad1b-d7495532a261)
+
+
+And Game Over:
+
+![image](https://github.com/user-attachments/assets/90c78aaa-d0af-455b-a8ae-c2bf2257085d)
+
+
+
+
+
+
+
 ## **Rules**                                                  
 ────୨ৎ────────୨ৎ────────୨ৎ────────୨ৎ────────୨ৎ───
 
