@@ -1,0 +1,16 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Deck
+class Grid
+class Hand
+class NumberCards
+class Player
+class node6 as "Suit$"
+class node4 as "Value$"
+
+
+@enduml

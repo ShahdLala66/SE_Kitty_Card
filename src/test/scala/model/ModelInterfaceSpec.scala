@@ -1,5 +1,6 @@
 package model
 
+import model.gameModelComp.{CardInterface, DeckInterface, HandInterface, PlayerInterface}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

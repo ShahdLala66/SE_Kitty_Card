@@ -1,8 +1,7 @@
 package util.grid
 
-import model.baseImp.Suit
+import model.gameModelComp.baseImp.{Grid, Suit}
 import Suit.Suit
-import model.baseImp.Grid
 
 import scala.util.Random
 

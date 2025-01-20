@@ -1,4 +1,4 @@
-sbt clean coverage test 
+sbt clean coverage test
 sbt coverageReport
 
 

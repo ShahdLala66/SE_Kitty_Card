@@ -1,6 +1,7 @@
 package util.command
 
 import model.baseImp.*
+import model.gameModelComp.baseImp.{Grid, NumberCards, Player, Suit, Value}
 import org.mockito.Mockito.*
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec

@@ -1,8 +1,11 @@
 package controller
 
-import model.CardInterface
-import model.FileIO.{FileIOInterface, FileIOXML}
+import controller.baseImp.{GameController, GameMode}
+import model.fileIOComp.FileIOInterface
 import model.baseImp.*
+import model.fileIOComp.baseImp.FileIOXML
+import model.gameModelComp.CardInterface
+import model.gameModelComp.baseImp.{Deck, Grid, Hand, NumberCards, Player, Suit, Value}
 import org.mockito.ArgumentMatchers.*
 import org.mockito.Mockito.*
 import org.scalatest.matchers.should.Matchers
@@ -183,8 +186,8 @@ class GameControllerSpec extends AnyWordSpec with Matchers with MockitoSugar {
 
             reset(observer)
             controller.handleCommand("redo")
-            verify(observer, times(2)).update(any[RedoEvent])
-            verify(observer, times(2)).update(any[ShowCardsForPlayer])
+            verify(observer, times(6)).update(any[RedoEvent])
+            verify(observer, times(6)).update(any[ShowCardsForPlayer])
         }
 
         "handle errors correctly when loading the game" in {

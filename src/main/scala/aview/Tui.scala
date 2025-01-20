@@ -121,6 +121,10 @@ class Tui(gameController: GameControllerInterface) extends Observer {
       case GameLoaded(grid, currentPlayer, player1, player2, currentPlayerHand) => print("")
         inputProvider.interrupt()
 
+      case FreezeEnemy =>
+        updateStatus("Enemy's turn is frozen.")
+        gameController.askForInputAgain()
+        
       case _ => println("Invalid event.")
     }
   }

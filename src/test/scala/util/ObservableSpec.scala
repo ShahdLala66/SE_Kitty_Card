@@ -1,6 +1,6 @@
 package util
 
-import model.baseImp.Player
+import model.gameModelComp.baseImp.Player
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 

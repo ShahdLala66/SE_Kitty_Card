@@ -1,8 +1,8 @@
 package util
 
-import model.CardInterface
-import model.baseImp.*
-import model.baseImp.Suit.Suit
+import model.gameModelComp.CardInterface
+import model.gameModelComp.baseImp.*
+import model.gameModelComp.baseImp.Suit.Suit
 import util.command.GameState
 
 sealed trait GameEvent
@@ -36,6 +36,8 @@ case class UpdatePlayer(player1: String) extends GameEvent
 case class UpdatePlayers(player1: Player, player2: Player) extends GameEvent
 
 case class ShowCardsForPlayer(cand: List[CardInterface]) extends GameEvent
+
+case object FreezeEnemy extends GameEvent
 
 //  INPUT OUTPUT; SAVE GAME LOAD GAME : REDO UNDO __________________________________________
 

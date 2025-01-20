@@ -1,6 +1,7 @@
 package model.baseImp
 
-import model.{CardInterface, DeckInterface}
+import model.gameModelComp.baseImp.Player
+import model.gameModelComp.{CardInterface, DeckInterface}
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 import org.mockito.Mockito.*

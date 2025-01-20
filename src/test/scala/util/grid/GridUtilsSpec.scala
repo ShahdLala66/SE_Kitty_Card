@@ -2,7 +2,7 @@ package util.grid
 
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
-import model.baseImp.{Grid, Suit}
+import model.gameModelComp.baseImp.{Grid, Suit}
 
 class GridUtilsSpec extends AnyWordSpec with Matchers {
     "GridUtils" should {
