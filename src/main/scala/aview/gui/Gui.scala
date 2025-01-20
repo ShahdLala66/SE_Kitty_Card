@@ -563,7 +563,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
 
 
             val button = new Button(buttonText) {
-                style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
+                style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5; -fx-font-size: 10px; -fx-padding: 30 0 0 0;"
                 prefWidth = 91
                 prefHeight = 89
                 onAction = * => handleGridClick(x, y)
@@ -575,6 +575,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
                 onMouseExited = _ => {
                     style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5;"
                 }
+                style = s"-fx-background-color: $hexColor; -fx-opacity: 0.5; -fx-font-size: 10px; -fx-padding: 30 0 0 0;"
+
             }
             grid.add(button, x, y)
         }
@@ -625,6 +627,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
                             case Value.Four => "4"
                             case Value.Five => "5"
                             case Value.Six => "6"
+                            case Value.Seven => "7"
                             case _ => throw new IllegalArgumentException(s"Unsupported card value: $value")
                         }
 
@@ -648,7 +651,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
                 }
 
                 if (cardPane != null) {
-                    cardPane.children = cardButtons
+                    cardPane.children = cardButtons //
                 }
                 updateDisplay()
 
