@@ -1,6 +1,8 @@
 package controller
 
+import controller.baseImp.{GameController, MultiPlayerMode, SinglePlayerMode}
 import model.baseImp.*
+import model.gameModelComp.baseImp.{Grid, Player}
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.*
 import org.scalatest.matchers.should.Matchers

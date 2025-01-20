@@ -1,12 +1,14 @@
 // FileIOJSON.scala
-package model.FileIO
+package model.fileIOComp.baseImp
 
 import controller.GameControllerInterface
-import model.baseImp.{Grid, NumberCards, Player, Suit, Value}
+import model.fileIOComp.FileIOInterface
+import model.gameModelComp.baseImp.*
 import util.command.GameState
 import util.grid.GridUtils
 import play.api.libs.json.*
-import scala.util.{Try, Success, Failure}
+
+import scala.util.{Failure, Success, Try}
 
 class FileIOJSON extends FileIOInterface {
 

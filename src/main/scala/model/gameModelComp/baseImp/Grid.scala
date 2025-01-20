@@ -1,6 +1,6 @@
-package model.baseImp
+package model.gameModelComp.baseImp
 
-import model.baseImp.Suit.Suit
+import Suit.Suit
 import util.Observer
 
 import scala.collection.mutable.ListBuffer

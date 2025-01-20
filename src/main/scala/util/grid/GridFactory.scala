@@ -1,10 +1,11 @@
 package util.grid
 
-import model.baseImp.Grid
+import model.gameModelComp.baseImp
+import model.gameModelComp.baseImp.Grid
 
 object GridFactory {
   def createGrid(size: Int): Grid = {
     val rectangleColors = GridUtils.generateRandomColors(size)
-    Grid(size, rectangleColors)
+    baseImp.Grid(size, rectangleColors)
   }
 }

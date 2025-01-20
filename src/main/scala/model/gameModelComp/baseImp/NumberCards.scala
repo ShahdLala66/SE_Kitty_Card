@@ -1,7 +1,6 @@
-package model.baseImp
+package model.gameModelComp.baseImp
 
-import model.CardInterface
-
+import model.gameModelComp.CardInterface
 import scala.util.Random
 
 case class NumberCards(suit: Suit.Value, value: Value.Value) extends CardInterface {

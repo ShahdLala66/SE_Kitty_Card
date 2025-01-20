@@ -1,5 +1,7 @@
 package model.baseImp
 
+import model.gameModelComp.baseImp
+import model.gameModelComp.baseImp.{Grid, NumberCards, Suit, Value}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -21,7 +23,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         "allow placing a card within bounds" in {
             val size = 3
             val rectangleColors = Array.fill(size, size)(Suit.White)
-            val grid = Grid(size, rectangleColors)
+            val grid = baseImp.Grid(size, rectangleColors)
             val card = NumberCards(Suit.White, Value.Two)
 
             grid.placeCard(1, 1, card)
@@ -31,7 +33,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         "not allow placing a card out of bounds" in {
             val size = 3
             val rectangleColors = Array.fill(size, size)(Suit.White)
-            val grid = Grid(size, rectangleColors)
+            val grid = baseImp.Grid(size, rectangleColors)
             val card = NumberCards(Suit.Green, Value.Two)
 
             grid.placeCard(-1, 1, card)
@@ -43,7 +45,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         "allow removing a card" in {
             val size = 3
             val rectangleColors = Array.fill(size, size)(Suit.White)
-            val grid = Grid(size, rectangleColors)
+            val grid = baseImp.Grid(size, rectangleColors)
             val card = NumberCards(Suit.Purple, Value.Two)
 
             grid.placeCard(1, 1, card)
@@ -54,7 +56,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         "calculate points correctly" in {
             val size = 3
             val rectangleColors = Array.fill(size, size)(Suit.Green)
-            val grid = Grid(size, rectangleColors)
+            val grid = baseImp.Grid(size, rectangleColors)
             val card = NumberCards(Suit.Green, Value.Two)
 
             grid.placeCard(1, 1, card)
@@ -64,7 +66,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         "undo the last move" in {
             val size = 3
             val rectangleColors = Array.fill(size, size)(Suit.White)
-            val grid = Grid(size, rectangleColors)
+            val grid = baseImp.Grid(size, rectangleColors)
             val card = NumberCards(Suit.Red, Value.Two)
 
             grid.placeCard(1, 1, card)
@@ -93,7 +95,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         "correctly identify when it is full" in {
             val size = 2
             val rectangleColors = Array.fill(size, size)(Suit.White)
-            val grid = Grid(size, rectangleColors)
+            val grid = baseImp.Grid(size, rectangleColors)
             val card = NumberCards(Suit.Green, Value.Two)
 
             grid.isFull
@@ -108,7 +110,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         "correctly identify when it is not full" in {
             val size = 2
             val rectangleColors = Array.fill(size, size)(Suit.White)
-            val grid = Grid(size, rectangleColors)
+            val grid = baseImp.Grid(size, rectangleColors)
             val card = NumberCards(Suit.White, Value.Two)
 
             grid.placeCard(0, 0, card)
@@ -118,7 +120,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         "return false when undo is called with no previous state" in {
             val size = 3
             val rectangleColors = Array.fill(size, size)(Suit.White)
-            val grid = Grid(size, rectangleColors)
+            val grid = baseImp.Grid(size, rectangleColors)
 
             grid.undo() shouldBe false
         }
@@ -126,7 +128,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         "allow setting the color of a cell" in {
             val size = 3
             val rectangleColors = Array.fill(size, size)(Suit.White)
-            val grid = Grid(size, rectangleColors)
+            val grid = baseImp.Grid(size, rectangleColors)
 
             grid.setColor(1, 1, Suit.Red)
             grid.getColor(1, 1) shouldBe Suit.Red
@@ -140,7 +142,7 @@ class GridSpec extends AnyWordSpec with Matchers {
                 Array(Suit.Green, Suit.Purple, Suit.White),
                 Array(Suit.White, Suit.Red, Suit.Green)
             )
-            val grid = Grid(size, initialColors)
+            val grid = baseImp.Grid(size, initialColors)
             val newGrid = Grid(size, newColors)
             val card = NumberCards(Suit.Green, Value.Two)
             newGrid.placeCard(1, 1, card)
@@ -155,7 +157,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         "calculate points correctly for a card on a white rectangle" in {
             val size = 3
             val rectangleColors = Array.fill(size, size)(Suit.White)
-            val grid = Grid(size, rectangleColors)
+            val grid = baseImp.Grid(size, rectangleColors)
             val card = NumberCards(Suit.Brown, Value.Two)
 
             grid.placeCard(1, 1, card)
@@ -165,7 +167,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         "calculate points correctly for a card on a different colored rectangle" in {
             val size = 3
             val rectangleColors = Array.fill(size, size)(Suit.Red)
-            val grid = Grid(size, rectangleColors)
+            val grid = baseImp.Grid(size, rectangleColors)
             val card = NumberCards(Suit.Brown, Value.Two)
 
             grid.placeCard(1, 1, card)
@@ -175,7 +177,7 @@ class GridSpec extends AnyWordSpec with Matchers {
         "calculate points correctly when there is no card" in {
             val size = 3
             val rectangleColors = Array.fill(size, size)(Suit.White)
-            val grid = Grid(size, rectangleColors)
+            val grid = baseImp.Grid(size, rectangleColors)
 
             grid.calculatePoints(1, 1) shouldBe 0
         }

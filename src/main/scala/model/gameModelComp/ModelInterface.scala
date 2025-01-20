@@ -1,4 +1,4 @@
-package model
+package model.gameModelComp
 
 trait CardInterface{
     def getColor: String

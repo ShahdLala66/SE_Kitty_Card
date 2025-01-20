@@ -1,10 +1,10 @@
 // src/main/scala/controller/GameControllerInterface.scala
 package controller
 
-import model.FileIO.FileIOInterface
-import model.baseImp.Suit.Suit
-import model.baseImp.{Deck, Hand, Player}
-import model.{CardInterface, PlayerInterface}
+import model.fileIOComp.FileIOInterface
+import model.gameModelComp.baseImp.Suit.Suit
+import model.gameModelComp.baseImp.{Deck, Hand, Player}
+import model.gameModelComp.{CardInterface, PlayerInterface}
 import util.Observer
 import util.command.GameState
 import scala.compiletime.uninitialized

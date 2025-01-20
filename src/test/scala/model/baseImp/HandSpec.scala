@@ -1,8 +1,9 @@
 package model.baseImp
 
+import model.gameModelComp.CardInterface
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
-import model.CardInterface
+import model.gameModelComp.baseImp.Hand
 
 class HandSpec extends AnyWordSpec with Matchers {
 

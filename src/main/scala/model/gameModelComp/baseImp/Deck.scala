@@ -1,6 +1,7 @@
-package model.baseImp
+package model.gameModelComp.baseImp
 
 import model.*
+import model.gameModelComp.{CardInterface, DeckInterface}
 
 import scala.util.Random
 

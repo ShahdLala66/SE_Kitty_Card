@@ -1,5 +1,6 @@
 package model.baseImp
 
+import model.gameModelComp.baseImp.{AssistCardInterface, AssistCardType}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
