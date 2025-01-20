@@ -2,7 +2,9 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 import com.google.inject.{Guice, Injector}
 import controller.*
-import model.FileIO.*
+import controller.baseImp.GameController
+import model.fileIOComp.*
+import model.fileIOComp.baseImp.{FileIOJSON, FileIOXML}
 
 class MainModuleSpec extends AnyWordSpec with Matchers {
 

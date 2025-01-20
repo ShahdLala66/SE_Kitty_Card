@@ -1,8 +1,8 @@
 package util
 
-import model.CardInterface
-import model.baseImp.*
-import model.baseImp.Suit.Suit
+import model.gameModelComp.CardInterface
+import model.gameModelComp.baseImp.*
+import model.gameModelComp.baseImp.Suit.Suit
 import util.command.GameState
 
 sealed trait GameEvent

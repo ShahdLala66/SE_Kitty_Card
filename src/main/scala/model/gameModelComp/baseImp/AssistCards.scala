@@ -1,6 +1,6 @@
-package model.baseImp
+package model.gameModelComp.baseImp
 
-import model.CardInterface
+import model.gameModelComp.CardInterface
 
 object AssistCardType extends Enumeration {
     type AssistCardType = Value

@@ -1,8 +1,10 @@
 import com.google.inject.{AbstractModule, Provides}
-import controller.{GameController, GameControllerInterface}
-import model.FileIO.{FileIOInterface, FileIOJSON, FileIOXML}
-import model.baseImp.{Deck, Hand}
-import model.{DeckInterface, HandInterface}
+import controller.GameControllerInterface
+import controller.baseImp.GameController
+import model.fileIOComp.baseImp.{FileIOJSON, FileIOXML}
+import model.fileIOComp.FileIOInterface
+import model.gameModelComp.baseImp.{Deck, Hand}
+import model.gameModelComp.{DeckInterface, HandInterface}
 
 class JsonModule extends AbstractModule {
     override def configure(): Unit = {

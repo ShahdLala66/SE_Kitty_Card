@@ -1,9 +1,11 @@
-package controller
+package controller.baseImp
 
+import controller.GameControllerInterface
 import model.*
-import model.FileIO.FileIOInterface
-import model.baseImp.*
-import model.baseImp.Suit.Suit
+import model.fileIOComp.FileIOInterface
+import model.gameModelComp.CardInterface
+import model.gameModelComp.baseImp.Suit.Suit
+import model.gameModelComp.baseImp.*
 import util.*
 import util.command.{CommandManager, GameState, PlaceCardCommand}
 import util.grid.GridFactory

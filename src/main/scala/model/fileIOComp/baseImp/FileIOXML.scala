@@ -1,10 +1,12 @@
-package model.FileIO
+package model.fileIOComp.baseImp
 
 import controller.GameControllerInterface
-import model.baseImp.{Grid, NumberCards, Player, Suit, Value}
+import model.fileIOComp.FileIOInterface
+import model.gameModelComp.baseImp.*
 import util.command.GameState
 import util.grid.GridUtils
-import scala.xml._
+
+import scala.xml.*
 
 class FileIOXML extends FileIOInterface {
 

@@ -1,4 +1,4 @@
-package model.baseImp
+package model.gameModelComp.baseImp
 
 object Suit extends Enumeration {
     type Suit = Value

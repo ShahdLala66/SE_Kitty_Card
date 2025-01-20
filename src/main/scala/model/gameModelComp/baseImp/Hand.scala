@@ -1,6 +1,6 @@
-package model.baseImp
+package model.gameModelComp.baseImp
 
-import model.{CardInterface, HandInterface}
+import model.gameModelComp.{CardInterface, HandInterface}
 
 class Hand extends HandInterface {
     private var cards: List[CardInterface] = List()

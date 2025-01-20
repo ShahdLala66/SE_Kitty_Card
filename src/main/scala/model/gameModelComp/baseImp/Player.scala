@@ -1,6 +1,6 @@
-package model.baseImp
+package model.gameModelComp.baseImp
 
-import model.{CardInterface, DeckInterface, PlayerInterface}
+import model.gameModelComp.{CardInterface, DeckInterface, PlayerInterface}
 
 case class Player(name: String, var points: Int = 0) extends PlayerInterface(name, points) {
     var hand: List[CardInterface] = List()

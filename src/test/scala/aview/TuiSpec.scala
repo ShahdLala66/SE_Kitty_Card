@@ -1,8 +1,8 @@
 package aview
 
 import controller.GameControllerInterface
-import model.{CardInterface, PlayerInterface}
-import model.baseImp.{Player, Suit}
+import model.gameModelComp.{CardInterface, PlayerInterface}
+import model.gameModelComp.baseImp.{Grid, Player, Suit}
 import org.mockito.Mockito.*
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
@@ -206,7 +206,7 @@ class TuiSpec extends AnyWordSpec with MockitoSugar {
                 Array(Suit.Red, Suit.Green),
                 Array(Suit.Green, Suit.Red)
             )
-            val grid = model.baseImp.Grid(size, rectangleColors)
+            val grid = Grid(size, rectangleColors)
             when(gameControllerMock.getGridColors).thenReturn(grid.toArray.flatten.zipWithIndex.map {
                 case ((card, color), index) =>
                     val x = index / size
@@ -252,9 +252,9 @@ class TuiSpec extends AnyWordSpec with MockitoSugar {
         }
 
         "handle ShowCardsForPlayer event correctly" in {
-            val card1 = mock[model.CardInterface]
-            val card2 = mock[model.CardInterface]
-            val card3 = mock[model.CardInterface]
+            val card1 = mock[CardInterface]
+            val card2 = mock[CardInterface]
+            val card3 = mock[CardInterface]
             when(card1.toString).thenReturn("Card1")
             when(card2.toString).thenReturn("Card2")
             when(card3.toString).thenReturn("Card3")

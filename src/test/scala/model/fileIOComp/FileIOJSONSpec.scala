@@ -1,7 +1,9 @@
-package model.FileIO
+package model.fileIOComp
 
-import controller.GameController
+import controller.baseImp.GameController
 import model.baseImp.*
+import model.fileIOComp.baseImp.FileIOJSON
+import model.gameModelComp.baseImp.{Deck, Hand, Player, Suit, Value}
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 import play.api.libs.json.Json

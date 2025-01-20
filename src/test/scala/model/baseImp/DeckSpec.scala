@@ -1,5 +1,6 @@
 package model.baseImp
 
+import model.gameModelComp.baseImp.Deck
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
