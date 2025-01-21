@@ -1,4 +1,4 @@
- $${\color{#9370db}KITTY \space CARDS \space GAME}$$  ≽^•⩊•^≼
+ # $${\color{#9370db}KITTY \space CARDS \space GAME}$$ ≽^•⩊•^≼
 
 - ![Top language](https://img.shields.io/github/languages/top/ShahdLala66/SE_Kitty_Card)
 [![Coverage Status](https://coveralls.io/repos/github/ShahdLala66/SE_Kitty_Card/badge.svg?branch=master)](https://coveralls.io/github/ShahdLala66/SE_Kitty_Card?branch=master) [![codecov](https://codecov.io/gh/Shahdlala66/SE_Kitty_Card/branch/master/graph/badge.svg)](https://codecov.io/gh/YOUR_ACCOUNT/YOUR_REPO)
