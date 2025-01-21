@@ -1,5 +1,6 @@
-![0121](https://github.com/user-attachments/assets/c1738c83-4755-4c3a-a083-eef8a79ec44d)# $${\color{#9370db}KITTY \space CARDS \space GAME}$$  ≽^•⩊•^≼
-![Top language](https://img.shields.io/github/languages/top/ShahdLala66/SE_Kitty_Card)
+ $${\color{#9370db}KITTY \space CARDS \space GAME}$$  ≽^•⩊•^≼
+
+- ![Top language](https://img.shields.io/github/languages/top/ShahdLala66/SE_Kitty_Card)
 [![Coverage Status](https://coveralls.io/repos/github/ShahdLala66/SE_Kitty_Card/badge.svg?branch=master)](https://coveralls.io/github/ShahdLala66/SE_Kitty_Card?branch=master) [![codecov](https://codecov.io/gh/Shahdlala66/SE_Kitty_Card/branch/master/graph/badge.svg)](https://codecov.io/gh/YOUR_ACCOUNT/YOUR_REPO)
 ![Custom badge](https://img.shields.io/badge/With_Zayne-420-purple)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8067b3954490468f9db6ae49c9254232)](https://app.codacy.com/gh/ShahdLala66/SE_Kitty_Card/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
@@ -10,7 +11,7 @@
 
 # KITTYi CARDSSSSSS 
 
-![0121](https://github.com/user-attachments/assets/5f9f56ff-1db6-4243-bf02-c1d24b07b3e9)
+- ![0121](https://github.com/user-attachments/assets/5f9f56ff-1db6-4243-bf02-c1d24b07b3e9)
 
 
 ### General Stuff: 
