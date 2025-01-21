@@ -1,4 +1,4 @@
-# $${\color{#9370db}KITTY \space CARDS \space GAME}$$  ≽^•⩊•^≼
+![0121](https://github.com/user-attachments/assets/c1738c83-4755-4c3a-a083-eef8a79ec44d)# $${\color{#9370db}KITTY \space CARDS \space GAME}$$  ≽^•⩊•^≼
 ![Top language](https://img.shields.io/github/languages/top/ShahdLala66/SE_Kitty_Card)
 [![Coverage Status](https://coveralls.io/repos/github/ShahdLala66/SE_Kitty_Card/badge.svg?branch=master)](https://coveralls.io/github/ShahdLala66/SE_Kitty_Card?branch=master) [![codecov](https://codecov.io/gh/Shahdlala66/SE_Kitty_Card/branch/master/graph/badge.svg)](https://codecov.io/gh/YOUR_ACCOUNT/YOUR_REPO)
 ![Custom badge](https://img.shields.io/badge/With_Zayne-420-purple)
@@ -6,6 +6,12 @@
 [![Build Status](https://app.travis-ci.com/ShahdLala66/SE_Kitty_Card.svg?token=HH1pij9kc7Ve4oqguSMe&branch=developer)](https://app.travis-ci.com/ShahdLala66/SE_Kitty_Card)
 ![Love](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red)
 ### *ZAYNE*  
+
+
+# KITTYi CARDSSSSSS 
+
+![0121](https://github.com/user-attachments/assets/5f9f56ff-1db6-4243-bf02-c1d24b07b3e9)
+
 
 ### General Stuff: 
 
@@ -22,7 +28,11 @@ now for the---
 ## GAME!!!!!
 
 LOOK!!! 
+
+
 After being asked what mode you wanna play, you get this: 
+
+
 
 ![image](https://github.com/user-attachments/assets/d9a47570-83dd-42af-a7e9-470f9e398ab5)
 
