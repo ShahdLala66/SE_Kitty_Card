@@ -699,12 +699,9 @@ class Gui(gameController: GameControllerInterface) extends Observer {
     updateStatus(s"$playerName drew: $card")
   }
 
-  // Add this at the beginning of your class with other private vars
-  // Add this at the beginning of your class with other private vars
   private var gifHistory: List[Node] = List()
-  private var undoneGifs: List[Node] = List() // New list for undone gifs
+  private var undoneGifs: List[Node] = List() //  list for undone gifs
 
-  // Modify your addCatGifInCell method
   private def addCatGifInCell(x: Int, y: Int): Unit = {
     Platform.runLater {
       val currentPlayer = gameController.getCurrentPlayerString
@@ -737,25 +734,23 @@ class Gui(gameController: GameControllerInterface) extends Observer {
 
         gifOverlayPane.getChildren.add(gifContainer)
         gifHistory = gifContainer :: gifHistory
-        undoneGifs = List() // Clear undone gifs when new move is made
+        undoneGifs = List() 
       }
     }
   }
 
-  // Method to remove last gif and store it for potential redo
   private def removeLastGif(): Unit = {
     Platform.runLater {
       gifHistory match {
         case lastGif :: remaining =>
           gifOverlayPane.getChildren.remove(lastGif)
           gifHistory = remaining
-          undoneGifs = lastGif :: undoneGifs // Store for redo
-        case Nil => // No gifs to remove
+          undoneGifs = lastGif :: undoneGifs 
+        case Nil =>
       }
     }
   }
 
-  // Method to restore last undone gif
   private def restoreLastGif(): Unit = {
     Platform.runLater {
       undoneGifs match {
@@ -763,7 +758,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
           gifOverlayPane.getChildren.add(lastUndone)
           undoneGifs = remaining
           gifHistory = lastUndone :: gifHistory
-        case Nil => // No gifs to restore
+        case Nil =>
       }
     }
   }
