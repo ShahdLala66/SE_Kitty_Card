@@ -580,9 +580,9 @@ class Gui(gameController: GameControllerInterface) extends Observer {
 
     def createGrid(): GridPane = {
         val grid = new GridPane {
-            hgap = 5.5
-            vgap = 5.5
-            padding = Insets(60, 0, 10, 0)
+            hgap = 6
+            vgap = 6
+            padding = Insets(57, 0, 6, 0)
             alignment = Pos.Center
         }
 
@@ -878,6 +878,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
 
     private def showGameOverWindow(player1Name: String, player1Points: Int, player2Name: String, player2Points: Int): Unit = {
         Platform.runLater {
+
+
             val winner = if (player1Points > player2Points) {
                 s"$player1Name wins!"
             } else if (player2Points > player1Points) {
