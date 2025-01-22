@@ -878,7 +878,9 @@ class Gui(gameController: GameControllerInterface) extends Observer {
 
     private def showGameOverWindow(player1Name: String, player1Points: Int, player2Name: String, player2Points: Int): Unit = {
         Platform.runLater {
-
+            if (currentStage != null) {
+                currentStage.close()
+            }
 
             val winner = if (player1Points > player2Points) {
                 s"$player1Name wins!"
@@ -888,6 +890,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
                 "It's a tie!"
             }
 
+            
             val dialog = new Stage {
                 title = "Game Over"
                 scene = new Scene(469, 669) {
