@@ -9,7 +9,7 @@
 ### *ZAYNE*  
 
 
-# KITTYi CARDSSSSS
+# KITTYi CARDSSSS
 
 - ![0121](https://github.com/user-attachments/assets/5f9f56ff-1db6-4243-bf02-c1d24b07b3e9)
 
