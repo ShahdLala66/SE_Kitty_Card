@@ -727,7 +727,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
     }
 
     private def invalidPlacements(): Unit = {
-        updateStatus("Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.")
+        updateStatus("Kitty destroyed your card! Stop bothering it! Turn forfeited.")
     }
 
     private def CardPlacementSuccesss(x: Int, y: Int, card: String, points: Int): Unit = {

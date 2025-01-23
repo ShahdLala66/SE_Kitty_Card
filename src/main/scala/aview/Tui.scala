@@ -45,7 +45,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
 
       case InvalidPlacement =>
         flush()
-        println(Console.RED + "Invalid placement. Spot is either occupied or out of bounds. Turn forfeited.\n" + Console.RESET)
+        println(Console.RED + "Kitty destroyed your card! Stop bothering it!Turn forfeited.\n" + Console.RESET)
         inputProvider.interrupt()
 
       case CardPlacementSuccess(x, y, card, points) =>
