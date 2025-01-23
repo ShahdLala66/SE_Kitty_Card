@@ -49,7 +49,7 @@ class Tui(gameController: GameControllerInterface) extends Observer {
         inputProvider.interrupt()
 
       case CardPlacementSuccess(x, y, card, points) =>
-        println(Console.YELLOW + s"\nCard placed at ($x, $y): $card. You () have earned $points points!" + Console.RESET)
+        println(Console.YELLOW + s"\nCard placed at ($x, $y): $card. You have earned $points points!" + Console.RESET)
 
       case GameOver(player1Name, player1Points, player2Name, player2Points) =>
         println(Console.RED + "\n\nGame over!")
