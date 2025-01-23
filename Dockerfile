@@ -33,12 +33,8 @@ RUN curl -sL https://dlcdn.apache.org/sbt/debian/sbt-1.9.4.deb -o sbt.deb && \
     dpkg -i sbt.deb || apt-get install -f -y && \
     rm sbt.deb
 
-#COPY --chown=appuser:appuser . /SE_Kitty_Card_1 wenn die anderen nicht gehen dann wieder löschen und das activeiren
-
-#---
 COPY --chown=appuser:appuser . /SE_Kitty_Card_1
-RUN chmod -R a-w /SE_Kitty_Card_1
-#----
+
 USER appuser
 
 RUN sbt update && sbt compile
