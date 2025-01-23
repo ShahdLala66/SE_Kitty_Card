@@ -13,8 +13,9 @@ lazy val root = (project in file("."))
         coverageOutputCobertura := true,
         coverageEnabled := true,
         coverageOutputXML := true,
-        coverageExcludedFiles := ".*gui/.*"
-
+        coverageExcludedFiles := ".*gui/.*",
+        fork in run := true,
+        javaOptions in run += "-Xmx2G"
     )
 
 libraryDependencies ++= Seq(
@@ -23,10 +24,12 @@ libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest" % "3.2.18" % "test",
     "org.scalatestplus" %% "mockito-4-5" % "3.2.12.0" % "test",
     "com.typesafe.play" %% "play-json" % "2.10.5",
-    "org.openjfx" % "javafx-media" % "23.0.1",
+    "org.openjfx" % "javafx-base" % "22.0.1",
+    "org.openjfx" % "javafx-graphics" % "22.0.2",
+    "org.openjfx" % "javafx-media" % "22.0.2",
     "org.openjfx" % "javafx-controls" % "22.0.1",
     "org.scalamock" %% "scalamock" % "6.0.0" % "test",
-    "com.typesafe.play" %% "play-json" % "2.10.3",
-    "org.scala-lang.modules" %% "scala-xml" % "2.2.0",
+    "com.typesafe.play" %% "play-json" % "2.10.5",
+    "org.scala-lang.modules" %% "scala-xml" % "2.3.0",
     "org.scalafx" %% "scalafx" % "22.0.0-R33"
 )

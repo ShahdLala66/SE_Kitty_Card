@@ -890,7 +890,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
                 "It's a tie!"
             }
 
-            
+
             val dialog = new Stage {
                 title = "Game Over"
                 scene = new Scene(469, 669) {
