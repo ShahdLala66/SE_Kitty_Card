@@ -73,7 +73,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
         restoreLastGif()
         updateDisplay()
       case UpdatePlayer(player1) =>
-        updateStatus(s"$player1's turn.")
+        var points = gameController.getCurrentPlayerPoints
+        updateStatus(s"$player1's turn. $points points.")
       case ShowCardsForPlayer(cards) =>
         showCardsGUI(cards)
       case PromptForPlayerName =>
@@ -669,6 +670,14 @@ class Gui(gameController: GameControllerInterface) extends Observer {
     }
   }
 
+  private val germanToEnglishColors: Map[String, String] = Map(
+    "Rot" -> "Red",
+    "Lila" -> "Purple",
+    "Braun" -> "Brown",
+    "Blau" -> "Blue",
+    "Grün" -> "Green"
+  )
+
   private def showCardsGUI(cards: Seq[CardInterface]): Unit = {
     Platform.runLater {
       try {
@@ -698,11 +707,20 @@ class Gui(gameController: GameControllerInterface) extends Observer {
 
             CardImage(numericValue, germanSuit)
         }
+
+
         val cardButtons = cardImages.zipWithIndex.map { case (cardImage, index) =>
           new CardButton(cardImage, _ => {
             selectedCardIndex = Some(index)
             updateButtonStyles()
-            updateStatus(s"Selected card: $cardImage")
+            if (cardImage.value.equals("7")) {
+              updateStatus("Bomb card selected. The Color is a secret.")
+            } else {
+              val englishColor = germanToEnglishColors.getOrElse(cardImage.suit, cardImage.suit)
+              s"Selected: ${cardImage.value} of $englishColor"
+              updateStatus(s"${cardImage.value} of $englishColor")
+            }
+           // updateStatus(s"Selected: ${cardImage.value} of ${cardImage.suit}")
           }) {
             onMouseEntered = _ => {
               style =

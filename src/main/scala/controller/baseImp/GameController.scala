@@ -304,5 +304,7 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
   def getGridColor(x: Int, y: Int): String = {
     grid.toArray(x)(y)._2.toString.toLowerCase
   }
+  
+  def getCurrentPlayerPoints: Int = currentPlayer.points
 
 }

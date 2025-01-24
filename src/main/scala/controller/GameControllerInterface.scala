@@ -53,5 +53,7 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
     def getPlayer1: String
 
     def getPlayer2: String
+
+    def getCurrentPlayerPoints: Int
 }
 
