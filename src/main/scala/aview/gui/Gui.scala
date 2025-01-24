@@ -694,6 +694,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
               case _ => throw new IllegalArgumentException(s"Unsupported card suit: $suit")
             }
 
+
+
             CardImage(numericValue, germanSuit)
         }
         val cardButtons = cardImages.zipWithIndex.map { case (cardImage, index) =>
@@ -701,12 +703,35 @@ class Gui(gameController: GameControllerInterface) extends Observer {
             selectedCardIndex = Some(index)
             updateButtonStyles()
             updateStatus(s"Selected card: $cardImage")
-          })
+          }) {
+            onMouseEntered = _ => {
+              style =
+                """
+                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 15, 0, 0, 4);
+                          -fx-scale-x: 1.05;
+                          -fx-scale-y: 1.05;
+                        """
+              translateY = -5 // Slight lift effect
+            }
+
+            onMouseExited = _ => {
+              style =
+                """
+                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+                          -fx-scale-x: 1.0;
+                          -fx-scale-y: 1.0;
+                        """
+              translateY = 0
+            }
+          }
         }
+
+
 
         if (cardPane != null) {
           cardPane.children = cardButtons //
         }
+
         updateDisplay()
 
       } catch {
@@ -751,7 +776,6 @@ class Gui(gameController: GameControllerInterface) extends Observer {
     updateStatus(s"$playerName drew: $card")
   }
 
-  // Add this at the beginning of your class with other private vars
   // Add this at the beginning of your class with other private vars
   private var gifHistory: List[Node] = List()
   private var undoneGifs: List[Node] = List() // New list for undone gifs
