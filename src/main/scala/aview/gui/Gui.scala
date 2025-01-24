@@ -332,6 +332,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
       font = Font.font("Bubblegum Sans", 14)
       prefWidth = 70
       prefHeight = 30
+
       onAction = _ => gameController.handleCommand("save")
     }
 
@@ -365,14 +366,10 @@ class Gui(gameController: GameControllerInterface) extends Observer {
       }
     }
 
-    val spacer = new Region {
-      HBox.setHgrow(this, Priority.Always)
-    }
-
     new HBox {
       spacing = 15
       padding = Insets(-8, 0, 0, 20)
-      children = Seq(saveButton, spacer, musicToggleButton)
+      children = Seq(saveButton, musicToggleButton) // Removed the spacer
     }
   }
 
@@ -445,7 +442,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
           if (isMeowMeow) {
             updateStatus("meow meow")
           } else {
-            updateStatus("Don't touch my ears and play!")
+            updateStatus("Don't touch me! Go play!")
           }
           isMeowMeow = !isMeowMeow
         }
@@ -786,8 +783,16 @@ class Gui(gameController: GameControllerInterface) extends Observer {
           mouseTransparent = true
         }
 
-        gifContainer.setLayoutX(x * 92 + 78)
-        gifContainer.setLayoutY(y * 89 + 93)
+        // Adjusted positioning calculation
+        val cellWidth = 91
+        val cellHeight = 89
+        val hgap = 6
+        val vgap = 6
+        val gridLeftOffset = 55 // Reduced from 78
+        val gridTopOffset = 115 // Increased from 93
+
+        gifContainer.layoutX = gridLeftOffset + x * (cellWidth + hgap) + (cellWidth - 40) / 2 - 8 //- to the right
+        gifContainer.layoutY = gridTopOffset + y * (cellHeight + vgap) + (cellHeight - 40) / 2 - 60
 
         gifOverlayPane.getChildren.add(gifContainer)
         gifHistory = gifContainer :: gifHistory
@@ -795,6 +800,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
       }
     }
   }
+
 
   private def removeLastGif(): Unit = {
     Platform.runLater {

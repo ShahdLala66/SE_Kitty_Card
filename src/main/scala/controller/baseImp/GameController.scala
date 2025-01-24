@@ -170,6 +170,7 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
                 if (card.value.equals(Value.One)) {
                   notifyObservers(FreezeEnemy)
                   notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+                  notifyObservers(UpdateGrid(grid))
                   false
                 }
 
