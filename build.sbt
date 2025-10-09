@@ -14,8 +14,8 @@ lazy val root = (project in file("."))
         coverageEnabled := true,
         coverageOutputXML := true,
         coverageExcludedFiles := ".*gui/.*",
-        fork in run := true,
-        javaOptions in run += "-Xmx2G"
+        run / fork := true,
+        run / javaOptions += "-Xmx2G"
     )
 
 libraryDependencies ++= Seq(
