@@ -13,7 +13,7 @@ import util.grid.GridFactory
 import scala.compiletime.uninitialized
 import scala.util.{Failure, Success, Try}
 
-class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) extends GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) {
+class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInterface: FileIOInterface = model.fileIOComp.baseImp.FileIOJSON()) extends GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) {
   var gameMode: GameMode = uninitialized
   var grid: Grid = uninitialized
   var observers: List[Observer] = List()
@@ -26,9 +26,20 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
   var player2String: String = ""
   var counter = 0
   
+  def getState: String = {
+    if (currentPlayer == null) {
+      "Game not started"
+    } else {
+      s"Current player: ${currentPlayer.name}, Player 1: ${player1.name}, Player 2: ${player2.name}"
+    }
+  }
   
+  // The Observable pattern will notify observers in the WA layer
+
+
   def startGame(): Unit = {
     notifyObservers(AskForGameMode)
+    
   }
 
 
@@ -260,6 +271,7 @@ class GameController(deck: Deck, hand: Hand, fileIOInterface: FileIOInterface) e
       case Some(state) =>
         currentState = state
         notifyObservers(event)
+
         notifyObservers(UpdateGrid(grid))
         notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
         true
