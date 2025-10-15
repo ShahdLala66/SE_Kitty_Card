@@ -1,6 +1,7 @@
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 import com.google.inject.{Guice, Injector}
+import mainmodule.{JsonModule, XmlModule}
 import controller.*
 import controller.baseImp.GameController
 import model.fileIOComp.*

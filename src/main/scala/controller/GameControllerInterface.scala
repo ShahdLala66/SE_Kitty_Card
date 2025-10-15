@@ -27,8 +27,6 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
     def handleCommand(command: String): Unit
 
     def handleCardPlacement(cardIndex: Int, x: Int, y: Int): Unit
-    
-    def getState: String
 
     def promptForPlayerName(player1: String, player2: String): Unit
 
@@ -56,4 +54,3 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
 
     def getPlayer2: String
 }
-

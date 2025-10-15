@@ -17,7 +17,5 @@ trait Observable {
 
     def notifyObservers(event: GameEvent): Unit = {
         observers.foreach(_.update(event))
-        // Send update to web server if available
-        GameStateHttpClient.sendUpdate(event.toString)
     }
 }

@@ -6,12 +6,6 @@ import util.*
 import java.lang.Thread.sleep
 
 class Tui(gameController: GameControllerInterface) extends Observer {
-  
-  def renderStateToString(): String = {
-    // Return a string representation of the current game state
-    val gameState = gameController.getState
-    "Current Game State: " + gameState
-  }
   gameController.add(this)
 
   var inputProvider: InputProvider = new ConsoleProvider

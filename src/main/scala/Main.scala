@@ -2,6 +2,7 @@ import aview.Tui
 import aview.gui.Gui
 import com.google.inject.Guice
 import controller.GameControllerInterface
+import mainmodule.XmlModule
 
 object Main extends App {
     private val injector = Guice.createInjector(new XmlModule)
