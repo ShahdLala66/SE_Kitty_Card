@@ -32,7 +32,9 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
     } else {
       s"Current player: ${currentPlayer.name}, Player 1: ${player1.name}, Player 2: ${player2.name}"
     }
+    
   }
+
   
   // The Observable pattern will notify observers in the WA layer
 
@@ -308,6 +310,8 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
 
   def getCurrentState: GameState = currentState
 
+  def getObserversString : String = observers.map(_.toString).mkString(", ")
+
   def getCurrentplayer: Player = currentPlayer
 
   def getCurrentPlayerString: String = currentPlayer.name
@@ -315,5 +319,10 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
   def getGridColor(x: Int, y: Int): String = {
     grid.toArray(x)(y)._2.toString.toLowerCase
   }
+
+  // Event buffer accessors (delegates to Observable's buffer)
+  def peekBufferedEvents(): List[util.GameEvent] = peekEvents()
+
+  def drainBufferedEvents(): List[util.GameEvent] = drainEvents()
 
 }

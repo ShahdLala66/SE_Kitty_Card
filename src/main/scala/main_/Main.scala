@@ -1,3 +1,5 @@
+package main_
+
 import aview.Tui
 import aview.gui.Gui
 import com.google.inject.Guice

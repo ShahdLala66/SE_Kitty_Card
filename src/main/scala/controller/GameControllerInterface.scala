@@ -46,6 +46,8 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
 
     def getCurrentState: GameState //savw
 
+    def getObserversString: String
+
     def loadGameState(gameState: GameState): Unit //load
 
     def getPlayers: List[Player] //save
@@ -55,5 +57,11 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
     def getPlayer1: String
 
     def getPlayer2: String
+
+    // Access buffered GameEvents produced by notifyObservers. Implementations
+    // should return the list of events (peek) or return-and-clear (drain).
+    def peekBufferedEvents(): List[util.GameEvent]
+
+    def drainBufferedEvents(): List[util.GameEvent]
 }
 

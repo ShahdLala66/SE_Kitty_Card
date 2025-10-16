@@ -1,3 +1,6 @@
+package main_
+
+
 import com.google.inject.{AbstractModule, Provides}
 import controller.GameControllerInterface
 import controller.baseImp.GameController
