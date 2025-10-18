@@ -11,5 +11,4 @@ object GameLauncher {
   def startGame(): Unit =
     controller.startGame()
 
-  def getTuiString: String = tui.renderStateToString()
 }
