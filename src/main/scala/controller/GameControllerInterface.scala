@@ -30,6 +30,8 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
     
     def getState: String
 
+    def getStateElements: Seq[String]
+
     def promptForPlayerName(player1: String, player2: String): Unit
 
     def getGridColors: List[(Int, Int, Option[CardInterface], Suit)]

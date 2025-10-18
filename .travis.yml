@@ -1,3 +1,2 @@
 language: scala
-scala:
-  3.3.3
+scala: 3.3.3

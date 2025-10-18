@@ -115,11 +115,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
             text = "Single Player"
             minWidth = 500
             minHeight = 55
-            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
-              "-fx-background-color: transparent; -fx-background-size: cover;" +
-              "-fx-background-repeat: no-repeat;" +
-              "-fx-background-insets: 0;" +
-              "-fx-padding: 0;"
+            private val submitUrl = resourceUrl("/assets/backgrounds/Submit.png")
+            style = s"-fx-background-image: url('$submitUrl'); -fx-background-color: transparent; -fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-insets: 0; -fx-padding: 0;"
             font = bubblegumSans
             onAction = _ => {
               new Thread(() => {
@@ -133,11 +130,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
             text = "Multi Player"
             minWidth = 500
             minHeight = 55
-            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
-              "-fx-background-color: transparent; -fx-background-size: cover;" +
-              "-fx-background-repeat: no-repeat;" +
-              "-fx-background-insets: 0;" +
-              "-fx-padding: 0;"
+            private val submitUrl = resourceUrl("/assets/backgrounds/Submit.png")
+            style = s"-fx-background-image: url('$submitUrl'); -fx-background-color: transparent; -fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-insets: 0; -fx-padding: 0;"
             font = bubblegumSans
             onAction = _ => {
               // close()
@@ -151,10 +145,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
           root = new VBox(20) {
             padding = Insets(20)
             alignment = Pos.Center
-            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/NameBackground.png'); " +
-              "-fx-background-size: cover; " +
-              "-fx-background-position: center; " +
-              "-fx-background-repeat: no-repeat;"
+            private val nameBgUrl = resourceUrl("/assets/backgrounds/NameBackground.png")
+            style = s"-fx-background-image: url('$nameBgUrl'); -fx-background-size: cover; -fx-background-position: center; -fx-background-repeat: no-repeat;"
             children = Seq(
               new Label("Choose Game Mode") {
                 font = bubblegumSans
@@ -187,11 +179,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
             text = "Start Game"
             minWidth = 500
             minHeight = 55
-            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
-              "-fx-background-color: transparent; -fx-background-size: cover;" +
-              "-fx-background-repeat: no-repeat;" +
-              "-fx-background-insets: 0;" +
-              "-fx-padding: 0;"
+            private val submitUrl = resourceUrl("/assets/backgrounds/Submit.png")
+            style = s"-fx-background-image: url('$submitUrl'); -fx-background-color: transparent; -fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-insets: 0; -fx-padding: 0;"
             font = bubblegumSans
             onAction = _ => {
               // close()
@@ -205,11 +194,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
             text = "Load Game"
             minWidth = 500
             minHeight = 55
-            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
-              "-fx-background-color: transparent; -fx-background-size: cover;" +
-              "-fx-background-repeat: no-repeat;" +
-              "-fx-background-insets: 0;" +
-              "-fx-padding: 0;"
+            private val submitUrl = resourceUrl("/assets/backgrounds/Submit.png")
+            style = s"-fx-background-image: url('$submitUrl'); -fx-background-color: transparent; -fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-insets: 0; -fx-padding: 0;"
             font = bubblegumSans
             onAction = _ => {
               // close()
@@ -222,10 +208,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
           root = new VBox(20) {
             padding = Insets(20)
             alignment = Pos.Center
-            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/NameBackground.png'); " +
-              "-fx-background-size: cover; " +
-              "-fx-background-position: center; " +
-              "-fx-background-repeat: no-repeat;"
+            private val nameBgUrl = resourceUrl("/assets/backgrounds/NameBackground.png")
+            style = s"-fx-background-image: url('$nameBgUrl'); -fx-background-size: cover; -fx-background-position: center; -fx-background-repeat: no-repeat;"
             children = Seq(
               new Label("Do you want to start a new game or load an existing one?") {
                 font = bubblegumSans
@@ -275,11 +259,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
             text = "Start Game"
             minWidth = 500
             minHeight = 55
-            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/Submit.png');" +
-              "-fx-background-color: transparent; -fx-background-size: cover;" +
-              "-fx-background-repeat: no-repeat;" +
-              "-fx-background-insets: 0;" +
-              "-fx-padding: 0;"
+            private val submitUrl = resourceUrl("/assets/backgrounds/Submit.png")
+            style = s"-fx-background-image: url('$submitUrl'); -fx-background-color: transparent; -fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-insets: 0; -fx-padding: 0;"
             font = bubblegumSans
             onAction = _ => {
               new Thread(() => {
@@ -297,10 +278,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
           root = new VBox(20) {
             padding = Insets(20)
             alignment = Pos.Center
-            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/NameBackground.png'); " +
-              "-fx-background-size: cover; " +
-              "-fx-background-position: center; " +
-              "-fx-background-repeat: no-repeat;"
+            private val nameBgUrl = resourceUrl("/assets/backgrounds/NameBackground.png")
+            style = s"-fx-background-image: url('$nameBgUrl'); -fx-background-size: cover; -fx-background-position: center; -fx-background-repeat: no-repeat;"
             children = Seq(
               new Label("Enter Player Names") {
                 font = bubblegumSans
@@ -335,8 +314,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
       onAction = _ => gameController.handleCommand("save")
     }
 
-    val musicOnImage = new Image("file:src/main/resources/assets/icons/music_on.png")
-    val musicOffImage = new Image("file:src/main/resources/assets/icons/music_off.png")
+  val musicOnImage = imageFromResource("/assets/icons/music_on.png")
+  val musicOffImage = imageFromResource("/assets/icons/music_off.png")
 
     val musicToggleButton = new ToggleButton {
       graphic = new ImageView(musicOnImage) {
@@ -490,9 +469,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
           overlayPane,
           cardPane
         )
-        style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/GridNew.png'); " +
-          "-fx-background-size: 444px 695px; " +
-          "-fx-background-position: center;"
+        private val gridNewUrl = resourceUrl("/assets/backgrounds/GridNew.png")
+        style = s"-fx-background-image: url('$gridNewUrl'); -fx-background-size: 444px 695px; -fx-background-position: center;"
       }
 
       currentStage = new Stage {
@@ -508,6 +486,24 @@ class Gui(gameController: GameControllerInterface) extends Observer {
           Platform.exit()
       }
       currentStage.show()
+    }
+  }
+
+  // Helper to get resource URL as ExternalForm safely
+  private def resourceUrl(path: String): String = {
+    val res = getClass.getResource(path)
+    if (res != null) res.toExternalForm else {
+      System.err.println(s"Resource not found: $path")
+      ""
+    }
+  }
+
+  // Helper to create Image from resource path safely
+  private def imageFromResource(path: String): Image = {
+    val stream = getClass.getResourceAsStream(path)
+    if (stream != null) new Image(stream) else {
+      System.err.println(s"Image resource not found: $path")
+      new Image(new javafx.scene.image.WritableImage(1, 1))
     }
   }
 
@@ -578,7 +574,7 @@ class Gui(gameController: GameControllerInterface) extends Observer {
   private def createFieldWithImage(textField: TextField): StackPane = {
     new StackPane {
       children = Seq(
-        new ImageView(new Image("file:src/main/resources/assets/backgrounds/TextField.png")) {
+        new ImageView(imageFromResource("/assets/backgrounds/TextField.png")) {
           fitWidth = 350
           fitHeight = 50
         },
@@ -910,9 +906,8 @@ class Gui(gameController: GameControllerInterface) extends Observer {
             spacing = 10
             padding = Insets(130, 0, 0, 0)
             alignment = Pos.TopCenter
-            style = "-fx-background-image: url('file:src/main/resources/assets/backgrounds/GameOverBackground.png'); " +
-              "-fx-background-size: cover; " +
-              "-fx-background-position: center;"
+            private val gameOverBg = resourceUrl("/assets/backgrounds/GameOverBackground.png")
+            style = s"-fx-background-image: url('$gameOverBg'); -fx-background-size: cover; -fx-background-position: center;"
             children = Seq(
               new Text("Game over!") {
                 font = bubblegumSans

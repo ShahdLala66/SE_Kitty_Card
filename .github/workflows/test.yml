@@ -18,8 +18,8 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'adopt'
-          java-version: '21'
+          distribution: "adopt"
+          java-version: "21"
 
       - name: Set up Scala
         uses: olafurpg/setup-scala@v12
@@ -35,4 +35,3 @@ jobs:
 
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@cfd0633edbd2411b532b808ba7a8b5e04f76d2c8
-

@@ -35,9 +35,13 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
     
   }
 
-  
-  // The Observable pattern will notify observers in the WA layer
-
+  def getStateElements: Seq[String] = {
+    if (currentPlayer == null) {
+      Seq("Game not started")
+    } else {
+      Seq(currentPlayer.name, player1.name, player2.name)
+    }
+  }
 
   def startGame(): Unit = {
     notifyObservers(AskForGameMode)
