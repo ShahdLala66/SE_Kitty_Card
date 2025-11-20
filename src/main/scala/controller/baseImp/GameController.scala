@@ -44,7 +44,7 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
   }
 
   def startGame(): Unit = {
-    notifyObservers(AskForGameMode)
+    //notifyObservers(AskForGameMode)
     
   }
 
@@ -242,6 +242,16 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
 
   def isGameOver: Boolean = {
     deck.size <= 0 || grid.isFull
+  }
+
+  def getWinner(): Option[String] = {
+    if (player1.points > player2.points) {
+      Some(player1.name)
+    } else if (player2.points > player1.points) {
+      Some(player2.name)
+    } else {
+      None // Draw
+    }
   }
 
 

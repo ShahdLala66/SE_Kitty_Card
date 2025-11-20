@@ -40,6 +40,8 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
 
     def isGameOver: Boolean
 
+    def getWinner(): Option[String]
+
     def getCurrentplayer: PlayerInterface
 
     def getCurrentPlayerString: String
@@ -66,4 +68,5 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
 
     def drainBufferedEvents(): List[util.GameEvent]
 }
+
 

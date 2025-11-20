@@ -8,8 +8,8 @@ import controller.GameControllerInterface
 object Main extends App {
     private val injector = Guice.createInjector(new XmlModule)
     val controller = injector.getInstance(classOf[GameControllerInterface])
-    val tui = new Tui(controller)
-    val gui = new Gui(controller)
+    //val tui = new Tui(controller)
+    //val gui = new Gui(controller)
 
     controller.startGame()
    
