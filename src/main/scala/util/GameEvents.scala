@@ -37,6 +37,9 @@ case class UpdatePlayers(player1: Player, player2: Player) extends GameEvent
 
 case class ShowCardsForPlayer(cand: List[CardInterface]) extends GameEvent
 
+// New event that includes player ID for session-based card visibility
+case class ShowCardsForPlayerId(playerId: Int, cards: List[CardInterface]) extends GameEvent
+
 case object FreezeEnemy extends GameEvent
 
 //  INPUT OUTPUT; SAVE GAME LOAD GAME : REDO UNDO __________________________________________

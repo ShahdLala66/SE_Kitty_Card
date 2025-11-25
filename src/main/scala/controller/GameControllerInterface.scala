@@ -62,6 +62,8 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
 
     def getPlayer2: String
 
+    def getPlayerByNumber(playerNumber: Int): Option[PlayerInterface]
+
     // Access buffered GameEvents produced by notifyObservers. Implementations
     // should return the list of events (peek) or return-and-clear (drain).
     def peekBufferedEvents(): List[util.GameEvent]

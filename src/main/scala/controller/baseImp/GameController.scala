@@ -72,7 +72,9 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
     notifyObservers(UpdatePlayer(currentPlayer.name))
     distributeInitialCards()
     notifyObservers(UpdateGrid(grid))
+
     notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+    notifyCardsForAllPlayers()  // Notify each player's cards with their ID
     startGameLoop()
   }
 
@@ -127,6 +129,9 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
           case Failure(e) => println(s"Error loading game: ${e.getMessage}")
         }
       case "start" =>
+        // Reset game state for new game
+        counter = 0
+        playerIsAtTurn = true
         grid = GridFactory.createGrid(3)
         currentState = new GameState(grid, List(player1, player2), 0, 0)
         notifyObservers(PromptForPlayerName)
@@ -141,6 +146,7 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
       case Some(card) =>
         notifyObservers(CardDrawn(currentPlayer.name, card.toString))
         notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+        notifyCardsForAllPlayers()  // Notify each player's cards with their ID
         switchTurns()
       case None =>
         notifyObservers(InvalidPlacement)
@@ -187,6 +193,7 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
                 if (card.value.equals(Value.One)) {
                   notifyObservers(FreezeEnemy)
                   notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+                  notifyCardsForAllPlayers()  // Notify each player's cards with their ID
                   false
                 }
 
@@ -233,11 +240,21 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
     notifyObservers(UpdatePlayer(currentPlayer.name))
     notifyObservers(UpdateGrid(grid))
     notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+    notifyCardsForAllPlayers()  // Notify each player's cards with their ID
   }
 
   private def displayFinalScores(): Unit = {
     notifyObservers(GameOver(player1.name, player1.points, player2.name, player2.points))
 
+  }
+
+  // Helper method to notify cards for both players with their IDs
+  // This enables session-based card visibility in multiplayer
+  def notifyCardsForAllPlayers(): Unit = {
+    if (player1 != null && player2 != null) {
+      notifyObservers(ShowCardsForPlayerId(1, player1.getHand))
+      notifyObservers(ShowCardsForPlayerId(2, player2.getHand))
+    }
   }
 
   def isGameOver: Boolean = {
@@ -290,6 +307,7 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
 
         notifyObservers(UpdateGrid(grid))
         notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+        notifyCardsForAllPlayers()  // Notify each player's cards with their ID
         true
       case None =>
         false
@@ -319,6 +337,14 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
   def getPlayer1: String = player1.name
 
   def getPlayer2: String = player2.name
+
+  def getPlayerByNumber(playerNumber: Int): Option[Player] = { 
+    playerNumber match {
+      case 1 => Option(player1)
+      case 2 => Option(player2)
+      case _ => None
+    }
+  }
 
   def getPlayers: List[Player] = List(player1, player2)
 
