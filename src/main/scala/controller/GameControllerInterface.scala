@@ -67,6 +67,17 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
     def peekBufferedEvents(): List[util.GameEvent]
 
     def drainBufferedEvents(): List[util.GameEvent]
+    
+    // Session management
+    def createGameSession(): String
+    
+    def joinGameSession(sessionId: String, playerName: String, playerId: String): Option[Int]
+    
+    def startGameSession(sessionId: String): Boolean
+    
+    def isPlayerTurn(sessionId: String, playerId: String): Boolean
+    
+    def getSessionPlayer(sessionId: String, playerNumber: Int): Option[model.gameModelComp.baseImp.Player]
 }
 
 
