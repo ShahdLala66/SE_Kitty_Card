@@ -1,6 +1,6 @@
 package controller.baseImp
 
-import controller.GameControllerInterface
+import controller.{GameControllerInterface, SessionManager}
 import model.*
 import model.fileIOComp.FileIOInterface
 import model.gameModelComp.CardInterface
@@ -25,6 +25,11 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
   var player1String: String = ""
   var player2String: String = ""
   var counter = 0
+  
+  // Session management
+  val sessionManager = new SessionManager()
+  var currentSessionId: Option[String] = None
+  var currentPlayerId: Option[String] = None
   
   def getState: String = {
     if (currentPlayer == null) {
@@ -72,7 +77,7 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
     notifyObservers(UpdatePlayer(currentPlayer.name))
     distributeInitialCards()
     notifyObservers(UpdateGrid(grid))
-    notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+    //notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
     startGameLoop()
   }
 
@@ -140,7 +145,7 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
     currentPlayer.drawCard(deck) match {
       case Some(card) =>
         notifyObservers(CardDrawn(currentPlayer.name, card.toString))
-        notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+        //notifyObservers(ShowCardsForPlayer(player1.getHand))
         switchTurns()
       case None =>
         notifyObservers(InvalidPlacement)
@@ -186,7 +191,7 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
                 currentPlayer.removeCard(card)
                 if (card.value.equals(Value.One)) {
                   notifyObservers(FreezeEnemy)
-                  notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+                
                   false
                 }
 
@@ -230,9 +235,18 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
 
   private def switchTurns(): Unit = {
     currentPlayer = if (currentPlayer == player1) player2 else player1
+    
+    // Update session turn tracking if in session mode
+    currentSessionId.foreach { sessionId =>
+      sessionManager.getSession(sessionId).foreach { session =>
+        sessionManager.switchTurn(session)
+        currentPlayerId = session.currentPlayerId
+        println(s"[GameController] Switched turn in session $sessionId to playerId $currentPlayerId")
+      }
+    }
+    
     notifyObservers(UpdatePlayer(currentPlayer.name))
     notifyObservers(UpdateGrid(grid))
-    notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
   }
 
   private def displayFinalScores(): Unit = {
@@ -289,7 +303,7 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
         notifyObservers(event)
 
         notifyObservers(UpdateGrid(grid))
-        notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
+        //notifyObservers(ShowCardsForPlayer(currentPlayer.getHand))
         true
       case None =>
         false
@@ -338,5 +352,107 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
   def peekBufferedEvents(): List[util.GameEvent] = peekEvents()
 
   def drainBufferedEvents(): List[util.GameEvent] = drainEvents()
+
+  // SESSION MANAGEMENT METHODS ____________________________________________
+  
+  def createGameSession(): String = {
+    val session = sessionManager.createSession()
+    currentSessionId = Some(session.sessionId)
+    println(s"[GameController] Created session: ${session.sessionId}")
+    session.sessionId
+  }
+  
+  def joinGameSession(sessionId: String, playerName: String, playerId: String): Option[Int] = {
+    val playerNumber = sessionManager.joinSession(sessionId, playerName, playerId)
+    playerNumber.foreach { pNum =>
+      println(s"[GameController] Player $playerName (ID: $playerId) joined session $sessionId as Player $pNum")
+      
+      // Set the current session if not already set
+      if (currentSessionId.isEmpty) {
+        currentSessionId = Some(sessionId)
+      }
+      
+      // Assign to player1 or player2
+      sessionManager.getSession(sessionId).foreach { session =>
+        session.player1.foreach { p => player1 = p }
+        session.player2.foreach { p => player2 = p }
+        
+        // Start game if both players joined
+        if (session.isReady && !session.isStarted) {
+          startGameSession(sessionId)
+        }
+      }
+    }
+    playerNumber
+  }
+  
+  def startGameSession(sessionId: String): Boolean = {
+    sessionManager.getSession(sessionId) match {
+      case Some(session) if session.isReady && !session.isStarted =>
+        sessionManager.startGameSession(session)
+        currentSessionId = Some(sessionId)
+        currentPlayerId = session.currentPlayerId
+        
+        // Initialize game
+        grid = GridFactory.createGrid(3)
+        currentState = new GameState(grid, List(player1, player2), 0, 0)
+        currentPlayer = player1
+        
+        // Distribute cards
+        for (_ <- 1 to 3) {
+          player1.drawCard(deck)
+          player2.drawCard(deck)
+        }
+        
+        println(s"[GameController] Started game session $sessionId")
+        notifyObservers(UpdateGrid(grid))
+        true
+        
+      case Some(session) if session.isStarted =>
+        println(s"[GameController] Session $sessionId already started")
+        false
+        
+      case Some(_) =>
+        println(s"[GameController] Session $sessionId not ready (need 2 players)")
+        false
+        
+      case None =>
+        println(s"[GameController] Session $sessionId not found")
+        false
+    }
+  }
+  
+  def isPlayerTurn(sessionId: String, playerId: String): Boolean = {
+    sessionManager.getSession(sessionId) match {
+      case Some(session) => 
+        sessionManager.isPlayerTurn(session, playerId)
+      case None => 
+        println(s"[GameController] Session $sessionId not found for turn check")
+        false
+    }
+  }
+  
+  def getSessionPlayer(sessionId: String, playerNumber: Int): Option[Player] = {
+    sessionManager.getSession(sessionId).flatMap { session =>
+      playerNumber match {
+        case 1 => session.player1
+        case 2 => session.player2
+        case _ => None
+      }
+    }
+  }
+  
+  // Helper methods to access current session info
+  def getCurrentSession: Option[GameSession] = {
+    currentSessionId.flatMap(sessionManager.getSession)
+  }
+  
+  def getCurrentSessionId: Option[String] = currentSessionId
+  
+  def getCurrentPlayerId: Option[String] = currentPlayerId
+  
+  def getPlayerNumberById(playerId: String): Option[Int] = {
+    getCurrentSession.flatMap(session => sessionManager.getPlayerNumber(session, playerId))
+  }
 
 }
