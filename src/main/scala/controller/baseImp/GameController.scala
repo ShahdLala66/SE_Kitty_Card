@@ -30,6 +30,7 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
   val sessionManager = new SessionManager()
   var currentSessionId: Option[String] = None
   var currentPlayerId: Option[String] = None
+  var lastPlayedCardWasAce: Boolean = false
   
   def getState: String = {
     if (currentPlayer == null) {
@@ -152,9 +153,16 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
     }
   }
 
-  def handleCardPlacement(cardIndex: Int, x: Int, y: Int): Unit = {
-    if (processCardPlacement(s"$cardIndex $x $y")) {
-      switchTurns()
+  def handleCardPlacement(cardIndex: Int, x: Int, y: Int): Boolean = {
+    lastPlayedCardWasAce = false // Reset flag
+    val success = processCardPlacement(s"$cardIndex $x $y")
+    if (success) {
+      // Only switch turns if it wasn't an Ace (Ace allows player to go again)
+      if (!lastPlayedCardWasAce) {
+        switchTurns()
+      } else {
+        println("[GameController] Ace played - player keeps turn")
+      }
       playerIsAtTurn = true
     }
     if (!isGameOver) {
@@ -162,6 +170,7 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
     } else {
       displayFinalScores()
     }
+    success
   }
 
   private def processCardPlacement(input: String): Boolean = {
@@ -180,26 +189,28 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
           val x = parts(1).toInt
           val y = parts(2).toInt
 
+          println(s"[GameController] processCardPlacement: cardIndex=$cardIndex, x=$x, y=$y")
+          println(s"[GameController] Current player hand size: ${currentPlayer.getHand.size}")
+
           currentPlayer.getHand.lift(cardIndex) match {
             case Some(card: NumberCards) =>
-              if (grid.placeCard(x, y, card)) {
+              println(s"[GameController] Found card at index $cardIndex: $card")
+              val gridPlaceSuccess = grid.placeCard(x, y, card)
+              println(s"[GameController] Grid placement result: $gridPlaceSuccess")
+              if (gridPlaceSuccess) {
                 val pointsEarned = grid.calculatePoints(x, y)
                 val command = new PlaceCardCommand(grid, card, currentPlayer, pointsEarned, (x, y))
                 currentState = commandManager.executeCommand(command, currentState)
                 currentPlayer.addPoints(pointsEarned)
                 notifyObservers(CardPlacementSuccess(x, y, card.toString, pointsEarned))
                 currentPlayer.removeCard(card)
-                if (card.value.equals(Value.One)) {
+                // Set flag if Ace is played (player keeps turn)
+                lastPlayedCardWasAce = card.value.equals(Value.One)
+                if (lastPlayedCardWasAce) {
                   notifyObservers(FreezeEnemy)
-                
-                  false
-                }
-
-                else if (card.value.equals(Value.Seven)) {
+                } else if (card.value.equals(Value.Seven)) {
                   if (player2.getHand.nonEmpty) {
-                    //second player remove card too
                     if (currentPlayer == player1) {
-                      //get the hand and remove one card at radnom
                       player2.removeCard(player2.getHand.head)
                     }
                     else {
@@ -207,12 +218,8 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
                     }
                   }
                   currentPlayer.removeCard(card)
-                  switchTurns()
-                  true
                 }
-                else { //for normal case cards VERY IMPORTANT TRUE EVEN IF ITS SMALL
-                  true
-                }
+                true
               } else {
                 notifyObservers(InvalidPlacement)
                 currentPlayer.removeCard(card)
@@ -221,11 +228,14 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
                 false
               }
             case _ =>
+              println(s"[GameController] No card found at index $cardIndex")
               notifyObservers(InvalidPlacement)
               false
           }
         } match {
-          case Success(result) => result
+          case Success(result) => 
+            println(s"[GameController] Final result: $result")
+            result
           case Failure(_) =>
             notifyObservers(InvalidPlacement)
             false
@@ -439,6 +449,12 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
         case 2 => session.player2
         case _ => None
       }
+    }
+  }
+  
+  def getPlayerNumberForSession(sessionId: String, playerId: String): Option[Int] = {
+    sessionManager.getSession(sessionId).flatMap { session =>
+      sessionManager.getPlayerNumber(session, playerId)
     }
   }
   

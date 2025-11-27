@@ -26,7 +26,7 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
 
     def handleCommand(command: String): Unit
 
-    def handleCardPlacement(cardIndex: Int, x: Int, y: Int): Unit
+    def handleCardPlacement(cardIndex: Int, x: Int, y: Int): Boolean
     
     def getState: String
 
@@ -78,6 +78,8 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
     def isPlayerTurn(sessionId: String, playerId: String): Boolean
     
     def getSessionPlayer(sessionId: String, playerNumber: Int): Option[model.gameModelComp.baseImp.Player]
+    
+    def getPlayerNumberForSession(sessionId: String, playerId: String): Option[Int]
 }
 
 
