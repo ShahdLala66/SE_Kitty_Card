@@ -86,6 +86,8 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
     def setActiveSession(sessionId: String): Unit
     
     def clearActiveSession(): Unit
+    
+    def getCurrentSessionId: Option[String]
 }
 
 

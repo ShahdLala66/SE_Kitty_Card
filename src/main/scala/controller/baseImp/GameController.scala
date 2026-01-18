@@ -382,6 +382,8 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
 
   // OBSERVER PATTERN AND HELPER METHODS  __________________________________________
   def askForInputAgain(): Unit = {
+    // For session-based games, this flag is not used
+    // Sessions manage turn state via SessionManager
     playerIsAtTurn = true
   }
 
