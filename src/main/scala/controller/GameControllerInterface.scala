@@ -80,6 +80,12 @@ trait GameControllerInterface(deck: Deck, hand: Hand, fileIOInterface: FileIOInt
     def getSessionPlayer(sessionId: String, playerNumber: Int): Option[model.gameModelComp.baseImp.Player]
     
     def getPlayerNumberForSession(sessionId: String, playerId: String): Option[Int]
+    
+    def getSession(sessionId: String): Option[model.gameModelComp.baseImp.GameSession]
+    
+    def setActiveSession(sessionId: String): Unit
+    
+    def clearActiveSession(): Unit
 }
 
 

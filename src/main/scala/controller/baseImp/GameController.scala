@@ -42,10 +42,24 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
   }
 
   def getStateElements: Seq[String] = {
-    if (currentPlayer == null) {
-      Seq("Game not started")
-    } else {
-      Seq(currentPlayer.name, player1.name, player2.name)
+    // Try to use session-specific state if available
+    getCurrentSession match {
+      case Some(session) =>
+        val sessionPlayer = session.currentPlayer.getOrElse(currentPlayer)
+        val p1 = session.player1.getOrElse(player1)
+        val p2 = session.player2.getOrElse(player2)
+        if (sessionPlayer == null) {
+          Seq("Game not started")
+        } else {
+          Seq(sessionPlayer.name, p1.name, p2.name)
+        }
+      case None =>
+        // Fallback to global state
+        if (currentPlayer == null) {
+          Seq("Game not started")
+        } else {
+          Seq(currentPlayer.name, player1.name, player2.name)
+        }
     }
   }
 
@@ -143,34 +157,109 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
   }
 
   def drawCardForCurrentPlayer(): Unit = {
-    currentPlayer.drawCard(deck) match {
-      case Some(card) =>
-        notifyObservers(CardDrawn(currentPlayer.name, card.toString))
-        //notifyObservers(ShowCardsForPlayer(player1.getHand))
-        switchTurns()
+    // Check if we're in a session
+    getCurrentSession match {
+      case Some(session) =>
+        // Use session-specific deck and player
+        val sessionDeck = session.deck.getOrElse(deck)
+        val sessionPlayer = session.currentPlayer.getOrElse(currentPlayer)
+        sessionPlayer.drawCard(sessionDeck) match {
+          case Some(card) =>
+            notifyObservers(CardDrawn(sessionPlayer.name, card.toString))
+            // Switch to other player in session
+            session.currentPlayer = if (session.currentPlayer == session.player1) session.player2 else session.player1
+            sessionManager.switchTurn(session)
+            notifyObservers(UpdatePlayer(session.currentPlayer.get.name))
+          case None =>
+            notifyObservers(InvalidPlacement)
+        }
       case None =>
-        notifyObservers(InvalidPlacement)
+        // Fallback to old behavior
+        currentPlayer.drawCard(deck) match {
+          case Some(card) =>
+            notifyObservers(CardDrawn(currentPlayer.name, card.toString))
+            switchTurns()
+          case None =>
+            notifyObservers(InvalidPlacement)
+        }
     }
   }
 
   def handleCardPlacement(cardIndex: Int, x: Int, y: Int): Boolean = {
-    lastPlayedCardWasAce = false // Reset flag
-    val success = processCardPlacement(s"$cardIndex $x $y")
-    if (success) {
-      // Only switch turns if it wasn't an Ace (Ace allows player to go again)
-      if (!lastPlayedCardWasAce) {
-        switchTurns()
-      } else {
-        println("[GameController] Ace played - player keeps turn")
-      }
-      playerIsAtTurn = true
+    // Check if we're in a session
+    getCurrentSession match {
+      case Some(session) =>
+        // Use session-specific state
+        val sessionGrid = session.grid.getOrElse(grid)
+        val sessionPlayer = session.currentPlayer.getOrElse(currentPlayer)
+        
+        println(s"[GameController] [Session ${session.sessionId}] handleCardPlacement: cardIndex=$cardIndex, x=$x, y=$y")
+        println(s"[GameController] [Session ${session.sessionId}] Current player: ${sessionPlayer.name}, hand size: ${sessionPlayer.getHand.size}")
+        
+        sessionPlayer.getHand.lift(cardIndex) match {
+          case Some(card: NumberCards) =>
+            println(s"[GameController] [Session ${session.sessionId}] Found card at index $cardIndex: $card")
+            val gridPlaceSuccess = sessionGrid.placeCard(x, y, card)
+            println(s"[GameController] [Session ${session.sessionId}] Grid placement result: $gridPlaceSuccess")
+            
+            if (gridPlaceSuccess) {
+              val pointsEarned = sessionGrid.calculatePoints(x, y)
+              sessionPlayer.addPoints(pointsEarned)
+              notifyObservers(CardPlacementSuccess(x, y, card.toString, pointsEarned))
+              sessionPlayer.removeCard(card)
+              
+              // Track placement in session
+              session.gridPlacements((x, y)) = if (session.currentPlayer == session.player1) "player1" else "player2"
+              
+              // Switch to other player in session
+              session.currentPlayer = if (session.currentPlayer == session.player1) session.player2 else session.player1
+              sessionManager.switchTurn(session)
+              
+              notifyObservers(UpdatePlayer(session.currentPlayer.get.name))
+              notifyObservers(UpdateGrid(sessionGrid))
+              
+              if (isSessionGameOver(session)) {
+                displaySessionFinalScores(session)
+              }
+              true
+            } else {
+              notifyObservers(InvalidPlacement)
+              sessionPlayer.removeCard(card)
+              
+              // Switch to other player on invalid placement
+              session.currentPlayer = if (session.currentPlayer == session.player1) session.player2 else session.player1
+              sessionManager.switchTurn(session)
+              
+              notifyObservers(UpdatePlayer(session.currentPlayer.get.name))
+              notifyObservers(UpdateGrid(sessionGrid))
+              false
+            }
+          case _ =>
+            println(s"[GameController] [Session ${session.sessionId}] No card found at index $cardIndex")
+            notifyObservers(InvalidPlacement)
+            false
+        }
+        
+      case None =>
+        // Fallback to old behavior for non-session games
+        lastPlayedCardWasAce = false // Reset flag
+        val success = processCardPlacement(s"$cardIndex $x $y")
+        if (success) {
+          // Only switch turns if it wasn't an Ace (Ace allows player to go again)
+          if (!lastPlayedCardWasAce) {
+            switchTurns()
+          } else {
+            println("[GameController] Ace played - player keeps turn")
+          }
+          playerIsAtTurn = true
+        }
+        if (!isGameOver) {
+          playerIsAtTurn = true
+        } else {
+          displayFinalScores()
+        }
+        success
     }
-    if (!isGameOver) {
-      playerIsAtTurn = true
-    } else {
-      displayFinalScores()
-    }
-    success
   }
 
   private def processCardPlacement(input: String): Boolean = {
@@ -265,16 +354,28 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
   }
 
   def isGameOver: Boolean = {
-    deck.size <= 0 || grid.isFull
+    // Try to use session-specific state if available
+    getCurrentSession match {
+      case Some(session) => isSessionGameOver(session)
+      case None => deck.size <= 0 || grid.isFull
+    }
   }
 
   def getWinner(): Option[String] = {
-    if (player1.points > player2.points) {
-      Some(player1.name)
-    } else if (player2.points > player1.points) {
-      Some(player2.name)
-    } else {
-      None // Draw
+    // Try to use session-specific state if available
+    getCurrentSession match {
+      case Some(session) =>
+        (session.player1, session.player2) match {
+          case (Some(p1), Some(p2)) =>
+            if (p1.points > p2.points) Some(p1.name)
+            else if (p2.points > p1.points) Some(p2.name)
+            else None // Draw
+          case _ => None
+        }
+      case None =>
+        if (player1.points > player2.points) Some(player1.name)
+        else if (player2.points > player1.points) Some(player2.name)
+        else None // Draw
     }
   }
 
@@ -325,11 +426,15 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
   // GETTER METHODS ____________________________________________
 
   def getGridColors: List[(Int, Int, Option[CardInterface], Suit)] = {
-    grid.toArray.zipWithIndex.flatMap { case (row, x) =>
-      row.zipWithIndex.map { case ((card, color), y) =>
-        (x, y, card, color)
-      }
-    }.toList
+    // Try to use session-specific grid if available
+    getCurrentSession match {
+      case Some(session) =>
+        val sessionGrid = session.grid.getOrElse(grid)
+        getGridColorsFromGrid(sessionGrid)
+      case None =>
+        // Fallback to global grid
+        getGridColorsFromGrid(grid)
+    }
   }
 
   def getGridColorsFromGrid(grid: Grid): List[(Int, Int, Option[CardInterface], Suit)] = {
@@ -340,17 +445,37 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
     }.toList
   }
 
-  def getPlayer1: String = player1.name
+  def getPlayer1: String = {
+    getCurrentSession match {
+      case Some(session) => session.player1.map(_.name).getOrElse(player1.name)
+      case None => player1.name
+    }
+  }
 
-  def getPlayer2: String = player2.name
+  def getPlayer2: String = {
+    getCurrentSession match {
+      case Some(session) => session.player2.map(_.name).getOrElse(player2.name)
+      case None => player2.name
+    }
+  }
 
-  def getPlayers: List[Player] = List(player1, player2)
+  def getPlayers: List[Player] = {
+    getCurrentSession match {
+      case Some(session) => List(session.player1, session.player2).flatten
+      case None => List(player1, player2)
+    }
+  }
 
   def getCurrentState: GameState = currentState
 
   def getObserversString : String = observers.map(_.toString).mkString(", ")
 
-  def getCurrentplayer: Player = currentPlayer
+  def getCurrentplayer: Player = {
+    getCurrentSession match {
+      case Some(session) => session.currentPlayer.getOrElse(currentPlayer)
+      case None => currentPlayer
+    }
+  }
 
   def getCurrentPlayerString: String = currentPlayer.name
 
@@ -403,19 +528,22 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
         currentSessionId = Some(sessionId)
         currentPlayerId = session.currentPlayerId
         
-        // Initialize game
-        grid = GridFactory.createGrid(3)
-        currentState = new GameState(grid, List(player1, player2), 0, 0)
-        currentPlayer = player1
+        // Initialize game with NEW instances for THIS session
+        val sessionGrid = GridFactory.createGrid(3)
+        val sessionDeck = new Deck()
+        session.grid = Some(sessionGrid)
+        session.deck = Some(sessionDeck)
+        session.gameState = Some(new GameState(sessionGrid, List(session.player1.get, session.player2.get), 0, 0))
+        session.currentPlayer = session.player1
         
-        // Distribute cards
+        // Distribute cards using session-specific deck and players
         for (_ <- 1 to 3) {
-          player1.drawCard(deck)
-          player2.drawCard(deck)
+          session.player1.get.drawCard(sessionDeck)
+          session.player2.get.drawCard(sessionDeck)
         }
         
-        println(s"[GameController] Started game session $sessionId")
-        notifyObservers(UpdateGrid(grid))
+        println(s"[GameController] Started game session $sessionId with isolated state")
+        notifyObservers(UpdateGrid(sessionGrid))
         true
         
       case Some(session) if session.isStarted =>
@@ -469,6 +597,35 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
   
   def getPlayerNumberById(playerId: String): Option[Int] = {
     getCurrentSession.flatMap(session => sessionManager.getPlayerNumber(session, playerId))
+  }
+  
+  // Session-aware game state methods
+  def isSessionGameOver(session: GameSession): Boolean = {
+    session.deck.map(_.size <= 0).getOrElse(false) || session.grid.map(_.isFull).getOrElse(false)
+  }
+  
+  def displaySessionFinalScores(session: GameSession): Unit = {
+    (session.player1, session.player2) match {
+      case (Some(p1), Some(p2)) =>
+        notifyObservers(GameOver(p1.name, p1.points, p2.name, p2.points))
+      case _ => // No-op if players not set
+    }
+  }
+  
+  def getSession(sessionId: String): Option[GameSession] = {
+    sessionManager.getSession(sessionId)
+  }
+  
+  // Set the active session for operations
+  def setActiveSession(sessionId: String): Unit = {
+    currentSessionId = Some(sessionId)
+    println(s"[GameController] Set active session to $sessionId")
+  }
+  
+  // Clear active session
+  def clearActiveSession(): Unit = {
+    currentSessionId = None
+    println(s"[GameController] Cleared active session")
   }
 
 }
