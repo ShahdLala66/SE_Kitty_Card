@@ -211,9 +211,31 @@ class GameController(deck: Deck = new Deck(), hand: Hand = new Hand(), fileIOInt
               // Track placement in session
               session.gridPlacements((x, y)) = if (session.currentPlayer == session.player1) "player1" else "player2"
               
-              // Switch to other player in session
-              session.currentPlayer = if (session.currentPlayer == session.player1) session.player2 else session.player1
-              sessionManager.switchTurn(session)
+              // Check for special cards
+              val isAce = card.value.equals(Value.One)
+              val isSeven = card.value.equals(Value.Seven)
+              
+              if (isAce) {
+                // Ace: Player keeps turn (don't switch)
+                println(s"[GameController] [Session ${session.sessionId}] Ace played - player keeps turn")
+                notifyObservers(FreezeEnemy)
+              } else if (isSeven) {
+                // Seven (Bombe): Remove card from opponent's hand
+                val opponent = if (session.currentPlayer == session.player1) session.player2 else session.player1
+                opponent.foreach { opp =>
+                  if (opp.getHand.nonEmpty) {
+                    opp.removeCard(opp.getHand.head)
+                    println(s"[GameController] [Session ${session.sessionId}] Seven played - removed card from opponent")
+                  }
+                }
+                // Switch to other player
+                session.currentPlayer = if (session.currentPlayer == session.player1) session.player2 else session.player1
+                sessionManager.switchTurn(session)
+              } else {
+                // Normal card: Switch to other player in session
+                session.currentPlayer = if (session.currentPlayer == session.player1) session.player2 else session.player1
+                sessionManager.switchTurn(session)
+              }
               
               notifyObservers(UpdatePlayer(session.currentPlayer.get.name))
               notifyObservers(UpdateGrid(sessionGrid))
